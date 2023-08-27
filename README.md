@@ -1,3 +1,1 @@
-# PeerTube plugin Quickstart
-
-See https://docs.joinpeertube.org/#/contribute-plugins?id=write-a-plugintheme
+Moving podcast2.0 support from lightning plugin to its own standalone plugin
