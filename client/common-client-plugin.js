@@ -183,7 +183,6 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
       }
     }
   })
-
   registerHook({
     target: 'action:video-channel-videos.video-channel.loaded',
     handler: async (result, params) => {
@@ -201,8 +200,6 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
       return result;
     }
   })
-
-
   registerHook({
     target: 'action:video-edit.init',
     handler: async ({ type, updateForm }) => {
@@ -211,8 +208,6 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
       console.log('⚡️type and update form!', type,updateForm,itemTxt);
     }
   })
-
-
   registerHook({
     target: 'action:video-channel-update.video-channel.loaded',
     handler: async (params) => {
@@ -488,7 +483,6 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
       console.log("⚡️error attempting to fetch feed id", err);
     }
   }
-
   async function closeModal() {
     let butts = document.getElementsByClassName("ng-star-inserted")
     for (var butt of butts) {
@@ -500,9 +494,6 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
     }
     return false;
   }
-
-
-
   async function getChannelGuid(channel) {
     let guid;
     let guidApi = basePath + "/getchannelguid?channel=" + channel;

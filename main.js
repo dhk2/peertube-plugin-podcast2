@@ -9,6 +9,8 @@ async function register ({
   registerSetting,
   settingsManager,
   storageManager,
+  peertubeHelpers,
+  getRouter,
   videoCategoryManager,
   videoLicenceManager,
   videoLanguageManager
@@ -89,7 +91,184 @@ async function register ({
       return video
     }
   })
+    registerHook({
+    target: 'filter:feed.podcast.channel.create-custom-tags.result',
+    handler: async (result, params) => {
+      const { videoChannel } = params
+      console.log("⚡️⚡️⚡️⚡️ initial channel values ⚡️⚡️⚡️⚡️",params);
+      var channel = params.videoChannel.dataValues.Actor.dataValues.preferredUsername;
+      let podreturn = [];
+      let channelGuid;
+      apiUrl = base + "/plugins/podcast2/router/getchannelguid?channel=" + channel;
+      try {
+        let guidData = await axios.get(apiUrl);
+        if (guidData && guidData.data) {
+          console.log("⚡️⚡️channel guid", guidData.data,apiUrl);
+          channelGuid = guidData.data;
+        }
+      } catch {
+        console.log("⚡️⚡️unable to load channel guid", apiUrl);
+      }
+      if (channelGuid){
+        podreturn.push({
+          name: "podcast:guid",
+          value: channelGuid,
+        });
+      }
+      console.log("⚡️⚡️unable to load channel guid", apiUrl);
+      let podData;
+      try {
+        podData = await storageManager.getData("pod-" + channel.replace(/\./g, "-"));
+      } catch (err) {
+        console.log("⚡️⚡️error getting pod data for ", channel);
+      }
+      if (podData && Array.isArray(podData.text)){
+        podreturn.push({
+          name: "podcast:txt",
+          value: podData.text[0],
+        });
+      }
+      return result.concat(podreturn)
+    }
+  })
+  registerHook({
+    target: 'filter:feed.podcast.video.create-custom-tags.result',
+    handler: async (result, params) => {      const { video, liveItem } = params
+      //console.log("⚡️⚡️⚡️⚡️ initial video values ⚡️⚡️⚡️⚡️",result,params,params.video);
+      if (liveItem) {
+      }
+      var videoUuid = params.video.dataValues.uuid;
+      var storedSplitData = await getSavedSplit(videoUuid);
+      var blocks = []
+      //var videoJSON = await peertubeHelpers.videos.loadByIdOrUUID(videoUuid);
+      //console.log("⚡️⚡️⚡️⚡️ video helper json",videoJSON)
+      let customObjects = [];
+      let captionApi = base + "/api/v1/videos/" + videoUuid + "/captions";
+      let captionResult;
+      try {
+        captionResult = await axios.get(captionApi);
+      } catch (err) {
+        console.log("⚡️⚡️failed requesting transcript data", err);
+      }
+      let captionPath, captionLanguage, captionItem;
+      //if (captionResult && captionResult.data && captionResult.data.total > 0) {
+      //console.log("⚡️⚡️\ncaption result", captionResult.data);
+      for (var captionEntry in captionResult.data.data) {
+        captionPath = base + captionEntry.captionPath
+        if (captionEntry.language) {
+          captionLanguage = captionEntry.language.id;
+        }
+        if (captionPath.indexOf("vtt") > 1) {
+          type = "text/vtt"
+        } else {
+          type = "text/plain"
+          //fixed = fixed + "\n" + spacer + `<podcast:transcript url="` + captionPath + `" language="` + captionLanguage + `" type="text/plain" rel="captions"/>`;
+        }
+        captionItem = {
+          name: "podcast:transcript",
+          attributes: {
+            "url": captionPath,
+            "language": captionLanguage,
+            "type": type,
+            "rel": "captions"
+          }
+        };
+        customObjects.push(captionItem);
+      }
+      var apiCall = base + "/api/v1/videos/" + videoUuid;
+      let videoData;
+      try {
+        videoData = await axios.get(apiCall);
+      } catch {
+        console.log("⚡️⚡️\n\n\n\n\n\nfailed to pull information for provided video id", apiCall);
+      }
+      if (videoData && videoData.data) {
+        let duration = videoData.data.duration;
+        let customData = videoData.data.pluginData;
+        let filename;
+        let smallest = 999999999
+        if (videoData.data.streamingPlaylists[0]){
+          let videoFiles = videoData.data.streamingPlaylists[0].files;
+          if (videoFiles) {
+            for (var fileOption of videoFiles) {
+              //console.log(fileOption);
+              if (fileOption.size < smallest) {
+                smallest = fileOption.size;
+                filename = fileOption.fileUrl
+              }
+            }
+          }
+        }
+        var enclosure;
+        //console.log("\n⚡️⚡️\n\n\nsmallest??",filename,smallest);
+        if (filename) {
+          enclosure = {
+            name: "audioenclosure",
+            attributes: {
+              "url": filename,
+              type: "video/mp4",
+              length: duration
+            }
+          }
+        } 
+        if (enclosure) {
+          customObjects.push(enclosure);
+        }
+        console.log("⚡️⚡️\nplugin data", customData);
+        
+        if (customData && customData.seasonnode){
+          let seasonItem = {
+            name: "podcast:season",
+            value: await customData.seasonnode.toString()
+          };
+          if (customData.seasonname){
+            seasonItem.attributes={
+              "name": customData.seasonname
+            }
+          }
+          customObjects.push(seasonItem);
+        }
+        
+        if (customData && customData.episodenode){
+          episodeItem = {
+            name: "podcast:episode",
+            value: await customData.episodenode.toString()
+          };
+          if (customData.episodename){
+            episodeItem.attributes={
+              "display": customData.episodename
+            }
+          }
+          customObjects.push(episodeItem);
+        }
+        
+        if (customData && customData.chapters){
+          chaptersItem = {
+            name: "podcast:chapters",
+            attributes: {
+              "url": customData.chapters,
+              type: "application/json+chapters"
+            }
+          };
+          customObjects.push(chaptersItem);
+        }
+       
+        if (customData && customData.itemtxt){
+         // let txtValue=[].push(customData.itemtxt);
+          let txtItem = {
+            name: "podcast:txt",
+            value: customData.itemtxt
+          }
+          customObjects.push(txtItem);
+        }
+        
+      }
+      console.log("custom objects to add to video",customObjects);
+      return result.concat(customObjects);
+    }
+  })
   const router = getRouter();
+
   router.use('/podcast2', async (req, res) => {
     if (enableDebug) {
       console.log("⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️ podcast2 request ⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️", req.query);
@@ -132,7 +311,7 @@ async function register ({
     }
     //console.log("⚡️⚡️loaded rss feed from", rssUrl);
     let channelGuid;
-    apiUrl = base + "/plugins/lightning/router/getchannelguid?channel=" + channel;
+    apiUrl = base + "/plugins/podcast2/router/getchannelguid?channel=" + channel;
     try {
       let guidData = await axios.get(apiUrl);
       if (guidData && guidData.data) {
@@ -145,7 +324,7 @@ async function register ({
     //TODO figure out how to get info for livechat plugin as well
     let podData
     try {
-      podData = await axios.get(base + "/plugins/lightning/router/getpoddata?channel=" + channel);
+      podData = await axios.get(base + "/plugins/podcast2/router/getpoddata?channel=" + channel);
     } catch {
       console.log("unable to load PODCAST data");
     }
@@ -280,7 +459,7 @@ async function register ({
     let feed;
     let parts = channel.split('@');
     if (parts.length > 1) {
-      let feedApi = "https://" + parts[1] + "/plugins/lightning/router/getfeedid?channel=" + parts[0];
+      let feedApi = "https://" + parts[1] + "/plugins/podcast2/router/getfeedid?channel=" + parts[0];
       try {
         feed = await axios.get(feedApi);
       } catch {
@@ -348,7 +527,7 @@ async function register ({
       if (videoData) {
         let videoHost = videoData.data.channel.host
         if ("https://" + videoHost != base) {
-          let hostApi = "https://" + videoHost + "/plugins/lightning/router/getitemid?uuid=" + uuid;
+          let hostApi = "https://" + videoHost + "/plugins/podcast2/router/getitemid?uuid=" + uuid;
           let hostItemId;
           try {
             hostItemId = await axios.get(hostApi);
@@ -367,7 +546,7 @@ async function register ({
           }
         }
         let channel = videoData.data.channel.name;
-        let feedApi = base + "/plugins/lightning/router/getfeedid?channel=" + channel;
+        let feedApi = base + "/plugins/podcast2/router/getfeedid?channel=" + channel;
         try {
           feedId = await axios.get(feedApi);
         } catch {
@@ -417,7 +596,7 @@ async function register ({
       }
     }
     if (!channelGuid && host){
-      apiUrl = `https://${host}/plugins/lightning/router/getchannelguid?channel=${channelOnly}`;
+      apiUrl = `https://${host}/plugins/podcast2/router/getchannelguid?channel=${channelOnly}`;
       try {
         console.log("⚡️⚡️ stuff",base,host,apiUrl);
         let guidData = await axios.get(apiUrl);
@@ -466,7 +645,7 @@ async function register ({
     let parts = channel.split('@');
     let remotePodData;
     if (parts.length > 1) {
-      let remotePodApi = "https://" + parts[1] + "/plugins/lightning/router/getpoddata?channel=" + parts[0];
+      let remotePodApi = "https://" + parts[1] + "/plugins/podcast2/router/getpoddata?channel=" + parts[0];
       try {
         remotePodData = await axios.get(remotePodApi);
       } catch (err) {
@@ -516,7 +695,7 @@ async function register ({
     return res.status(420).send();
   })
   async function pingPI(pingChannel) {
-    let feedApi = base + "/plugins/lightning/router/getfeedid?channel=" + pingChannel;
+    let feedApi = base + "/plugins/podcast2/router/getfeedid?channel=" + pingChannel;
     let feedId;
     try {
       feedId = await axios.get(feedApi);
