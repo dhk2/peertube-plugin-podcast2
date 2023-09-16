@@ -119,6 +119,9 @@ async function register ({
       let podData;
       try {
         podData = await storageManager.getData("pod-" + channel.replace(/\./g, "-"));
+        if (enableDebug){
+          console.log("⚡️⚡️ got poddata ", channel,podData);
+        }
       } catch (err) {
         console.log("⚡️⚡️error getting pod data for ", channel);
       }
