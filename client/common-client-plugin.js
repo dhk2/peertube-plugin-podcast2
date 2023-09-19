@@ -219,7 +219,6 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
       let channelUpdate = document.getElementsByClassName("form-group");
       let channel = (window.location.href).split("/").pop();
       channelName = channel;
-      let splitData = await getSplit();
       //let walletInfo = await getWalletInfo(null, null, channel);
       let feedID = await getFeedID(channel);
       let feedGuid = await getChannelGuid(channel);
@@ -242,7 +241,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
       }
       let newPodData = podData
 
-      let panel = await getConfigPanel(splitData, channel);
+      let panel = await getConfigPanel(channel);
       panelHack = panel;
       channelUpdate[0].appendChild(panel);
       let id = document.getElementById("id");
@@ -273,7 +272,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
           //let podData= {medium:podcast}
           let html;
           if (!feedID) {
-            html = `<a href="https://podcastindex.org/add?feed=` + encodeURIComponent("https://" + window.location.hostname + "/plugins/lightning/router/podcast2?channel=" + channel) + `"<button id="button-register-feed" class="peertube-button orange-button ng-star-inserted" title = "For full Boostagram functionality on sites like saturn.fly.dev and conshax.app you will need to register your channel">register with Podcast Index</button></a>`
+            html = `<a href="https://podcastindex.org/add?feed=` + encodeURIComponent("https://" + window.location.hostname + "/plugins/podcast2/router/podcast2?channel=" + channel) + `"<button id="button-register-feed" class="peertube-button orange-button ng-star-inserted" title = "For full Boostagram functionality on sites like saturn.fly.dev and conshax.app you will need to register your channel">register with Podcast Index</button></a>`
           } else {
             html = "Podcast Index Feed ID: " + feedID;
             //html = html + `<br><button type="button" id="register-feed" name="register-feed" class="peertube-button orange-button ng-star-inserted">Register Feed to Podcast Index</button>`
@@ -324,7 +323,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
           let rssLinkButton = document.getElementById('rss-link');
           if (rssLinkButton) {
             rssLinkButton.onclick = async function () {
-              let rssFeedUrl = window.location.protocol + "//" + window.location.hostname + "/plugins/lightning/router/podcast2?channel=" + channel
+              let rssFeedUrl = window.location.protocol + "//" + window.location.hostname + "/plugins/podcast2/router/podcast2?channel=" + channel
               window.open(rssFeedUrl);
             }
           }
@@ -523,6 +522,28 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
     }
 
     return;
+  }
+  async function getConfigPanel(channel) {
+    let feedID = await getFeedID(channel);
+    if (debugEnabled) {
+      console.log("⚡️getting config panel", feedID, channel);
+    }
+    let html = `<br><label _ngcontent-msy-c247="" for="pod">Podcast Settings</label><br>`
+
+    if (rssEnabled) {
+      html = html + "<hr>"
+      html = html + `<button type="button" id="rss-settings" name="ress-settings" class="peertube-button orange-button ng-star-inserted">Podcasting 2.0 RSS settings</button>`;
+    }
+
+
+    html = html + "<hr>"
+
+    //html = html + "<br>podcast 2.0 RSS feed URL: " + rssFeedUrl;
+    const panel = document.createElement('div');
+    panel.setAttribute('class', 'podcast2-button');
+    panel.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-popups allow-forms')
+    panel.innerHTML = html;
+    return panel;
   }
 }
 export {

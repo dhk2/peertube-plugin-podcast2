@@ -141,10 +141,7 @@ async function register ({
       if (liveItem) {
       }
       var videoUuid = params.video.dataValues.uuid;
-      var storedSplitData = await getSavedSplit(videoUuid);
-      var blocks = []
       //var videoJSON = await peertubeHelpers.videos.loadByIdOrUUID(videoUuid);
-      //console.log("⚡️⚡️⚡️⚡️ video helper json",videoJSON)
       let customObjects = [];
       let captionApi = base + "/api/v1/videos/" + videoUuid + "/captions";
       let captionResult;
@@ -270,6 +267,7 @@ async function register ({
       return result.concat(customObjects);
     }
   })
+  
   const router = getRouter();
 
   router.use('/podcast2', async (req, res) => {
@@ -713,7 +711,70 @@ async function register ({
       console.log("⚡️⚡️hard error when trying ping podcast index ", feedId, feedApi);
     }
   }
-  
+  async function getRss(channel){
+    let apiUrl = base + "/api/v1/video-channels/" + channel;
+    let channelData;
+    try {
+      channelData = await axios.get(apiUrl);
+    } catch {
+      console.log("⚡️⚡️⚡️⚡️unable to load channel info", apiUrl);
+      return ;
+    }
+    let rssUrl = base + "/feeds/podcast/videos.xml?videoChannelId="+channelData
+    return rssUrl;
+  }
+  async function getConfigPanel(splitInfo, channel) {
+    let feedID = await getFeedID(channel);
+    if (debugEnabled) {
+      console.log("⚡️getting config panel", splitInfo, feedID, channel);
+    }
+    let html = `<br><label _ngcontent-msy-c247="" for="Wallet">Lightning Splits</label><br>`
+    if (splitInfo && (keysendEnabled || lnurlEnabled)) {
+      if (splitInfo.length > 0) {
+        html = html + "<table><th>Split %</th><th><center>Lighting Address</center></th><th>Address Type</th></tr>";
+        for (var split in splitInfo) {
+          let displayName = splitInfo[split].name;
+          if (!displayName) {
+            displayName = splitInfo[split].address;
+          }
+          html = html + "<tr><td>" + splitInfo[split].split + "</td><td>" + displayName + "</td>";
+          if (splitInfo[split].keysend) {
+            html = html + `<td>Keysend</td>`;
+          } else if (splitInfo[split].customKeysend) {
+            html = html + `<td>Node</td>`;
+          } else if (splitInfo[split].lnurl) {
+            html = html + "<td>LNURL Pay</td>";
+          } else {
+            html = html + "<td>unknown</td>"
+          }
+          if (!splitInfo[split].fee) {
+            html = html + `<td><div class="peertube-button orange-button ng-star-inserted" slot="` + split + `" id="edit-` + split + `">edit</div></td>`;
+            //html = html + `<td><button class="peertube-button orange-button ng-star-inserted" >edit</button></td>`;
+          }
+          html = html + "</tr>";
+        }
+        html = html + "</table>";
+      }
+      html = html + `<button type="button" id="add-split" class="peertube-button orange-button ng-star-inserted">Add Split</button>`
+    } else {
+      html = html + `<button type="button" id="create-split" class="peertube-button orange-button ng-star-inserted">Add Lightning Address</button>`
+
+    }
+    if (rssEnabled) {
+      html = html + "<hr>"
+      html = html + `<button type="button" id="rss-settings" name="ress-settings" class="peertube-button orange-button ng-star-inserted">Podcasting 2.0 RSS settings</button>`;
+    }
+
+
+    html = html + "<hr>"
+
+    //html = html + "<br>podcast 2.0 RSS feed URL: " + rssFeedUrl;
+    const panel = document.createElement('div');
+    panel.setAttribute('class', 'lightning-button');
+    panel.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-popups allow-forms')
+    panel.innerHTML = html;
+    return panel;
+  }
 }
 
 async function unregister () {
