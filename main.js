@@ -45,16 +45,16 @@ async function register ({
   var base = await peertubeHelpers.config.getWebserverUrl();
   var serverConfig = await peertubeHelpers.config.getServerConfig();
   var hostName = serverConfig.instance.name;
-  console.log("⚡️⚡️ home url",base,hostName);
-  console.log("⚡️⚡️⚡️⚡️ Podcast2 plugin started");
+  console.log("🚧🚧 home url",base,hostName);
+  console.log("🚧🚧🚧🚧 Podcast2 plugin started");
   if (enableDebug) {
-    console.log("⚡️⚡️ server settings loaded", hostName, base, serverConfig, enableRss,enableChat);
+    console.log("🚧🚧 server settings loaded", hostName, base, serverConfig, enableRss,enableChat);
   }
   registerHook({
     target: 'action:api.video.updated',
     handler: ({ video, body }) => {
       if (enableDebug) {
-        console.log("⚡️⚡️updating video\n",body.pluginData);
+        console.log("🚧🚧updating video\n",body.pluginData);
       }
       //if (!body.pluginData) return
 
@@ -95,19 +95,22 @@ async function register ({
     target: 'filter:feed.podcast.channel.create-custom-tags.result',
     handler: async (result, params) => {
       const { videoChannel } = params
-      console.log("⚡️⚡️⚡️⚡️ initial channel values ⚡️⚡️⚡️⚡️",params);
+      console.log("🚧🚧🚧🚧 initial channel values 🚧🚧🚧🚧",params,params.videoChannel.dataValues.Actor,params.videoChannel.dataValues.ownerAccount);
       var channel = params.videoChannel.dataValues.Actor.dataValues.preferredUsername;
+      var name =    params.videoChannel.dataValues.name;
+
       let podreturn = [];
+      /* currently handled by lightning plugin
       let channelGuid;
       apiUrl = base + "/plugins/podcast2/router/getchannelguid?channel=" + channel;
       try {
         let guidData = await axios.get(apiUrl);
         if (guidData && guidData.data) {
-          console.log("⚡️⚡️channel guid", guidData.data,apiUrl);
+          console.log("🚧🚧channel guid", guidData.data,apiUrl);
           channelGuid = guidData.data;
         }
       } catch {
-        console.log("⚡️⚡️unable to load channel guid", apiUrl);
+        console.log("🚧🚧unable to load channel guid", apiUrl);
       }
       if (channelGuid){
         podreturn.push({
@@ -115,44 +118,95 @@ async function register ({
           value: channelGuid,
         });
       }
-      console.log("⚡️⚡️unable to load channel guid", apiUrl);
+      console.log("🚧🚧unable to load channel guid", apiUrl);
+      */
       let podData;
       try {
         podData = await storageManager.getData("pod-" + channel.replace(/\./g, "-"));
         if (enableDebug){
-          console.log("⚡️⚡️ got poddata ", channel,podData);
+          console.log("🚧🚧 got poddata ", channel,podData);
         }
       } catch (err) {
-        console.log("⚡️⚡️error getting pod data for ", channel);
+        console.log("🚧🚧error getting pod data for ", channel);
       }
-      if (podData && Array.isArray(podData.text)){
+      if (podData && podData.email.indexOf("@")>0){
+        let blocks =[];
+        let newBlock = {};
+        newBlock.name = "itunes:owner";
+        let iname = {};
+        iname.name = "itunes:name";
+        iname.value = name;
+        blocks.push(iname);
+        let iemail={};
+        iemail.name = "itunes:email";
+        iemail.value =podData.email
+        blocks.push(iemail);
         podreturn.push({
-          name: "podcast:txt",
-          value: podData.text[0],
+          name: "itunes:owner",
+          value: blocks,
         });
       }
+      if (podData && podData.text && podData.text[0] != "") {
+        let ptext = {
+          name: "podcast:txt",
+          value: podData.text[0]
+        }
+        podreturn.push(ptext);
+      }
+      if (podData && podData.feedguid && podData.feedguid !="") {
+        let fguid = {
+          name: "podcast:guid",
+          value: podData.feedguid
+        }
+        podreturn.push(fguid);  
+      }
+      if (podData && podData.category && podData.category != "") {
+        let category={
+          name: "itunes:category",
+          attributes: {text: "News"}
+        }
+        podreturn.push(category);
+      }
+      if (podData && podData.image && podData.image !="") {
+        let image={
+          name: "itunes:image",
+          attributes: {href: "https://www.peppercarrot.com/0_sources/0ther/framasoft/hi-res/2020-05-21_Peertube-Research_by-David-Revoy.jpg"}
+        }
+        podreturn.push(image);
+      }
+      let author = {
+        name: "itunes:author",
+        value: name
+      }
+      podreturn.push(author);
+      let language = {
+        name:"language",
+        value: "en"
+      }
+      podreturn.push(language);
+  
       return result.concat(podreturn)
     }
   })
   registerHook({
     target: 'filter:feed.podcast.video.create-custom-tags.result',
     handler: async (result, params) => {      const { video, liveItem } = params
-      //console.log("⚡️⚡️⚡️⚡️ initial video values ⚡️⚡️⚡️⚡️",result,params,params.video);
+      //console.log("🚧🚧🚧🚧 initial video values 🚧🚧🚧🚧",result,params,params.video);
       if (liveItem) {
       }
       var videoUuid = params.video.dataValues.uuid;
-      //var videoJSON = await peertubeHelpers.videos.loadByIdOrUUID(videoUuid);
+      //var videoJSON = await peertubeHelpers.videos.loadByIdOrUUID(videoUuid)
       let customObjects = [];
       let captionApi = base + "/api/v1/videos/" + videoUuid + "/captions";
       let captionResult;
       try {
         captionResult = await axios.get(captionApi);
       } catch (err) {
-        console.log("⚡️⚡️failed requesting transcript data", err);
+        console.log("🚧🚧failed requesting transcript data", captionApi,err);
       }
       let captionPath, captionLanguage, captionItem;
       //if (captionResult && captionResult.data && captionResult.data.total > 0) {
-      //console.log("⚡️⚡️\ncaption result", captionResult.data);
+      //console.log("🚧🚧\ncaption result", captionResult.data);
       for (var captionEntry in captionResult.data.data) {
         captionPath = base + captionEntry.captionPath
         if (captionEntry.language) {
@@ -179,28 +233,38 @@ async function register ({
       let videoData;
       try {
         videoData = await axios.get(apiCall);
-      } catch {
-        console.log("⚡️⚡️\n\n\n\n\n\nfailed to pull information for provided video id", apiCall);
+      } catch (err){
+        console.log("🚧🚧\n\n\n\n\n\nfailed to pull information for provided video id", apiCall,err);
       }
       if (videoData && videoData.data) {
+        if (enableDebug){
+          console.log("[pod] video data found");
+        }
         let duration = videoData.data.duration;
         let customData = videoData.data.pluginData;
         let filename;
         let smallest = 999999999
+        if (enableDebug){
+          console.log("[pod] streaming playlists",videoData.data.streamingPlaylists);
+        }
         if (videoData.data.streamingPlaylists[0]){
           let videoFiles = videoData.data.streamingPlaylists[0].files;
           if (videoFiles) {
             for (var fileOption of videoFiles) {
-              //console.log(fileOption);
+              console.log("[pod] file options",fileOption);
               if (fileOption.size < smallest) {
                 smallest = fileOption.size;
                 filename = fileOption.fileUrl
               }
             }
           }
+        } else {
+          if (enableDebug){
+            console.log("[pod] video streaming file data found",videoData.data);
+          }
         }
         var enclosure;
-        //console.log("\n⚡️⚡️\n\n\nsmallest??",filename,smallest);
+        //console.log("\n🚧🚧\n\n\nsmallest??",filename,smallest);
         if (filename) {
           enclosure = {
             name: "audioenclosure",
@@ -214,7 +278,7 @@ async function register ({
         if (enclosure) {
           customObjects.push(enclosure);
         }
-        console.log("⚡️⚡️\nplugin data", customData);
+        console.log("🚧🚧\nplugin data", customData);
         
         if (customData && customData.seasonnode){
           let seasonItem = {
@@ -272,15 +336,30 @@ async function register ({
 
   router.use('/podcast2', async (req, res) => {
     if (enableDebug) {
-      console.log("⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️ podcast2 request ⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️", req.query);
+      console.log("🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧 podcast2 request 🚧🚧🚧🚧🚧🚧🚧🚧", req.query);
     }
     if (!enableRss) {
-      console.log("⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️⚡️RSS disabled");
+      console.log("🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧RSS disabled");
       return res.status(403).send();
     }
     if (req.query.channel == undefined) {
-      console.log("⚡️⚡️no channel requested", req.query);
+      console.log("🚧🚧no channel requested", req.query);
       return res.status(404).send();
+    }
+    let podData
+    let podApi = base + "/plugins/podcast2/router/getpoddata?channel=" + req.query.channel;
+    try {
+      podData = await axios.get(podApi);
+    } catch {
+      console.log("unable to load PODCAST data",req.query.channel,podApi);
+    }
+    if (podData) {
+      console.log("🚧🚧\n\n\n\n pod data \n", podData.data);
+      if (podData.data && podData.data.redirectEnabled){
+        //return res.redirect(301, podData.data.redirectUrl);
+        res.set('location', podData.data.redirectUrl);
+        return res.status(301).send()
+      }
     }
     let channel = req.query.channel
     let apiUrl = base + "/api/v1/video-channels/" + channel;
@@ -288,7 +367,7 @@ async function register ({
     try {
       channelData = await axios.get(apiUrl);
     } catch {
-      console.log("⚡️⚡️⚡️⚡️unable to load channel info", apiUrl);
+      console.log("🚧🚧🚧🚧unable to load channel info", apiUrl);
       return res.status(400).send();
     }
     let smallChannelAvatar, largeChannelAvatar, smallPersonAvatar, largePersonAvatar
@@ -300,62 +379,68 @@ async function register ({
       smallPersonAvatar = channelData.data.ownerAccount.avatars[0].path;
       largePersonAvatar = channelData.data.ownerAccount.avatars[1].path;
     }
-    //console.log("⚡️⚡️⚡️⚡️channel info", channelData.data);
+    //console.log("🚧🚧🚧🚧channel info", channelData.data);
     
     let rssUrl = base + "/feeds/podcast/videos.xml?videoChannelId=" + channelData.data.id;
     let rssData;
     try {
       rssData = await axios.get(rssUrl)
     } catch {
-      console.log("⚡️⚡️unable to load rss feed for", channel, rssUrl);
+      console.log("🚧🚧unable to load rss feed for", channel, rssUrl);
       return res.status(400).send();
     }
-    //console.log("⚡️⚡️loaded rss feed from", rssUrl);
+    //console.log("🚧🚧loaded rss feed from", rssUrl);
     let channelGuid;
     apiUrl = base + "/plugins/podcast2/router/getchannelguid?channel=" + channel;
     try {
       let guidData = await axios.get(apiUrl);
       if (guidData && guidData.data) {
-        //console.log("⚡️⚡️channel guid", guidData.data);
+        //console.log("🚧🚧channel guid", guidData.data);
         channelGuid = guidData.data;
       }
     } catch {
-      console.log("⚡️⚡️unable to load channel guid", apiUrl);
+      console.log("🚧🚧unable to load channel guid", apiUrl);
     }
     //TODO figure out how to get info for livechat plugin as well
-    let podData
-    try {
-      podData = await axios.get(base + "/plugins/podcast2/router/getpoddata?channel=" + channel);
-    } catch {
-      console.log("unable to load PODCAST data");
-    }
-    if (podData) {
-      console.log("⚡️⚡️\n\n\n\n pod dta \n", podData.data);
-    }
+
     let counter = 0;
     let fixed = "";
     let spacer = "";
     let rss = rssData.data;
     let lines = rss.split('\n');
-      console.log("⚡️⚡️\n\n\n\n starting linbe loop \n", lines.length,lines[33]);
+      console.log("🚧🚧\n\n\n\n starting linbe loop \n", lines.length,lines[33]);
     //for (const line of lines) {
     let totalSize = lines.length;
     while (counter<totalSize){
       let line = lines[counter];
-      //console.log(`⚡️line${counter}:`,line)
+      //console.log(`🚧line${counter}:`,line)
       counter++;
       spacer = line.split("<")[0];
       if (line.includes("Toraifōsu") && podData && podData.data) {
 
-        if (podData.data.text) {
-          line = line + `\n${spacer}<podcast:txt>${podData.data.text[0]}</podcast:txt>`;
-        }
-        if (podData.data.feedguid) {
-          line = line + `\n${spacer}<podcast:guid>${podData.data.feedguid}</podcast:guid>`;
-        }
+       // if (podData.data.text  && podData.data.text[0] != "") {
+       //   line = line + `\n${spacer}<podcast:txt>${podData.data.text[0]}</podcast:txt>`;
+       // }
+       // if (podData.data.feedguid) {
+       //   line = line + `\n${spacer}<podcast:guid>${podData.data.feedguid}</podcast:guid>`;
+      //  }
+      //  if (podData.data.email){
+          //line = line + `\n${spacer}<itunes:owner>`;
+          //line = line + `\n${spacer}  <itunes:name>${channelData.data.displayName}</itunes:name>`;
+          //line = line + `\n${spacer}  <itunes:email>${podData.data.email}</itunes:email>`;
+          //line = line + `\n${spacer}</itunes:owner>`;
+          //line = line + `\n${spacer}<language>en</language>`;
+          //line = line + `\n${spacer}<itunes:category text="News"/>`;
+          //line = line + `\n${spacer}<itunes:image href="https://noagendaassets.com/enc/1686340519.979_pcifeedimage.png"/>`;
+       // }
       }
       if (line.includes("<atom:link")) {
         line = `${spacer}<atom:link href="https://${req.get('host')}${req.originalUrl}" rel="self" type="application/rss+xml" />`;
+        //line = line + `\n${spacer}<itunes:author>${channelData.data.displayName}</itunes:author>`;
+      }
+      if (line.includes("itunes:explicit")){
+        line = line.replace("no","false");
+        line = line.replace("yes","true");
       }
       var customData = {};
       if (line.includes('<guid')) {
@@ -366,33 +451,12 @@ async function register ({
             customData = videoData.data.pluginData;
           }
         } catch (err) {
-          console.log("⚡️⚡️⚡️⚡️hard error trying to get video data for RSS feed", err);
+          console.log("🚧🚧🚧🚧hard error trying to get video data for RSS feed", err);
         }
         if (enableDebug) {
-          console.log("⚡️⚡️⚡️⚡️item plugin data", shortUuid, customData);
+          console.log("🚧🚧🚧🚧item plugin data", shortUuid, customData);
         }
-        /* moved to shared code 
-        if (customData.seasonnode) {
-          if (customData.seasonname) {
-            line = line + `\n${spacer}<podcast:season name ="${customData.seasonname}">${customData.seasonnode}</podcast:season>`;
-          } else {
-            line = line + `\n${spacer}<podcast:season>${customData.seasonnode}</podcast:season>`;
-          }
-        }
-        if (customData.episodenode) {
-          if (customData.episodename) {
-            line = line + `\n${spacer}<podcast:episode display ="${customData.episodename}">${customData.episodenode}</podcast:episode>`;
-          } else {
-            line = line + `\n${spacer}<podcast:episode>${customData.episodenode}</podcast:episode>`;
-          }
-        }
-        if (customData.chapters) {
-          line = line + `\n${spacer}<podcast:chapters url="${customData.chapters}" type="application/json+chapters" />`
-        }
-        if (customData.itemtxt) {
-          line = line + `\n${spacer}<podcast:txt>${customData.itemtxt}</podcast:txt>`;
-        }
-        */
+
       }
       if (line.includes("<enclosure") > 0) {
         continue;
@@ -410,7 +474,7 @@ async function register ({
       }
       if (line.includes(`title="Audio"`) && !line.includes(`type="`)) {
         console.log("fixing type");
-        line = line.replace(`title="Audio"`, `title="Audio" type="video/mp4"`);
+        line = line.replace(`title="Audio"`, `title="Audio" type="audio/mp4"`);
       }
       if (largeChannelAvatar) {
         line = line.replace(smallChannelAvatar, largeChannelAvatar);
@@ -428,14 +492,14 @@ async function register ({
       }
     }
     res.setHeader('content-type', 'application/rss+xml');
-    console.log("⚡️⚡️\n\n\n\n ending line loop \n",fixed.length);
+    console.log("🚧🚧\n\n\n\n ending line loop \n",fixed.length);
     return  res.status(200).send(fixed);
     
   })
   router.use('/dirtyhack', async (req, res) => {
-    console.log("⚡️⚡️⚡️⚡️ dirty hack",dirtyHack,req.query);
+    console.log("🚧🚧🚧🚧 dirty hack",dirtyHack,req.query);
     if (req.query.cp){
-      console.log("⚡️⚡️⚡️⚡️ clearing patronage paid days");
+      console.log("🚧🚧🚧🚧 clearing patronage paid days");
       let subscriptions = await storageManager.getData('subscriptions');
       let list = [];
       if (subscriptions){
@@ -451,7 +515,7 @@ async function register ({
   });
   router.use('/getfeedid', async (req, res) => {
     if (enableDebug) {
-      console.log("⚡️⚡️getting feed id", req.query);
+      console.log("🚧🚧getting feed id", req.query);
     }
     let channel = req.query.channel;
     if (!channel) {
@@ -464,10 +528,10 @@ async function register ({
       try {
         feed = await axios.get(feedApi);
       } catch {
-        console.log("⚡️⚡️hard error getting feed id for ", channel, "from", parts[1], feedApi);
+        console.log("🚧🚧hard error getting feed id for ", channel, "from", parts[1], feedApi);
       }
       if (feed && feed.data) {
-        //console.log("⚡️⚡️ returning", feed.data, "for", channel,feed.data.toString());
+        //console.log("🚧🚧 returning", feed.data, "for", channel,feed.data.toString());
         return res.status(200).send(feed.data.toString());
       }
       return res.status(420).send("remote channel returned no feed id");
@@ -476,10 +540,10 @@ async function register ({
       try {
         feed = await storageManager.getData("podcast" + "-" + channel)
       } catch (err) {
-        console.log("⚡️⚡️error getting feedid", channel);
+        console.log("🚧🚧error getting feedid", channel);
       }
     }
-    //console.log("⚡️⚡️ feed", feed);
+    //console.log("🚧🚧 feed", feed);
     if (feed) {
       return res.status(200).send(feed.toString());
     } else {
@@ -488,7 +552,7 @@ async function register ({
   })
   router.use('/setfeedid', async (req, res) => {
     if (enableDebug) {
-      console.log("⚡️⚡️setting feed id", req.query);
+      console.log("🚧🚧setting feed id", req.query);
     }
     let channel = req.query.channel;
     let feedID = req.query.feedid;
@@ -497,14 +561,14 @@ async function register ({
         await storageManager.storeData("podcast" + "-" + channel, feedID);
         return res.status(200).send();
       } catch (err) {
-        console.log("⚡️⚡️ error storing feedid", channel, feedID);
+        console.log("🚧🚧 error storing feedid", channel, feedID);
         return res.status(400).send();
       }
     }
   })
   router.use('/getitemid', async (req, res) => {
     if (enableDebug) {
-      console.log("⚡️⚡️getting item id", req.query);
+      console.log("🚧🚧getting item id", req.query);
     }
     let uuid = req.query.uuid;
     let item;
@@ -512,7 +576,7 @@ async function register ({
       try {
         item = await storageManager.getData("podcast" + "-" + uuid);
       } catch (err) {
-        console.log("⚡️⚡️ error getting stored itemid", uuid);
+        console.log("🚧🚧 error getting stored itemid", uuid);
       }
     }
     if (item) {
@@ -523,7 +587,7 @@ async function register ({
       try {
         videoData = await axios.get(apiCall);
       } catch {
-        console.log("⚡️⚡️failed to pull information for provided video id", apiCall);
+        console.log("🚧🚧failed to pull information for provided video id", apiCall);
       }
       if (videoData) {
         let videoHost = videoData.data.channel.host
@@ -533,17 +597,17 @@ async function register ({
           try {
             hostItemId = await axios.get(hostApi);
           } catch {
-            console.log("⚡️⚡️failed to pull item ID from video host", hostApi);
+            console.log("🚧🚧failed to pull item ID from video host", hostApi);
           }
           if (hostItemId) {
             try {
               await storageManager.storeData("podcast" + "-" + uuid, hostItemId);
             } catch {
-              console.log("⚡️⚡️failed to store item ID from host", uuid, hostItemId);
+              console.log("🚧🚧failed to store item ID from host", uuid, hostItemId);
             }
             return res.status(200).send(hostItemId.data.toString());
           } else {
-            console.log("⚡️⚡️ No id provided by hosting instance");
+            console.log("🚧🚧 No id provided by hosting instance");
           }
         }
         let channel = videoData.data.channel.name;
@@ -551,18 +615,18 @@ async function register ({
         try {
           feedId = await axios.get(feedApi);
         } catch {
-          console.log("⚡️⚡️ error when tring to get feed id ", feedApi);
+          console.log("🚧🚧 error when tring to get feed id ", feedApi);
           return res.status(404).send();
         }
 
       }
-      console.log("⚡️⚡️no videodata available", apiCall);
+      console.log("🚧🚧no videodata available", apiCall);
       return res.status(400).send();
     }
   })
   router.use('/setitemid', async (req, res) => {
     if (enableDebug) {
-      console.log("⚡️⚡️setting item id", req.query.uuid);
+      console.log("🚧🚧setting item id", req.query.uuid);
     }
     let uuid = req.query.uuid;
     let itemID = req.query.itemid;
@@ -571,14 +635,14 @@ async function register ({
         await storageManager.storeData("podcast" + "-" + uuid, itemID);
         return res.sendStatus(200);
       } catch (err) {
-        console.log("⚡️⚡️error setting item id", uuid, itemID);
+        console.log("🚧🚧error setting item id", uuid, itemID);
         return res.sendStatus(400).send();
       }
     }
   })
   router.use('/getchannelguid', async (req, res) => {
     if (enableDebug) {
-      console.log("⚡️⚡️getting channel guid", req.query);
+      console.log("🚧🚧getting channel guid", req.query);
     }
     let host,channelOnly;
     let channel = req.query.channel;
@@ -592,21 +656,21 @@ async function register ({
       try {
         channelGuid = await storageManager.getData("channelguid" + "-" + channel)
       } catch (err) {
-        console.log("⚡️⚡️ error getting channel guid", channel);
+        console.log("🚧🚧 error getting channel guid", channel);
         return res.status(400).send();
       }
     }
     if (!channelGuid && host){
       apiUrl = `https://${host}/plugins/podcast2/router/getchannelguid?channel=${channelOnly}`;
       try {
-        console.log("⚡️⚡️ stuff",base,host,apiUrl);
+        console.log("🚧🚧 stuff",base,host,apiUrl);
         let guidData = await axios.get(apiUrl);
         if (guidData && guidData.data) {
-          //console.log("⚡️⚡️channel guid", guidData.data);
+          //console.log("🚧🚧channel guid", guidData.data);
           channelGuid = guidData.data;
         }
       } catch {
-        console.log("⚡️⚡️unable to load channel guid", apiUrl);
+        console.log("🚧🚧unable to load channel guid", apiUrl);
       }
     }
     if (channelGuid) {
@@ -625,23 +689,23 @@ async function register ({
         try {
           await storageManager.storeData("channelguid" + "-" + channel, channelGuid);
         } catch {
-          console.log("⚡️⚡️failed to store channel guid", channel, channelGuid);
+          console.log("🚧🚧failed to store channel guid", channel, channelGuid);
         }
         return res.status(200).send(channelGuid);
       } else {
-        console.log("⚡️⚡️ error attempting to generate channel guiid",channel);
+        console.log("🚧🚧 error attempting to generate channel guiid",channel);
         return res.status(400).send();
       }
     }
   })
   router.use('/getpoddata', async (req, res) => {
     if (enableDebug) {
-      console.log("⚡️⚡️getting pod data", req.query);
+      console.log("🚧🚧getting pod data", req.query);
     }
     let channel = req.query.channel;
     if (!channel) {
-      console.log("⚡️⚡️ no channel in query", channel, req.query);
-      return res.status(400).send("⚡️⚡️ no channel value in request " + req.query);
+      console.log("🚧🚧 no channel in query", channel, req.query);
+      return res.status(400).send("🚧🚧 no channel value in request " + req.query);
     }
     let parts = channel.split('@');
     let remotePodData;
@@ -650,43 +714,43 @@ async function register ({
       try {
         remotePodData = await axios.get(remotePodApi);
       } catch (err) {
-        console.log("⚡️⚡️hard error getting custom remote pod data for ", channel, "from", parts[1], remotePodApi, err);
-        return res.status(400).send("⚡️⚡️hard error getting custom remote pod data for " + channel + " from " + parts[1] + " using " + remotePodApi + " error " + err);
+        console.log("🚧🚧hard error getting custom remote pod data for ", channel, "from", parts[1], remotePodApi, err);
+        return res.status(400).send("🚧🚧hard error getting custom remote pod data for " + channel + " from " + parts[1] + " using " + remotePodApi + " error " + err);
       }
       if (remotePodData) {
-        //console.log("⚡️⚡️ returning", customChat.toString(), "for", channel);
+        //console.log("🚧🚧 returning", customChat.toString(), "for", channel);
         return res.status(200).send(remotePodData.data);
       }
-      console.log("⚡️⚡️ no remote pod data found for", channel);
-      return res.status(404).send("⚡️⚡️ no podcast data for " + channel + " on remote system");
+      console.log("🚧🚧 no remote pod data found for", channel);
+      return res.status(404).send("🚧🚧 no podcast data for " + channel + " on remote system");
     }
     let podData;
     try {
       podData = await storageManager.getData("pod-" + channel.replace(/\./g, "-"));
     } catch (err) {
-      console.log("⚡️⚡️error getting pod data for ", channel);
-      return res.status(404).send("⚡️⚡️ no podcast data for " + req.query.channel + err);
+      console.log("🚧🚧error getting pod data for ", channel);
+      return res.status(404).send("🚧🚧 no podcast data for " + req.query.channel + err);
     }
     if (podData) {
       return res.status(200).send(podData);
     } else {
-      console.log("⚡️⚡️ no pod data found for", channel);
-      return res.status(404).send("⚡️⚡️ no pod data found for " + channel);
+      console.log("🚧🚧 no pod data found for", channel);
+      return res.status(404).send("🚧🚧 no pod data found for " + channel);
     }
   })
   router.use('/setpoddata', async (req, res) => {
     if (enableDebug) {
-      console.log("⚡️⚡️setting podcast data", req.query, req.body);
+      console.log("🚧🚧setting podcast data", req.query, req.body);
     }
     //TODO verify authorized user is actual owner of room
     let user = await peertubeHelpers.user.getAuthUser(res);
     if (user && user.dataValues && req.body) {
       let userName = user.dataValues.username;
       if (enableDebug) {
-        console.log("⚡️⚡️⚡️ got authorized peertube user to set pod data ", user.dataValues.username);
+        console.log("🚧🚧🚧 got authorized peertube user to set pod data ", user.dataValues.username);
       }
       if (enableDebug) {
-        console.log("⚡️⚡️⚡️⚡️ user", userName);
+        console.log("🚧🚧🚧🚧 user", userName);
       }
       let channel = req.body.channel;
       storageManager.storeData("pod-" + channel.replace(/\./g, "-"), req.body);
@@ -708,7 +772,7 @@ async function register ({
         return (pingResult.data);
       }
     } catch {
-      console.log("⚡️⚡️hard error when trying ping podcast index ", feedId, feedApi);
+      console.log("🚧🚧hard error when trying ping podcast index ", feedId, feedApi);
     }
   }
   async function getRss(channel){
@@ -717,7 +781,7 @@ async function register ({
     try {
       channelData = await axios.get(apiUrl);
     } catch {
-      console.log("⚡️⚡️⚡️⚡️unable to load channel info", apiUrl);
+      console.log("🚧🚧🚧🚧unable to load channel info", apiUrl);
       return ;
     }
     let rssUrl = base + "/feeds/podcast/videos.xml?videoChannelId="+channelData
@@ -726,7 +790,7 @@ async function register ({
   async function getConfigPanel(splitInfo, channel) {
     let feedID = await getFeedID(channel);
     if (debugEnabled) {
-      console.log("⚡️getting config panel", splitInfo, feedID, channel);
+      console.log("🚧getting config panel", splitInfo, feedID, channel);
     }
     let html = `<br><label _ngcontent-msy-c247="" for="Wallet">Lightning Splits</label><br>`
     if (splitInfo && (keysendEnabled || lnurlEnabled)) {

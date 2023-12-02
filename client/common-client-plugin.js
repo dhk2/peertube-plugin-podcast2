@@ -15,13 +15,13 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
     target: 'action:video-watch.player.loaded',
     handler: async ({ player, video }) => {
       if (debugEnabled){
-        console.log(`⚡️⚡️ video`,video);
+        console.log(`🚧🚧 video`,video);
       }
       let videoEl;
       if (player.el()) {
         videoEl = player.el().getElementsByTagName('video')[0]
         if (debugEnabled){
-          console.log(`⚡️⚡️videoEl`,videoEl);
+          console.log(`🚧🚧videoEl`,videoEl);
         }
       } else {
         //weird error condition avoidance
@@ -30,7 +30,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
       if (location.instance != video.originInstanceHost) {
         instanceName = video.originInstanceHost;
       }
-      console.log("⚡️⚡️looking for permanent live info",video.isLive);
+      console.log("🚧🚧looking for permanent live info",video.isLive);
       //for compatibility with AGates modificuation of uuid for lives in podping
       if (video.isLive){
         videoUuid = video.uuid+'_'+video.publishedAt.toISOString();
@@ -47,7 +47,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
       let displayName = video.channel.displayName;
       let addSpot = document.getElementById('plugin-placeholder-player-next');
       let addSpot4 = document.getElementsByClassName('root-header-right')[0];
-      //console.log("⚡️addspit section",addSpot4)
+      //console.log("🚧addspit section",addSpot4)
       const elem = document.createElement('div');
 
       var v4vButtonHTML;
@@ -57,7 +57,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
         v4vButtonHTML = v4vButtonHTML + ` <button _ngcontent-vww-c178="" id = "closechat" type="button" class="peertube-button orange-button ng-star-inserted" title="open chat panel">` + "Chat" + `</button>`
       }
       if (v4vButtonHTML) {
-        //  console.log("⚡️--------------button hmtl",v4vButtonHTML)
+        //  console.log("🚧--------------button hmtl",v4vButtonHTML)
         elem.innerHTML = v4vButtonHTML;
         addSpot.appendChild(elem);
       }
@@ -75,7 +75,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
         }
         let chatRoom = await getChatRoom(channelName);
         if (debugEnabled) {
-          console.log("⚡️found chat room", chatRoom);
+          console.log("🚧found chat room", chatRoom);
         }
         if (!chatRoom) {
           let shortInstance = instanceName.split(".")[0];
@@ -105,14 +105,14 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
         docIframe.style.flexDirection = "column";
         docIframe.style.resize = "both";
         docIframe.style.overflow = "auto";
-        docIframe.contentWindow.kiwiconfig = () => { console.log("⚡️███kiwi config called ") }
+        docIframe.contentWindow.kiwiconfig = () => { console.log("🚧███kiwi config called ") }
         let idoc = docIframe.contentWindow.document;
         let ibody = idoc.getElementsByTagName('body');
         let configScript = document.createElement(`div`);
         configScript.innerHTML = `<script name="kiwiconfig">{"startupScreen": "welcome", "startupOptions": { "server": "irc.freenode.net", "port": 6697, "tls": true, "direct": false, "nick": "specialk" "autoConnect": true }}</script>`;
-        //console.log("⚡️before",ibody,configScript);
+        //console.log("🚧before",ibody,configScript);
         ibody[0].appendChild(configScript)
-        //console.log("⚡️after",ibody,configScript);
+        //console.log("🚧after",ibody,configScript);
       }
 
       const bigChat = document.getElementById("bigchat");
@@ -137,9 +137,9 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
 
         closeChat.onclick = async function () {
           if (debugEnabled) {
-            console.log("⚡️clicked", closeChat.innerHTML, videoDisplay.hidden, container.hidden);
-            console.log("⚡️width", container.clientWidth, videoDisplay.clientWidth, fullVideo.clientWidth);
-            console.log("⚡️height", container.clientheight, videoDisplay.clientHeight);
+            console.log("🚧clicked", closeChat.innerHTML, videoDisplay.hidden, container.hidden);
+            console.log("🚧width", container.clientWidth, videoDisplay.clientWidth, fullVideo.clientWidth);
+            console.log("🚧height", container.clientheight, videoDisplay.clientHeight);
           }
           if (closeChat.innerHTML === "Full Chat") {
             closeChat.title = "Close chat window";
@@ -176,7 +176,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
             closeChat.title = "open chat panel";
           }
           if (debugEnabled) {
-            console.log("⚡️after click", closeChat.innerHTML, videoDisplay.hidden, container.hidden);
+            console.log("🚧after click", closeChat.innerHTML, videoDisplay.hidden, container.hidden);
             console.log(container, videoDisplay);
           }
         }
@@ -187,16 +187,10 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
     target: 'action:video-channel-videos.video-channel.loaded',
     handler: async (result, params) => {
       if (debugEnabled) {
-        console.log("⚡️ chanel loaded result ", result,"params:", params)
-      }
-      if (document.getElementById("patronize-channel")){
-        console.log("buttons already exist");
-        return;
+        console.log("🚧 chanel loaded result ", result,"params:", params)
       }
       let buttonSpot= document.getElementsByClassName("channel-buttons");
       let buttonHtml = document.createElement("div");
-
-      //result.data[0].account.displayName=`<a href="https://google.com">zap</a>`;
       return result;
     }
   })
@@ -205,14 +199,14 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
     handler: async ({ type, updateForm }) => {
       let podData
       let itemTxt = document.getElementById("itemtxt");
-      console.log('⚡️type and update form!', type,updateForm,itemTxt);
+      console.log('🚧type and update form!', type,updateForm,itemTxt);
     }
   })
   registerHook({
     target: 'action:video-channel-update.video-channel.loaded',
     handler: async (params) => {
       if (debugEnabled) {
-        console.log("⚡️channel update loaded", params);
+        console.log("🚧channel update loaded", params);
       }
       
       videoName = undefined;
@@ -224,20 +218,43 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
       let feedGuid = await getChannelGuid(channel);
       let feedTxt = [""];
       let podData = await getPodData(channel);
+      let email;
+      let category;
+      let image;
+
       if (debugEnabled) {
-        console.log("⚡️pod data", podData);
+        console.log("🚧pod data", feedID,feedGuid,feedTxt, podData);
       }
       if (!podData) {
         podData = {
           "feedid": feedID,
           "feedguid": feedGuid,
           "medium": "podcast",
-          "channel": channel
-        }
+          "channel": channel,
+          "category": "news",
+          "image": "https://www.peppercarrot.com/0_sources/0ther/framasoft/hi-res/2020-05-21_Peertube-Research_by-David-Revoy.jpg"
+        } 
         podData.text = feedTxt;
+      }
+      if (podData && podData.email){
+        email = podData.email;
+      } else {
+        email="";
       }
       if (!podData.text) {
         podData.text = feedTxt;
+      }
+      if (!podData.category) {
+        category = "news";
+        podData.category=category;
+      } else {
+        category=podData.category;
+      }
+      if (!podData.image) {
+        image = "https://www.peppercarrot.com/0_sources/0ther/framasoft/hi-res/2020-05-21_Peertube-Research_by-David-Revoy.jpg";
+        podData.image = image; 
+      } else {
+        image = podData.image
       }
       let newPodData = podData
 
@@ -263,21 +280,33 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
           chatButton.innerText = "Saved!";
         }
       }
-      //console.log("⚡️checking for rss settings button");
+      //console.log("🚧checking for rss settings button");
       let rssSettingsButton = document.getElementById("rss-settings");
       let changeMonitor;
       if (rssSettingsButton) {
         rssSettingsButton.onclick = async function () {
-          //console.log("⚡️rss settings button clicked");
+          //console.log("🚧rss settings button clicked");
           //let podData= {medium:podcast}
-          let html;
-          if (!feedID) {
-            html = `<a href="https://podcastindex.org/add?feed=` + encodeURIComponent("https://" + window.location.hostname + "/plugins/podcast2/router/podcast2?channel=" + channel) + `"<button id="button-register-feed" class="peertube-button orange-button ng-star-inserted" title = "For full Boostagram functionality on sites like saturn.fly.dev and conshax.app you will need to register your channel">register with Podcast Index</button></a>`
+          let redirectEnabled,redirectUrl;
+          if (podData.redirectUrl){
+            redirectUrl = podData.redirectUrl;  
           } else {
-            html = "Podcast Index Feed ID: " + feedID;
+            redirectUrl ="";
+          }
+          let html =`${window.location.protocol}//${window.location.hostname}/plugins/podcast2/router/podcast2?channel=${channel}<br>`;
+          if (!feedID) {
+            html = html + `<a href="https://podcastindex.org/add?feed=` + encodeURIComponent("https://" + window.location.hostname + "/plugins/podcast2/router/podcast2?channel=" + channel) + `"<button id="button-register-feed" class="peertube-button orange-button ng-star-inserted" title = "For full Boostagram functionality on sites like saturn.fly.dev and conshax.app you will need to register your channel">register with Podcast Index</button></a>`
+          } else {
+            html = html +"Podcast Index Feed ID: " + feedID;
             //html = html + `<br><button type="button" id="register-feed" name="register-feed" class="peertube-button orange-button ng-star-inserted">Register Feed to Podcast Index</button>`
           }
-          html = html + `<br>Podcast Guid: `;
+          html = html + `<br>Podcast E-mail Address: `;
+          html = html + `<input type="text" id="email" width="40" value="${email}">`
+          html = html + `<br>itunes category: `;
+          html = html + `<input type="text" id="category" width="40" value="${category}">`
+          html = html + `<br>itunes large image path: `;
+          html = html + `<input type="text" id="image" width="80" value="${image}">`
+          html = html + `<br>Channel GUID: `;
           html = html + `<input STYLE="color: #000000; background-color: #ffffff;"type="text" id="channel-guid" width="40" value="` + feedGuid + `">`
           // html = html + `<button id="update-guid" class="peertube-button orange-button ng-star-inserted">Save</button>`
           html = html + `<br>Podcast Medium <select id="feed-medium"><option value="podcast">podcast </option><option value="music">music </option><option value="video">video </option><option value="film">film </option><option value="audiobook">audiobook </option></select>`
@@ -286,7 +315,11 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
             html = html + `<br>Podcast txt value ` + i + `: `;
             html = html + `<input STYLE="color: #000000; background-color: #ffffff;"type="text" id="feed-txt-` + i + `" width="40" value="` + podData.text[i] + `">`
           }
-          html = html + `<br><button id="rss-link" class="peertube-button orange-button ng-star-inserted">RSS Feed</button>`
+          html = html + `<br><button id="rss-link" class="peertube-button orange-button ng-star-inserted">RSS Feed</button>`;
+          html = html +'<br><hr>Danger - only use when moving podcast to new hosting provider';
+          html = html + `<br><input type="checkbox" id="redirect-enabled" name="redirect-enabled"> migrate podcast to `;
+          html = html + `<input STYLE="color: #000000; background-color: #ffffff;"type="text" id="redirect-url" value="${redirectUrl}"><br>`
+
           let rssEditSettings = await peertubeHelpers.showModal({
             title: 'RSS settings ' + channel,
             content: "",
@@ -295,12 +328,12 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
               value: 'save', action: async () => {
                 clearInterval(changeMonitor);
                 if (debugEnabled){
-                   console.log("⚡️ saving pod data", newPodData,);
+                   console.log("🚧 saving pod data", newPodData,);
                 }
                 try {
                   await axios.post(basePath + "/setpoddata", newPodData, { headers: await peertubeHelpers.getAuthHeader() });
                 } catch (err) {
-                  console.log("⚡️ hard error attempting to update pod data", newPodData,err)
+                  console.log("🚧 hard error attempting to update pod data", newPodData,err)
                 }
               }
             },
@@ -316,14 +349,18 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
               case "film": document.getElementById("feed-medium").selectedIndex = 2; break;
               case "video": document.getElementById("feed-medium").selectedIndex = 3; break;
               case "audiobook": document.getElementById("feed-medium").selectedIndex = 4; break;
-              default: console.log("⚡️unable to find a match for podData.medium");
+              default: console.log("🚧unable to find a match for podData.medium");
             }
+            document.getElementById("redirect-enabled").checked = podData.redirectEnabled;
           }
 
           let rssLinkButton = document.getElementById('rss-link');
           if (rssLinkButton) {
             rssLinkButton.onclick = async function () {
               let rssFeedUrl = window.location.protocol + "//" + window.location.hostname + "/plugins/podcast2/router/podcast2?channel=" + channel
+              if (debugEnabled) {
+                console.log("🚧rss link", rssFeedUrl);
+              }
               window.open(rssFeedUrl);
             }
           }
@@ -332,6 +369,23 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
             try {
               newPodData.feedguid = document.getElementById("channel-guid").value;
               newPodData.medium = document.getElementById("feed-medium").value;
+              newPodData.image = document.getElementById("image").value;
+              image = newPodData.image;
+              newPodData.category = document.getElementById("category").value;
+              category = newPodData.category;
+              let inputEmail = document.getElementById("email").value;
+              if (inputEmail && inputEmail.indexOf("@")>0){
+                newPodData.email=inputEmail;
+                email = inputEmail;
+              }
+              if (inputEmail && inputEmail==""){
+                newPodData.email=undefined;
+                email = inputEmail;
+              }
+              newPodData.redirectEnabled = document.getElementById("redirect-enabled").checked;
+              //let wtf = document.getElementById("redirect-enabled");
+              //newPodData.redirectEnabled = wtf.checked;
+              newPodData.redirectUrl =     document.getElementById("redirect-url").value;
               for (var i = 0; i < feedTxt.length; i++) {
                 podData.text[i] = document.getElementById("feed-txt-" + i).value;
               }
@@ -348,8 +402,6 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
           }
         }
       }
-
-      assignEditButtons(splitData, channel);
     }
   })
   
@@ -420,13 +472,13 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
       debugEnabled = s['debug-enable'];
       rssEnabled = s['rss-enable'];
       // if (debugEnabled) {
-      console.log("⚡️settings", s);
+      console.log("🚧settings", s);
       // }
     })
   peertubeHelpers.getServerConfig()
     .then(config => {
       if (debugEnabled) {
-        console.log('⚡️Fetched server config.', config);
+        console.log('🚧Fetched server config.', config);
       }
       instanceName = config.instance.name;
 
@@ -437,18 +489,18 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
       softwareVersion = versionResult.data;
     }
   } catch (err) {
-    console.log("⚡️error getting software version", basePath, err);
+    console.log("🚧error getting software version", basePath, err);
   }
 
   async function getChatRoom(channel) {
     if (debugEnabled) {
-      console.log("⚡️getting chat room", channel, basePath)
+      console.log("🚧getting chat room", channel, basePath)
     }
     let chatApi = basePath + "/getchatroom?channel=" + channel;
     try {
       let chatRoom = await axios.get(chatApi);
       if (chatRoom) {
-        //console.log("⚡️chatroom returned", chatRoom, "data", chatRoom.data);
+        //console.log("🚧chatroom returned", chatRoom, "data", chatRoom.data);
         return chatRoom.data;
       }
     } catch (err) {
@@ -460,7 +512,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
     try {
       await axios.get(chatApi);
     } catch (err) {
-      console.log("⚡️error attempting to set chatroom", err, channel, chatRoom);
+      console.log("🚧error attempting to set chatroom", err, channel, chatRoom);
     }
   }
   async function getFeedID(channel) {
@@ -479,7 +531,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
     try {
       await axios.get(feedApi);
     } catch (err) {
-      console.log("⚡️error attempting to fetch feed id", err);
+      console.log("🚧error attempting to fetch feed id", err);
     }
   }
   async function closeModal() {
@@ -500,12 +552,12 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
       guid = await axios.get(guidApi);
       if (guid) {
         if (debugEnabled) {
-          console.log("⚡️guid from guid api", guid)
+          console.log("🚧guid from guid api", guid)
         }
         return guid.data;
       }
     } catch (err) {
-      console.log("⚡️error getting channel guid", guidApi, err)
+      console.log("🚧error getting channel guid", guidApi, err)
     }
     return;
   }
@@ -518,7 +570,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
         return freshPodData.data;
       }
     } catch (err) {
-      console.log("⚡️error getting pod Data", podApi, err)
+      console.log("🚧error getting pod Data", podApi, err)
     }
 
     return;
@@ -526,7 +578,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
   async function getConfigPanel(channel) {
     let feedID = await getFeedID(channel);
     if (debugEnabled) {
-      console.log("⚡️getting config panel", feedID, channel);
+      console.log("🚧getting config panel", feedID, channel);
     }
     let html = `<br><label _ngcontent-msy-c247="" for="pod">Podcast Settings</label><br>`
 
