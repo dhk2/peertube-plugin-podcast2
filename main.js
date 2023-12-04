@@ -3,6 +3,12 @@ const { version } = require('./package.json');
 const fs = require('fs');
 const { Console } = require('console');
 var v5 = require('uuidv5');
+let Parser = require('rss-parser');
+const FormData = require('form-data');
+const imageDataURI = require('image-data-uri');
+const { stringify } = require('querystring');
+var request = require('request')
+const Downloader = require('nodejs-file-downloader');
 
 async function register ({
   registerHook,
@@ -43,6 +49,7 @@ async function register ({
   let enableChat = await settingsManager.getSettings("irc-enable");
   let enableDebug = await settingsManager.getSetting("debug-enable");
   var base = await peertubeHelpers.config.getWebserverUrl();
+  var basePath = peertubeHelpers.plugin.getDataDirectoryPath();
   var serverConfig = await peertubeHelpers.config.getServerConfig();
   var hostName = serverConfig.instance.name;
   console.log("🚧🚧 home url",base,hostName);
@@ -50,6 +57,8 @@ async function register ({
   if (enableDebug) {
     console.log("🚧🚧 server settings loaded", hostName, base, serverConfig, enableRss,enableChat);
   }
+  let Parser = require('rss-parser');
+  let parser = new Parser();
   registerHook({
     target: 'action:api.video.updated',
     handler: ({ video, body }) => {
@@ -497,7 +506,8 @@ async function register ({
     
   })
   router.use('/dirtyhack', async (req, res) => {
-    console.log("🚧🚧🚧🚧 dirty hack",dirtyHack,req.query);
+    console.log("🚧🚧🚧🚧 dirty hack",req.query,req.body);
+    let dirtyHack;
     if (req.query.cp){
       console.log("🚧🚧🚧🚧 clearing patronage paid days");
       let subscriptions = await storageManager.getData('subscriptions');
@@ -510,7 +520,144 @@ async function register ({
         return res.status(200).send(subscriptions);
       }
     }
-    doSubscriptions();
+    let feed;
+    if (req.query.clone){
+      try {
+        feed = await parser.parseURL(req.query.clone);
+      } catch {
+        console.log("error loading rss feed",req.query.clone);
+        return res.status(420).send("hard error loading feed: "+req.query.clone);
+      }
+      if (!feed){
+        console.log("error loading rss feed",req.query.clone);
+        return res.status(420).send("error loading feed : "+req.query.clone);  
+      }
+      let header = req.body.bear;
+      //TODO funding -> support
+      let fixedName;
+      if (feed.title){
+        fixedName = feed.title.replace(/\W/g, '').toLowerCase();
+        if (fixedName.length>25){
+          fixedName =fixedName.slice(0,25);
+        }
+      } else {
+        console.log("🚧🚧🚧🚧 Unable to find channel name in provided feed", req.query.clone);
+        return res.status(420).send("No Channel title found in stream:"+req.query.clone);
+      }
+      let getChannelApi = base+"/api/v1/video-channels/"+fixedName;
+      let channelData;
+      let channelId;
+      let description
+      let imageUrl;
+      let displayName = feed.title.replace(/[^\w\s]/gi, '');
+      if (feed.description){
+        description = feed.description.replace(/[^\w\s]/gi, '')
+        if (description.length>990){
+          description = feed.description.slice(0,990);
+        }
+      }
+       console.log("🚧🚧 new channel info",fixedName.length,displayName.length,description.length);
+      try {
+        channelData = await axios.get(getChannelApi);
+      } catch (err) {
+        console.log(`🚧🚧 no channel ${getChannelApi} found`);
+      }
+      if (channelData && channelData.data && channelData.data.id){
+        channelId = channelData.data.id
+        console.log("🚧🚧 got existing channel info ",channelData.data);
+      } else {
+
+        let newChannel ={
+          "displayName": displayName,
+          "name": fixedName,
+          "description": description,
+        }
+        console.log("new channel object",newChannel,header);
+        let result = await createChannel(newChannel,header);
+        // console.log("🚧🚧 created channel",result.data, result.data.id, result.data.videoChannel.id);
+        if (result && result.data.videoChannel.id){
+          channelId = result.data.videoChannel.id;
+        }
+      }
+      if (!channelId){
+        console.log("🚧🚧 no channelId, unable to proceed");
+        return res.status(420).send("No Channel ID found or created for :"+req.query.clone);
+      }
+      if (feed.image || feed.itunes){
+        if (feed.image){
+          imageUrl = feed.image.url;
+          console.log("feed image",feed.image);
+        }
+        console.log("🚧🚧first image url",imageUrl);
+        if (!imageUrl && feed.image && feed.image.href){
+          imageUrl = feed.image.href;
+        }
+        console.log("🚧🚧2nd image url",imageUrl);
+        if (!imageUrl && feed.image){
+          imageUrl = feed.image;
+        }
+        console.log("🚧🚧third image url",imageUrl);
+        if (!imageUrl && feed.itunes && feed.itunes.image){
+          imageUrl = feed.itunes.image.url;
+          console.log("feed itunes",feed.itunes);
+        }
+         console.log("🚧🚧 fourth url",imageUrl);
+        if (!imageUrl && feed.itunes && feed.itunes.image){
+          imageUrl = feed.itunes.image;
+        } 
+        if (!imageUrl){
+          console.log("🚧🚧 no  image url",feed.itunes);
+        }
+        console.log("🚧🚧final image url",imageUrl);
+        imageUrl = `https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Sepia.svg/180px-Sepia.svg.png`
+        let image = await getImage(imageUrl,fixedName,header);
+        return;
+        var form = new FormData();
+        let avatarUrl = base+`/api/v1/video-channels/${fixedName}/avatar/pick`;
+        await form.append('avatarfile', request(imageUrl));
+        console.log("form",form);
+        await axios.post(avatarUrl,
+            form.getBuffer(),
+            { headers: header }
+          )
+
+        form.submit(avatarUrl, function(err, res) {
+          // res – response object (http.IncomingMessage)  //
+          res.resume();
+          console.log("res");
+        });
+        console.log("🚧🚧 image string",form,avatarUrl);
+        return;
+        if (imageUrl){
+          let avatarBody = { data: {avatarfile: imageString}};
+          let avatarUrl = base+`/api/v1/video-channels/${fixedName}/avatar/pick`;
+          console.log("🚧🚧 Setting channel avatar",avatarUrl,avatarBody);
+          try {
+            await axios.post(avatarUrl,avatarBody,{ headers: header });
+          } catch (err){
+            console.log("🚧🚧 hard error setting avatar",avatarUrl,avatarBody);
+          }
+        }
+      } else {
+        console.log("🚧🚧 no itunes image found",feed);
+      }
+      console.log("🚧🚧 Starting to process rss stream items",channelId,fixedName,feed.title);     
+      dirtyHack = "";
+      for (var item of feed.items){
+        dirtyHack=dirtyHack+ await rssJsonToApiJson(item);
+        item.channelId = channelId;
+        let importBody = await rssJsonToApiJson(item);
+        console.log("🚧🚧 json", item, importBody);
+        
+        let importApi = base+"/api/v1/videos/imports";
+        try {
+          let result = await axios.post(importApi,importBody,{ headers: header });
+        } catch (err){
+          console.log("🚧🚧 hard error importing podcast",importApi,importBody,header,err);
+        }
+      };
+    }
+    //doSubscriptions();
     return res.status(200).send(dirtyHack);
   });
   router.use('/getfeedid', async (req, res) => {
@@ -839,8 +986,182 @@ async function register ({
     panel.innerHTML = html;
     return panel;
   }
-}
+  async function getImage(imageUrl,channel,header){
+    console.log("🚧oh boy, this again",imageUrl,channel,header);
+    if (!imageUrl){
+      return undefined;
+    }
+    var fileName = channel + "-avatar.jpg";
+    var downloader = new Downloader({
+      url: imageUrl,
+      directory: basePath + "/avatars",
+      fileName: fileName,
+      cloneFiles: false
+    })
+    try {
+      var avatarDownloadResult = await downloader.download();
+      console.log('🚧downloaded', avatarDownloadResult);
+    } catch (error) {
+      console.log('🚧Download failed', fileName, error)
+    }
+    console.log("🚧avatar  downloaded", avatarDownloadResult);
+    form = new FormData;
+    form.append( 'avatarfile', fs.createReadStream(basePath + '/avatars/'+fileName, {filename: 'bar.jpg', contentType: 'image/jpeg'} ));
+    const formHeaders = form.getHeaders();
+    console.log("🚧 form headers",formHeaders);
+    let mergeheaders = {
+      ...header,
+      ...formHeaders,
+    }
+    console.log("🚧 form headers2",formHeaders);
+    let avatarUrl = base+`/api/v1/video-channels/${channel}/avatar/pick`;
+    await axios.post(avatarUrl, form, {
+      headers: {
+        ...mergeheaders,
+      },
+    })
+      .then(response => response)
+      .catch(error => error)
+      return ;
+    /*
 
+    let dataString = fs.createReadStream(basePath + "/avatars/" + fileName)
+    //return dataString;
+    let gorf = new FormData()
+    gorf.append('avatarfile', dataString)
+    console.log("🚧🚧 fs on downloaded file version",gorf);
+    * /
+    let data;
+    try {
+      data = await imageDataURI.encodeFromURL(imageUrl);
+    } catch (err) {
+      console.log("🚧🚧 Hard error getting image from url",imageUrl);
+    }
+    let gank = new FormData()
+    gank.append('avatarfile',data);
+    gank.append('filename',"eatme.jpg");
+    console.log("imageDataURI version",gank, "\n\n\n\n\n\n\n",gank._streams[0]);
+    return gank._streams[0];
+    
+    try {
+      request.defaults({ encoding: null });
+      request.get('imageUrl', function (error, response, body) {
+          if (!error && response.statusCode == 200) {
+              data = "data:" + response.headers["content-type"] + ";base64," + Buffer.from(body).toString('base64');
+              console.log("🚧🚧 image string",data,new FormData().append('avatarfile', data));
+          }
+      });
+    } catch {
+      console.log("🚧🚧 stuff done blown up");  
+    }
+    let image = await axios.get(imageUrl, {responseType: 'arraybuffer'});
+    let returnedB64 = Buffer.from(image.data).toString('base64');
+    let geek = new FormData()
+    geek.append('avatarfile', returnedB64);
+    console.log("🚧🚧 axios get version ", geek,);
+  */
+  var form = new FormData();
+
+//form.append('my_field', 'my value');
+//form.append('my_buffer', new Buffer(10));
+form.append('avatarfile', request(imageUrl));
+form.submit('http://example.org/', function(err, res) {
+  // res – response object (http.IncomingMessage)  //
+  res.resume();
+  console.log("res");
+});
+  }
+  async function rssJsonToApiJson(rss){
+   if (!rss){
+    console.log("🚧🚧 no rss");
+    return
+   }
+   let api = {}
+   if (!rss.channelId || !rss.title || !rss.enclosure){
+    return false;
+   }
+   api.language = "en";
+   api.privacy = 1;
+   api.channelId = rss.channelId;
+   api.name = rss.title;
+   if (api.name.length>119){
+    api.name = api.name.slice(0,119);
+   }
+   if (rss.enclosure){
+     api.targetUrl = rss.enclosure.url;
+   }
+   if (rss.category){
+    console.log("TODO category conversion is hard, check rss2peertube for help");
+   }
+   if (rss.content){
+    if (rss.content.length>990){rss.content=rss.content.slice(0,990)}
+    api.description=rss.content;
+   }
+   api.nsfw = false;
+   if ( rss && rss.itunes && rss.itunes.explicit && rss.itunes.explicit.toLowerCase() == "yes"){
+    api.nsfw=true;
+   }
+   if (rss.isoDate){
+    api.originallyPublishedAt = rss.isoDate;
+   }
+   if (rss.value){
+    api.support = rss.value;
+   }
+   if (rss.itunes && rss.itunes.image){
+    let videoUrl;
+    if (rss.itunes.image.url){
+      videoUrl=rss.itunes.image.url;
+    } else {
+      if (rss.itunes.image.href){
+        videoUrl =rss.itunes.image.href;
+      }
+    }
+    if (videoUrl){
+      api.thumbnailfile=await getImage(videoUrl);
+    }
+     
+  }
+   return api;
+  }
+  async function createChannel(channel,header ){
+    console.log("🚧🚧 creating channel",channel,header);
+    let url = base+"/api/v1/video-channels";
+    try {
+      return await axios.post(url,channel,{ headers: header });
+    } catch (err){
+      return (err);
+    }
+  }
+  async function getPeerTubeToken(username, password) {
+    var clientTokenPath = base + "/api/v1/oauth-clients/local";
+    var userTokenPath = base + "/api/v1/users/token";
+    try {
+      let clientResult = await axios.get(clientTokenPath);
+      if (clientResult && clientResult.data) {
+        let peertubeClientId = clientResult.data.client_id;
+        let clientSecret = clientResult.data.client_secret;
+        var data = new URLSearchParams();
+        data.append('client_id', peertubeClientId);
+        data.append('client_secret', clientSecret);
+        data.append('grant_type', 'password');
+        data.append('response_type', 'code');
+        data.append('username', username);
+        data.append('password', password);
+        var postData = data.toString();
+        let tokenresponse = await axios.post(userTokenPath, data);
+        console.log("token request respoonse", tokenresponse.data);
+        bearerToken = tokenresponse.data.access_token;
+        return (bearerToken);
+      } else {
+        console.log("failed to get client token");
+      }
+    } catch (error) {
+      console.log("error in get token", ptuser, ptpassword, ptApi);
+      return (-1);
+    }
+    return;
+  }
+}
 async function unregister () {
   return
 }

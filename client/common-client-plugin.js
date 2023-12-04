@@ -1,5 +1,5 @@
 import axios from 'axios';
-async function register({ registerHook, peertubeHelpers, registerVideoField }) {
+async function register({ registerHook, peertubeHelpers, registerVideoField, registerClientRoute }) {
   const { notifier } = peertubeHelpers
   const basePath = await peertubeHelpers.getBaseRouterRoute();
 
@@ -202,6 +202,19 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
       console.log('🚧type and update form!', type,updateForm,itemTxt);
     }
   })
+    registerHook({
+    target: 'action:router.navigation-end',
+    handler: async ({ params, user }) => {
+      let podcastButtonInsertPoint = document.getElementsByClassName("video-channels-header");
+      console.log('🚧navigation end', podcastButtonInsertPoint);
+      if (podcastButtonInsertPoint.length>0){
+        console.log('🚧 found it!', podcastButtonInsertPoint.length);
+        var newStuff = document.createElement("a");
+        newStuff.innerHTML=`<a  class="peertube-create-button" href="/p/podcast2/import"><my-global-icon _ngcontent-ng-c287775211="" iconname="add" aria-hidden="true" _nghost-ng-c1540792725=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></my-global-icon>Import Podcast<!----></a>`
+        podcastButtonInsertPoint[0].appendChild(newStuff);
+      }
+    }
+  })
   registerHook({
     target: 'action:video-channel-update.video-channel.loaded',
     handler: async (params) => {
@@ -278,6 +291,21 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
         chatButton.onclick = async function () {
           setChatRoom(channel, chatRoom.value);
           chatButton.innerText = "Saved!";
+        }
+      }
+      let rssCloneButton = document.getElementById("rss-clone");
+      if (rssCloneButton){
+        rssCloneButton.onclick = async function (){
+          let cloneChannel="https://peertube.gruntwerk.org/feeds/podcast/videos.xml?videoChannelId=14819"
+          let url = "https://" + window.location.hostname + "/plugins/podcast2/router/dirtyhack?clone=" + cloneChannel;
+          let bearer = await peertubeHelpers.getAuthHeader() 
+          console.log("trying to hack", bearer, url,cloneChannel);
+          try {
+            console.log(await axios.put(url,{ bear: bearer},{ headers: bearer }));
+          } catch (err){
+            console.log("error sending request",err,url,cloneChannel);
+          }
+
         }
       }
       //console.log("🚧checking for rss settings button");
@@ -404,7 +432,48 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
       }
     }
   })
-  
+  registerClientRoute({
+    route: 'podcast2/import',
+    onMount: async ({ rootEl }) => {
+      rootEl.innerHTML = `<div id="podcast2-import"><center><h1>Import Podcast</h1></center>
+      Podcast RSS Url:<input class="form-control d-block ng-pristine ng-valid ng-touched" type="text" id="podcast2-import-url">
+      <button id = "podcast2-import-button" class="peertube-button orange-button ng-star-inserted">Import</button>
+      `
+      let importButton = document.getElementById("podcast2-import-button");
+      let importUrl = document.getElementById("podcast2-import-url");
+      if (importButton){
+        importButton.onclick  = async function () {
+         
+          let cloneChannel;
+          if (importUrl){
+            console.log("importing channel",importUrl.value);
+            cloneChannel = importUrl.value;
+            if (cloneChannel && cloneChannel.length>1){
+              cloneChannel = cloneChannel;
+              if (!cloneChannel.includes("http")){
+                cloneChannel="https://"+cloneChannel;
+              }
+              let url = "https://" + window.location.hostname + "/plugins/podcast2/router/dirtyhack?clone=" + cloneChannel;
+              let bearer = await peertubeHelpers.getAuthHeader() 
+              console.log("trying to import", bearer, url,cloneChannel);
+              let returnMessage;
+              try {
+                returnMessage = await axios.put(url,{ bear: bearer},{ headers: bearer });
+              } catch (err){
+                console.log("error sending request",err,url,cloneChannel);
+              }
+              console.log("importing",returnMessage);
+             // notifier.success(returnMessage)
+            }
+          } else {
+            console.log("no import url");
+          }
+        }
+      } else {
+        console.log("no import button");
+      }
+    }
+  })
   const videoFormOptions = { tab: 'plugin-settings' };
   let commonOptions = {
     name: 'seasonnode',
@@ -585,6 +654,8 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
     if (rssEnabled) {
       html = html + "<hr>"
       html = html + `<button type="button" id="rss-settings" name="ress-settings" class="peertube-button orange-button ng-star-inserted">Podcasting 2.0 RSS settings</button>`;
+      html = html + `<button type="button" id="rss-clone"  class="peertube-button orange-button ng-star-inserted">clone</button>`;
+
     }
 
 
@@ -597,8 +668,9 @@ async function register({ registerHook, peertubeHelpers, registerVideoField }) {
     panel.innerHTML = html;
     return panel;
   }
+
 }
-export {
+  export {
   register
 }
 

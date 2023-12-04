@@ -1,3 +1,6 @@
+v 0.0.6
+- added RSS podcast feed import. 
+
 v 0.0.5
 - Added tags and adjusted tags to meet itunes/spotify rss requirements
 - Added gui for new tags

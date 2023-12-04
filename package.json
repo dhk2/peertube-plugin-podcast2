@@ -39,6 +39,9 @@
     "esbuild": "^0.14.36"
   },
   "dependencies": {
-    "rss-parser": "^3.13.0"
+    "image-data-uri": "^2.0.1",
+    "nodejs-file-downloader": "^4.12.1",
+    "rss-parser": "^3.13.0",
+    "tiny-json-http": "^7.5.1"
   }
 }
