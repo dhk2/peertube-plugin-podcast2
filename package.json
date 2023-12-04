@@ -37,5 +37,8 @@
   },
   "devDependencies": {
     "esbuild": "^0.14.36"
+  },
+  "dependencies": {
+    "rss-parser": "^3.13.0"
   }
 }
