@@ -1,3 +1,12 @@
+v 0.0.8
+- ?fixed bug with missing dependencies
+- fixed audio stream type if no video present in enclosure file
+- fixed itunes category being hardcoded as news.
+
+v 0.0.7
+- enabled avatar and thumbnail updating
+- added redirect to new podcast channel
+
 v 0.0.6
 - added RSS podcast feed import. 
 

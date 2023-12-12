@@ -1,5 +1,7 @@
 import axios from 'axios';
+//const axios = require("axios");
 async function register({ registerHook, peertubeHelpers, registerVideoField, registerClientRoute }) {
+  
   const { notifier } = peertubeHelpers
   const basePath = await peertubeHelpers.getBaseRouterRoute();
 
@@ -296,8 +298,9 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
       let rssCloneButton = document.getElementById("rss-clone");
       if (rssCloneButton){
         rssCloneButton.onclick = async function (){
-          let cloneChannel="https://peertube.gruntwerk.org/feeds/podcast/videos.xml?videoChannelId=14819"
-          let url = "https://" + window.location.hostname + "/plugins/podcast2/router/dirtyhack?clone=" + cloneChannel;
+          //let cloneChannel="https://peertube.gruntwerk.org/feeds/podcast/videos.xml?videoChannelId=14819"
+          //let url = "https://" + window.location.hostname + "/plugins/podcast2/router/dirtyhack?clone=" + cloneChannel;
+          let url = "https://" + window.location.hostname + "/plugins/podcast2/router/dirtyhack?avater=" + cloneChannel;
           let bearer = await peertubeHelpers.getAuthHeader() 
           console.log("trying to hack", bearer, url,cloneChannel);
           try {
@@ -453,17 +456,21 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
               if (!cloneChannel.includes("http")){
                 cloneChannel="https://"+cloneChannel;
               }
-              let url = "https://" + window.location.hostname + "/plugins/podcast2/router/dirtyhack?clone=" + cloneChannel;
+              let url = "https://" + window.location.hostname + "/plugins/podcast2/router/importchannel?clone=" + cloneChannel;
               let bearer = await peertubeHelpers.getAuthHeader() 
               console.log("trying to import", bearer, url,cloneChannel);
               let returnMessage;
               try {
                 returnMessage = await axios.put(url,{ bear: bearer},{ headers: bearer });
               } catch (err){
-                console.log("error sending request",err,url,cloneChannel);
+                console.log("error sending request",err,url,cloneChannel,err.message,err.data.message);
+                notifier.error("failed trying to import ");
               }
-              console.log("importing",returnMessage);
-             // notifier.success(returnMessage)
+              console.log("importing returned message",returnMessage);
+              if (returnMessage){
+                window.location.replace(returnMessage.data);
+              }
+              // notifier.success(returnMessage)
             }
           } else {
             console.log("no import url");

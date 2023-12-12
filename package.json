@@ -1,7 +1,7 @@
 {
   "name": "peertube-plugin-podcast2",
   "description": "PeerTube plugin for podcast support",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "author": "DHK2",
   "bugs": "https://github.com/dhk2/peertube-plugin-podcast2/issues",
   "clientScripts": [
@@ -39,9 +39,13 @@
     "esbuild": "^0.14.36"
   },
   "dependencies": {
+    "axios": "^1.6.2",
     "image-data-uri": "^2.0.1",
     "nodejs-file-downloader": "^4.12.1",
     "rss-parser": "^3.13.0",
-    "tiny-json-http": "^7.5.1"
+    "tiny-json-http": "^7.5.1",
+    "uuidv5": "^1.0.0",
+    "yt-dlp-wrap": "^2.3.12",
+    "yt-info": "^0.1.3"
   }
 }
