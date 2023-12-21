@@ -52,21 +52,35 @@ async function register ({
   var base = await peertubeHelpers.config.getWebserverUrl();
   var basePath = peertubeHelpers.plugin.getDataDirectoryPath();
   var serverConfig = await peertubeHelpers.config.getServerConfig();
+  var plugins = serverConfig.plugin.registered;
   var hostName = serverConfig.instance.name;
+  let hostParts= base.split('//');
+  let hostDomain = hostParts.pop();
   const ytDlpWrap = new YTDlpWrap('/var/www/peertube/storage/bin/yt-dlp');
   console.log("🚧🚧 home url",base,hostName);
   console.log("🚧🚧🚧🚧 Podcast2 plugin started");
   if (enableDebug) {
     console.log("🚧🚧 server settings loaded", hostName, base, serverConfig, enableRss,enableChat);
+    console.log("🚧🚧 continued", serverConfig.plugin.registered);
   }
   //let Parser = require('rss-parser');
   let dirtyHack;
   let parser = new Parser();
+  let podcast2;
+  let hiveTube;
+  for (var plugin of plugins){
+    switch (plugin.npmName){
+      case 'peertube-plugin-podcast2' : podcast2=true;
+      break;
+      case 'peertube-plugin-hive-tube' : hiveTube=true;
+      break;
+    } 
+  }
   registerHook({
     target: 'action:api.video.updated',
     handler: ({ video, body }) => {
       if (enableDebug) {
-        console.log("🚧🚧updating video\n",body.pluginData);
+        console.log("🚧🚧🚧🚧🚧🚧 updating video\n",body.pluginData);
       }
       //if (!body.pluginData) return
 
@@ -76,14 +90,15 @@ async function register ({
       const episodeName = body.pluginData['episodename'];
       const chapters = body.pluginData['chapters'];
       const itemTxt = body.pluginData['itemtxt'];
-
+      const sourceId = body.pluginData['sourceid'];
       //if (!value) return
-      storageManager.storeData('seasonnode-' + video.id, seasonNode)
-      storageManager.storeData('seasonname-' + video.id, seasonName)
-      storageManager.storeData('episodenode-' + video.id, episodeNode)
-      storageManager.storeData('episodename-' + video.id, episodeName)
-      storageManager.storeData('chapters-' + video.id, chapters)
-      storageManager.storeData('itemtxt-' + video.id, itemTxt)
+      storageManager.storeData('seasonnode-' + video.id, seasonNode);
+      storageManager.storeData('seasonname-' + video.id, seasonName);
+      storageManager.storeData('episodenode-' + video.id, episodeNode);
+      storageManager.storeData('episodename-' + video.id, episodeName);
+      storageManager.storeData('chapters-' + video.id, chapters);
+      storageManager.storeData('itemtxt-' + video.id, itemTxt);
+      storageManager.storeData('sourceid-' + video.id, sourceId);
       return;
     }
   })
@@ -91,28 +106,27 @@ async function register ({
     target: 'filter:api.video.get.result',
     handler: async (video) => {
       if (!video) return video
-      if (!video.pluginData) video.pluginData = {}
+      if (!video.pluginData) video.pluginData = {};
 
-      video.pluginData['itemtxt'] = await storageManager.getData('itemtxt' + '-' + video.id)
-      video.pluginData['chapters'] = await storageManager.getData('chapters' + '-' + video.id)
-      video.pluginData['seasonnode'] = await storageManager.getData('seasonnode' + '-' + video.id)
-      video.pluginData['seasonname'] = await storageManager.getData('seasonname' + '-' + video.id)
-      video.pluginData['episodenode'] = await storageManager.getData('episodenode' + '-' + video.id)
-      video.pluginData['episodename'] = await storageManager.getData('episodename' + '-' + video.id)
-
-      return video
+      video.pluginData['itemtxt'] = await storageManager.getData('itemtxt' + '-' + video.id);
+      video.pluginData['chapters'] = await storageManager.getData('chapters' + '-' + video.id);
+      video.pluginData['seasonnode'] = await storageManager.getData('seasonnode' + '-' + video.id);
+      video.pluginData['seasonname'] = await storageManager.getData('seasonname' + '-' + video.id);
+      video.pluginData['episodenode'] = await storageManager.getData('episodenode' + '-' + video.id);
+      video.pluginData['episodename'] = await storageManager.getData('episodename' + '-' + video.id);
+      video.pluginData['sourceid'] = await storageManager.getData('sourceid' + '-' +video.id);
+      return video;
     }
   })
     registerHook({
     target: 'filter:feed.podcast.channel.create-custom-tags.result',
     handler: async (result, params) => {
       const { videoChannel } = params
-      console.log("🚧🚧🚧🚧 initial channel values 🚧🚧🚧🚧",params,params.videoChannel.dataValues.Actor,params.videoChannel.dataValues.ownerAccount);
+      //console.log("🚧🚧🚧🚧 initial channel values 🚧🚧🚧🚧",params,params.videoChannel.dataValues.Actor,params.videoChannel.dataValues.ownerAccount);
       var channel = params.videoChannel.dataValues.Actor.dataValues.preferredUsername;
       var name =    params.videoChannel.dataValues.name;
 
       let podreturn = [];
-      /* currently handled by lightning plugin
       let channelGuid;
       apiUrl = base + "/plugins/podcast2/router/getchannelguid?channel=" + channel;
       try {
@@ -121,16 +135,16 @@ async function register ({
           console.log("🚧🚧channel guid", guidData.data,apiUrl);
           channelGuid = guidData.data;
         }
-      } catch {
-        console.log("🚧🚧unable to load channel guid", apiUrl);
+      } catch (err) {
+        console.log("🚧🚧 hard error getting channel guid", apiUrl,err);
       }
+      /*
       if (channelGuid){
         podreturn.push({
           name: "podcast:guid",
           value: channelGuid,
         });
       }
-      console.log("🚧🚧unable to load channel guid", apiUrl);
       */
       let podData;
       try {
@@ -165,10 +179,13 @@ async function register ({
         }
         podreturn.push(ptext);
       }
-      if (podData && podData.feedguid && podData.feedguid !="") {
+      if (podData && podData.feedguid && podData.feedguid !=""){ 
+        channelGuid= podData.feedguid;
+      }
+      if (channelGuid && channelGuid !='' && !hiveTube){
         let fguid = {
           name: "podcast:guid",
-          value: podData.feedguid
+          value: channelGuid
         }
         podreturn.push(fguid);  
       }
@@ -182,7 +199,7 @@ async function register ({
       if (podData && podData.image && podData.image !="") {
         let image={
           name: "itunes:image",
-          attributes: {href: "https://www.peppercarrot.com/0_sources/0ther/framasoft/hi-res/2020-05-21_Peertube-Research_by-David-Revoy.jpg"}
+          attributes: {href: podData.image},
         }
         podreturn.push(image);
       }
@@ -196,14 +213,13 @@ async function register ({
         value: "en"
       }
       podreturn.push(language);
-  
       return result.concat(podreturn)
     }
   })
   registerHook({
     target: 'filter:feed.podcast.video.create-custom-tags.result',
     handler: async (result, params) => {      const { video, liveItem } = params
-      //console.log("🚧🚧🚧🚧 initial video values 🚧🚧🚧🚧",result,params,params.video);
+      //console.log("🚧🚧🚧🚧 initial video values 🚧🚧🚧🚧",result,params);
       if (liveItem) {
       }
       var videoUuid = params.video.dataValues.uuid;
@@ -233,7 +249,7 @@ async function register ({
         captionItem = {
           name: "podcast:transcript",
           attributes: {
-            "url": captionPath,
+            "uri": captionPath,
             "language": captionLanguage,
             "type": type,
             "rel": "captions"
@@ -252,12 +268,28 @@ async function register ({
         if (enableDebug){
           console.log("[pod] video data found");
         }
+        let embedPath = base+videoData.data.embedPath;
         let duration = videoData.data.duration;
         let customData = videoData.data.pluginData;
         let filename;
         let smallest = 999999999
         if (enableDebug){
           console.log("[pod] streaming playlists",videoData.data.streamingPlaylists);
+        }
+        if (embedPath){
+          let embedEnclosure = {
+            name: "podcast:embedEnclosure",
+            attributes: {
+              type: "application/x-mpegURL",
+              length: duration,
+              title: "PeerTube"
+            },
+            value: [{
+                     name: "podcast:source",
+                     attributes:{"uri": embedPath},
+                   }]
+          }
+          customObjects.push(embedEnclosure)
         }
         if (videoData.data.streamingPlaylists[0]){
           let videoFiles = videoData.data.streamingPlaylists[0].files;
@@ -308,10 +340,14 @@ async function register ({
             }
           }
           customObjects.push(seasonItem);
+          let itunesSeason = {
+            name: "itunes:season",
+            value: customData.seasonnode
+          }
+          customObjects.push(itunesSeason);
         }
-        
         if (customData && customData.episodenode){
-          episodeItem = {
+          let episodeItem = {
             name: "podcast:episode",
             value: await customData.episodenode.toString()
           };
@@ -321,8 +357,12 @@ async function register ({
             }
           }
           customObjects.push(episodeItem);
+          let itunesEpisode = {
+            name: "itunes:episode",
+            value: customData.episodenode
+          }
+          customObjects.push(itunesEpisode)
         }
-        
         if (customData && customData.chapters){
           chaptersItem = {
             name: "podcast:chapters",
@@ -332,8 +372,16 @@ async function register ({
             }
           };
           customObjects.push(chaptersItem);
+        } else {
+          chaptersItem = {
+            name: "podcast:chapters",
+            attributes: {
+              "url": `${base}/plugins/podcast2/router/chapters?video=${videoUuid}`,
+              type: "application/json+chapters"
+            }
+          };
+          customObjects.push(chaptersItem);          
         }
-       
         if (customData && customData.itemtxt){
          // let txtValue=[].push(customData.itemtxt);
           let txtItem = {
@@ -342,7 +390,21 @@ async function register ({
           }
           customObjects.push(txtItem);
         }
-        
+        if (customData && customData.sourceid){
+          let sourceEnclosure = {
+            name: "podcast:ytEnclosure",
+            attributes: {
+              type: "application/x-mpegURL",
+              length: duration,
+              title: "YouTube"
+            },
+            value: [{
+                     name: "podcast:source",
+                     attributes:{"uri": `https://www.youtube.com/embed/${customData.sourceid}`},
+                   }]
+          }
+          customObjects.push(sourceEnclosure)
+        }
       }
       console.log("custom objects to add to video",customObjects);
       return result.concat(customObjects);
@@ -350,7 +412,38 @@ async function register ({
   })
   
   const router = getRouter();
+  router.use (`/chapters`, async (req,res) => {
+    if (enableDebug) {
+      console.log("🚧🚧 chapters request", req.query);
+    }
+    let videoId;
+    if (req.query.video){
+      videoId = req.query.video      
+    } else {
+      console.log("🚧🚧 no video in request", req.query);
+      return res.status(420).send("no video");
+    }
+    let chapterApi = `${base}/api/v1/videos/${videoId}/chapters`
+    let chapterData;
+    try {
+      chapterData = await axios.get(chapterApi);
+    } catch (err) {
+      console.log("🚧🚧 hard error getting chapters", chapterApi, err);
+    }
+    let chapters
+    if (chapterData){
+      chapters = chapterData.data
+      if (chapters){
+        for (var chapter of chapters.chapters){
+          chapter.startTime=chapter.timecode;
+          delete chapter.timecode;
+        }
+      }
+      console.log("🚧🚧 chapters ", chapters,chapterData);
 
+    } 
+    return res.status(200).send(chapters);
+  })
   router.use('/podcast2', async (req, res) => {
     if (enableDebug) {
       console.log("🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧 podcast2 request 🚧🚧🚧🚧🚧🚧🚧🚧", req.query);
@@ -396,7 +489,7 @@ async function register ({
       smallPersonAvatar = channelData.data.ownerAccount.avatars[0].path;
       largePersonAvatar = channelData.data.ownerAccount.avatars[1].path;
     }
-    //console.log("🚧🚧🚧🚧channel info", channelData.data);
+    console.log("🚧🚧🚧🚧channel info", channelData.data);
     
     let rssUrl = base + "/feeds/podcast/videos.xml?videoChannelId=" + channelData.data.id;
     let rssData;
@@ -412,11 +505,23 @@ async function register ({
     try {
       let guidData = await axios.get(apiUrl);
       if (guidData && guidData.data) {
-        //console.log("🚧🚧channel guid", guidData.data);
+        console.log("🚧🚧channel guid", guidData.data);
         channelGuid = guidData.data;
       }
     } catch {
-      console.log("🚧🚧unable to load channel guid", apiUrl);
+      console.log("🚧🚧unable to load channel guid from podcast2", apiUrl);
+    }
+    if (!channelGuid){
+      apiUrl = base + "/plugins/lighting/router/getchannelguid?channel=" + channel;
+      try {
+        let guidData = await axios.get(apiUrl);
+        if (guidData && guidData.data) {
+          console.log("🚧🚧channel guid", guidData.data);
+          channelGuid = guidData.data;
+        }
+      } catch {
+        console.log("🚧🚧unable to load channel guid from lightning", apiUrl);
+      }
     }
     //TODO figure out how to get info for livechat plugin as well
 
@@ -481,6 +586,12 @@ async function register ({
       if (line.includes("audioenclosure") > 0) {
         line = line.replace("audioenclosure", "enclosure");
       }
+      if (line.includes("embedEnclosure") > 0) {
+        line = line.replace("embedEnclosure", "alternateEnclosure");
+      }
+      if (line.includes("ytEnclosure") > 0) {
+        line = line.replace("ytEnclosure", "alternateEnclosure");
+      }
       if (line.includes(`title="HLS"`) && !line.includes(`length="`)) {
         console.log("fixing length");
         line = line.replace(`title="HLS"`, `title="HLS" length ="69"`);
@@ -501,6 +612,9 @@ async function register ({
       }
       if (podData && podData.data && podData.data.medium) {
         line = line.replace(`<podcast:medium>video</podcast:medium>`, `<podcast:medium>${podData.data.medium}</podcast:medium>`);
+        if (podData.data.medium == 'audio-book'){
+          line = line + `\n${spacer}<itunes:type>serial</itunes:type>`;
+        }
       }
       if (counter > 1) {
         fixed = fixed + '\n' + line;
@@ -682,45 +796,95 @@ async function register ({
       channelOnly = parts[0];
     }
     let channelGuid;
+    if (enableDebug) {
+      console.log("🚧🚧 channel guid info", channel,host,channelOnly,channelGuid,parts);
+    }    
     if (channel) {
       try {
         channelGuid = await storageManager.getData("channelguid" + "-" + channel)
+          if (enableDebug) {
+            console.log("🚧🚧channel guid from storage", channelGuid);
+          }
       } catch (err) {
         console.log("🚧🚧 error getting channel guid", channel);
         return res.status(400).send();
       }
+      if (!channelGuid){
+        try {
+          channelGuid = await storageManager.getData("podcast" + "-" + channel)
+          if (enableDebug) {
+            console.log("🚧🚧channel guid from lightning storage", channelGuid);
+          }
+        } catch (err) {
+          console.log("🚧⚡️🚧⚡️🚧 error getting lighting feedid", channel);
+        }
+      }
     }
-    if (!channelGuid && host){
-      apiUrl = `https://${host}/plugins/podcast2/router/getchannelguid?channel=${channelOnly}`;
+    if (!channelGuid &&  host !=hostDomain){
+      apiUrl = `https://${host}/plugins/podcast2/router/getchannelguid?channel=${channel}`;
       try {
         console.log("🚧🚧 stuff",base,host,apiUrl);
         let guidData = await axios.get(apiUrl);
         if (guidData && guidData.data) {
           //console.log("🚧🚧channel guid", guidData.data);
           channelGuid = guidData.data;
+          if (enableDebug) {
+            console.log("🚧🚧channel guid from remote",host, channelGuid);
+          }
         }
       } catch {
         console.log("🚧🚧unable to load channel guid", apiUrl);
+      }
+      if (!channelGuid){
+        let feedApi = `https://${host}/plugins/lightning/router/getchannelguid?channel=${channel}`;
+        let guidData;
+        try {
+          guidData = await axios.get(feedApi);
+        } catch {
+          console.log("🚧⚡️🚧⚡️🚧 hard error getting lighting feed id for ", channel, "from", host, feedApi);
+        }
+        if (guidData && guidData.data) {
+          //console.log("⚡️⚡️ returning", feed.data, "for", channel,feed.data.toString());
+          channelGuid = guidData.data;
+          if (enableDebug) {
+            console.log("🚧🚧channel guid from remote lighting", channelGuid);
+          }
+        }
       }
     }
     if (channelGuid) {
       return res.status(200).send(channelGuid);
     } else {
       //TODO properly create guid
-      //let guidResolverUrl = "https://guid.peertube.support/"  
+      //let guidResolverUrl = "https://guid.peertube.support/"
+      if (enableDebug) {
+        console.log("🚧🚧 no channel guid found, creating one");
+      }  
       let rssUrl;
       if (channelOnly){
         rssUrl= await getRss(channelOnly);
       } else {
         rssUrl = await getRss(channel);
       }
+      if (enableDebug) {
+        console.log("🚧🚧creating podcast index from", rssUrl);
+      }
       channelGuid = await v5('url',rssUrl);
+      if (enableDebug) {
+        console.log("🚧🚧channel guid generated", channelGuid,rssUrl);
+      }
       if (channelGuid) {
         try {
           await storageManager.storeData("channelguid" + "-" + channel, channelGuid);
         } catch {
           console.log("🚧🚧failed to store channel guid", channel, channelGuid);
         }
+        let setFeedApi = `https://${host}/plugins/lightning/router/setfeedid?channel=${channel}&feedid=${channelGuid}`;
+        try {
+          feed = await axios.get(feedApi);
+        } catch {
+          console.log(`🚧⚡️🚧⚡️🚧 hard error setting lightning feed id for ${channel} from ${host}`);
+        }      
         return res.status(200).send(channelGuid);
       } else {
         console.log("🚧🚧 error attempting to generate channel guiid",channel);
@@ -774,7 +938,7 @@ async function register ({
       console.log("🚧🚧setting podcast data", req.query, req.body);
     }
     //TODO verify authorized user is actual owner of room
-    let user = await peertubeHelpers.user.getAuthUser(res);
+    
     if (user && user.dataValues && req.body) {
       let userName = user.dataValues.username;
       if (enableDebug) {
@@ -785,6 +949,13 @@ async function register ({
       }
       let channel = req.body.channel;
       storageManager.storeData("pod-" + channel.replace(/\./g, "-"), req.body);
+      if (req.body && req.body.feedguid && req.body.feedguid !=``) {
+        try {
+          channelGuid = await storageManager.storeData("channelguid" + "-" + req.body.feedguid)
+        } catch (err) {
+          console.log("🚧🚧 error setting channel guid", channel);
+        }
+      }
       pingPI(channel);
       return res.status(200).send();
     }
@@ -925,11 +1096,13 @@ async function register ({
     let channelData;
     try {
       channelData = await axios.get(apiUrl);
+      console.log("🚧🚧🚧🚧 getting rss base for", channelData.data);
     } catch {
       console.log("🚧🚧🚧🚧unable to load channel info", apiUrl);
       return ;
     }
-    let rssUrl = base + "/feeds/podcast/videos.xml?videoChannelId="+channelData
+    
+    let rssUrl = base + "/feeds/podcast/videos.xml?videoChannelId="+channelData.data.id
     return rssUrl;
   }
   async function getConfigPanel(splitInfo, channel) {

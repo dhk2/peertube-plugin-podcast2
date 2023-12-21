@@ -1,7 +1,7 @@
-import axios from 'axios';
+//import axios from 'axios';
 //const axios = require("axios");
 async function register({ registerHook, peertubeHelpers, registerVideoField, registerClientRoute }) {
-  
+  const axios = require("axios");
   const { notifier } = peertubeHelpers
   const basePath = await peertubeHelpers.getBaseRouterRoute();
 
@@ -228,6 +228,9 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
       let channelUpdate = document.getElementsByClassName("form-group");
       let channel = (window.location.href).split("/").pop();
       channelName = channel;
+      if (debugEnabled) {
+        console.log("🚧channel info located", channel,channelName);
+      }
       //let walletInfo = await getWalletInfo(null, null, channel);
       let feedID = await getFeedID(channel);
       let feedGuid = await getChannelGuid(channel);
@@ -324,19 +327,22 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
           } else {
             redirectUrl ="";
           }
-          let html =`${window.location.protocol}//${window.location.hostname}/plugins/podcast2/router/podcast2?channel=${channel}<br>`;
+          let html = `Audio podcast Feed: ${window.location.protocol}//${window.location.hostname}/plugins/podcast2/router/podcast2?channel=${channel}<br>`;
+          html = html + `<br><button id="rss-link" class="peertube-button orange-button ng-star-inserted">RSS Feed</button>`;
           if (!feedID) {
             html = html + `<a href="https://podcastindex.org/add?feed=` + encodeURIComponent("https://" + window.location.hostname + "/plugins/podcast2/router/podcast2?channel=" + channel) + `"<button id="button-register-feed" class="peertube-button orange-button ng-star-inserted" title = "For full Boostagram functionality on sites like saturn.fly.dev and conshax.app you will need to register your channel">register with Podcast Index</button></a>`
           } else {
             html = html +"Podcast Index Feed ID: " + feedID;
             //html = html + `<br><button type="button" id="register-feed" name="register-feed" class="peertube-button orange-button ng-star-inserted">Register Feed to Podcast Index</button>`
           }
+          html = html + `<h3>Settings for legacy index compatibility</h3>`;
           html = html + `<br>Podcast E-mail Address: `;
           html = html + `<input type="text" id="email" width="40" value="${email}">`
           html = html + `<br>itunes category: `;
           html = html + `<input type="text" id="category" width="40" value="${category}">`
           html = html + `<br>itunes large image path: `;
           html = html + `<input type="text" id="image" width="80" value="${image}">`
+          html = html + `<br><hr><h3>Podcasting 2.0 settings</h3>`;
           html = html + `<br>Channel GUID: `;
           html = html + `<input STYLE="color: #000000; background-color: #ffffff;"type="text" id="channel-guid" width="40" value="` + feedGuid + `">`
           // html = html + `<button id="update-guid" class="peertube-button orange-button ng-star-inserted">Save</button>`
@@ -346,8 +352,8 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
             html = html + `<br>Podcast txt value ` + i + `: `;
             html = html + `<input STYLE="color: #000000; background-color: #ffffff;"type="text" id="feed-txt-` + i + `" width="40" value="` + podData.text[i] + `">`
           }
-          html = html + `<br><button id="rss-link" class="peertube-button orange-button ng-star-inserted">RSS Feed</button>`;
-          html = html +'<br><hr>Danger - only use when moving podcast to new hosting provider';
+          
+          html = html +'<br><hr>Danger - only use when moving podcast to new hosting provider. Creates 301 redirect to replacement feed';
           html = html + `<br><input type="checkbox" id="redirect-enabled" name="redirect-enabled"> migrate podcast to `;
           html = html + `<input STYLE="color: #000000; background-color: #ffffff;"type="text" id="redirect-url" value="${redirectUrl}"><br>`
 
@@ -537,6 +543,17 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
     label: 'arbitrary text',
     descriptionHTML: 'arbitrary text string for item',
     type: 'input',
+    default: ''
+  }
+  for (const type of ['upload', 'import-url', 'import-torrent', 'update', 'go-live']) {
+    registerVideoField(commonOptions, { type, ...videoFormOptions })
+  }
+  commonOptions = {
+    name: 'sourceid',
+    label: 'YouTube ID',
+    descriptionHTML: 'ID of original youtube video',
+    type: 'input',
+    default: ''
   }
   for (const type of ['upload', 'import-url', 'import-torrent', 'update', 'go-live']) {
     registerVideoField(commonOptions, { type, ...videoFormOptions })
@@ -661,7 +678,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
     if (rssEnabled) {
       html = html + "<hr>"
       html = html + `<button type="button" id="rss-settings" name="ress-settings" class="peertube-button orange-button ng-star-inserted">Podcasting 2.0 RSS settings</button>`;
-      html = html + `<button type="button" id="rss-clone"  class="peertube-button orange-button ng-star-inserted">clone</button>`;
+      //html = html + `<button type="button" id="rss-clone"  class="peertube-button orange-button ng-star-inserted">clone</button>`;
 
     }
 
