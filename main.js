@@ -820,7 +820,7 @@ async function register ({
         }
       }
     }
-    if (!channelGuid &&  host !=hostDomain){
+    if (!channelGuid &&  host && host !=hostDomain){
       apiUrl = `https://${host}/plugins/podcast2/router/getchannelguid?channel=${channel}`;
       try {
         console.log("🚧🚧 stuff",base,host,apiUrl);

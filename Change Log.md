@@ -1,3 +1,6 @@
+v 0.1.5
+- fixed node crash bug trying to find channelGuid
+
 v 0.1.4
 - Added chapters feed generation for translating PeerTube chapters to Podcastion 2.0 chapters
 - Cleaned up RSS setting dialog
