@@ -188,3 +188,611 @@
         "https://peertube.red/tracker/announce"
     ]
 }
+
+{
+    "url": "https://tv.mattchristiansenmedia.com/video-channels/testb",
+    "name": "testb",
+    "host": "tv.mattchristiansenmedia.com",
+    "avatars": [
+        {
+            "width": 48,
+            "path": "/lazy-static/avatars/df93df9f-2009-4db9-9e5f-afa08b6e7c8b.gif",
+            "createdAt": "2023-11-24T09:16:56.904Z",
+            "updatedAt": "2023-11-24T09:16:56.904Z"
+        },
+        {
+            "width": 120,
+            "path": "/lazy-static/avatars/e1ecf8ad-ba6c-4345-b1a8-a79978658391.gif",
+            "createdAt": "2023-11-24T09:16:56.897Z",
+            "updatedAt": "2023-11-24T09:16:56.897Z"
+        }
+    ],
+    "id": 23023,
+    "hostRedundancyAllowed": false,
+    "followingCount": 0,
+    "followersCount": 1,
+    "createdAt": "2023-09-27T09:42:38.479Z",
+    "banners": [
+        {
+            "width": 1920,
+            "path": "/lazy-static/banners/b53338ce-14d4-4e81-b386-c9c6dcfd63fa.png",
+            "createdAt": "2023-11-24T09:16:46.725Z",
+            "updatedAt": "2023-11-24T09:16:46.725Z"
+        }
+    ],
+    "displayName": "Remote split tester",
+    "description": "test",
+    "support": null,
+    "isLocal": true,
+    "updatedAt": "2023-10-01T09:17:57.398Z",
+    "ownerAccount": {
+        "url": "https://tv.mattchristiansenmedia.com/accounts/errhead-1",
+        "name": "errhead-1",
+        "host": "tv.mattchristiansenmedia.com",
+        "avatars": [],
+        "id": 260691,
+        "hostRedundancyAllowed": false,
+        "followingCount": 19,
+        "followersCount": 1,
+        "createdAt": "2023-08-26T17:49:21.092Z",
+        "banners": [],
+        "displayName": "errhead",
+        "description": null,
+        "updatedAt": "2023-08-26T17:49:21.100Z",
+        "userId": 410
+    }
+}
+
+
+
+
+
+
+
+
+
+
+{
+    "total": 4,
+    "data": [
+        {
+            "id": 526295,
+            "uuid": "03123c7f-4771-47c3-92db-bbbebeb59ae4",
+            "shortUUID": "1nZN5P8KEGRhyVR6WekS3y",
+            "url": "https://tv.mattchristiansenmedia.com/videos/watch/03123c7f-4771-47c3-92db-bbbebeb59ae4",
+            "name": "Paperboy ft. skrilla bobcat • skrilla bobcat",
+            "category": {
+                "id": null,
+                "label": "Unknown"
+            },
+            "licence": {
+                "id": null,
+                "label": "Unknown"
+            },
+            "language": {
+                "id": null,
+                "label": "Unknown"
+            },
+            "privacy": {
+                "id": 1,
+                "label": "Public"
+            },
+            "nsfw": false,
+            "truncatedDescription": "Play, boost, and more on Wavlake ⚡️🎵",
+            "description": "Play, boost, and more on Wavlake ⚡️🎵",
+            "isLocal": true,
+            "duration": 218,
+            "views": 3,
+            "viewers": 0,
+            "likes": 0,
+            "dislikes": 0,
+            "thumbnailPath": "/lazy-static/thumbnails/21673a4e-0e59-46c7-b2a1-dc45002929c7.jpg",
+            "previewPath": "/lazy-static/previews/2ca914f9-98fc-47ae-b18a-41d33501d4e2.jpg",
+            "embedPath": "/videos/embed/03123c7f-4771-47c3-92db-bbbebeb59ae4",
+            "createdAt": "2023-10-06T01:50:43.560Z",
+            "updatedAt": "2023-11-30T07:08:50.451Z",
+            "publishedAt": "2023-10-06T01:52:04.472Z",
+            "originallyPublishedAt": null,
+            "isLive": false,
+            "account": {
+                "id": 260691,
+                "displayName": "errhead",
+                "name": "errhead-1",
+                "url": "https://tv.mattchristiansenmedia.com/accounts/errhead-1",
+                "host": "tv.mattchristiansenmedia.com",
+                "avatars": []
+            },
+            "channel": {
+                "id": 23023,
+                "name": "testb",
+                "displayName": "Remote split tester",
+                "url": "https://tv.mattchristiansenmedia.com/video-channels/testb",
+                "host": "tv.mattchristiansenmedia.com",
+                "avatars": [
+                    {
+                        "width": 48,
+                        "path": "/lazy-static/avatars/df93df9f-2009-4db9-9e5f-afa08b6e7c8b.gif",
+                        "createdAt": "2023-11-24T09:16:56.904Z",
+                        "updatedAt": "2023-11-24T09:16:56.904Z"
+                    },
+                    {
+                        "width": 120,
+                        "path": "/lazy-static/avatars/e1ecf8ad-ba6c-4345-b1a8-a79978658391.gif",
+                        "createdAt": "2023-11-24T09:16:56.897Z",
+                        "updatedAt": "2023-11-24T09:16:56.897Z"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 524828,
+            "uuid": "8759c46e-8637-4ed1-b896-9200df63966b",
+            "shortUUID": "hHoNGz9LKZAxDNmt3DKxoc",
+            "url": "https://tv.mattchristiansenmedia.com/videos/watch/8759c46e-8637-4ed1-b896-9200df63966b",
+            "name": "Shine On You Crazy Diamond (Parts I-IX) | Pink Floyd",
+            "category": {
+                "id": 1,
+                "label": "Music"
+            },
+            "licence": {
+                "id": null,
+                "label": "Unknown"
+            },
+            "language": {
+                "id": null,
+                "label": "Unknown"
+            },
+            "privacy": {
+                "id": 1,
+                "label": "Public"
+            },
+            "nsfw": false,
+            "truncatedDescription": "More people liked my last edit, some I'm back for another one. This time I've combined all 9 parts of shine on you crazy diamond. This is how it should've been on the album, but sadly it wasn't.\r\n\r\nSongs Used: Shine On You Crazy Diamond (I-V) & Sh...",
+            "description": "More people liked my last edit, some I'm back for another one. This time I've combined all 9 parts of shine on you crazy diamond. This is how it should've been on the album, but sadly it wasn't.\r\n\r\nSongs Used: Shine On You Crazy Diamond (I-V) & Sh...",
+            "isLocal": true,
+            "duration": 1530,
+            "views": 26,
+            "viewers": 0,
+            "likes": 0,
+            "dislikes": 0,
+            "thumbnailPath": "/lazy-static/thumbnails/d4d3588c-9b0c-4a92-9d2c-15bcf2552f5a.jpg",
+            "previewPath": "/lazy-static/previews/e9014ee9-ed97-4f4b-a056-1ab949d9c84d.jpg",
+            "embedPath": "/videos/embed/8759c46e-8637-4ed1-b896-9200df63966b",
+            "createdAt": "2023-09-27T09:43:29.376Z",
+            "updatedAt": "2023-11-23T13:59:01.800Z",
+            "publishedAt": "2023-03-17T00:00:00.000Z",
+            "originallyPublishedAt": "2023-03-17T00:00:00.000Z",
+            "isLive": false,
+            "account": {
+                "id": 260691,
+                "displayName": "errhead",
+                "name": "errhead-1",
+                "url": "https://tv.mattchristiansenmedia.com/accounts/errhead-1",
+                "host": "tv.mattchristiansenmedia.com",
+                "avatars": []
+            },
+            "channel": {
+                "id": 23023,
+                "name": "testb",
+                "displayName": "Remote split tester",
+                "url": "https://tv.mattchristiansenmedia.com/video-channels/testb",
+                "host": "tv.mattchristiansenmedia.com",
+                "avatars": [
+                    {
+                        "width": 48,
+                        "path": "/lazy-static/avatars/df93df9f-2009-4db9-9e5f-afa08b6e7c8b.gif",
+                        "createdAt": "2023-11-24T09:16:56.904Z",
+                        "updatedAt": "2023-11-24T09:16:56.904Z"
+                    },
+                    {
+                        "width": 120,
+                        "path": "/lazy-static/avatars/e1ecf8ad-ba6c-4345-b1a8-a79978658391.gif",
+                        "createdAt": "2023-11-24T09:16:56.897Z",
+                        "updatedAt": "2023-11-24T09:16:56.897Z"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 526336,
+            "uuid": "3caa480c-440b-41b9-b6da-7cdd3e65119d",
+            "shortUUID": "8uunBxsfw5Rh91ajQHfzp4",
+            "url": "https://tv.mattchristiansenmedia.com/videos/watch/3caa480c-440b-41b9-b6da-7cdd3e65119d",
+            "name": "Depeche Mode Greatest Hits - Best of Depeche Mode Playlist 2022",
+            "category": {
+                "id": null,
+                "label": "Unknown"
+            },
+            "licence": {
+                "id": null,
+                "label": "Unknown"
+            },
+            "language": {
+                "id": "en",
+                "label": "English"
+            },
+            "privacy": {
+                "id": 1,
+                "label": "Public"
+            },
+            "nsfw": false,
+            "truncatedDescription": "Depeche Mode Greatest Hits - Best of Depeche Mode Playlist 2022\r\nDepeche Mode Greatest Hits - Best of Depeche Mode Playlist 2022\r\nDepeche Mode Greatest Hits - Best of Depeche Mode Playlist 2022\r\n► Follow 'Depeche Mode 1980'\r\n➞ Subscribe for More: ...",
+            "description": "Depeche Mode Greatest Hits - Best of Depeche Mode Playlist 2022\r\nDepeche Mode Greatest Hits - Best of Depeche Mode Playlist 2022\r\nDepeche Mode Greatest Hits - Best of Depeche Mode Playlist 2022\r\n► Follow 'Depeche Mode 1980'\r\n➞ Subscribe for More: ...",
+            "isLocal": true,
+            "duration": 4998,
+            "views": 27,
+            "viewers": 0,
+            "likes": 0,
+            "dislikes": 0,
+            "thumbnailPath": "/lazy-static/thumbnails/4ad387ea-9c06-4856-a9c9-44f88a6c0da9.jpg",
+            "previewPath": "/lazy-static/previews/7b4841e2-4469-4dcc-a7b6-63bd459e0e64.jpg",
+            "embedPath": "/videos/embed/3caa480c-440b-41b9-b6da-7cdd3e65119d",
+            "createdAt": "2023-10-06T16:13:23.488Z",
+            "updatedAt": "2023-11-11T20:37:55.765Z",
+            "publishedAt": "2022-04-30T00:00:00.000Z",
+            "originallyPublishedAt": "2022-04-30T00:00:00.000Z",
+            "isLive": false,
+            "account": {
+                "id": 260691,
+                "displayName": "errhead",
+                "name": "errhead-1",
+                "url": "https://tv.mattchristiansenmedia.com/accounts/errhead-1",
+                "host": "tv.mattchristiansenmedia.com",
+                "avatars": []
+            },
+            "channel": {
+                "id": 23023,
+                "name": "testb",
+                "displayName": "Remote split tester",
+                "url": "https://tv.mattchristiansenmedia.com/video-channels/testb",
+                "host": "tv.mattchristiansenmedia.com",
+                "avatars": [
+                    {
+                        "width": 48,
+                        "path": "/lazy-static/avatars/df93df9f-2009-4db9-9e5f-afa08b6e7c8b.gif",
+                        "createdAt": "2023-11-24T09:16:56.904Z",
+                        "updatedAt": "2023-11-24T09:16:56.904Z"
+                    },
+                    {
+                        "width": 120,
+                        "path": "/lazy-static/avatars/e1ecf8ad-ba6c-4345-b1a8-a79978658391.gif",
+                        "createdAt": "2023-11-24T09:16:56.897Z",
+                        "updatedAt": "2023-11-24T09:16:56.897Z"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 536252,
+            "uuid": "7f245e8e-631d-401c-b6f6-b40ef91eacf7",
+            "shortUUID": "gGAX6yXwoUNxrywevsapMz",
+            "url": "https://tv.mattchristiansenmedia.com/videos/watch/7f245e8e-631d-401c-b6f6-b40ef91eacf7",
+            "name": "L.I.C.E.N.S.E. .T.O. .I.L.L..",
+            "category": {
+                "id": null,
+                "label": "Unknown"
+            },
+            "licence": {
+                "id": null,
+                "label": "Unknown"
+            },
+            "language": {
+                "id": null,
+                "label": "Unknown"
+            },
+            "privacy": {
+                "id": 1,
+                "label": "Public"
+            },
+            "nsfw": false,
+            "truncatedDescription": null,
+            "description": null,
+            "isLocal": true,
+            "duration": 2446,
+            "views": 3,
+            "viewers": 0,
+            "likes": 0,
+            "dislikes": 0,
+            "thumbnailPath": "/lazy-static/thumbnails/0d934181-11b6-4282-8d9c-e1fc7cb0b8d2.jpg",
+            "previewPath": "/lazy-static/previews/af2d7107-bdc4-4c36-819d-4b63f60c7d0b.jpg",
+            "embedPath": "/videos/embed/7f245e8e-631d-401c-b6f6-b40ef91eacf7",
+            "createdAt": "2023-11-11T18:54:44.785Z",
+            "updatedAt": "2023-11-23T19:59:01.814Z",
+            "publishedAt": "2019-11-19T00:00:00.000Z",
+            "originallyPublishedAt": "2019-11-19T00:00:00.000Z",
+            "isLive": false,
+            "account": {
+                "id": 260691,
+                "displayName": "errhead",
+                "name": "errhead-1",
+                "url": "https://tv.mattchristiansenmedia.com/accounts/errhead-1",
+                "host": "tv.mattchristiansenmedia.com",
+                "avatars": []
+            },
+            "channel": {
+                "id": 23023,
+                "name": "testb",
+                "displayName": "Remote split tester",
+                "url": "https://tv.mattchristiansenmedia.com/video-channels/testb",
+                "host": "tv.mattchristiansenmedia.com",
+                "avatars": [
+                    {
+                        "width": 48,
+                        "path": "/lazy-static/avatars/df93df9f-2009-4db9-9e5f-afa08b6e7c8b.gif",
+                        "createdAt": "2023-11-24T09:16:56.904Z",
+                        "updatedAt": "2023-11-24T09:16:56.904Z"
+                    },
+                    {
+                        "width": 120,
+                        "path": "/lazy-static/avatars/e1ecf8ad-ba6c-4345-b1a8-a79978658391.gif",
+                        "createdAt": "2023-11-24T09:16:56.897Z",
+                        "updatedAt": "2023-11-24T09:16:56.897Z"
+                    }
+                ]
+            }
+        }
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+    "id": 149254,
+    "uuid": "9416fa79-5bff-45d2-aabb-8c766318bd03",
+    "shortUUID": "jhCDiWKd69Y3S5B1n6BjsP",
+    "url": "https://freediverse.com/videos/watch/9416fa79-5bff-45d2-aabb-8c766318bd03",
+    "name": "Unknown name",
+    "category": {
+        "id": null,
+        "label": "Unknown"
+    },
+    "licence": {
+        "id": null,
+        "label": "Unknown"
+    },
+    "language": {
+        "id": null,
+        "label": "Unknown"
+    },
+    "privacy": {
+        "id": 1,
+        "label": "Public"
+    },
+    "nsfw": false,
+    "truncatedDescription": null,
+    "description": null,
+    "isLocal": true,
+    "duration": 1775,
+    "views": 0,
+    "viewers": 1,
+    "likes": 0,
+    "dislikes": 0,
+    "thumbnailPath": "/lazy-static/thumbnails/1f76bb98-8d94-4096-9aef-9a7e2e145603.jpg",
+    "previewPath": "/lazy-static/previews/6cbe67d9-050e-4ac9-9d77-0218d55316f4.jpg",
+    "embedPath": "/videos/embed/9416fa79-5bff-45d2-aabb-8c766318bd03",
+    "createdAt": "2023-11-25T06:21:58.619Z",
+    "updatedAt": "2023-11-25T06:38:21.169Z",
+    "publishedAt": "2023-11-25T06:38:21.169Z",
+    "originallyPublishedAt": null,
+    "isLive": false,
+    "account": {
+        "url": "https://freediverse.com/accounts/errhead-1",
+        "name": "errhead-1",
+        "host": "freediverse.com",
+        "avatars": [
+            {
+                "width": 48,
+                "path": "/lazy-static/avatars/e8156c7b-3d0f-4896-ba04-66210c86ac54.png",
+                "createdAt": "2023-12-13T16:52:47.495Z",
+                "updatedAt": "2023-12-13T16:52:47.495Z"
+            },
+            {
+                "width": 120,
+                "path": "/lazy-static/avatars/95f17e1f-b8d2-4e54-a773-0f69fc7ad7a1.png",
+                "createdAt": "2023-12-13T16:52:47.490Z",
+                "updatedAt": "2023-12-13T16:52:47.490Z"
+            }
+        ],
+        "id": 7852,
+        "hostRedundancyAllowed": false,
+        "followingCount": 2,
+        "followersCount": 0,
+        "createdAt": "2023-08-26T16:17:59.655Z",
+        "banners": [],
+        "displayName": "errhead",
+        "description": null,
+        "updatedAt": "2023-08-26T16:17:59.719Z",
+        "userId": 10
+    },
+    "channel": {
+        "url": "https://freediverse.com/video-channels/johnnydollar",
+        "name": "johnnydollar",
+        "host": "freediverse.com",
+        "avatars": [],
+        "id": 4279,
+        "hostRedundancyAllowed": false,
+        "followingCount": 0,
+        "followersCount": 0,
+        "createdAt": "2023-11-25T06:11:47.060Z",
+        "banners": [],
+        "displayName": "Johnny Dollar",
+        "description": "OTR\n",
+        "support": null,
+        "isLocal": true,
+        "updatedAt": "2023-11-25T06:11:47.067Z",
+        "ownerAccount": {
+            "url": "https://freediverse.com/accounts/errhead-1",
+            "name": "errhead-1",
+            "host": "freediverse.com",
+            "avatars": [
+                {
+                    "width": 48,
+                    "path": "/lazy-static/avatars/e8156c7b-3d0f-4896-ba04-66210c86ac54.png",
+                    "createdAt": "2023-12-13T16:52:47.495Z",
+                    "updatedAt": "2023-12-13T16:52:47.495Z"
+                },
+                {
+                    "width": 120,
+                    "path": "/lazy-static/avatars/95f17e1f-b8d2-4e54-a773-0f69fc7ad7a1.png",
+                    "createdAt": "2023-12-13T16:52:47.490Z",
+                    "updatedAt": "2023-12-13T16:52:47.490Z"
+                }
+            ],
+            "id": 7852,
+            "hostRedundancyAllowed": false,
+            "followingCount": 2,
+            "followersCount": 0,
+            "createdAt": "2023-08-26T16:17:59.655Z",
+            "banners": [],
+            "displayName": "errhead",
+            "description": null,
+            "updatedAt": "2023-08-26T16:17:59.719Z",
+            "userId": 10
+        }
+    },
+    "pluginData": {
+        "itemtxt": null,
+        "chapters": null,
+        "seasonnode": null,
+        "seasonname": null,
+        "episodenode": null,
+        "episodename": null,
+        "sourceid": null
+    },
+    "blacklisted": false,
+    "blacklistedReason": null,
+    "streamingPlaylists": [
+        {
+            "id": 805532,
+            "type": 1,
+            "playlistUrl": "https://peertube-videos.cdn.peertube.biz/hls-hls/9416fa79-5bff-45d2-aabb-8c766318bd03/8128f03b-0e68-4a42-b09a-8f140e446788-master.m3u8",
+            "segmentsSha256Url": "https://peertube-videos.cdn.peertube.biz/hls-hls/9416fa79-5bff-45d2-aabb-8c766318bd03/3930010c-156a-4d76-a9aa-317a0970a96e-segments-sha256.json",
+            "redundancies": [],
+            "files": [
+                {
+                    "id": 484540,
+                    "resolution": {
+                        "id": 480,
+                        "label": "480p"
+                    },
+                    "magnetUri": "magnet:?xs=https%3A%2F%2Ffreediverse.com%2Flazy-static%2Ftorrents%2Ffbb96555-c687-4de5-b626-b9e6d3a304a9-480-hls.torrent&xt=urn:btih:f7414bde7eb924f68d6eb2cbde5577ddff00cead&dn=Unknown+name&tr=https%3A%2F%2Ffreediverse.com%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ffreediverse.com%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fpeertube-videos.cdn.peertube.biz%2Fhls-hls%2F9416fa79-5bff-45d2-aabb-8c766318bd03%2F88e87013-c08a-4f4d-927f-d847d8ced506-480-fragmented.mp4",
+                    "size": 30923905,
+                    "fps": 25,
+                    "torrentUrl": "https://freediverse.com/lazy-static/torrents/fbb96555-c687-4de5-b626-b9e6d3a304a9-480-hls.torrent",
+                    "torrentDownloadUrl": "https://freediverse.com/download/torrents/fbb96555-c687-4de5-b626-b9e6d3a304a9-480-hls.torrent",
+                    "fileUrl": "https://peertube-videos.cdn.peertube.biz/hls-hls/9416fa79-5bff-45d2-aabb-8c766318bd03/88e87013-c08a-4f4d-927f-d847d8ced506-480-fragmented.mp4",
+                    "fileDownloadUrl": "https://freediverse.com/download/streaming-playlists/hls/videos/9416fa79-5bff-45d2-aabb-8c766318bd03-480-fragmented.mp4",
+                    "metadataUrl": "https://freediverse.com/api/v1/videos/9416fa79-5bff-45d2-aabb-8c766318bd03/metadata/484540"
+                },
+                {
+                    "id": 484516,
+                    "resolution": {
+                        "id": 360,
+                        "label": "360p"
+                    },
+                    "magnetUri": "magnet:?xs=https%3A%2F%2Ffreediverse.com%2Flazy-static%2Ftorrents%2F669b3644-5335-445f-a7cf-fac68e292ea9-360-hls.torrent&xt=urn:btih:f3b36d0488f5969e97a4fe1b8e8eaaa32b3d0a86&dn=Unknown+name&tr=https%3A%2F%2Ffreediverse.com%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ffreediverse.com%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fpeertube-videos.cdn.peertube.biz%2Fhls-hls%2F9416fa79-5bff-45d2-aabb-8c766318bd03%2F8f7b9f04-ebd5-4f22-a887-a728afcfacd3-360-fragmented.mp4",
+                    "size": 30677236,
+                    "fps": 25,
+                    "torrentUrl": "https://freediverse.com/lazy-static/torrents/669b3644-5335-445f-a7cf-fac68e292ea9-360-hls.torrent",
+                    "torrentDownloadUrl": "https://freediverse.com/download/torrents/669b3644-5335-445f-a7cf-fac68e292ea9-360-hls.torrent",
+                    "fileUrl": "https://peertube-videos.cdn.peertube.biz/hls-hls/9416fa79-5bff-45d2-aabb-8c766318bd03/8f7b9f04-ebd5-4f22-a887-a728afcfacd3-360-fragmented.mp4",
+                    "fileDownloadUrl": "https://freediverse.com/download/streaming-playlists/hls/videos/9416fa79-5bff-45d2-aabb-8c766318bd03-360-fragmented.mp4",
+                    "metadataUrl": "https://freediverse.com/api/v1/videos/9416fa79-5bff-45d2-aabb-8c766318bd03/metadata/484516"
+                },
+                {
+                    "id": 484512,
+                    "resolution": {
+                        "id": 0,
+                        "label": "Audio"
+                    },
+                    "magnetUri": "magnet:?xs=https%3A%2F%2Ffreediverse.com%2Flazy-static%2Ftorrents%2F5c4e56c3-50f4-4fe7-9e1b-9fa35ae657eb-0-hls.torrent&xt=urn:btih:d2a0e9661a9119a4ea2f8837440de8a269a4cf31&dn=Unknown+name&tr=https%3A%2F%2Ffreediverse.com%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ffreediverse.com%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fpeertube-videos.cdn.peertube.biz%2Fhls-hls%2F9416fa79-5bff-45d2-aabb-8c766318bd03%2F64c58fb1-0208-4e09-909e-4d745daf60c5-0-fragmented.mp4",
+                    "size": 29204484,
+                    "fps": 0,
+                    "torrentUrl": "https://freediverse.com/lazy-static/torrents/5c4e56c3-50f4-4fe7-9e1b-9fa35ae657eb-0-hls.torrent",
+                    "torrentDownloadUrl": "https://freediverse.com/download/torrents/5c4e56c3-50f4-4fe7-9e1b-9fa35ae657eb-0-hls.torrent",
+                    "fileUrl": "https://peertube-videos.cdn.peertube.biz/hls-hls/9416fa79-5bff-45d2-aabb-8c766318bd03/64c58fb1-0208-4e09-909e-4d745daf60c5-0-fragmented.mp4",
+                    "fileDownloadUrl": "https://freediverse.com/download/streaming-playlists/hls/videos/9416fa79-5bff-45d2-aabb-8c766318bd03-0-fragmented.mp4",
+                    "metadataUrl": "https://freediverse.com/api/v1/videos/9416fa79-5bff-45d2-aabb-8c766318bd03/metadata/484512"
+                }
+            ]
+        }
+    ],
+    "files": [
+        {
+            "id": 484510,
+            "resolution": {
+                "id": 480,
+                "label": "480p"
+            },
+            "magnetUri": "magnet:?xs=https%3A%2F%2Ffreediverse.com%2Flazy-static%2Ftorrents%2Ff0e5a874-a262-4d15-914f-dd833d90ec9e-480.torrent&xt=urn:btih:6fdfa2055cd3596c6955308f5821fefc7061160f&dn=Unknown+name&tr=https%3A%2F%2Ffreediverse.com%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ffreediverse.com%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fpeertube-videos.cdn.peertube.biz%2Fweb-fa7a8047-0589-4726-9098-317be40e734b-480.mp4",
+            "size": 31232601,
+            "fps": 25,
+            "torrentUrl": "https://freediverse.com/lazy-static/torrents/f0e5a874-a262-4d15-914f-dd833d90ec9e-480.torrent",
+            "torrentDownloadUrl": "https://freediverse.com/download/torrents/f0e5a874-a262-4d15-914f-dd833d90ec9e-480.torrent",
+            "fileUrl": "https://peertube-videos.cdn.peertube.biz/web-fa7a8047-0589-4726-9098-317be40e734b-480.mp4",
+            "fileDownloadUrl": "https://freediverse.com/download/videos/9416fa79-5bff-45d2-aabb-8c766318bd03-480.mp4",
+            "metadataUrl": "https://freediverse.com/api/v1/videos/9416fa79-5bff-45d2-aabb-8c766318bd03/metadata/484510"
+        },
+        {
+            "id": 484536,
+            "resolution": {
+                "id": 360,
+                "label": "360p"
+            },
+            "magnetUri": "magnet:?xs=https%3A%2F%2Ffreediverse.com%2Flazy-static%2Ftorrents%2F8b9d6821-b701-4263-b2fe-de86b750e4bb-360.torrent&xt=urn:btih:0de491f007219a4e03ac616f44032ec99ee6c059&dn=Unknown+name&tr=https%3A%2F%2Ffreediverse.com%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ffreediverse.com%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fpeertube-videos.cdn.peertube.biz%2Fweb-775610d4-de50-4d75-9380-c28d6fad3547-360.mp4",
+            "size": 30939757,
+            "fps": 25,
+            "torrentUrl": "https://freediverse.com/lazy-static/torrents/8b9d6821-b701-4263-b2fe-de86b750e4bb-360.torrent",
+            "torrentDownloadUrl": "https://freediverse.com/download/torrents/8b9d6821-b701-4263-b2fe-de86b750e4bb-360.torrent",
+            "fileUrl": "https://peertube-videos.cdn.peertube.biz/web-775610d4-de50-4d75-9380-c28d6fad3547-360.mp4",
+            "fileDownloadUrl": "https://freediverse.com/download/videos/9416fa79-5bff-45d2-aabb-8c766318bd03-360.mp4",
+            "metadataUrl": "https://freediverse.com/api/v1/videos/9416fa79-5bff-45d2-aabb-8c766318bd03/metadata/484536"
+        },
+        {
+            "id": 484511,
+            "resolution": {
+                "id": 0,
+                "label": "Audio"
+            },
+            "magnetUri": "magnet:?xs=https%3A%2F%2Ffreediverse.com%2Flazy-static%2Ftorrents%2F9ea1c868-a343-421f-9800-9c3b82760259-0.torrent&xt=urn:btih:a431689a10b0f12e90e02afaffd53754a57a571a&dn=Unknown+name&tr=https%3A%2F%2Ffreediverse.com%2Ftracker%2Fannounce&tr=wss%3A%2F%2Ffreediverse.com%3A443%2Ftracker%2Fsocket&ws=https%3A%2F%2Fpeertube-videos.cdn.peertube.biz%2Fweb-7d33b1b2-b828-4c41-875d-678803b3c78e-0.mp4",
+            "size": 29133790,
+            "fps": 0,
+            "torrentUrl": "https://freediverse.com/lazy-static/torrents/9ea1c868-a343-421f-9800-9c3b82760259-0.torrent",
+            "torrentDownloadUrl": "https://freediverse.com/download/torrents/9ea1c868-a343-421f-9800-9c3b82760259-0.torrent",
+            "fileUrl": "https://peertube-videos.cdn.peertube.biz/web-7d33b1b2-b828-4c41-875d-678803b3c78e-0.mp4",
+            "fileDownloadUrl": "https://freediverse.com/download/videos/9416fa79-5bff-45d2-aabb-8c766318bd03-0.mp4",
+            "metadataUrl": "https://freediverse.com/api/v1/videos/9416fa79-5bff-45d2-aabb-8c766318bd03/metadata/484511"
+        }
+    ],
+    "support": null,
+    "descriptionPath": "/api/v1/videos/9416fa79-5bff-45d2-aabb-8c766318bd03/description",
+    "tags": [],
+    "commentsEnabled": true,
+    "downloadEnabled": true,
+    "waitTranscoding": true,
+    "inputFileUpdatedAt": null,
+    "state": {
+        "id": 1,
+        "label": "Published"
+    },
+    "trackerUrls": [
+        "https://freediverse.com/tracker/announce",
+        "wss://freediverse.com:443/tracker/socket"
+    ]
+}
+
+
+ 

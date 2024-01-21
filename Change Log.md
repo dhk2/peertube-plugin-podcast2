@@ -1,3 +1,9 @@
+v 0.1.7 
+- refining torrent RSS feed compatibility
+
+v 0.1.6
+- added torrent RSS feed
+
 v 0.1.5
 - fixed node crash bug trying to find channelGuid
 

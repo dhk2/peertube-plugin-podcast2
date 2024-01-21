@@ -587,7 +587,10 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
 
   async function getChatRoom(channel) {
     if (debugEnabled) {
-      console.log("🚧getting chat room", channel, basePath)
+      console.log("🚧getting chat room", channel, basePath, chatEnabled)
+    }
+    if (!chatEnabled){
+      return;
     }
     let chatApi = basePath + "/getchatroom?channel=" + channel;
     try {
@@ -601,6 +604,12 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
     }
   }
   async function setChatRoom(channel, chatRoom) {
+    if (debugEnabled) {
+      console.log("🚧getting chat room", channel, chatRoom, chatEnabled)
+    }
+    if (!chatEnabled){
+      return;
+    }
     let chatApi = basePath + "/setchatroom?channel=" + channel + "&chatroom=" + encodeURIComponent(chatRoom);
     try {
       await axios.get(chatApi);
@@ -626,17 +635,6 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
     } catch (err) {
       console.log("🚧error attempting to fetch feed id", err);
     }
-  }
-  async function closeModal() {
-    let butts = document.getElementsByClassName("ng-star-inserted")
-    for (var butt of butts) {
-      let iconName = butt.getAttribute("iconname");
-      if (iconName == "cross") {
-        butt.click();
-        return true;
-      }
-    }
-    return false;
   }
   async function getChannelGuid(channel) {
     let guid;
