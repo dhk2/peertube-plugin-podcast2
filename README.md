@@ -1,3 +1,3 @@
-Moving podcast2.0 support from lightning plugin to its own standalone plugin
+Peertube Plugin Bit Torrent Really Simple Syndication
 
-Forked from Lightning plugin.
+Create an RSS feed for every channel that is compatible with Torrent Client RSS feeds to automate duplication of files over the torrent network for viewing, archiving, and distribution
