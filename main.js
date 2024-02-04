@@ -1219,7 +1219,7 @@ async function register ({
       console.log("🚧🚧setting podcast data", req.query, req.body);
     }
     //TODO verify authorized user is actual owner of room
-    
+    let user = await peertubeHelpers.user.getAuthUser(res);
     if (user && user.dataValues && req.body) {
       let userName = user.dataValues.username;
       if (enableDebug) {
@@ -1232,9 +1232,9 @@ async function register ({
       storageManager.storeData("pod-" + channel.replace(/\./g, "-"), req.body);
       if (req.body && req.body.feedguid && req.body.feedguid !=``) {
         try {
-          channelGuid = await storageManager.storeData("channelguid" + "-" + req.body.feedguid)
+          channelGuid = await storageManager.getData("channelguid" + "-" + req.body.feedguid)
         } catch (err) {
-          console.log("🚧🚧 error setting channel guid", channel);
+          console.log("🚧🚧 error setting channel guid", channel,req.body.feedguid,err);
         }
       }
       pingPI(channel);
