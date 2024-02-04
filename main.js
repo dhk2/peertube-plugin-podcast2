@@ -10,6 +10,9 @@ const { stringify } = require('querystring');
 var request = require('request')
 const Downloader = require('nodejs-file-downloader');
 const YTDlpWrap = require('yt-dlp-wrap').default;
+const { parse } = require('rss-to-json');
+const { constants } = require('crypto');
+const { extract } = require('@extractus/feed-extractor');
 
 async function register ({
   registerHook,
@@ -219,7 +222,7 @@ async function register ({
   registerHook({
     target: 'filter:feed.podcast.video.create-custom-tags.result',
     handler: async (result, params) => {      const { video, liveItem } = params
-      //console.log("🚧🚧🚧🚧 initial video values 🚧🚧🚧🚧",result,params);
+      console.log("🚧🚧🚧🚧 initial video values 🚧🚧🚧🚧",result,params);
       if (liveItem) {
       }
       var videoUuid = params.video.dataValues.uuid;
@@ -407,11 +410,78 @@ async function register ({
         }
       }
       console.log("custom objects to add to video",customObjects);
+      console.log("results",result);
+      console.log("cmbined",result.concat(customObjects));
+
       return result.concat(customObjects);
+      
     }
   })
   
   const router = getRouter();
+  router.use('/rss', async (req, res) => {
+    if (enableDebug) {
+      console.log("🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧 podcast2 rss request 🚧🚧🚧🚧🚧🚧🚧🚧", req.query);
+    }
+    if (!enableRss) {
+      console.log("🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧RSS disabled");
+      return res.status(403).send();
+    }
+    if (req.query.channel == undefined) {
+      console.log("🚧🚧no channel requested", req.query);
+      return res.status(404).send();
+    }
+    let podData
+    let podApi = base + "/plugins/podcast2/router/getpoddata?channel=" + req.query.channel;
+    try {
+      podData = await axios.get(podApi);
+    } catch {
+      console.log("unable to load PODCAST data",req.query.channel,podApi);
+    }
+    if (podData) {
+      console.log("🚧🚧\n\n\n\n pod data \n", podData.data);
+      if (podData.data && podData.data.redirectEnabled){
+        //return res.redirect(301, podData.data.redirectUrl);
+        res.set('location', podData.data.redirectUrl);
+        return res.status(301).send()
+      }
+    }
+    let channel = req.query.channel
+    let apiUrl = base + "/api/v1/video-channels/" + channel;
+    let channelData;
+    try {
+      channelData = await axios.get(apiUrl);
+    } catch {
+      console.log("🚧🚧🚧🚧unable to load channel info", apiUrl);
+      return res.status(400).send();  
+    }
+    let smallChannelAvatar, largeChannelAvatar, smallPersonAvatar, largePersonAvatar
+    if (channelData && channelData.data && channelData.data.avatars && channelData.data.avatars[1]) {
+      smallChannelAvatar = channelData.data.avatars[0].path;
+      largeChannelAvatar = channelData.data.avatars[1].path;
+    }
+    if (channelData && channelData.data && channelData.data.ownerAccount && channelData.data.ownerAccount.avatars && channelData.data.ownerAccount.avatars[1]) {
+      smallPersonAvatar = channelData.data.ownerAccount.avatars[0].path;
+      largePersonAvatar = channelData.data.ownerAccount.avatars[1].path;
+    }
+    console.log("🚧🚧🚧🚧channel info", channelData.data);
+    
+    let rssUrl = base + "/feeds/podcast/videos.xml?videoChannelId=" + channelData.data.id;
+    let rssData;
+    try {
+      rssData = await axios.get(rssUrl)
+    } catch {
+      console.log("🚧🚧unable to load rss feed for", channel, rssUrl);
+      return res.status(400).send();
+    }
+    try{
+    var rssJson = await extract(rssUrl, {normalization:false });
+    } catch (err) {
+      console.log("🚧🚧error loading rss", rssUrl,err);
+    }
+    console.log(JSON.stringify(rssJson, null, 3));
+    return res.status(200).send(rssJson); 
+  })
   router.use (`/chapters`, async (req,res) => {
     if (enableDebug) {
       console.log("🚧🚧 chapters request", req.query);

@@ -39,10 +39,12 @@
     "esbuild": "^0.14.36"
   },
   "dependencies": {
+    "@extractus/feed-extractor": "^7.0.9",
     "axios": "^1.6.2",
     "image-data-uri": "^2.0.1",
     "nodejs-file-downloader": "^4.12.1",
     "rss-parser": "^3.13.0",
+    "rss-to-json": "^2.1.1",
     "tiny-json-http": "^7.5.1",
     "uuidv5": "^1.0.0",
     "yt-dlp-wrap": "^2.3.12",
