@@ -13,6 +13,7 @@ const YTDlpWrap = require('yt-dlp-wrap').default;
 const { parse } = require('rss-to-json');
 const { constants } = require('crypto');
 const { extract } = require('@extractus/feed-extractor');
+import { validate as isValidUUID } from 'uuid';
 
 async function register ({
   registerHook,
@@ -844,22 +845,24 @@ async function register ({
         var spot = line.indexOf("hls/");
         var uuid = line.substring(spot+4,  spot+40);
         console.log("🚧🚧🚧🚧enclosure",spot, "cut",">"+uuid+"<");
-        var extended = await storageManager.getData('rssvideodata-'+uuid);
-        console.log("Extended",extended);
-        for (file of extended){
-          console.log("🚧🚧🚧🚧first pass",file);
-          if (file.name == 'audio' && forceAudio){
-            line = `\n${spacer}<enclosure url="${file.url}" type="${file.type}" length="${file.length}"/>`
-          } else if (file.name == 'video' && forceVideo) {
-            line = `\n${spacer}<enclosure url="${file.url}" type="${file.type}" length="${file.length}"/>`
-          } 
-        }  
-        for (file of extended){
-          console.log("🚧🚧🚧🚧second pass",file);
-          if (file.name != 'audio' && file.name !='video'){
-            line = line + `\n${spacer}<podcast:alternateEnclosure type="${file.type}" length="${file.length}" title="${file.title}">`
-            line = line + `\n${spacer}  <podcast:source uri="${file.url}"/>`
-            line = line + `\n${spacer}</podcast:alternateEnclosure>`
+        if (isValidUUID(uuid)) {
+          var extended = await storageManager.getData('rssvideodata-'+uuid);
+          console.log("Extended",extended);
+          for (file of extended){
+            console.log("🚧🚧🚧🚧first pass",file);
+            if (file.name == 'audio' && forceAudio){
+              line = `\n${spacer}<enclosure url="${file.url}" type="${file.type}" length="${file.length}"/>`
+            } else if (file.name == 'video' && forceVideo) {
+              line = `\n${spacer}<enclosure url="${file.url}" type="${file.type}" length="${file.length}"/>`
+            } 
+          }  
+          for (file of extended){
+            console.log("🚧🚧🚧🚧second pass",file);
+            if (file.name != 'audio' && file.name !='video'){
+              line = line + `\n${spacer}<podcast:alternateEnclosure type="${file.type}" length="${file.length}" title="${file.title}">`
+              line = line + `\n${spacer}  <podcast:source uri="${file.url}"/>`
+              line = line + `\n${spacer}</podcast:alternateEnclosure>`
+            }
           }
         }
       }
