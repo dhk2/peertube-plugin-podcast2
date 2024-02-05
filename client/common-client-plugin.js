@@ -346,7 +346,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
           html = html + `<br>Channel GUID: `;
           html = html + `<input STYLE="color: #000000; background-color: #ffffff;"type="text" id="channel-guid" width="40" value="` + feedGuid + `">`
           // html = html + `<button id="update-guid" class="peertube-button orange-button ng-star-inserted">Save</button>`
-          html = html + `<br>Podcast Medium <select id="feed-medium"><option value="podcast">podcast </option><option value="music">music </option><option value="video">video </option><option value="film">film </option><option value="audiobook">audiobook </option></select>`
+          html = html + `<br>Podcast Medium <select id="feed-medium"><option value="podcast">podcast </option><option value="music">music </option><option value="film">film </option><option value="video">video </option><option value="audiobook">audiobook </option></select>`
 
           for (var i = 0; i < podData.text.length; i++) {
             html = html + `<br>Podcast txt value ` + i + `: `;
@@ -381,10 +381,10 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
             modal[0].setAttribute('sandbox', 'allow-same-origin allow-scripts allow-popups allow-forms')
             modal[0].innerHTML = html;
             switch (podData.medium) {
-              case "podcast": document.getElementById("feed-medium").selectedIndex = 0; break;
-              case "music": document.getElementById("feed-medium").selectedIndex = 1; break;
-              case "film": document.getElementById("feed-medium").selectedIndex = 2; break;
-              case "video": document.getElementById("feed-medium").selectedIndex = 3; break;
+              case "podcast":   document.getElementById("feed-medium").selectedIndex = 0; break;
+              case "music":     document.getElementById("feed-medium").selectedIndex = 1; break;
+              case "film":      document.getElementById("feed-medium").selectedIndex = 2; break;
+              case "video":     document.getElementById("feed-medium").selectedIndex = 3; break;
               case "audiobook": document.getElementById("feed-medium").selectedIndex = 4; break;
               default: console.log("🚧unable to find a match for podData.medium");
             }

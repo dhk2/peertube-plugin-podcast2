@@ -1,4 +1,7 @@
-v 0.1.7
+v 0.1.9
+-fixed video/film mixup when openning podcast2 channel settings
+
+v 0.1.8
 - fixed legacy RSS to pick video or audio mp4 for enclosure based on medium
 
 v 0.1.7 
