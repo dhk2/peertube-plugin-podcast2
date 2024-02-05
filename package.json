@@ -1,7 +1,7 @@
 {
   "name": "peertube-plugin-podcast2",
   "description": "PeerTube plugin for podcast support",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "author": "DHK2",
   "bugs": "https://github.com/dhk2/peertube-plugin-podcast2/issues",
   "clientScripts": [

@@ -313,7 +313,7 @@ async function register ({
         }
         var enclosure,videoEnclosure;
         var enclosureType;
-        //console.log("\n🚧🚧\n\n\nsmallest??",filename,smallest);
+        console.log("\n🚧🚧\n\n\nsmallest??",filename,smallest,videoFilename,largest);
         if (filename) {
           enclosureType = "video/mp4";
           if (filename.includes("-0-")){
@@ -330,7 +330,7 @@ async function register ({
           enclosureType = "video/mp4";
           videoEnclosure = {
             name: "video",
-            url: filename,
+            url: videoFilename,
             type: enclosureType,
             length: duration
           }
@@ -418,8 +418,7 @@ async function register ({
         }
       }
       console.log("custom objects to add to video",customObjects);
-      console.log("results",result);
-      console.log("cmbined",result.concat(customObjects));
+      console.log("custom objects to store for rss",rssData);
       await storageManager.storeData('rssvideodata-'+videoUuid,rssData);
       return result.concat(customObjects);
       

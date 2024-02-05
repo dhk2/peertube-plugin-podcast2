@@ -1,3 +1,6 @@
+v 0.1.7
+- fixed legacy RSS to pick video or audio mp4 for enclosure based on medium
+
 v 0.1.7 
 - refining torrent RSS feed compatibility
 
