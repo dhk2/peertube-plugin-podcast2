@@ -1,3 +1,6 @@
+v 0.2.0
+- different uuid fix
+
 v 0.1.9
 - fixed video/film mixup when openning podcast2 channel settings
 - check if UUID is valid before trying to load

@@ -13,7 +13,6 @@ const YTDlpWrap = require('yt-dlp-wrap').default;
 const { parse } = require('rss-to-json');
 const { constants } = require('crypto');
 const { extract } = require('@extractus/feed-extractor');
-import { validate as isValidUUID } from 'uuid';
 
 async function register ({
   registerHook,
@@ -845,7 +844,7 @@ async function register ({
         var spot = line.indexOf("hls/");
         var uuid = line.substring(spot+4,  spot+40);
         console.log("🚧🚧🚧🚧enclosure",spot, "cut",">"+uuid+"<");
-        if (isValidUUID(uuid)) {
+        try {
           var extended = await storageManager.getData('rssvideodata-'+uuid);
           console.log("Extended",extended);
           for (file of extended){
@@ -864,6 +863,8 @@ async function register ({
               line = line + `\n${spacer}</podcast:alternateEnclosure>`
             }
           }
+        } catch (err){
+          console.log("🚧🚧🚧🚧 failed to get uuid from enclosure",spot, "cut",">"+uuid+"<",line,err);
         }
       }
       if (line.includes(`title="HLS"`) && !line.includes(`length="`)) {
