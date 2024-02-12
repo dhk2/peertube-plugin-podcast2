@@ -1762,9 +1762,8 @@ form.submit('http://example.org/', function(err, res) {
 
       }
   */
-      let parts = enclosureUrl.split("/");
-      console.log("🚧 parts",parts);
-    }
+    let parts = enclosureUrl.split("/");
+    console.log("🚧 parts",parts);
     return false;
   }
 }
