@@ -844,9 +844,9 @@ async function register ({
         var spot = line.indexOf("hls/");
         var uuid = line.substring(spot+4,  spot+40);
         console.log("🚧🚧🚧🚧 enclosure",line);
-        let test =getUUID(line);
+        let test = await getUUID(line);
         uuid = test;
-        if (isUUID(uuid)) {
+        if (await isUUID(uuid)) {
           console.log("🚧🚧🚧🚧enclosure",spot, "cut",">"+uuid+"<");
           try {
             var extended = await storageManager.getData('rssvideodata-'+uuid);
