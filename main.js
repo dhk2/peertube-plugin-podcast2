@@ -841,7 +841,7 @@ async function register ({
 
       }
       if (line.includes("<podcast:socialInteract"))
-        uuid = getUUID(line);
+        uuid = await getUUID(line);
       if (line.includes("<enclosure") > 0) {
         var spot = line.indexOf("hls/");
         //var uuid = line.substring(spot+4,  spot+40);
