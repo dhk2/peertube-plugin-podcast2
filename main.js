@@ -1750,7 +1750,8 @@ form.submit('http://example.org/', function(err, res) {
           if (count > urlParts.length-4){
             return false;
           }
-          let realUUID = `${urlParts[count]}-${urlParts[count+1]}-${urlParts[count+2]}-${urlParts[count+3]}-${urlParts[count+4]}`
+          c=count;
+          let realUUID = `${urlParts[c]}-${urlParts[c+1]}-${urlParts[c+2]}-${urlParts[c+3]}-${urlParts[c+4]}`
           console.log("🚧 uuid candidate",realUUID);
           if (urlParts[count].length == 8 && urlParts[count+1] == 4 && urlParts[count+2].length == 4 && urlParts[count+3] == 4 && urlParts[count+4] == 12){
             return (realUUID);
