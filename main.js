@@ -845,6 +845,7 @@ async function register ({
         var uuid = line.substring(spot+4,  spot+40);
         console.log("🚧🚧🚧🚧 enclosure",line);
         let test =getUUID(line);
+        let uuid = test;
         if (isUUID(uuid)) {
           console.log("🚧🚧🚧🚧enclosure",spot, "cut",">"+uuid+"<");
           try {
@@ -869,6 +870,8 @@ async function register ({
           } catch (err){
             console.log("🚧🚧🚧🚧 failed to get uuid from enclosure",spot, "cut",">"+uuid+"<",line,err);
           }
+        } else {
+          console.log("🚧🚧🚧🚧 failed to get uuid :(",uuid,test,line);
         }
       }
       if (line.includes(`title="HLS"`) && !line.includes(`length="`)) {
@@ -1739,6 +1742,19 @@ form.submit('http://example.org/', function(err, res) {
     let parts = enclosureUrl.split("/");
     for (var url of parts) {
       console.log("🚧 url part",url,url.length);
+      if (url.length>50){
+        urlParts=urlParts.split("-");
+        for (var count in urlParts){
+          if (count > urlParts.length+4){
+            break
+          }
+        if (urlParts[count].length == 8 && urlParts[count+1] == 4 && urlParts[count+2].length == 4 && urlParts[count+3] == 4 && urlParts[count+4] == 12){
+          realUUID = `${urlParts[count]}-${urlParts[count+1]}-${urlParts[count+2]}-${urlParts[count+3]}-${urlParts[count+4]}`
+          return (realUUID)
+        }
+        }
+
+      }
     }
     return false;
   }
