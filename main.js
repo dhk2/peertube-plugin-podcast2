@@ -843,28 +843,31 @@ async function register ({
       if (line.includes("<enclosure") > 0) {
         var spot = line.indexOf("hls/");
         var uuid = line.substring(spot+4,  spot+40);
-        console.log("🚧🚧🚧🚧enclosure",spot, "cut",">"+uuid+"<");
-        try {
-          var extended = await storageManager.getData('rssvideodata-'+uuid);
-          console.log("Extended",extended);
-          for (file of extended){
-            console.log("🚧🚧🚧🚧first pass",file);
-            if (file.name == 'audio' && forceAudio){
-              line = `\n${spacer}<enclosure url="${file.url}" type="${file.type}" length="${file.length}"/>`
-            } else if (file.name == 'video' && forceVideo) {
-              line = `\n${spacer}<enclosure url="${file.url}" type="${file.type}" length="${file.length}"/>`
-            } 
-          }  
-          for (file of extended){
-            console.log("🚧🚧🚧🚧second pass",file);
-            if (file.name != 'audio' && file.name !='video'){
-              line = line + `\n${spacer}<podcast:alternateEnclosure type="${file.type}" length="${file.length}" title="${file.title}">`
-              line = line + `\n${spacer}  <podcast:source uri="${file.url}"/>`
-              line = line + `\n${spacer}</podcast:alternateEnclosure>`
+        console.log("🚧🚧🚧🚧 enclosure",line);
+        if (isUUID(uuid)) {
+          console.log("🚧🚧🚧🚧enclosure",spot, "cut",">"+uuid+"<");
+          try {
+            var extended = await storageManager.getData('rssvideodata-'+uuid);
+            console.log("Extended",extended);
+            for (file of extended){
+              console.log("🚧🚧🚧🚧first pass",file);
+              if (file.name == 'audio' && forceAudio){
+                line = `\n${spacer}<enclosure url="${file.url}" type="${file.type}" length="${file.length}"/>`
+              } else if (file.name == 'video' && forceVideo) {
+                line = `\n${spacer}<enclosure url="${file.url}" type="${file.type}" length="${file.length}"/>`
+              } 
+            }  
+            for (file of extended){
+              console.log("🚧🚧🚧🚧second pass",file);
+              if (file.name != 'audio' && file.name !='video'){
+                line = line + `\n${spacer}<podcast:alternateEnclosure type="${file.type}" length="${file.length}" title="${file.title}">`
+                line = line + `\n${spacer}  <podcast:source uri="${file.url}"/>`
+                line = line + `\n${spacer}</podcast:alternateEnclosure>`
+              }
             }
+          } catch (err){
+            console.log("🚧🚧🚧🚧 failed to get uuid from enclosure",spot, "cut",">"+uuid+"<",line,err);
           }
-        } catch (err){
-          console.log("🚧🚧🚧🚧 failed to get uuid from enclosure",spot, "cut",">"+uuid+"<",line,err);
         }
       }
       if (line.includes(`title="HLS"`) && !line.includes(`length="`)) {
@@ -896,7 +899,7 @@ async function register ({
       }
       if (podData && podData.data && podData.data.medium) {
         line = line.replace(`<podcast:medium>video</podcast:medium>`, `<podcast:medium>${podData.data.medium}</podcast:medium>`);
-        if (podData.data.medium == 'audio-book'){
+        if (podData.data.medium == 'audiobook' && line.indexOf("podcast:medium>audiobook")>0){
           line = line + `\n${spacer}<itunes:type>serial</itunes:type>`;
         }
       }
@@ -1722,6 +1725,15 @@ form.submit('http://example.org/', function(err, res) {
       return (false)
     }
   }
+  async function isUUID ( uuid ) {
+    let s = "" + uuid;
+
+    s = s.match('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$');
+    if (s === null) {
+      return false;
+    }
+    return true;
+}
 }
 async function unregister () {
   return

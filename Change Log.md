@@ -1,5 +1,5 @@
 v 0.2.0
-- different uuid fix
+- different uuid fix to avoid corrupt uuids causing node crash
 
 v 0.1.9
 - fixed video/film mixup when openning podcast2 channel settings
