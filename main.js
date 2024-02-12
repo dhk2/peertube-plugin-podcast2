@@ -1763,8 +1763,10 @@ form.submit('http://example.org/', function(err, res) {
       }
   */
     let parts = enclosureUrl.split("/");
-    console.log("🚧 parts",parts);
-    return false;
+    let foundUUID = parts[5].substring(0,36);
+    console.log("🚧 parts",parts,foundUUID);
+
+    return foundUUID;
   }
 }
 async function unregister () {
