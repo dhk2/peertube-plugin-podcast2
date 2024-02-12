@@ -845,7 +845,7 @@ async function register ({
         var uuid = line.substring(spot+4,  spot+40);
         console.log("🚧🚧🚧🚧 enclosure",line);
         let test =getUUID(line);
-        let uuid = test;
+        uuid = test;
         if (isUUID(uuid)) {
           console.log("🚧🚧🚧🚧enclosure",spot, "cut",">"+uuid+"<");
           try {
