@@ -873,7 +873,7 @@ async function register ({
             console.log("🚧🚧🚧🚧 failed to get uuid from enclosure",spot, "cut",">"+uuid+"<",line,err);
           }
         } else {
-          console.log("🚧🚧🚧🚧 failed to get uuid :(",uuid,test,line);
+          console.log("🚧🚧🚧🚧 failed to get uuid :(",uuid,line);
         }
       }
       if (line.includes(`title="HLS"`) && !line.includes(`length="`)) {
