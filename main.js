@@ -1733,7 +1733,14 @@ form.submit('http://example.org/', function(err, res) {
       return false;
     }
     return true;
-}
+  }
+  async function getUUID (enclosureUrl){
+    let parts = enclosureUrl.split("/");
+    for (var url of parts) {
+      console.log("🚧 url part",url,url.length);
+    }
+    return false;
+  }
 }
 async function unregister () {
   return
