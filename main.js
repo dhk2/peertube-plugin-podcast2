@@ -840,12 +840,14 @@ async function register ({
         }
 
       }
+      if (line.includes("<podcast:socialInteract"))
+        uuid = getUUID(line);
       if (line.includes("<enclosure") > 0) {
         var spot = line.indexOf("hls/");
-        var uuid = line.substring(spot+4,  spot+40);
-        console.log("🚧🚧🚧🚧 enclosure",line);
-        let test = await getUUID(line);
-        uuid = test;
+        //var uuid = line.substring(spot+4,  spot+40);
+        console.log("🚧🚧🚧🚧 enclosure",line,uuid);
+        //let test = await getUUID(line);
+        //uuid = test;
         if (await isUUID(uuid)) {
           console.log("🚧🚧🚧🚧enclosure",spot, "cut",">"+uuid+"<");
           try {
@@ -1739,7 +1741,7 @@ form.submit('http://example.org/', function(err, res) {
     return true;
   }
   async function getUUID (enclosureUrl){
-    //dirty hack supporting dirty hack
+/*    //dirty hack supporting dirty hack
     let parts = enclosureUrl.split("/");
     for (var url of parts) {
       console.log("🚧 url part",url,url.length);
@@ -1759,6 +1761,9 @@ form.submit('http://example.org/', function(err, res) {
         }
 
       }
+  */
+      let parts = enclosureUrl.split("/");
+      console.log("🚧 parts",parts);
     }
     return false;
   }
