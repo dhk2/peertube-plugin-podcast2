@@ -1739,11 +1739,12 @@ form.submit('http://example.org/', function(err, res) {
     return true;
   }
   async function getUUID (enclosureUrl){
+    //dirty hack supporting dirty hack
     let parts = enclosureUrl.split("/");
     for (var url of parts) {
       console.log("🚧 url part",url,url.length);
       if (url.length>50){
-        urlParts=urlParts.split("-");
+        let urlParts=url.split("-");
         for (var count in urlParts){
           if (count > urlParts.length+4){
             break
