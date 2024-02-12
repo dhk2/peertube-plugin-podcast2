@@ -1,3 +1,6 @@
+v 0.2.1
+- Changed UUID determination to avoid these issues.
+
 v 0.2.0
 - different uuid fix to avoid corrupt uuids causing node crash
 
