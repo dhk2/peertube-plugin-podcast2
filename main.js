@@ -1747,7 +1747,7 @@ form.submit('http://example.org/', function(err, res) {
         let urlParts=url.split("-");
         for (var count in urlParts){
           console.log("🚧 uuid parts",count, urlParts[count],urlParts[count].length);
-          if (count >= urlParts.length-4){
+          if (count > urlParts.length-3){
             return false;
           }
           if (urlParts[count].length == 8 && urlParts[count+1] == 4 && urlParts[count+2].length == 4 && urlParts[count+3] == 4 && urlParts[count+4] == 12){
