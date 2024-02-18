@@ -158,7 +158,7 @@ async function register ({
       } catch (err) {
         console.log("🚧🚧error getting pod data for ", channel);
       }
-      if (podData && podData.email.indexOf("@")>0){
+      if (podData && podData.email && podData.email.indexOf("@")>0){
         let blocks =[];
         let newBlock = {};
         newBlock.name = "itunes:owner";
@@ -948,8 +948,9 @@ async function register ({
       
     }
     //doSubscriptions();
-    return res.status(200);
+    return res.status(200).send(dirtyHack);
   });
+  /*
   router.use('/getfeedid', async (req, res) => {
     if (enableDebug) {
       console.log("🚧🚧getting feed id", req.query);
@@ -961,6 +962,9 @@ async function register ({
     let feed;
     let parts = channel.split('@');
     if (parts.length > 1) {
+      if (enableDebug) {
+        console.log("🚧🚧 remote request", parts);
+      }
       let feedApi = "https://" + parts[1] + "/plugins/podcast2/router/getfeedid?channel=" + parts[0];
       try {
         feed = await axios.get(feedApi);
@@ -968,17 +972,25 @@ async function register ({
         console.log("🚧🚧hard error getting feed id for ", channel, "from", parts[1], feedApi);
       }
       if (feed && feed.data) {
-        //console.log("🚧🚧 returning", feed.data, "for", channel,feed.data.toString());
+        if (enableDebug) {
+          console.log("🚧🚧 remote got feed", feed.data);
+        }
         return res.status(200).send(feed.data.toString());
       }
       return res.status(420).send("remote channel returned no feed id");
     }
     if (channel) {
+      if (enableDebug) {
+        console.log("🚧🚧getting feed id locally", channel);
+      }
       try {
         feed = await storageManager.getData("podcast" + "-" + channel)
       } catch (err) {
         console.log("🚧🚧error getting feedid", channel);
       }
+    }
+    if (enableDebug) {
+      console.log(`🚧🚧 returning feed ID ${feed} for ${channel}`);
     }
     //console.log("🚧🚧 feed", feed);
     if (feed) {
@@ -986,6 +998,7 @@ async function register ({
     } else {
       return res.status(400).send("no feed id found for requested channel");
     }
+
   })
   router.use('/setfeedid', async (req, res) => {
     if (enableDebug) {
@@ -1003,6 +1016,7 @@ async function register ({
       }
     }
   })
+  
   router.use('/getitemid', async (req, res) => {
     if (enableDebug) {
       console.log("🚧🚧getting item id", req.query);
@@ -1077,13 +1091,14 @@ async function register ({
       }
     }
   })
+  */
   router.use('/getchannelguid', async (req, res) => {
     if (enableDebug) {
       console.log("🚧🚧getting channel guid", req.query);
     }
     let host,channelOnly;
     let channel = req.query.channel;
-    parts = channel.split("@");
+    let parts = channel.split("@");
     if (parts.length>1){
       host = parts[1];
       channelOnly = parts[0];
@@ -1102,6 +1117,7 @@ async function register ({
         console.log("🚧🚧 error getting channel guid", channel);
         return res.status(400).send();
       }
+      /*
       if (!channelGuid){
         try {
           channelGuid = await storageManager.getData("podcast" + "-" + channel)
@@ -1112,6 +1128,7 @@ async function register ({
           console.log("🚧⚡️🚧⚡️🚧 error getting lighting feedid", channel);
         }
       }
+      */
     }
     if (!channelGuid &&  host && host !=hostDomain){
       apiUrl = `https://${host}/plugins/podcast2/router/getchannelguid?channel=${channel}`;
@@ -1146,6 +1163,7 @@ async function register ({
       }
     }
     if (channelGuid) {
+      console.log("🚧🚧 returning channel guid",channelGuid);
       return res.status(200).send(channelGuid);
     } else {
       //TODO properly create guid
@@ -1177,7 +1195,8 @@ async function register ({
           feed = await axios.get(feedApi);
         } catch {
           console.log(`🚧⚡️🚧⚡️🚧 hard error setting lightning feed id for ${channel} from ${host}`);
-        }      
+        }
+        console.log("🚧🚧 returning channel guid",channelGuid);      
         return res.status(200).send(channelGuid);
       } else {
         console.log("🚧🚧 error attempting to generate channel guiid",channel);
@@ -1348,6 +1367,7 @@ async function register ({
     console.log("🚧🚧final image url",imageUrl);
     let avatarResult = await updateChannelAvatar(imageUrl,fixedName,header);
     console.log("🚧🚧 avatar upload result",avatarResult)
+    storageManager.storeData("pod-" + fixedName.replace(/\./g, "-"), {"medium": "podcast", "channel": fixedName});
     console.log("🚧🚧 Starting to process rss stream items",channelId,fixedName,feed.title);     
     for (var item of feed.items){
       item.channelId = channelId;
@@ -1368,20 +1388,249 @@ async function register ({
       }
     }
   })
+  router.use('/importarc', async (req, res) => {
+    if (enableDebug) {
+      console.log("🚧🚧importing from internet archive", req.query, req.body);
+    }
+    let ID = req.query.id;
+    if (!ID) {
+      ID = "little_fuzzy_0911_librivox";
+    }
+    //let ID = "spacelinerx87_2402_librivox";
+    //let ID ="little_fuzzy_0911_librivox";
+    let metadataApi = "https://archive.org/metadata/"+ID;
+    let data,baseUrl,title,author,description,thumbnail;
+    console.log(`🚧🚧 trying`,ID,metadataApi);
+    try {
+      data = await axios.get(metadataApi);
+      console.log(`🚧🚧 found data ${data}`,data);
+    } catch (err) {
+      console.log(`🚧🚧 unable to get metadata at ${metadataApi}`,err);
+    }
+    dirtyHack= data.data;
+    data = data.data;
+    let shows = []
+    if (data && data.metadata) {
+      baseUrl = "https://"+data.d1+data.dir;
+      author = data.metadata.creator;
+      title = data.metadata.title;
+      
+      if (Array.isArray(data.metadata.description)){
+        console.log(`🚧🚧 description array `, data.metadata.description,"\nfirst",data.metadata.description[0]);
+        description = data.metadata.description[0];
+      } else {
+        description = data.metadata.description;
+      }
+      console.log(`🚧🚧 found metadata for ${title} by ${author}`);
+      let line = "checking";
+      //return res.status(200).send(data);
+      for (var file of data.files ){
+        let show={};
+        let format = file.format;
+        if (format.toLowerCase().includes("mp3")){
+          line = line+"<br>"+`🚧🚧 ${format} ${file.size} ${file.name} ${file.album} ${file.title} ${file.track}`
+          
+          if (file.track){
+            show.track = parseInt(file.track);
+          }
+          if (file.title){
+            show.title = file.title;
+          }
+          if (file.size){
+            show.size = parseInt(file.size);
+          }
+          if (file.album){
+            show.album = file.album;
+          }
+          if (file.name){
+            show.name = file.name;
+            show.fullPath = baseUrl+"/"+file.name
+          }
+          if (file.format){
+            show.format = file.format;
+          }
+          let duplicate = false;
+          for (var current in shows){
+            if (shows[current].title == show.title){
+              duplicate=true;
+              console.log(`🚧🚧 matched `,shows[current],shows[current].size,show.size);
+              if (shows[current].size < show.size){
+                console.log(`🚧🚧 replacing smaller show `,show,shows[current].size,show.size);
+                shows[current]=show;
+              } else {
+                break;
+              }
+            }
+          }
+          if (!duplicate){
+            shows.push(show);
+          }
+
+        }
+      }
+      
+      for (var file of data.files ){
+        let format = file.format;
+        if (format.toLowerCase() == "jpeg"){
+          thumbnail = baseUrl+"/"+file.name;
+        }
+        if (format.toLowerCase().includes("png") || format.toLowerCase().includes("jpg") || format.toLowerCase().includes("gif")){
+          let partial = file.name.split(".")[0];
+          for (var current in shows){
+            if (shows[current].name.toLowerCase().includes(partial)){
+              shows[current].thumbnail = baseUrl+"/"+file.name;
+            }
+          }
+        }  
+      }
+      if (thumbnail){
+        for (var show of shows) {
+          if (!show.thumbnail){
+            show.thumbnail = thumbnail
+          }
+        }
+      }
+      console.log(`🚧🚧 shows `,shows);
+      let header = req.body.bear;
+      let fixedName,channelName;
+      if (author) {
+        channelName = author +" - "+title;
+      } else {
+        channelName = title;
+      }
+      if (channelName){
+        fixedName = channelName.replace(/\W/g, '').toLowerCase();
+        if (fixedName.length>25){
+          fixedName =fixedName.slice(0,25);
+        }
+      } else {
+        console.log("🚧🚧🚧🚧 Unable to find channel name in archive metadata", req.query.id);
+        return res.status(420).send("No Channel title found in stream:"+req.query.id);
+      }
+      let getChannelApi = base+"/api/v1/video-channels/"+fixedName;
+      let channelData;
+      let channelId;
+      let imageUrl;
+      let displayName = title.replace(/[^\w\s]/gi, '');
+      if (description){
+        //description = description.replace(/[^\w\s]/gi, '')
+        if (description.length>990){
+          description = description.slice(0,990);
+        }
+      }
+      console.log("🚧🚧 new channel info",fixedName.length,displayName.length,description.length);
+      try {
+        channelData = await axios.get(getChannelApi);
+      } catch (err) {
+        console.log(`🚧🚧 no channel ${getChannelApi} found`);
+      }
+      if (channelData && channelData.data && channelData.data.id){
+        channelId = channelData.data.id
+        console.log("🚧🚧 got existing channel info ",channelData.data);
+      } else {
+        let newChannel ={
+          "displayName": displayName,
+          "name": fixedName,
+          "description": description,
+        }
+        console.log("new channel object",newChannel,header);
+        let result = await createChannel(newChannel,header);
+        // console.log("🚧🚧 created channel",result.data, result.data.id, result.data.videoChannel.id);
+        if (result && result && result.videoChannel && result.videoChannel.id){
+          channelId = result.videoChannel.id;
+        }
+      }
+  
+      if (!channelId){
+        console.log("🚧🚧 no channelId, unable to proceed");
+        return res.status(420).send("No Channel ID found or created for :"+req.query.clone);
+      }
+      if (fixedName){
+        let newChannelPath = base + `/c/${fixedName}`;
+        console.log (`🚧🚧 redirecting to  ${newChannelPath}`);
+        res.status(200).send(newChannelPath);
+      } else {
+        console.log (`🚧🚧 unable to redirect to  ${newChannelPath}`);
+      }
+      if (thumbnail){
+        imageUrl = thumbnail;
+      }
+      if (!imageUrl){
+        console.log("🚧🚧 no  image url",thumbnail);
+      }
+      console.log("🚧🚧final image url",imageUrl);
+      let avatarResult = await updateChannelAvatar(imageUrl,fixedName,header);
+      console.log("🚧🚧 avatar upload result",avatarResult)
+      storageManager.storeData("pod-" + fixedName.replace(/\./g, "-"), {"medium": "audiobook", "channel": fixedName});
+      console.log("🚧🚧 Starting to process internet archive items",channelId,fixedName,title,shows.length);     
+      for (var show  of shows){
+        show.channelId = channelId;
+        let importBody = await showJsonToApiJson(show);
+        //console.log("🚧🚧 json", show, importBody);
+        if (enableDebug) {
+          console.log("🚧🚧 attemptin to get", show);
+        }
+        let dupeResult = await checkForDuplicate(importBody);
+        if (dupeResult){
+          console.log("🚧🚧 skipping duplicate");
+          continue;
+        }
+        let importApi = base+"/api/v1/videos/imports";
+        
+        let result;
+        try {
+          result = await axios.post(importApi,importBody,{ headers: header });
+        } catch (err){
+          console.log("🚧🚧 hard error importing podcast",importApi,err);
+        }
+        //console.log(`🚧🚧 result of importing Video 🚧🚧`,result,show);
+        if (result && result.data && result.data.video){
+          let videoId = result.data.video.id;
+          let videoUuid = result.data.video.uuid;
+          let videoUrl = result.data.video.url;
+          let videoThumbnail = result.data.video.thumbnailPath;
+          let videoPreview = result.data.video.previewPath
+          if (show.track){
+            storageManager.storeData('episodenode-' + videoId, show.track);
+          }
+          if (show.title){
+            storageManager.storeData('episodename-' + videoId, show.title);
+          }
+          storageManager.storeData('sourceid-' + videoId, ID);
+        }
+      }
+      //return res.status(200).send(line);
+    } else {
+      console.log(`🚧🚧 missing metadata or meta meta`);
+      return res.status(420).send("failed to get data or metadata");;
+    }
+  })
   async function pingPI(pingChannel) {
     let feedApi = base + "/plugins/podcast2/router/getfeedid?channel=" + pingChannel;
-    let feedId;
+    let feedId,pingResult;
     try {
       feedId = await axios.get(feedApi);
-      let pingResult;
-      if (feedId) {
-        pingResult = await axios.get("https://api.podcastindex.org/api/1.0/hub/pubnotify?id=" + feedId.data);
+    } catch (err){
+      console.log("🚧🚧hard error getting feedid from podcast2 to ping podcast index ", feedId, feedApi,err);
+    }
+    if (!feedId){
+      feedApi = base + "/plugins/lightning/router/getfeedid?channel=" + pingChannel;
+      try {
+        feedId = await axios.get(feedApi);
+      } catch (err){
+        console.log("🚧🚧hard error when getting feedid from lightning to ping podcast index ", feedId, feedApi,err);
       }
-      if (pingResult && pingResult.data) {
-        return (pingResult.data);
-      }
-    } catch {
-      console.log("🚧🚧hard error when trying ping podcast index ", feedId, feedApi);
+    }
+    if (feedId && feedId.data) {
+      indexTickle=`https://api.podcastindex.org/api/1.0/hub/pubnotify?id=${feedId.data}`
+      pingResult = await axios.get(indexTickle);
+    } else {
+      console.log("🚧 badness", feedId);
+    }
+    if (pingResult && pingResult.data) {
+      return (pingResult.data);
+    } else {
+      console.log("🚧 i am disappoint", feedId, pingResult, feedApi);
     }
   }
   async function getRss(channel){
@@ -1601,6 +1850,42 @@ form.submit('http://example.org/', function(err, res) {
     console.log(" what we're laying down",api,"thumbnail",api.thumbnailfile, "buffer",api.buffer);
     return api;
   }
+  async function showJsonToApiJson(show){
+    if (!show){
+      console.log("🚧🚧 show json",show);
+      return
+    }
+    let api = {}
+    /*
+    if (!rss.channelId || !rss.title || !rss.enclosure){
+      return false;
+    }
+*/
+    if (show.description){
+      if (show.descripton.length>990){
+        show.description=show.description.slice(0,990)
+      }
+      api.description=show.description;
+    }
+    api.nsfw = false;
+    api.language = "en";
+    api.privacy = 1;
+    api.channelId = show.channelId;
+    api.name = show.title;
+    if (api.name && api.name.length>119){
+      api.name = api.name.slice(0,119);
+    }
+    if (show.fullPath){
+      api.targetUrl = encodeURI(show.fullPath);
+    }
+    let imageUrl = show.thumbnail;
+    console.log("🚧🚧 found image",imageUrl); 
+    if (imageUrl){
+      api.thumbnailfile=await getThumbnail(imageUrl);
+    }
+    console.log("returned json api",api);
+    return api;
+  }
   async function createChannel(channel,header ){
     console.log("🚧🚧 creating channel",channel,header);
     let url = base+"/api/v1/video-channels";
@@ -1664,7 +1949,8 @@ form.submit('http://example.org/', function(err, res) {
       console.log('🚧bad or missing arguments',imageUrl);
       return undefined;
     }
-    var fileName = "thumbnail.jpg";
+    var parts = imageUrl.split("/");
+    var fileName = parts.pop();
     var downloader = new Downloader({
       url: imageUrl,
       directory: basePath + "/thumbnails",
@@ -1676,10 +1962,11 @@ form.submit('http://example.org/', function(err, res) {
       console.log('🚧downloaded', thumbnailloadResult);
     } catch (error) {
       console.log('🚧Download failed', fileName, error)
+      return;
     }
     console.log("🚧thumbnail downloaded", thumbnailloadResult);
     form = new FormData;
-    await form.append( 'thumbnailfile', fs.createReadStream(basePath + '/thumbnailss/'+fileName, {filename: 'thumbnail.jpg', contentType: 'image/jpeg'} ));
+    await form.append( 'thumbnailfile', fs.createReadStream(basePath + '/thumbnails/'+fileName, {filename: fileName, contentType: 'image/jpeg'} ));
     console.log("🚧 form ",form);
     return form;
   }  

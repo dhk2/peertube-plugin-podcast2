@@ -1,3 +1,3 @@
-Moving podcast2.0 support from lightning plugin to its own standalone plugin
+Provides extended Podcasting 2.0 tag support and an audio-only channel support
 
-Forked from Lightning plugin.
+Adds an import RSS feed to 

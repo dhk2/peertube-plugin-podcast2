@@ -212,7 +212,9 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
       if (podcastButtonInsertPoint.length>0){
         console.log('🚧 found it!', podcastButtonInsertPoint.length);
         var newStuff = document.createElement("a");
-        newStuff.innerHTML=`<a  class="peertube-create-button" href="/p/podcast2/import"><my-global-icon _ngcontent-ng-c287775211="" iconname="add" aria-hidden="true" _nghost-ng-c1540792725=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></my-global-icon>Import Podcast<!----></a>`
+        newStuff.innerHTML=`<a  class="peertube-create-button" href="/p/podcast2/import"><my-global-icon _ngcontent-ng-c287775211="" iconname="add" aria-hidden="true" _nghost-ng-c1540792725=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></my-global-icon>Import Podcast<!----></a>`+
+        `<a  class="peertube-create-button" href="/p/podcast2/importarc"><my-global-icon _ngcontent-ng-c287775211="" iconname="add" aria-hidden="true" _nghost-ng-c1540792725=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></my-global-icon>Import internet archive collection<!----></a>`+
+        
         podcastButtonInsertPoint[0].appendChild(newStuff);
       }
     }
@@ -463,6 +465,52 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
                 cloneChannel="https://"+cloneChannel;
               }
               let url = "https://" + window.location.hostname + "/plugins/podcast2/router/importchannel?clone=" + cloneChannel;
+              let bearer = await peertubeHelpers.getAuthHeader() 
+              console.log("trying to import", bearer, url,cloneChannel);
+              let returnMessage;
+              try {
+                returnMessage = await axios.put(url,{ bear: bearer},{ headers: bearer });
+              } catch (err){
+                console.log("error sending request",err,url,cloneChannel,err.message,err.data.message);
+                notifier.error("failed trying to import ");
+              }
+              console.log("importing returned message",returnMessage);
+              if (returnMessage){
+                window.location.replace(returnMessage.data);
+              }
+              // notifier.success(returnMessage)
+            }
+          } else {
+            console.log("no import url");
+          }
+        }
+      } else {
+        console.log("no import button");
+      }
+    }
+  })
+  registerClientRoute({
+    route: 'podcast2/importarc',
+    onMount: async ({ rootEl }) => {
+      rootEl.innerHTML = `<div id="podcast2-importarc"><center><h1>Import internet archive</h1></center>
+      Internet Archive ID:<input class="form-control d-block ng-pristine ng-valid ng-touched" type="text" id="podcast2-importarc-url">
+      <button id = "podcast2-importarc-button" class="peertube-button orange-button ng-star-inserted">Import</button>
+      `
+      let importarcButton = document.getElementById("podcast2-importarc-button");
+      let importarcUrl = document.getElementById("podcast2-importarc-url");
+      if (importarcButton){
+        importarcButton.onclick  = async function () {
+         
+          let cloneChannel,cloneChannelParts;
+          if (importarcUrl){
+            console.log("importing channel",importarcUrl.value);
+            cloneChannel = importarcUrl.value;
+            if (cloneChannel && cloneChannel.length>1){
+              cloneChannelParts = cloneChannel.split("/");
+              if (cloneChannelParts.length > 1){
+                cloneChannel = cloneChannelParts[cloneChannelParts.length-1];
+              }
+              let url = "https://" + window.location.hostname + "/plugins/podcast2/router/importarc?id=" + cloneChannel;
               let bearer = await peertubeHelpers.getAuthHeader() 
               console.log("trying to import", bearer, url,cloneChannel);
               let returnMessage;

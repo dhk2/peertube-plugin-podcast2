@@ -1,3 +1,10 @@
+v 0.2.3
+- bug fixes in import logic
+- bug fix for descriptions in array instead of string
+
+v 0.2.2
+- added ability to import audiobooks from internet archive
+
 v 0.2.1
 - Changed UUID determination to avoid these issues.
 
