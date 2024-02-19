@@ -81,9 +81,9 @@ async function register ({
   }
   registerHook({
     target: 'action:api.video.updated',
-    handler: ({ video, body }) => {
+    handler: async ({ video, body }) => {
       if (enableDebug) {
-        console.log("🚧🚧🚧🚧🚧🚧 updating video\n",body.pluginData);
+        console.log("🚧🚧🚧🚧🚧🚧 updating video\n",body);
       }
       //if (!body.pluginData) return
 
@@ -102,6 +102,18 @@ async function register ({
       storageManager.storeData('chapters-' + video.id, chapters);
       storageManager.storeData('itemtxt-' + video.id, itemTxt);
       storageManager.storeData('sourceid-' + video.id, sourceId);
+      if (chapters && chapters !=""){
+        let chaptersData,chaptersApi
+        try {
+          chaptersData = await axios.get(chapters);
+          chaptersApi = `${base}/plugins/podcast2/router/chapters?video=${video.id}`
+
+        } catch (err){
+          console.log("🚧🚧🚧🚧🚧🚧 update chapters", chaptersData.data);
+        }
+        
+      }
+
       return;
     }
   })
@@ -375,10 +387,11 @@ async function register ({
           customObjects.push(episodeItem);
           let itunesEpisode = {
             name: "itunes:episode",
-            value: customData.episodenode
+            value: customData.episodenode.toString()
           }
           customObjects.push(itunesEpisode)
         }
+        let chaptersItem,chaptersApi,chaptersData;
         if (customData && customData.chapters){
           chaptersItem = {
             name: "podcast:chapters",
@@ -389,15 +402,26 @@ async function register ({
           };
           customObjects.push(chaptersItem);
         } else {
-          chaptersItem = {
-            name: "podcast:chapters",
-            attributes: {
-              "url": `${base}/plugins/podcast2/router/chapters?video=${videoUuid}`,
-              type: "application/json+chapters"
+          chaptersApi = `${base}/plugins/podcast2/router/chapters?video=${videoUuid}`
+          try {
+            let chaptersData = await axios.get(chaptersApi);
+            console.log("🚧🚧 chapters ", chaptersData.data, Array.isArray(chaptersData.data.chapters),chaptersData.data.chapters.length);
+            if (chaptersData && chaptersData.data && chaptersData.data.chapters && Array.isArray(chaptersData.data.chapters) && chaptersData.data.chapters.length>1){
+              chaptersItem = {
+                name: "podcast:chapters",
+                attributes: {
+                  "url": chaptersApi,
+                  type: "application/json+chapters"
+                }
+              }
+              customObjects.push(chaptersItem);          
             }
-          };
-          customObjects.push(chaptersItem);          
+          } catch (err) {
+            console.log("🚧🚧 hard error getting chapters ", chaptersApi,err);
+          }
         }
+        console.log("🚧🚧 chaptersitem ", chaptersItem);
+
         if (customData && customData.itemtxt){
          // let txtValue=[].push(customData.itemtxt);
           let txtItem = {
@@ -417,8 +441,8 @@ async function register ({
           rssData.push(sourceEnclosure)
         }
       }
-      console.log("custom objects to add to video",customObjects);
-      console.log("custom objects to store for rss",rssData);
+      console.log("🚧🚧 custom objects to add to video",customObjects);
+      console.log("🚧🚧 custom objects to store for rss",rssData);
       await storageManager.storeData('rssvideodata-'+videoUuid,rssData);
       return result.concat(customObjects);
       
@@ -493,21 +517,29 @@ async function register ({
     if (enableDebug) {
       console.log("🚧🚧 chapters request", req.query);
     }
-    let videoId;
+    let videoId,chapters,chapterData,chapterApi;
     if (req.query.video){
       videoId = req.query.video      
     } else {
       console.log("🚧🚧 no video in request", req.query);
       return res.status(420).send("no video");
     }
-    let chapterApi = `${base}/api/v1/videos/${videoId}/chapters`
-    let chapterData;
+    let customChapters = await storageManager.getData('chapters' + '-' + videoId);
+    if (customChapters){
+      try {
+        chapterData = await axios.get(customChapters);
+      } catch (err) {
+        console.log("hard error getting custom chapters file",customChapters,err);
+      }
+      if (customChapters && customChapters.data)
+      return(customChapters.data);
+    }
+    chapterApi = `${base}/api/v1/videos/${videoId}/chapters`
     try {
       chapterData = await axios.get(chapterApi);
     } catch (err) {
       console.log("🚧🚧 hard error getting chapters", chapterApi, err);
     }
-    let chapters
     if (chapterData){
       chapters = chapterData.data
       if (chapters){
@@ -521,6 +553,7 @@ async function register ({
     } 
     return res.status(200).send(chapters);
   })
+  /*
   router.use('/torrent', async (req,res) =>{
     if (enableDebug) {
       console.log("🚧🚧🚧🚧 torrent feed request",req.query);
@@ -668,7 +701,7 @@ async function register ({
       rss = rss + `\n`+' '.repeat(indent)+`</trackers>`;
       indent = indent -4;
       rss = rss + `\n`+' '.repeat(indent)+`</torrent>`;
-      */
+      *
       indent = indent -4;
       
       rss = rss + `\n`+' '.repeat(indent)+`</item>`;
@@ -679,6 +712,7 @@ async function register ({
     res.setHeader('content-type', 'application/rss+xml');
     return  res.status(200).send(rss);
   })
+  */
   router.use('/podcast2', async (req, res) => {
     if (enableDebug) {
       console.log("🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧 podcast2 request 🚧🚧🚧🚧🚧🚧🚧🚧", req.query);

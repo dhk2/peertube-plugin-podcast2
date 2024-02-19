@@ -1,1645 +1,4310 @@
 {
-  "created": 1708219255,
-  "d1": "ia601307.us.archive.org",
-  "d2": "ia801307.us.archive.org",
-  "dir": "/17/items/moreoftomlehrers00lehr",
+  "created": 1708277658,
+  "d1": "ia902904.us.archive.org",
+  "d2": "ia802904.us.archive.org",
+  "dir": "/2/items/cd_revisited_tom-lehrer",
   "files": [
-    {
-      "name": "01_Poisoning_Pigeons_in_the_Park.afpk",
-      "source": "derivative",
-      "format": "Columbia Peaks",
-      "original": "01_Poisoning_Pigeons_in_the_Park.mp3",
-      "mtime": "1511295438",
-      "size": "24752",
-      "md5": "77ae413ad82dd74f8a04be8439291e6f",
-      "crc32": "82ee86b6",
-      "sha1": "309b0d24c02c88e6a993c2a60b2d2fbcb6cf644a"
-    },
-    {
-      "name": "01_Poisoning_Pigeons_in_the_Park.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "Poisoning Pigeons in the Park",
-      "track": "1",
-      "album": "More of Tom Lehrer",
-      "bitrate": "188",
-      "length": "02:13",
-      "format": "VBR MP3",
-      "original": "moreoftomlehrers00lehr_segments.xml",
-      "md5": "908b7d95e852733533df535153093942",
-      "mtime": "1268765815",
-      "size": "3143406",
-      "crc32": "88874818",
-      "sha1": "1e70c8192a028cebea50ae2895da729df2ca8969",
-      "private": "true",
-      "height": "0",
-      "width": "0",
-      "external-identifier": [
-        "urn:mb_recording_id:45051aa3-8775-43ec-8b9d-4ad9dbc2a495",
-        "urn:spotify:track:0veCrjrYwjaMTzKlwRW0k9",
-        "urn:acoustid:5b8b9c52-0676-4810-b913-789f1d689dcd"
-      ],
-      "external-identifier-match-date": [
-        "mb_recording_id:2018-10-12T01:44:15Z",
-        "spotify:2018-10-13T04:55:02Z",
-        "acoustid:2019-03-23T08:06:07Z"
-      ]
-    },
-    {
-      "name": "01_Poisoning_Pigeons_in_the_Park.ogg",
-      "source": "derivative",
-      "format": "Ogg Vorbis",
-      "original": "01_Poisoning_Pigeons_in_the_Park.mp3",
-      "mtime": "1511295314",
-      "size": "1552217",
-      "md5": "3d3005b584eb5fa12aead6273d000e27",
-      "crc32": "6255807f",
-      "sha1": "57e55c17015b772c5e9e8effc682feaddcfad130",
-      "length": "133",
-      "height": "0",
-      "width": "0",
-      "private": "true"
-    },
-    {
-      "name": "01_Poisoning_Pigeons_in_the_Park.png",
-      "source": "derivative",
-      "format": "PNG",
-      "original": "01_Poisoning_Pigeons_in_the_Park.mp3",
-      "mtime": "1413500472",
-      "size": "11803",
-      "md5": "b5180b6381cd5a659233d94757d782b2",
-      "crc32": "a4dc7bb0",
-      "sha1": "54395a9244b6e3251654b25637a7822ea1662fc2"
-    },
-    {
-      "name": "01_Poisoning_Pigeons_in_the_Park_sample.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "Poisoning Pigeons in the Park",
-      "track": "1",
-      "album": "More of Tom Lehrer",
-      "bitrate": "156",
-      "length": "00:30",
-      "format": "MP3 Sample",
-      "original": "01_Poisoning_Pigeons_in_the_Park.mp3",
-      "mtime": "1511295265",
-      "size": "690176",
-      "md5": "b01a71a9ac8f2c12feef745f8ff91c6b",
-      "crc32": "32e81ad9",
-      "sha1": "7a17b290a3b8e76dbb3846b7d19d74836c6e01b1",
-      "height": "0",
-      "width": "0"
-    },
-    {
-      "name": "01_Poisoning_Pigeons_in_the_Park_spectrogram.png",
-      "source": "derivative",
-      "format": "Spectrogram",
-      "original": "01_Poisoning_Pigeons_in_the_Park.mp3",
-      "mtime": "1701443417",
-      "size": "293526",
-      "md5": "8788875d75e1c0e210045f5cd67cac97",
-      "crc32": "86339376",
-      "sha1": "1a194816c2e8a50645a9c781c03718ae74322617"
-    },
-    {
-      "name": "02_Bright_College_Days.afpk",
-      "source": "derivative",
-      "format": "Columbia Peaks",
-      "original": "02_Bright_College_Days.mp3",
-      "mtime": "1511295445",
-      "size": "22824",
-      "md5": "62f640a006ead2340426b13b280aaae2",
-      "crc32": "66b52d63",
-      "sha1": "83adaddb58d86b4a427b4a699cbc695c32175fa9"
-    },
-    {
-      "name": "02_Bright_College_Days.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "Bright College Days",
-      "track": "2",
-      "album": "More of Tom Lehrer",
-      "bitrate": "192",
-      "length": "02:05",
-      "format": "VBR MP3",
-      "original": "moreoftomlehrers00lehr_segments.xml",
-      "md5": "c8e3d35e4396d1e129c43cc2818270fc",
-      "mtime": "1268765847",
-      "size": "3039272",
-      "crc32": "10e48d05",
-      "sha1": "cabe5fc888911c14326a9802604522e7472239a3",
-      "private": "true",
-      "height": "0",
-      "width": "0",
-      "external-identifier": [
-        "urn:mb_recording_id:c3c1e2e0-5de7-476d-8a29-599e1691c1b7",
-        "urn:spotify:track:3Zj2jNzTYhZxH0XKrgPoRQ",
-        "urn:acoustid:4f69032b-b399-4233-874b-f221b86f8979"
-      ],
-      "external-identifier-match-date": [
-        "mb_recording_id:2018-10-12T01:44:15Z",
-        "spotify:2018-10-13T04:55:02Z",
-        "acoustid:2019-03-23T08:06:07Z"
-      ]
-    },
-    {
-      "name": "02_Bright_College_Days.ogg",
-      "source": "derivative",
-      "format": "Ogg Vorbis",
-      "original": "02_Bright_College_Days.mp3",
-      "mtime": "1511295353",
-      "size": "1552412",
-      "md5": "775f7c6774d455262f734af88ae1aa2b",
-      "crc32": "41c69ec3",
-      "sha1": "4b0d70a1a25a10f52716384a3cacf233accad345",
-      "length": "125.95",
-      "height": "0",
-      "width": "0",
-      "private": "true"
-    },
-    {
-      "name": "02_Bright_College_Days.png",
-      "source": "derivative",
-      "format": "PNG",
-      "original": "02_Bright_College_Days.mp3",
-      "mtime": "1413500450",
-      "size": "12780",
-      "md5": "8dc3f0900763f497d265129f3ebf76c9",
-      "crc32": "656d786a",
-      "sha1": "c1ee8cdeaa8487a8e016be09d4c25c888e869908"
-    },
-    {
-      "name": "02_Bright_College_Days_sample.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "Bright College Days",
-      "track": "2",
-      "album": "More of Tom Lehrer",
-      "bitrate": "173",
-      "length": "00:30",
-      "format": "MP3 Sample",
-      "original": "02_Bright_College_Days.mp3",
-      "mtime": "1511295228",
-      "size": "752640",
-      "md5": "344f7bbb326a9c6d6fdbbca856f1009a",
-      "crc32": "cd058c71",
-      "sha1": "ad3becc11a113d0e9e1fc5a9506a04f5532c4876",
-      "height": "0",
-      "width": "0"
-    },
-    {
-      "name": "02_Bright_College_Days_spectrogram.png",
-      "source": "derivative",
-      "format": "Spectrogram",
-      "original": "02_Bright_College_Days.mp3",
-      "mtime": "1701443312",
-      "size": "304092",
-      "md5": "5a87097ad81066705224a302b390bc1c",
-      "crc32": "c85e0aca",
-      "sha1": "e1a8d95b898bcacc68fc63b94f17096cac5f592c"
-    },
-    {
-      "name": "03_A_Christmas_Carol.afpk",
-      "source": "derivative",
-      "format": "Columbia Peaks",
-      "original": "03_A_Christmas_Carol.mp3",
-      "mtime": "1511295432",
-      "size": "21168",
-      "md5": "8cf0ddb6c71f8c3d944e8d5f92b4c916",
-      "crc32": "5f8fa81a",
-      "sha1": "0ad2f1ec43e3b01963b64f6d594908c0e8eb4876"
-    },
-    {
-      "name": "03_A_Christmas_Carol.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "A Christmas Carol",
-      "track": "3",
-      "album": "More of Tom Lehrer",
-      "bitrate": "191",
-      "length": "01:42",
-      "format": "VBR MP3",
-      "original": "moreoftomlehrers00lehr_segments.xml",
-      "md5": "459a54ec9573a1f27aa57fd1f443c49d",
-      "mtime": "1268765871",
-      "size": "2468007",
-      "crc32": "7f4625f7",
-      "sha1": "4e832d83a049704cb0571621fe0453e45ccec5cd",
-      "private": "true",
-      "height": "0",
-      "width": "0",
-      "external-identifier": [
-        "urn:mb_recording_id:09187ade-6a48-4b96-8911-da70b964b720",
-        "urn:spotify:track:23GWOPnXdkLmuwMaKvp3dL",
-        "urn:acoustid:22f3c402-6061-4568-98b6-54b6f50b0f53"
-      ],
-      "external-identifier-match-date": [
-        "mb_recording_id:2018-10-12T01:44:15Z",
-        "spotify:2018-10-13T04:55:02Z",
-        "acoustid:2019-03-23T08:06:07Z"
-      ]
-    },
-    {
-      "name": "03_A_Christmas_Carol.ogg",
-      "source": "derivative",
-      "format": "Ogg Vorbis",
-      "original": "03_A_Christmas_Carol.mp3",
-      "mtime": "1511295285",
-      "size": "1315564",
-      "md5": "8bf5b0582efc65ee0e2865bd7a14108b",
-      "crc32": "56d30fae",
-      "sha1": "20e8e91b216a3f070370e3cd455cf7fc3633ba73",
-      "length": "102.91",
-      "height": "0",
-      "width": "0",
-      "private": "true"
-    },
-    {
-      "name": "03_A_Christmas_Carol.png",
-      "source": "derivative",
-      "format": "PNG",
-      "original": "03_A_Christmas_Carol.mp3",
-      "mtime": "1413500480",
-      "size": "12972",
-      "md5": "f2747731b825a47e0e1425dd3757de9d",
-      "crc32": "c38aaf08",
-      "sha1": "83d61f2a43e42ed70aed9b48804c318a9dec6e6f"
-    },
-    {
-      "name": "03_A_Christmas_Carol_sample.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "A Christmas Carol",
-      "track": "3",
-      "album": "More of Tom Lehrer",
-      "bitrate": "168",
-      "length": "00:25",
-      "format": "MP3 Sample",
-      "original": "03_A_Christmas_Carol.mp3",
-      "mtime": "1511295200",
-      "size": "643584",
-      "md5": "bdbcbfc6c39ea3bf863fe2760d15b6a4",
-      "crc32": "9173f064",
-      "sha1": "f14fe341189c513dff0e83f381dba58999b42ea6",
-      "height": "0",
-      "width": "0"
-    },
-    {
-      "name": "03_A_Christmas_Carol_spectrogram.png",
-      "source": "derivative",
-      "format": "Spectrogram",
-      "original": "03_A_Christmas_Carol.mp3",
-      "mtime": "1701443322",
-      "size": "304746",
-      "md5": "9f9270362ecc9775955641d322568879",
-      "crc32": "0b552b1a",
-      "sha1": "6cd8ee678f28bdcde4279971c89f60c10396386d"
-    },
-    {
-      "name": "04_The_Elements.afpk",
-      "source": "derivative",
-      "format": "Columbia Peaks",
-      "original": "04_The_Elements.mp3",
-      "mtime": "1511295450",
-      "size": "16376",
-      "md5": "cc78c094c631194ce74340186e9bcfe8",
-      "crc32": "54f59c2f",
-      "sha1": "46be48284fe324bdf223821b156bb99c8e43ebed"
-    },
-    {
-      "name": "04_The_Elements.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "The Elements",
-      "track": "4",
-      "album": "More of Tom Lehrer",
-      "bitrate": "195",
-      "length": "01:26",
-      "format": "VBR MP3",
-      "original": "moreoftomlehrers00lehr_segments.xml",
-      "md5": "936b269064faebac427cd17b651460e3",
-      "mtime": "1268765894",
-      "size": "2108282",
-      "crc32": "1704174c",
-      "sha1": "3dc69a5b1ad1ab1db6518cfa6a3462326ad8271b",
-      "private": "true",
-      "height": "0",
-      "width": "0",
-      "external-identifier": [
-        "urn:mb_recording_id:7ae706bc-3926-402f-8750-06511c9266b2",
-        "urn:spotify:track:3LRGJ97WvYoD99lDgtcIFJ",
-        "urn:spotify:track:1O7jntBJTdX7HPoZOwjmaS",
-        "urn:acoustid:a9c45e66-ac54-470e-8517-91cf7f44a1b4"
-      ],
-      "external-identifier-match-date": [
-        "mb_recording_id:2018-10-12T01:44:15Z",
-        "spotify:2018-10-13T04:55:02Z",
-        "spotify:2018-10-12T01:44:15Z",
-        "acoustid:2019-03-23T08:06:07Z"
-      ]
-    },
-    {
-      "name": "04_The_Elements.ogg",
-      "source": "derivative",
-      "format": "Ogg Vorbis",
-      "original": "04_The_Elements.mp3",
-      "mtime": "1511295305",
-      "size": "1107949",
-      "md5": "30bba68082c0d76c1c67fe31cc4e2de9",
-      "crc32": "0a3b3923",
-      "sha1": "376414503dfe39c3d0dffb03e98c9d53fdf274d0",
-      "length": "86.01",
-      "height": "0",
-      "width": "0",
-      "private": "true"
-    },
-    {
-      "name": "04_The_Elements.png",
-      "source": "derivative",
-      "format": "PNG",
-      "original": "04_The_Elements.mp3",
-      "mtime": "1413500437",
-      "size": "11769",
-      "md5": "3f19f8233e7c8c2ab7f83b9c9d3e16c5",
-      "crc32": "27a1ac94",
-      "sha1": "4765af0fdd68edc1d96c6aec6f19444d14cbb890"
-    },
-    {
-      "name": "04_The_Elements_sample.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "The Elements",
-      "track": "4",
-      "album": "More of Tom Lehrer",
-      "bitrate": "172",
-      "length": "00:21",
-      "format": "MP3 Sample",
-      "original": "04_The_Elements.mp3",
-      "mtime": "1511295207",
-      "size": "567808",
-      "md5": "c659d25ab07cfaf87c945d1f85a27ed1",
-      "crc32": "1eb2a24f",
-      "sha1": "1c2f7e70ac6e72440e4077c24c276afa7ac90b99",
-      "height": "0",
-      "width": "0"
-    },
-    {
-      "name": "04_The_Elements_spectrogram.png",
-      "source": "derivative",
-      "format": "Spectrogram",
-      "original": "04_The_Elements.mp3",
-      "mtime": "1701443350",
-      "size": "303397",
-      "md5": "aa0953ee9fe91e3e63f59f949e2f0f75",
-      "crc32": "650c8de5",
-      "sha1": "b620ed4aebb4c4367f3e67e59364cae65dcc2773"
-    },
-    {
-      "name": "05_Oedipus_Rex.afpk",
-      "source": "derivative",
-      "format": "Columbia Peaks",
-      "original": "05_Oedipus_Rex.mp3",
-      "mtime": "1511295462",
-      "size": "18880",
-      "md5": "5033388079f60b48f812e8c14115123a",
-      "crc32": "ebcd9758",
-      "sha1": "767900bf8a4d21215dda2a85bead67965c35b6c8"
-    },
-    {
-      "name": "05_Oedipus_Rex.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "Oedipus Rex",
-      "track": "5",
-      "album": "More of Tom Lehrer",
-      "bitrate": "197",
-      "length": "01:39",
-      "format": "VBR MP3",
-      "original": "moreoftomlehrers00lehr_segments.xml",
-      "md5": "8cc2e92c5c8ab1fba5bdddc268a9dcc8",
-      "mtime": "1268765918",
-      "size": "2470549",
-      "crc32": "25d06ad0",
-      "sha1": "8cd25ec766ce90add0f2c98d18ccba7c67070809",
-      "private": "true",
-      "height": "0",
-      "width": "0",
-      "external-identifier": [
-        "urn:mb_recording_id:648f2d1f-ba85-4120-9c03-8cedc96f38fd",
-        "urn:spotify:track:557JLZuShqAPs5UPznFCM9",
-        "urn:acoustid:e9818104-6c80-42d1-942d-f73d048a37b0"
-      ],
-      "external-identifier-match-date": [
-        "mb_recording_id:2018-10-12T01:44:15Z",
-        "spotify:2018-10-13T04:55:02Z",
-        "acoustid:2019-03-23T08:06:07Z"
-      ]
-    },
-    {
-      "name": "05_Oedipus_Rex.ogg",
-      "source": "derivative",
-      "format": "Ogg Vorbis",
-      "original": "05_Oedipus_Rex.mp3",
-      "mtime": "1511295344",
-      "size": "1326807",
-      "md5": "6ec85b82af79526b899161ef833f6e64",
-      "crc32": "9c64665a",
-      "sha1": "e4384d8fa84333d4cc226033a765083ff03ec31c",
-      "length": "99.94",
-      "height": "0",
-      "width": "0",
-      "private": "true"
-    },
-    {
-      "name": "05_Oedipus_Rex.png",
-      "source": "derivative",
-      "format": "PNG",
-      "original": "05_Oedipus_Rex.mp3",
-      "mtime": "1413500440",
-      "size": "11962",
-      "md5": "9863882b2c70d49618cdad10d45ab967",
-      "crc32": "da66160d",
-      "sha1": "710d24075fdb9a49202e6f7862f6c63ce2b5b164"
-    },
-    {
-      "name": "05_Oedipus_Rex_sample.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "Oedipus Rex",
-      "track": "5",
-      "album": "More of Tom Lehrer",
-      "bitrate": "179",
-      "length": "00:25",
-      "format": "MP3 Sample",
-      "original": "05_Oedipus_Rex.mp3",
-      "mtime": "1511295221",
-      "size": "664064",
-      "md5": "916260f8d97f119386a2d5cf58156b0d",
-      "crc32": "c6d7343d",
-      "sha1": "9a390a4a212f6c48b5ff8c745017525b8669600b",
-      "height": "0",
-      "width": "0"
-    },
-    {
-      "name": "05_Oedipus_Rex_spectrogram.png",
-      "source": "derivative",
-      "format": "Spectrogram",
-      "original": "05_Oedipus_Rex.mp3",
-      "mtime": "1701443378",
-      "size": "300658",
-      "md5": "d914b9cc7147ff7607cfdd91dd9c69e6",
-      "crc32": "d431a3af",
-      "sha1": "6958ef3ce514c85a5f20f55d76a9df92919a379a"
-    },
-    {
-      "name": "06_In_Old_Mexico.afpk",
-      "source": "derivative",
-      "format": "Columbia Peaks",
-      "original": "06_In_Old_Mexico.mp3",
-      "mtime": "1511295477",
-      "size": "44928",
-      "md5": "ea0191e4c3d7743f8743388e96959cc5",
-      "crc32": "61a32814",
-      "sha1": "e3df7ea7eb275c28f9950f703f262b1eaf3e3db6"
-    },
-    {
-      "name": "06_In_Old_Mexico.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "In Old Mexico",
-      "track": "6",
-      "album": "More of Tom Lehrer",
-      "bitrate": "199",
-      "length": "04:05",
-      "format": "VBR MP3",
-      "original": "moreoftomlehrers00lehr_segments.xml",
-      "md5": "d15d9065c4f0b48784c43031dda69ffc",
-      "mtime": "1268765980",
-      "size": "6105908",
-      "crc32": "73b867f8",
-      "sha1": "134661ef93cf087ca628a34ccf6d1489828db8bd",
-      "private": "true",
-      "height": "0",
-      "width": "0",
-      "external-identifier": [
-        "urn:mb_recording_id:a9ab3d58-26ff-46c9-8f89-58a6e3f43011",
-        "urn:spotify:track:6plNBdhYky5UlWlsdruyRz",
-        "urn:acoustid:83ae9560-67c7-4a35-bded-4d605ccad426"
-      ],
-      "external-identifier-match-date": [
-        "mb_recording_id:2018-10-12T01:44:15Z",
-        "spotify:2018-10-13T04:55:02Z",
-        "acoustid:2019-03-23T08:06:07Z"
-      ]
-    },
-    {
-      "name": "06_In_Old_Mexico.ogg",
-      "source": "derivative",
-      "format": "Ogg Vorbis",
-      "original": "06_In_Old_Mexico.mp3",
-      "mtime": "1511295328",
-      "size": "3272459",
-      "md5": "9344e0b9f00c60743da1ae48144724b5",
-      "crc32": "ef1fe2c0",
-      "sha1": "2f5d99f04e6b191ddc3baf68c0e36ecadb2e47bc",
-      "length": "245.02",
-      "height": "0",
-      "width": "0",
-      "private": "true"
-    },
-    {
-      "name": "06_In_Old_Mexico.png",
-      "source": "derivative",
-      "format": "PNG",
-      "original": "06_In_Old_Mexico.mp3",
-      "mtime": "1413500446",
-      "size": "11811",
-      "md5": "077be8adbd98c5d5f466591030fd9834",
-      "crc32": "efddce1a",
-      "sha1": "a34c29960ce43c4a4cc36635a06b40d8c1bfe500"
-    },
-    {
-      "name": "06_In_Old_Mexico_sample.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "In Old Mexico",
-      "track": "6",
-      "album": "More of Tom Lehrer",
-      "bitrate": "176",
-      "length": "00:30",
-      "format": "MP3 Sample",
-      "original": "06_In_Old_Mexico.mp3",
-      "mtime": "1511295248",
-      "size": "763904",
-      "md5": "09a2d4bc9624a36f15e34814b3958ba6",
-      "crc32": "88a77748",
-      "sha1": "274615cb5468b0e7a5c9b4325a0c1b339e5e21e7",
-      "height": "0",
-      "width": "0"
-    },
-    {
-      "name": "06_In_Old_Mexico_spectrogram.png",
-      "source": "derivative",
-      "format": "Spectrogram",
-      "original": "06_In_Old_Mexico.mp3",
-      "mtime": "1701443403",
-      "size": "288444",
-      "md5": "a7f775513bc5901d028c198f660c978b",
-      "crc32": "5391ef31",
-      "sha1": "beaf44b9fcdad76360ee4a1ba4d889af4c3acffe"
-    },
-    {
-      "name": "07_Clementine.afpk",
-      "source": "derivative",
-      "format": "Columbia Peaks",
-      "original": "07_Clementine.mp3",
-      "mtime": "1511295493",
-      "size": "48120",
-      "md5": "1e9759fdd4ffe97a3679718eef7d1165",
-      "crc32": "80e524b9",
-      "sha1": "b3a6df6d46546a4b578c03c59c05ad3c0bdce335"
-    },
-    {
-      "name": "07_Clementine.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "Clementine",
-      "track": "7",
-      "album": "More of Tom Lehrer",
-      "bitrate": "192",
-      "length": "04:18",
-      "format": "VBR MP3",
-      "original": "moreoftomlehrers00lehr_segments.xml",
-      "md5": "48d70da2cb29fa2ed8558c99b05edaba",
-      "mtime": "1268766046",
-      "size": "6194732",
-      "crc32": "389d3888",
-      "sha1": "7027b9a26932d549dae756d07badc88f3f6f7ddd",
-      "private": "true",
-      "height": "0",
-      "width": "0",
-      "external-identifier": [
-        "urn:mb_recording_id:bae04ac2-be2e-411c-ba86-d716f73e9802",
-        "urn:spotify:track:6Pn9JzK7aCQMYMeYan6H4z",
-        "urn:acoustid:56549aae-cc62-455c-bddc-65cae75197cb"
-      ],
-      "external-identifier-match-date": [
-        "mb_recording_id:2018-10-12T01:44:15Z",
-        "spotify:2018-10-13T04:55:02Z",
-        "acoustid:2019-03-23T08:06:07Z"
-      ]
-    },
-    {
-      "name": "07_Clementine.ogg",
-      "source": "derivative",
-      "format": "Ogg Vorbis",
-      "original": "07_Clementine.mp3",
-      "mtime": "1511295298",
-      "size": "3163805",
-      "md5": "a7431bd070a42183b6bb019e97416101",
-      "crc32": "ef5044a5",
-      "sha1": "d29cbdcf92532e5611d5c959ec52841fa8d77c1e",
-      "length": "258.02",
-      "height": "0",
-      "width": "0",
-      "private": "true"
-    },
-    {
-      "name": "07_Clementine.png",
-      "source": "derivative",
-      "format": "PNG",
-      "original": "07_Clementine.mp3",
-      "mtime": "1413500455",
-      "size": "11627",
-      "md5": "75d1d09396c7b061ac7209912e66c287",
-      "crc32": "33951c0c",
-      "sha1": "b68d88d2d796815ec6d877c4f04e4cbfbf827a38"
-    },
-    {
-      "name": "07_Clementine_sample.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "Clementine",
-      "track": "7",
-      "album": "More of Tom Lehrer",
-      "bitrate": "167",
-      "length": "00:30",
-      "format": "MP3 Sample",
-      "original": "07_Clementine.mp3",
-      "mtime": "1511295256",
-      "size": "732160",
-      "md5": "d89233f3af6ad1a6743f1a67b00731cc",
-      "crc32": "65e684b5",
-      "sha1": "3e15910c3d1df7007bca061d045981beb55bb5da",
-      "height": "0",
-      "width": "0"
-    },
-    {
-      "name": "07_Clementine_spectrogram.png",
-      "source": "derivative",
-      "format": "Spectrogram",
-      "original": "07_Clementine.mp3",
-      "mtime": "1701443429",
-      "size": "294701",
-      "md5": "3fc66bd292c3ad12e8baff9aa2575175",
-      "crc32": "fb4ed080",
-      "sha1": "9f8e14012b4392ae4e6846b1058d53c225ac0df6"
-    },
-    {
-      "name": "08_It_Makes_a_Fellow_Proud_to_Be_a_Soldier.afpk",
-      "source": "derivative",
-      "format": "Columbia Peaks",
-      "original": "08_It_Makes_a_Fellow_Proud_to_Be_a_Soldier.mp3",
-      "mtime": "1511295483",
-      "size": "30648",
-      "md5": "a5ff7bc3751d7ffbc8e8c683b02d3ad9",
-      "crc32": "2488862b",
-      "sha1": "c47ff54dc2dc0907de8ab8e6c901544a906b8beb"
-    },
-    {
-      "name": "08_It_Makes_a_Fellow_Proud_to_Be_a_Soldier.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "It Makes a Fellow Proud to Be a Soldier",
-      "track": "8",
-      "album": "More of Tom Lehrer",
-      "bitrate": "195",
-      "length": "02:40",
-      "format": "VBR MP3",
-      "original": "moreoftomlehrers00lehr_segments.xml",
-      "md5": "9352e7f2e00b05c0985defe27e7c32bf",
-      "mtime": "1268766090",
-      "size": "3940029",
-      "crc32": "5c5af1b5",
-      "sha1": "79c44dda7e38ae5db438407400d319f892202fe4",
-      "private": "true",
-      "height": "0",
-      "width": "0",
-      "external-identifier": [
-        "urn:mb_recording_id:5f048e4b-b772-4630-8592-7025c3af09ac",
-        "urn:spotify:track:2unupaTHW51YKYcKErmRlg",
-        "urn:acoustid:8ae02f46-1742-483b-a16e-8e603aba95f1"
-      ],
-      "external-identifier-match-date": [
-        "mb_recording_id:2018-10-12T01:44:15Z",
-        "spotify:2018-10-13T04:55:02Z",
-        "acoustid:2019-03-23T08:06:07Z"
-      ]
-    },
-    {
-      "name": "08_It_Makes_a_Fellow_Proud_to_Be_a_Soldier.ogg",
-      "source": "derivative",
-      "format": "Ogg Vorbis",
-      "original": "08_It_Makes_a_Fellow_Proud_to_Be_a_Soldier.mp3",
-      "mtime": "1511295277",
-      "size": "2135969",
-      "md5": "67cfc43a56e5c5760bff885fa3a48e6c",
-      "crc32": "70e90ba9",
-      "sha1": "0fd21e177a883ef6bf180fdd603128dd38ed3448",
-      "length": "160.87",
-      "height": "0",
-      "width": "0",
-      "private": "true"
-    },
-    {
-      "name": "08_It_Makes_a_Fellow_Proud_to_Be_a_Soldier.png",
-      "source": "derivative",
-      "format": "PNG",
-      "original": "08_It_Makes_a_Fellow_Proud_to_Be_a_Soldier.mp3",
-      "mtime": "1413500477",
-      "size": "12513",
-      "md5": "03d6de6c27e318cec01fc45da4151329",
-      "crc32": "73c7c76b",
-      "sha1": "c69b8594390bb58138e34dc6bcfbdaa57c45b1aa"
-    },
-    {
-      "name": "08_It_Makes_a_Fellow_Proud_to_Be_a_Soldier_sample.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "It Makes a Fellow Proud to Be a Soldier",
-      "track": "8",
-      "album": "More of Tom Lehrer",
-      "bitrate": "180",
-      "length": "00:30",
-      "format": "MP3 Sample",
-      "original": "08_It_Makes_a_Fellow_Proud_to_Be_a_Soldier.mp3",
-      "mtime": "1511295234",
-      "size": "781824",
-      "md5": "650670c7975adab48de1d449f70bb53e",
-      "crc32": "57e1ea8f",
-      "sha1": "d14ba18af8a6ed72a4991390af80ccbd86631b77",
-      "height": "0",
-      "width": "0"
-    },
-    {
-      "name": "08_It_Makes_a_Fellow_Proud_to_Be_a_Soldier_spectrogram.png",
-      "source": "derivative",
-      "format": "Spectrogram",
-      "original": "08_It_Makes_a_Fellow_Proud_to_Be_a_Soldier.mp3",
-      "mtime": "1701443278",
-      "size": "297878",
-      "md5": "ee9b3f254b0fe4547a7e8e84128501ce",
-      "crc32": "87926ad7",
-      "sha1": "89a701f1ee176948b2b83ee9e414fb707280f4d7"
-    },
-    {
-      "name": "09_She_s_My_Girl.afpk",
-      "source": "derivative",
-      "format": "Columbia Peaks",
-      "original": "09_She_s_My_Girl.mp3",
-      "mtime": "1511295468",
-      "size": "19880",
-      "md5": "8ae4ea022111e3cf765368c8e297b97e",
-      "crc32": "a24e9c11",
-      "sha1": "e06deea8546e2e2f768e4fc20f9b94d896cf4ef7"
-    },
-    {
-      "name": "09_She_s_My_Girl.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "She's My Girl",
-      "track": "9",
-      "album": "More of Tom Lehrer",
-      "bitrate": "200",
-      "length": "01:47",
-      "format": "VBR MP3",
-      "original": "moreoftomlehrers00lehr_segments.xml",
-      "md5": "7f05d311cdac7b95d54940f3ec1ae65d",
-      "mtime": "1268766118",
-      "size": "2703454",
-      "crc32": "55f9a326",
-      "sha1": "14e533096373edf5222326672a55017a8dedbd0b",
-      "private": "true",
-      "height": "0",
-      "width": "0",
-      "external-identifier": [
-        "urn:mb_recording_id:cf1af28a-20e6-49c0-99a7-89cc3e0055cf",
-        "urn:spotify:track:7mXSu7ufL1GC6rikdZj5Py",
-        "urn:acoustid:ff7abc58-6a9a-4bf3-8528-f952c37c0030"
-      ],
-      "external-identifier-match-date": [
-        "mb_recording_id:2018-10-12T01:44:15Z",
-        "spotify:2018-10-13T04:55:02Z",
-        "acoustid:2019-03-23T08:06:07Z"
-      ]
-    },
-    {
-      "name": "09_She_s_My_Girl.ogg",
-      "source": "derivative",
-      "format": "Ogg Vorbis",
-      "original": "09_She_s_My_Girl.mp3",
-      "mtime": "1511295336",
-      "size": "1487361",
-      "md5": "667a9dbc8810bccacd8d009cfeff6702",
-      "crc32": "20cee7c2",
-      "sha1": "e65e1b315953b781db08a3a758904f1bec27055a",
-      "length": "107.93",
-      "height": "0",
-      "width": "0",
-      "private": "true"
-    },
-    {
-      "name": "09_She_s_My_Girl.png",
-      "source": "derivative",
-      "format": "PNG",
-      "original": "09_She_s_My_Girl.mp3",
-      "mtime": "1413500463",
-      "size": "11714",
-      "md5": "f038a85cf04472e6049a65a2c8f24eae",
-      "crc32": "37e5ba36",
-      "sha1": "f0ba17bffd7515fa3d92ad347296563dc628ef0e"
-    },
-    {
-      "name": "09_She_s_My_Girl_sample.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "She's My Girl",
-      "track": "9",
-      "album": "More of Tom Lehrer",
-      "bitrate": "178",
-      "length": "00:27",
-      "format": "MP3 Sample",
-      "original": "09_She_s_My_Girl.mp3",
-      "mtime": "1511295242",
-      "size": "707072",
-      "md5": "66e8ce9a9c4b1fc606d04327db26ad17",
-      "crc32": "fa10362e",
-      "sha1": "05f7fc53de40b8ab778dadd7836ae30e6b162464",
-      "height": "0",
-      "width": "0"
-    },
-    {
-      "name": "09_She_s_My_Girl_spectrogram.png",
-      "source": "derivative",
-      "format": "Spectrogram",
-      "original": "09_She_s_My_Girl.mp3",
-      "mtime": "1701443394",
-      "size": "301719",
-      "md5": "575efc0fe8b96f4041242cabd1f26b1c",
-      "crc32": "82d45b5b",
-      "sha1": "f45d06840608b91e22bd12c615cbfc876b4ca503"
-    },
-    {
-      "name": "10_The_Masochism_Tango.afpk",
-      "source": "derivative",
-      "format": "Columbia Peaks",
-      "original": "10_The_Masochism_Tango.mp3",
-      "mtime": "1511295457",
-      "size": "34616",
-      "md5": "f99bba7a76187ccafdd33adaec386c82",
-      "crc32": "e19fe36a",
-      "sha1": "b15bc10b1b0539f5a4ec50b34591a7f508b7b11d"
-    },
-    {
-      "name": "10_The_Masochism_Tango.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "The Masochism Tango",
-      "track": "10",
-      "album": "More of Tom Lehrer",
-      "bitrate": "198",
-      "length": "03:01",
-      "format": "VBR MP3",
-      "original": "moreoftomlehrers00lehr_segments.xml",
-      "md5": "397898dba4043f32ae9d92c4e32bf2c3",
-      "mtime": "1268766163",
-      "size": "4519378",
-      "crc32": "e4d4c8e2",
-      "sha1": "4a100c9c4ea4c95c9b3a864159d7d2abdd3acb7f",
-      "private": "true",
-      "height": "0",
-      "width": "0",
-      "external-identifier": [
-        "urn:mb_recording_id:452cadef-1e61-4e39-b64b-dd8e4ff479bb",
-        "urn:spotify:track:58ICMKGphTmCvYOedyl3GV",
-        "urn:acoustid:0a9e4b66-72a7-444f-8221-da0524f01c59"
-      ],
-      "external-identifier-match-date": [
-        "mb_recording_id:2018-10-12T01:44:15Z",
-        "spotify:2018-10-13T04:55:02Z",
-        "acoustid:2019-03-23T08:06:07Z"
-      ]
-    },
-    {
-      "name": "10_The_Masochism_Tango.ogg",
-      "source": "derivative",
-      "format": "Ogg Vorbis",
-      "original": "10_The_Masochism_Tango.mp3",
-      "mtime": "1511295378",
-      "size": "2471847",
-      "md5": "4869ed30f1b207ed82bb6a5a873d6ca5",
-      "crc32": "1df01abe",
-      "sha1": "2ac5a0431d1077073a5e9d6e969af832e6a8b163",
-      "length": "181.86",
-      "height": "0",
-      "width": "0",
-      "private": "true"
-    },
-    {
-      "name": "10_The_Masochism_Tango.png",
-      "source": "derivative",
-      "format": "PNG",
-      "original": "10_The_Masochism_Tango.mp3",
-      "mtime": "1413500460",
-      "size": "12513",
-      "md5": "955cc1a22352c2c56bf9f6f1930e718a",
-      "crc32": "7fe42f7b",
-      "sha1": "d94b4d27e7d9626ddea83600f70784c0533d74bc"
-    },
-    {
-      "name": "10_The_Masochism_Tango_sample.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "The Masochism Tango",
-      "track": "10",
-      "album": "More of Tom Lehrer",
-      "bitrate": "181",
-      "length": "00:30",
-      "format": "MP3 Sample",
-      "original": "10_The_Masochism_Tango.mp3",
-      "mtime": "1511295193",
-      "size": "782848",
-      "md5": "90378c29de4f1aeaeff6fe111e33f2c4",
-      "crc32": "b98a3648",
-      "sha1": "99a6ce0fcc55046ed5dc4c1b0b86f832bfad4ad3",
-      "height": "0",
-      "width": "0"
-    },
-    {
-      "name": "10_The_Masochism_Tango_spectrogram.png",
-      "source": "derivative",
-      "format": "Spectrogram",
-      "original": "10_The_Masochism_Tango.mp3",
-      "mtime": "1701443337",
-      "size": "295720",
-      "md5": "b5d566beebea3081a21166b97d5a542d",
-      "crc32": "9e35d4d2",
-      "sha1": "cf7c3a4827bc2796e8b285e22448b7af7abb6047"
-    },
-    {
-      "name": "11_We_Will_All_Go_Together_When_We_Go.afpk",
-      "source": "derivative",
-      "format": "Columbia Peaks",
-      "original": "11_We_Will_All_Go_Together_When_We_Go.mp3",
-      "mtime": "1511295426",
-      "size": "40120",
-      "md5": "e8c05b9e0bc974ca167e258ab5aa4eb4",
-      "crc32": "5fb11fc0",
-      "sha1": "463241304a1bdae9018ddcffb994d09bbb6f31ad"
-    },
-    {
-      "name": "11_We_Will_All_Go_Together_When_We_Go.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "We Will All Go Together When We Go",
-      "track": "11",
-      "album": "More of Tom Lehrer",
-      "bitrate": "208",
-      "length": "03:24",
-      "format": "VBR MP3",
-      "original": "moreoftomlehrers00lehr_segments.xml",
-      "md5": "208d5ec6856a5bcc44fb5a3a73cf3e37",
-      "mtime": "1268766213",
-      "size": "5330236",
-      "crc32": "fa1f73f",
-      "sha1": "932e5c46f8ff088ecbb171a0327d8513e6f6409e",
-      "private": "true",
-      "height": "0",
-      "width": "0",
-      "external-identifier": [
-        "urn:mb_recording_id:f8d512e6-b347-4fe2-9a29-6a80c1aa272d",
-        "urn:spotify:track:11anNiVpue5pDRWExdnzMP",
-        "urn:acoustid:c723fdd7-365b-4f2a-8b03-381805cd1772"
-      ],
-      "external-identifier-match-date": [
-        "mb_recording_id:2018-10-12T01:44:15Z",
-        "spotify:2018-10-13T04:55:02Z",
-        "acoustid:2019-03-23T08:06:07Z"
-      ]
-    },
-    {
-      "name": "11_We_Will_All_Go_Together_When_We_Go.ogg",
-      "source": "derivative",
-      "format": "Ogg Vorbis",
-      "original": "11_We_Will_All_Go_Together_When_We_Go.mp3",
-      "mtime": "1511295366",
-      "size": "2919796",
-      "md5": "cc02c607f200a070076aa380483606fe",
-      "crc32": "c4dfb565",
-      "sha1": "043284f1b602789bd9268cfbce5edabc49857b90",
-      "length": "204.89",
-      "height": "0",
-      "width": "0",
-      "private": "true"
-    },
-    {
-      "name": "11_We_Will_All_Go_Together_When_We_Go.png",
-      "source": "derivative",
-      "format": "PNG",
-      "original": "11_We_Will_All_Go_Together_When_We_Go.mp3",
-      "mtime": "1413500469",
-      "size": "12225",
-      "md5": "d8687d58aeb41efc55dc70bd1dc15950",
-      "crc32": "4e9856e7",
-      "sha1": "5aa81033a60f1beef5612e1bac38a7536851fbd6"
-    },
-    {
-      "name": "11_We_Will_All_Go_Together_When_We_Go_sample.mp3",
-      "source": "derivative",
-      "creator": "Tom Lehrer",
-      "title": "We Will All Go Together When We Go",
-      "track": "11",
-      "album": "More of Tom Lehrer",
-      "bitrate": "204",
-      "length": "00:30",
-      "format": "MP3 Sample",
-      "original": "11_We_Will_All_Go_Together_When_We_Go.mp3",
-      "mtime": "1511295215",
-      "size": "871936",
-      "md5": "8b630edb212565b53d782e1fafb9c402",
-      "crc32": "2d79e0aa",
-      "sha1": "976fb1ff2f43599cb24b2e52cd6f42e98555b17c",
-      "height": "0",
-      "width": "0"
-    },
-    {
-      "name": "11_We_Will_All_Go_Together_When_We_Go_spectrogram.png",
-      "source": "derivative",
-      "format": "Spectrogram",
-      "original": "11_We_Will_All_Go_Together_When_We_Go.mp3",
-      "mtime": "1701443301",
-      "size": "287084",
-      "md5": "d68580408eeae158907be34fa2c5fce8",
-      "crc32": "92633c5e",
-      "sha1": "e35fb73e59cbce9ef3a97e12ccbcfdc3332d4706"
-    },
     {
       "name": "__ia_thumb.jpg",
       "source": "original",
-      "mtime": "1701442782",
-      "size": "15405",
-      "md5": "d8cb65e005159d34c251319651ef3506",
-      "crc32": "cf9f844f",
-      "sha1": "4343298c9098ee019060b531b67a6c9ed72c91d0",
+      "mtime": "1619400239",
+      "size": "18858",
       "format": "JPEG Thumb",
-      "rotation": "0"
+      "rotation": "0",
+      "md5": "934159f53b5b0def35dae8849a2c5c3e",
+      "crc32": "2db6332c",
+      "sha1": "00abbe8d47dd6d0e88a42a2fafe8cdeea0b75e26"
     },
     {
-      "name": "moreoftomlehrers00lehr.afpk",
-      "source": "derivative",
-      "format": "Columbia Peaks",
-      "original": "moreoftomlehrers00lehr.flac",
-      "mtime": "1511295551",
-      "size": "436464",
-      "md5": "7d23791ead7abe78998e9c98f4f0fd87",
-      "crc32": "174afc6f",
-      "sha1": "7dee97ea02fd81ee837a6e796cadc5f6f4bced9c"
-    },
-    {
-      "name": "moreoftomlehrers00lehr.arc",
-      "source": "original",
-      "format": "Internet Archive ARC",
-      "md5": "206ab8674f9f653d9d2ba2a9a5801723",
-      "mtime": "1265318208",
-      "size": "2516",
-      "crc32": "5f7cc68b",
-      "sha1": "c9410cad555fc4f4e11787e3ad72eef8ca877963",
-      "private": "true"
-    },
-    {
-      "name": "moreoftomlehrers00lehr.arc.os.cdx.gz",
-      "source": "derivative",
-      "format": "ARC CDX Index",
-      "original": "moreoftomlehrers00lehr.arc",
-      "mtime": "1413500427",
-      "size": "266",
-      "md5": "0db3a09e53be0c2e51f14387e599c8a1",
-      "crc32": "db1c378c",
-      "sha1": "29af9241ca9cff30020a49284b5e5712d6774caf",
-      "private": "true"
-    },
-    {
-      "name": "moreoftomlehrers00lehr.cdx.gz",
-      "source": "original",
-      "mtime": "1413500588",
-      "size": "266",
-      "md5": "fd33635950df8b053236c5f612d4f658",
-      "crc32": "77834a24",
-      "sha1": "8065d2c7046e492dcaf44c6fb233eed2a2d1189f",
-      "format": "Item CDX Index",
-      "private": "true"
-    },
-    {
-      "name": "moreoftomlehrers00lehr.cdx.idx",
-      "source": "original",
-      "mtime": "1413500588",
-      "size": "37",
-      "md5": "7359c8b70936c612287ccad115f35cd8",
-      "crc32": "0919caab",
-      "sha1": "52b685f47ef8967542e78ff951a9bf0be9ce4824",
-      "format": "Item CDX Meta-Index",
-      "private": "true"
-    },
-    {
-      "name": "moreoftomlehrers00lehr.dat.gz",
-      "source": "derivative",
-      "format": "DAT",
-      "original": "moreoftomlehrers00lehr.arc",
-      "md5": "d63cd68bff56f0324dedad831b80db12",
-      "mtime": "1268771019",
-      "size": "1339",
-      "crc32": "d1850db6",
-      "sha1": "059e84ab5231e5a3bbd0b0913ec9c61932129ea7",
-      "private": "true"
-    },
-    {
-      "name": "moreoftomlehrers00lehr.flac",
-      "source": "original",
-      "format": "Flac",
-      "md5": "c02ef01089a9ee86c0a2aef0e8961be3",
-      "mtime": "1266858737",
-      "size": "183954333",
-      "crc32": "ca7f0f8e",
-      "sha1": "7681870cdd59d6e158db72acb3445255365a0950",
-      "length": "2640.85",
-      "private": "true",
-      "height": "0",
-      "width": "0",
-      "artist": "moreoftomlehrers00lehr",
-      "creator": "moreoftomlehrers00lehr",
-      "track": "01"
-    },
-    {
-      "name": "moreoftomlehrers00lehr.mp3",
-      "source": "derivative",
-      "bitrate": "206",
-      "length": "44:00",
-      "format": "VBR MP3",
-      "original": "moreoftomlehrers00lehr_segments.xml",
-      "md5": "12e2e3e2a6d3a3cd76aea82f58c557e3",
-      "creator": "Tom Lehrer",
-      "title": "More of Tom Lehrer (entire album)",
-      "album": "More of Tom Lehrer",
-      "mtime": "1268765762",
-      "size": "68027189",
-      "crc32": "0038aedb",
-      "sha1": "b4aa901e838992c7bdc15d54b4c933002b19b7a4",
-      "private": "true",
-      "height": "0",
-      "width": "0"
-    },
-    {
-      "name": "moreoftomlehrers00lehr.ogg",
-      "source": "derivative",
-      "format": "Ogg Vorbis",
-      "original": "moreoftomlehrers00lehr.flac",
-      "md5": "8651e3580a61a9e02552832569f50cae",
-      "mtime": "1268766599",
-      "size": "44351389",
-      "crc32": "868bd425",
-      "sha1": "fc90d9252689eaf36255d87b63630307e4452996",
-      "length": "2640.83",
-      "private": "true",
-      "height": "0",
-      "width": "0"
-    },
-    {
-      "name": "moreoftomlehrers00lehr.pdf",
+      "name": "cd_revisited_tom-lehrer.pdf",
       "source": "derivative",
       "format": "Text PDF",
-      "original": "moreoftomlehrers00lehr_page_numbers.json",
-      "mtime": "1701442972",
-      "size": "769347",
-      "md5": "b17142add435a9a0459ca44b9eebe1f0",
-      "crc32": "42209fed",
-      "sha1": "042972e4262bb7629c93c15700f5344c5be37779"
+      "original": "cd_revisited_tom-lehrer_page_numbers.json",
+      "mtime": "1699279090",
+      "size": "5200963",
+      "md5": "64327a55854034e5b5e0182a73c33dc6",
+      "crc32": "af38f25b",
+      "sha1": "451233cdce2c605aa10ceda2d5952e3071818eb4"
     },
     {
-      "name": "moreoftomlehrers00lehr.png",
-      "source": "derivative",
-      "format": "PNG",
-      "original": "moreoftomlehrers00lehr.flac",
-      "md5": "1efed57272897e6bdfeef8ad8c7cd00a",
-      "mtime": "1268771010",
-      "size": "58796",
-      "crc32": "6f38d954",
-      "sha1": "24c364c2b608553ce8295ab13b7a1bd3aae47738"
-    },
-    {
-      "name": "moreoftomlehrers00lehr_001.JPG",
-      "source": "original",
-      "format": "JPEG",
-      "md5": "321e7e6652d3682395fbab4e07850433",
-      "mtime": "1265756603",
-      "size": "6465370",
-      "crc32": "14ba5cfe",
-      "sha1": "b5b6f8c8a06bd43c360ec89f388b988660de34a8",
-      "rotation": "0"
-    },
-    {
-      "name": "moreoftomlehrers00lehr_001_thumb.jpg",
-      "source": "derivative",
-      "format": "JPEG Thumb",
-      "original": "moreoftomlehrers00lehr_001.JPG",
-      "md5": "075c92da406c2bccb1c4b17479a6cf9b",
-      "mtime": "1268766611",
-      "size": "7652",
-      "crc32": "fe913776",
-      "sha1": "823d1d9b4eaf86a6a4fb1454e15c426f40e076a9"
-    },
-    {
-      "name": "moreoftomlehrers00lehr_002.JPG",
-      "source": "original",
-      "format": "JPEG",
-      "md5": "ec097c1296357bd4b1a7a76e61bed432",
-      "mtime": "1265756605",
-      "size": "7041905",
-      "crc32": "241140e6",
-      "sha1": "9c28f42ba0766b7851f5adc95fe3780b7ba09792",
-      "rotation": "0"
-    },
-    {
-      "name": "moreoftomlehrers00lehr_002_thumb.jpg",
-      "source": "derivative",
-      "format": "JPEG Thumb",
-      "original": "moreoftomlehrers00lehr_002.JPG",
-      "md5": "50cdb7ba783be85fc45d2921a35e5ff5",
-      "mtime": "1268766605",
-      "size": "6135",
-      "crc32": "88944c5c",
-      "sha1": "b06b10468bfc1e0b3773ab58a8395788a3725db1"
-    },
-    {
-      "name": "moreoftomlehrers00lehr_003.JPG",
-      "source": "original",
-      "format": "JPEG",
-      "md5": "f3748dae22bf8496b68683a4fa6da25c",
-      "mtime": "1265756605",
-      "size": "3117976",
-      "crc32": "fef22478",
-      "sha1": "dec26f7899462fb8a3ce4f0668c98b60f3fa513e",
-      "rotation": "0"
-    },
-    {
-      "name": "moreoftomlehrers00lehr_003_thumb.jpg",
-      "source": "derivative",
-      "format": "JPEG Thumb",
-      "original": "moreoftomlehrers00lehr_003.JPG",
-      "md5": "c2ef35b09e35071c8523e0bfca2a6040",
-      "mtime": "1268766609",
-      "size": "1694",
-      "crc32": "a2b992f5",
-      "sha1": "98ed8149f1eb51a15ba762900b0b4ade4e44aab8"
-    },
-    {
-      "name": "moreoftomlehrers00lehr_004.JPG",
-      "source": "original",
-      "format": "JPEG",
-      "md5": "014ccc49c7c90758ca962be00eb45914",
-      "mtime": "1265756606",
-      "size": "3029198",
-      "crc32": "cb85fa1e",
-      "sha1": "49ab9c3d7b19632a186b2e8f3d7f0c14b9f5df85",
-      "rotation": "0"
-    },
-    {
-      "name": "moreoftomlehrers00lehr_004_thumb.jpg",
-      "source": "derivative",
-      "format": "JPEG Thumb",
-      "original": "moreoftomlehrers00lehr_004.JPG",
-      "md5": "857424b350ba59136d5257b0926a3e67",
-      "mtime": "1268766607",
-      "size": "1641",
-      "crc32": "a68f1f7",
-      "sha1": "137486da06dbdeac537bdcaaae5d1f28f2292094"
-    },
-    {
-      "name": "moreoftomlehrers00lehr_abbyy.gz",
+      "name": "cd_revisited_tom-lehrer_abbyy.gz",
       "source": "derivative",
       "format": "Abbyy GZ",
-      "original": "moreoftomlehrers00lehr_jp2.zip",
-      "mtime": "1511518947",
-      "size": "133954",
-      "md5": "ccfc6873296a10c8bf83f4b551f7ce80",
-      "crc32": "5b19185e",
-      "sha1": "490ee74b11a46850c579b53b4ab39c5972555bf5"
+      "original": "cd_revisited_tom-lehrer_jp2.zip",
+      "mtime": "1524389365",
+      "size": "75755",
+      "md5": "0a41f815b422ac09f02a4a083e0975a5",
+      "crc32": "e86f33a2",
+      "sha1": "8636695e5380574498951c28ffbac6a21e772989"
     },
     {
-      "name": "moreoftomlehrers00lehr_chocr.html.gz",
+      "name": "cd_revisited_tom-lehrer_chocr.html.gz",
       "source": "derivative",
       "ocr_module_version": "0.0.21",
       "ocr_converted": "abbyy-to-hocr 1.1.37",
       "format": "chOCR",
-      "original": "moreoftomlehrers00lehr_abbyy.gz",
-      "mtime": "1701442566",
-      "size": "108436",
-      "md5": "2a032b9bea99e6e78761e4f49f9a6298",
-      "crc32": "14127915",
-      "sha1": "aaf0f7682ca6a5647519cc3165796da9b1e46f1a",
+      "original": "cd_revisited_tom-lehrer_abbyy.gz",
+      "mtime": "1699278522",
+      "size": "63286",
+      "md5": "7fcd6d804a91926426b1ef362574b489",
+      "crc32": "bac4f1d8",
+      "sha1": "9c35d757bdcf517a92bf89db316660cc67debb8b",
       "private": "true"
     },
     {
-      "name": "moreoftomlehrers00lehr_dc.xml",
-      "source": "original",
-      "format": "Dublin Core",
-      "md5": "4ada488a664828ff603afecf3d166d39",
-      "mtime": "1265318208",
-      "size": "974",
-      "crc32": "ad505761",
-      "sha1": "8dd180b2825d34b5912d4ad610606e656dbaebad",
-      "private": "true"
-    },
-    {
-      "name": "moreoftomlehrers00lehr_djvu.txt",
+      "name": "cd_revisited_tom-lehrer_djvu.txt",
       "source": "derivative",
       "format": "DjVuTXT",
-      "original": "moreoftomlehrers00lehr_djvu.xml",
-      "mtime": "1701442680",
-      "size": "9902",
-      "md5": "c6f1e222a25a1c8e4b14fa1b371b8da0",
-      "crc32": "c84241b1",
-      "sha1": "c70642f8437c02a7f7822f52c17cfa5b0446af51"
+      "original": "cd_revisited_tom-lehrer_djvu.xml",
+      "mtime": "1699278804",
+      "size": "5756",
+      "md5": "d9e7d18146f574f609b1d63eaba026c9",
+      "crc32": "00ac0f21",
+      "sha1": "b5fde7b0f61a669057814d67f507a5a2d63b9591"
     },
     {
-      "name": "moreoftomlehrers00lehr_djvu.xml",
+      "name": "cd_revisited_tom-lehrer_djvu.xml",
       "source": "derivative",
       "format": "Djvu XML",
-      "original": "moreoftomlehrers00lehr_hocr.html",
-      "mtime": "1701442621",
-      "size": "120866",
-      "md5": "f188e45914613e1f771c2637cd3801bb",
-      "crc32": "43332b59",
-      "sha1": "6853efe1766285acb6ab21c8c8e643e8519c2d4e"
+      "original": "cd_revisited_tom-lehrer_hocr.html",
+      "mtime": "1699278617",
+      "size": "70642",
+      "md5": "95bf3e93ae32b77141383a74e206f544",
+      "crc32": "286a7ca4",
+      "sha1": "1bb11a2a832cbc46a600996a5be53ea8f291041e"
     },
     {
-      "name": "moreoftomlehrers00lehr_files.xml",
+      "name": "cd_revisited_tom-lehrer_files.xml",
       "source": "original",
       "format": "Metadata",
-      "md5": "e12c65dc77b48374ce4d0b6bd84c944a",
+      "md5": "9a0e80748bf9fd904eac8e622bb0ef1e",
       "summation": "md5"
     },
     {
-      "name": "moreoftomlehrers00lehr_hocr.html",
+      "name": "cd_revisited_tom-lehrer_hocr.html",
       "source": "derivative",
       "hocr_char_to_word_module_version": "1.2.0",
       "hocr_char_to_word_hocr_version": "1.1.45",
       "ocr_module_version": "0.0.21",
       "ocr_converted": "abbyy-to-hocr 1.1.37",
       "format": "hOCR",
-      "original": "moreoftomlehrers00lehr_chocr.html.gz",
-      "mtime": "1701442610",
-      "size": "242584",
-      "md5": "b6c8ab31489ae18d743edf4bc647ee89",
-      "crc32": "7aeb5b7a",
-      "sha1": "286fd934df5f974c87ffcb065ab3a9bbf21be29a",
+      "original": "cd_revisited_tom-lehrer_chocr.html.gz",
+      "mtime": "1699278588",
+      "size": "142324",
+      "md5": "5045614f11589570a0ca949bf143dd8a",
+      "crc32": "c301d7ca",
+      "sha1": "6fde6b70a10e280a4d95a1b934be1146145dad0c",
       "private": "true"
     },
     {
-      "name": "moreoftomlehrers00lehr_hocr_pageindex.json.gz",
+      "name": "cd_revisited_tom-lehrer_hocr_pageindex.json.gz",
       "source": "derivative",
       "hocr_pageindex_module_version": "1.0.0",
       "hocr_pageindex_hocr_version": "1.1.15",
       "format": "OCR Page Index",
-      "original": "moreoftomlehrers00lehr_hocr.html",
-      "mtime": "1701442647",
-      "size": "81",
-      "md5": "2b4f92ba3d1f83b9ad9ea0241e3ebf7e",
-      "crc32": "75630f49",
-      "sha1": "82c8f6585c33cef62381f931361893bb1dc8f0b9",
+      "original": "cd_revisited_tom-lehrer_hocr.html",
+      "mtime": "1699278662",
+      "size": "108",
+      "md5": "b1788a2c5b591da89039719899744c7c",
+      "crc32": "40dce027",
+      "sha1": "58979c6840d2c3d296df77285174928cc6b40955",
       "private": "true"
     },
     {
-      "name": "moreoftomlehrers00lehr_hocr_searchtext.txt.gz",
+      "name": "cd_revisited_tom-lehrer_hocr_searchtext.txt.gz",
       "source": "derivative",
       "hocr_fts_text_module_version": "1.1.0",
       "hocr_fts_text_hocr_version": "1.1.15",
-      "word_conf_0_10": "33",
-      "word_conf_11_20": "27",
-      "word_conf_21_30": "37",
-      "word_conf_31_40": "58",
-      "word_conf_41_50": "85",
-      "word_conf_51_60": "161",
-      "word_conf_61_70": "257",
-      "word_conf_71_80": "318",
-      "word_conf_81_90": "223",
-      "word_conf_91_100": "263",
+      "word_conf_0_10": "3",
+      "word_conf_11_20": "6",
+      "word_conf_21_30": "4",
+      "word_conf_31_40": "9",
+      "word_conf_41_50": "16",
+      "word_conf_51_60": "16",
+      "word_conf_61_70": "39",
+      "word_conf_71_80": "66",
+      "word_conf_81_90": "152",
+      "word_conf_91_100": "526",
       "format": "OCR Search Text",
-      "original": "moreoftomlehrers00lehr_hocr.html",
-      "mtime": "1701442668",
-      "size": "4238",
-      "md5": "c6bfd4c7b948e6c9c126074d6346563a",
-      "crc32": "414e861f",
-      "sha1": "8cba3c31cde4c301ebe65f421d51fafc307e84b9",
+      "original": "cd_revisited_tom-lehrer_hocr.html",
+      "mtime": "1699278770",
+      "size": "2674",
+      "md5": "0f910b3a289690009097a5e3f11b307e",
+      "crc32": "2d508b8c",
+      "sha1": "7e5a95fc1df0bbac0cb35746659bedf5af72415a",
       "private": "true"
     },
     {
-      "name": "moreoftomlehrers00lehr_images.zip",
+      "name": "cd_revisited_tom-lehrer_images.zip",
       "source": "original",
-      "mtime": "1511518886",
-      "size": "19601624",
-      "md5": "e017965f903d6d2d078e374210d1aa6a",
-      "crc32": "bbe02d4b",
-      "sha1": "a60dd63be69f0b737f99e6ea047e207ae39feded",
+      "mtime": "1524388621",
+      "size": "114844083",
+      "md5": "c6711af00a58c7f704c161ae6bc16c52",
+      "crc32": "b9fcdd98",
+      "sha1": "a8c324c2d916da16cc11f5885112f184e2eb8b4b",
       "format": "Generic Raw Book Zip",
       "private": "true",
-      "filecount": "4"
+      "filecount": "7"
     },
     {
-      "name": "moreoftomlehrers00lehr_itemimage.jpg",
+      "name": "cd_revisited_tom-lehrer_itemimage.png",
       "source": "original",
-      "mtime": "1511506593",
-      "size": "356144",
-      "md5": "d65c20880730e903e05f0fe5f8d60040",
-      "crc32": "81aed5a3",
-      "sha1": "77e3e9b4e1d2023aed31ca5aec97d5eb00a54b11",
-      "format": "Item Image",
-      "rotation": "0"
+      "mtime": "1524388573",
+      "size": "770501",
+      "md5": "c804756aabb1dc7d422cba0409243c2b",
+      "crc32": "3698d974",
+      "sha1": "1a54b1c3cdccb7bd19b96c566d303d1858a06c73",
+      "format": "Item Image"
     },
     {
-      "name": "moreoftomlehrers00lehr_jp2.zip",
+      "name": "cd_revisited_tom-lehrer_jp2.zip",
       "source": "derivative",
       "format": "Single Page Processed JP2 ZIP",
-      "original": "moreoftomlehrers00lehr_images.zip",
-      "mtime": "1511518912",
-      "size": "1331155",
-      "md5": "f2fb29c4ba32cc6efdebe2582e3ac586",
-      "crc32": "09535556",
-      "sha1": "cc60584cc6b31190be67825fa4c92cbc6b980cc7",
-      "filecount": "4"
+      "original": "cd_revisited_tom-lehrer_images.zip",
+      "mtime": "1524389297",
+      "size": "7026515",
+      "md5": "a9c55c6f289a07f69ce02112142d22a6",
+      "crc32": "af41d69d",
+      "sha1": "a9e67c60fc0d5e861982bf7c50d03184ded6ed1a",
+      "filecount": "7"
     },
     {
-      "name": "moreoftomlehrers00lehr_marc.xml",
+      "name": "cd_revisited_tom-lehrer_meta.sqlite",
       "source": "original",
-      "format": "MARC",
-      "md5": "6185964cd320621dafca07a789136d53",
-      "mtime": "1265318208",
-      "size": "4770",
-      "crc32": "e3374d5f",
-      "sha1": "970d2caff36462cd6018acfe3e1a928f9e5197bc",
-      "private": "true"
-    },
-    {
-      "name": "moreoftomlehrers00lehr_meta.mrc",
-      "source": "original",
-      "format": "MARC Binary",
-      "md5": "1aaa3562e13a25ea86b8645e54769a44",
-      "mtime": "1265318208",
-      "size": "1692",
-      "crc32": "b96a2dcf",
-      "sha1": "b06b020b777dbcf0cc5ac9d5a79e5f61f28b9d3d",
-      "private": "true"
-    },
-    {
-      "name": "moreoftomlehrers00lehr_meta.sqlite",
-      "source": "original",
-      "mtime": "1511518889",
-      "size": "10240",
+      "mtime": "1524388863",
+      "size": "36864",
       "format": "Metadata",
-      "md5": "59e159dba6367a29d274178ce9b84b6e",
-      "crc32": "458d5980",
-      "sha1": "bbd6d770710a6693615359e49223d0e74e2f21ac"
+      "md5": "021b18719ce8aed1874bee54b2cfc1da",
+      "crc32": "5141e9bb",
+      "sha1": "e76ef44e303a69157cf422018f8bc44564dc8e0e"
     },
     {
-      "name": "moreoftomlehrers00lehr_meta.xml",
+      "name": "cd_revisited_tom-lehrer_meta.xml",
       "source": "original",
+      "mtime": "1699278968",
+      "size": "3215",
       "format": "Metadata",
-      "mtime": "1701443477",
-      "size": "2730",
-      "md5": "d6946f8d270df27f54fdf0402eb2ec76",
-      "crc32": "366d145b",
-      "sha1": "d960c07cf35d9423d88dc61717169d54e572c088"
+      "md5": "89e71db5d21914ac1d1587f2cfeccedc",
+      "crc32": "64061af6",
+      "sha1": "ec0c36249cb07f08b1eab3d21942c8cdf8de538f"
     },
     {
-      "name": "moreoftomlehrers00lehr_metasource.xml",
-      "source": "original",
-      "format": "MARC Source",
-      "md5": "13ee60cd753626b26cb20a11ee885e7a",
-      "mtime": "1265318208",
-      "size": "413",
-      "crc32": "4af869df",
-      "sha1": "c6b64c934b51b61de492cb2c8158380f59511b69",
-      "private": "true"
-    },
-    {
-      "name": "moreoftomlehrers00lehr_page_numbers.json",
+      "name": "cd_revisited_tom-lehrer_page_numbers.json",
       "source": "derivative",
       "hocr_pagenumber_module_version": "1.0.3",
       "hocr_pagenumber_hocr_version": "1.1.54",
       "hocr_pagenumber_confidence": "0",
       "format": "Page Numbers JSON",
-      "original": "moreoftomlehrers00lehr_hocr.html",
-      "mtime": "1701442761",
-      "size": "831",
-      "md5": "d853de54527bb30fc1d93b2f52951e55",
-      "crc32": "efdb624d",
-      "sha1": "2588f6975a094ff636fb063ea8c948bd397303ba",
+      "original": "cd_revisited_tom-lehrer_hocr.html",
+      "mtime": "1699278964",
+      "size": "1336",
+      "md5": "0d8dc0a3a97198be02d46c44b03480ce",
+      "crc32": "374b8485",
+      "sha1": "766a2680f3159d146f5ef313710f738aa8e4d0a5",
       "private": "true"
     },
     {
-      "name": "moreoftomlehrers00lehr_sample.mp3",
-      "source": "derivative",
-      "creator": "moreoftomlehrers00lehr",
-      "bitrate": "181",
-      "length": "00:30",
-      "format": "MP3 Sample",
-      "original": "moreoftomlehrers00lehr.flac",
-      "mtime": "1413500432",
-      "size": "784896",
-      "md5": "24836e859ed1a2cd3283779090e229fe",
-      "crc32": "fc08a46f",
-      "sha1": "b701c4cdafaff472b6f8912c28e1cda88348efcf",
-      "height": "0",
-      "width": "0"
+      "name": "cd_revisited_tom-lehrer_reviews.xml",
+      "source": "original",
+      "mtime": "1701388410",
+      "size": "8831",
+      "md5": "d24aae5638f698f2a329f9e34a5278c7",
+      "crc32": "4c844490",
+      "sha1": "abfe6621e753ab65bd7031aaf9dea74604c0128f",
+      "format": "Metadata"
     },
     {
-      "name": "moreoftomlehrers00lehr_scandata.xml",
+      "name": "cd_revisited_tom-lehrer_scandata.json",
+      "source": "original",
+      "mtime": "1524388577",
+      "size": "89169",
+      "md5": "5b77bb94e5ba0496830e7384744d90f1",
+      "crc32": "760ca03f",
+      "sha1": "b3a8d10c91105449c0c1f887e563183ad3fc0c0f",
+      "format": "Scandata JSON"
+    },
+    {
+      "name": "cd_revisited_tom-lehrer_scandata.xml",
       "source": "derivative",
       "format": "Scandata",
-      "original": "moreoftomlehrers00lehr_djvu.xml",
-      "mtime": "1701442762",
-      "size": "1527",
-      "md5": "590d93348c6d5df472ecabadd33e15bc",
-      "crc32": "0df4ff23",
-      "sha1": "18d36dd0c7ff52461c14154d4f17f01d4b19859c"
+      "original": "cd_revisited_tom-lehrer_djvu.xml",
+      "mtime": "1699278964",
+      "size": "2361",
+      "md5": "2433aafff9189080006d1b34cb0516a5",
+      "crc32": "0ffe09e5",
+      "sha1": "359b44b0ce2c43ecbec2f02c12ff6bf6e0deaa14"
     },
     {
-      "name": "moreoftomlehrers00lehr_segments.xml",
+      "name": "disc1\/01. Tom Lehrer - Introduction.afpk",
+      "source": "derivative",
+      "format": "Columbia Peaks",
+      "original": "disc1\/01. Tom Lehrer - Introduction.flac",
+      "mtime": "1524389252",
+      "size": "36736",
+      "md5": "78b275634799d014b97b3594c845a17c",
+      "crc32": "22af54e9",
+      "sha1": "39074546a0b136c7f4c10ec0d1ac08a9ced70678"
+    },
+    {
+      "name": "disc1\/01. Tom Lehrer - Introduction.flac",
       "source": "original",
-      "format": "Segment Data",
-      "md5": "cbe7aebf2a6694fc332f28ed96cf5ba0",
-      "mtime": "1268765033",
-      "size": "1431",
-      "crc32": "6867e950",
-      "sha1": "c7b5c88e185772540444ea239d1c211e3c79cb36"
+      "mtime": "1524388658",
+      "size": "18223373",
+      "md5": "496e971d003df1f4feded6c4f65854ae",
+      "crc32": "1b1bf7a7",
+      "sha1": "0e0db00b7399a997a8ff161739c466a4f92b1911",
+      "format": "Flac",
+      "length": "207.73",
+      "height": "635",
+      "width": "640",
+      "private": "true",
+      "album": "Revisited",
+      "comment": "https:\/\/archive.org\/details\/cd_revisited_tom-lehrer",
+      "title": "Introduction",
+      "artist": "Tom Lehrer",
+      "track": "1",
+      "external-identifier": [
+        "urn:acoustid:d5e3c141-2349-42a4-8295-b7593b307ae7",
+        "urn:mb_recording_id:3c1fb599-69fe-45b0-ac50-eb195bccaaaf",
+        "urn:spotify:track:6xIYBpHFzI8U26BxUBIOk1",
+        "urn:youtube:jFxblHAgjWk"
+      ],
+      "external-identifier-match-date": [
+        "acoustid:2018-12-16T23:27:17Z",
+        "mb_recording_id:2018-09-13T02:17:16Z",
+        "spotify:2018-08-20T16:35:07Z",
+        "youtube:2018-07-01T06:34:49Z"
+      ],
+      "creator": "Tom Lehrer"
     },
     {
-      "name": "moreoftomlehrers00lehr_spectrogram.png",
+      "name": "disc1\/01. Tom Lehrer - Introduction.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "Introduction",
+      "track": "1",
+      "album": "Revisited",
+      "bitrate": "152",
+      "length": "03:27",
+      "format": "VBR MP3",
+      "original": "disc1\/01. Tom Lehrer - Introduction.flac",
+      "mtime": "1524388999",
+      "size": "4048612",
+      "md5": "faf736a011541c51cc3865343d174d92",
+      "crc32": "ad0ae7eb",
+      "sha1": "f5aed40f86e904738cbe93f149a5e4dc678790dd",
+      "height": "635",
+      "width": "640",
+      "private": "true"
+    },
+    {
+      "name": "disc1\/01. Tom Lehrer - Introduction.png",
+      "source": "derivative",
+      "format": "PNG",
+      "original": "disc1\/01. Tom Lehrer - Introduction.flac",
+      "mtime": "1524389172",
+      "size": "11009",
+      "md5": "8728b5e294b51fafc7adc6ea71a6dc26",
+      "crc32": "f85f5019",
+      "sha1": "fa27670265d846db146f6e26e1afa906a3ab39c8"
+    },
+    {
+      "name": "disc1\/01. Tom Lehrer - Introduction_sample.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "Introduction",
+      "track": "1",
+      "album": "Revisited",
+      "bitrate": "126",
+      "length": "00:30",
+      "format": "MP3 Sample",
+      "original": "disc1\/01. Tom Lehrer - Introduction.flac",
+      "mtime": "1524389015",
+      "size": "558212",
+      "md5": "e72f677af8f5e7621cf75b90d0ad1ffb",
+      "crc32": "48423b57",
+      "sha1": "f11ecaa8db457e830097c8273fd587a0208b5d52",
+      "height": "635",
+      "width": "640"
+    },
+    {
+      "name": "disc1\/01. Tom Lehrer - Introduction_spectrogram.png",
       "source": "derivative",
       "format": "Spectrogram",
-      "original": "moreoftomlehrers00lehr.flac",
-      "mtime": "1511295415",
-      "size": "254132",
-      "md5": "95b8dec8be33cf1a4e57d39c92865f42",
-      "crc32": "583b9e1b",
-      "sha1": "7f3696ff6e07ddb91badb888a51d70b27ecdd1ea"
+      "original": "disc1\/01. Tom Lehrer - Introduction.flac",
+      "mtime": "1524389216",
+      "size": "293831",
+      "md5": "2ff2ff340fe5f68265fbf75a4e600e21",
+      "crc32": "58d33be5",
+      "sha1": "f3291cca8b4a06166b3c34a4afc930c3aa36418f"
+    },
+    {
+      "name": "disc1\/02. Tom Lehrer - I Wanna Go Back to Dixie.afpk",
+      "source": "derivative",
+      "format": "Columbia Peaks",
+      "original": "disc1\/02. Tom Lehrer - I Wanna Go Back to Dixie.flac",
+      "mtime": "1524389264",
+      "size": "32296",
+      "md5": "b47880272ea4cb50e35b843b2353eeea",
+      "crc32": "4161c58b",
+      "sha1": "6a1e21aa39ae0655416505aa90b4fd5a18327ade"
+    },
+    {
+      "name": "disc1\/02. Tom Lehrer - I Wanna Go Back to Dixie.flac",
+      "source": "original",
+      "mtime": "1524388730",
+      "size": "15972376",
+      "md5": "670a82c40b9f7d96d74573ce964ac6ee",
+      "crc32": "ddf69733",
+      "sha1": "458a695f7c435f1331d3706be589f69193d25baf",
+      "format": "Flac",
+      "length": "176.13",
+      "height": "635",
+      "width": "640",
+      "private": "true",
+      "album": "Revisited",
+      "comment": "https:\/\/archive.org\/details\/cd_revisited_tom-lehrer",
+      "title": "I Wanna Go Back to Dixie",
+      "artist": "Tom Lehrer",
+      "track": "2",
+      "external-identifier": [
+        "urn:acoustid:c86b99f3-8ce2-4228-bab3-ee1074ff8fcc",
+        "urn:mb_recording_id:56223b50-44ea-4c1d-88a3-34b9e04f73cd",
+        "urn:spotify:track:5VjvOFkOJ2ZuprRKeFYpvx",
+        "urn:youtube:HAwhC_btAUU"
+      ],
+      "external-identifier-match-date": [
+        "acoustid:2018-12-16T23:27:17Z",
+        "mb_recording_id:2018-09-13T02:17:16Z",
+        "spotify:2018-08-20T16:35:07Z",
+        "youtube:2018-07-01T06:34:49Z"
+      ],
+      "creator": "Tom Lehrer"
+    },
+    {
+      "name": "disc1\/02. Tom Lehrer - I Wanna Go Back to Dixie.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "I Wanna Go Back to Dixie",
+      "track": "2",
+      "album": "Revisited",
+      "bitrate": "152",
+      "length": "02:56",
+      "format": "VBR MP3",
+      "original": "disc1\/02. Tom Lehrer - I Wanna Go Back to Dixie.flac",
+      "mtime": "1524389093",
+      "size": "3429912",
+      "md5": "fb9e11f8c1e6d940472e626e0389e473",
+      "crc32": "f4bc4d2e",
+      "sha1": "2ca74efd28376ae89865d2b6b73a4069e58ef868",
+      "height": "635",
+      "width": "640",
+      "private": "true"
+    },
+    {
+      "name": "disc1\/02. Tom Lehrer - I Wanna Go Back to Dixie.png",
+      "source": "derivative",
+      "format": "PNG",
+      "original": "disc1\/02. Tom Lehrer - I Wanna Go Back to Dixie.flac",
+      "mtime": "1524389143",
+      "size": "10140",
+      "md5": "b55796bf76e45752dfbcdb1527503859",
+      "crc32": "dcc85d20",
+      "sha1": "3647bc5a920fed37ba7bf183856dc25105c8cb3a"
+    },
+    {
+      "name": "disc1\/02. Tom Lehrer - I Wanna Go Back to Dixie_sample.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "I Wanna Go Back to Dixie",
+      "track": "2",
+      "album": "Revisited",
+      "bitrate": "122",
+      "length": "00:30",
+      "format": "MP3 Sample",
+      "original": "disc1\/02. Tom Lehrer - I Wanna Go Back to Dixie.flac",
+      "mtime": "1524389076",
+      "size": "543343",
+      "md5": "19d6f5bb74e8b0c59ee233e7ae1b14f3",
+      "crc32": "fbf6e704",
+      "sha1": "fe15345351b59cfcfd521faaa4119d534689c35f",
+      "height": "635",
+      "width": "640"
+    },
+    {
+      "name": "disc1\/02. Tom Lehrer - I Wanna Go Back to Dixie_spectrogram.png",
+      "source": "derivative",
+      "format": "Spectrogram",
+      "original": "disc1\/02. Tom Lehrer - I Wanna Go Back to Dixie.flac",
+      "mtime": "1524389192",
+      "size": "296985",
+      "md5": "07f62f0377fc94a155d7234ff8216144",
+      "crc32": "761bb192",
+      "sha1": "bcff3d363108925143678953917557ae6f7f4b70"
+    },
+    {
+      "name": "disc1\/03. Tom Lehrer - The Wild West Is Where I Want to Be.afpk",
+      "source": "derivative",
+      "format": "Columbia Peaks",
+      "original": "disc1\/03. Tom Lehrer - The Wild West Is Where I Want to Be.flac",
+      "mtime": "1524389222",
+      "size": "25960",
+      "md5": "5ad24546a37e5ab0e33eb0780489c5db",
+      "crc32": "a180d9d0",
+      "sha1": "9fc8049825a2a35b50d9db35e25c37ed53ba50b3"
+    },
+    {
+      "name": "disc1\/03. Tom Lehrer - The Wild West Is Where I Want to Be.flac",
+      "source": "original",
+      "mtime": "1524388634",
+      "size": "13346587",
+      "md5": "f0d64c57afb452f9bfeced6cd11d43d4",
+      "crc32": "1acf2a0e",
+      "sha1": "def3166504703dbaa423b6bebc87c1f27624453c",
+      "format": "Flac",
+      "length": "151.33",
+      "height": "635",
+      "width": "640",
+      "private": "true",
+      "album": "Revisited",
+      "comment": "https:\/\/archive.org\/details\/cd_revisited_tom-lehrer",
+      "title": "The Wild West Is Where I Want to Be",
+      "artist": "Tom Lehrer",
+      "track": "3",
+      "external-identifier": [
+        "urn:acoustid:541e67eb-a626-444b-a8d9-994b088b76ff",
+        "urn:mb_recording_id:1e5deb17-5b97-4992-857b-6678c49c07c3",
+        "urn:spotify:track:7qJiWQ2xuQTkOiT3SgwCuY",
+        "urn:youtube:BcJk-LU-lAc"
+      ],
+      "external-identifier-match-date": [
+        "acoustid:2018-12-16T23:27:17Z",
+        "mb_recording_id:2018-09-13T02:17:16Z",
+        "spotify:2018-10-22T05:18:01Z",
+        "youtube:2018-07-01T06:34:49Z"
+      ],
+      "creator": "Tom Lehrer"
+    },
+    {
+      "name": "disc1\/03. Tom Lehrer - The Wild West Is Where I Want to Be.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "The Wild West Is Where I Want to Be",
+      "track": "3",
+      "album": "Revisited",
+      "bitrate": "148",
+      "length": "02:31",
+      "format": "VBR MP3",
+      "original": "disc1\/03. Tom Lehrer - The Wild West Is Where I Want to Be.flac",
+      "mtime": "1524389099",
+      "size": "2891393",
+      "md5": "2b6361b3e631b5665044517570c7950c",
+      "crc32": "f745ee51",
+      "sha1": "ef1b5c8df4f8377126339f23a607d90961c31dbc",
+      "height": "635",
+      "width": "640",
+      "private": "true"
+    },
+    {
+      "name": "disc1\/03. Tom Lehrer - The Wild West Is Where I Want to Be.png",
+      "source": "derivative",
+      "format": "PNG",
+      "original": "disc1\/03. Tom Lehrer - The Wild West Is Where I Want to Be.flac",
+      "mtime": "1524389137",
+      "size": "10704",
+      "md5": "42905eb36b2ba3ce740a36ab8889fec9",
+      "crc32": "d2fd5013",
+      "sha1": "28e3c9b8a8ada831e6e6cd7395a2098baee28c2a"
+    },
+    {
+      "name": "disc1\/03. Tom Lehrer - The Wild West Is Where I Want to Be_sample.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "The Wild West Is Where I Want to Be",
+      "track": "3",
+      "album": "Revisited",
+      "bitrate": "123",
+      "length": "00:30",
+      "format": "MP3 Sample",
+      "original": "disc1\/03. Tom Lehrer - The Wild West Is Where I Want to Be.flac",
+      "mtime": "1524389079",
+      "size": "545780",
+      "md5": "7ec3e15df63c80edb9e11a058558ebc0",
+      "crc32": "1f3f6a62",
+      "sha1": "31c8eab92b50ee36975b1239c399522ec84515d7",
+      "height": "635",
+      "width": "640"
+    },
+    {
+      "name": "disc1\/03. Tom Lehrer - The Wild West Is Where I Want to Be_spectrogram.png",
+      "source": "derivative",
+      "format": "Spectrogram",
+      "original": "disc1\/03. Tom Lehrer - The Wild West Is Where I Want to Be.flac",
+      "mtime": "1524389194",
+      "size": "291099",
+      "md5": "a39c0ddc06a0b129696bfddaebe6aa2d",
+      "crc32": "3bc9f583",
+      "sha1": "8ef3676603305e7f63deb013923e2bf8d725f27c"
+    },
+    {
+      "name": "disc1\/04. Tom Lehrer - The Old Dope Peddler.afpk",
+      "source": "derivative",
+      "format": "Columbia Peaks",
+      "original": "disc1\/04. Tom Lehrer - The Old Dope Peddler.flac",
+      "mtime": "1524389276",
+      "size": "16904",
+      "md5": "3cd4b46bb0a494b8fe9391664315e9c9",
+      "crc32": "aa051e72",
+      "sha1": "085ca16eabe4a0a89d46c8d50081c7a2a620bb5e"
+    },
+    {
+      "name": "disc1\/04. Tom Lehrer - The Old Dope Peddler.flac",
+      "source": "original",
+      "mtime": "1524388769",
+      "size": "9204055",
+      "md5": "193132e41c44999a0b2c9883a9b3533c",
+      "crc32": "3893f95e",
+      "sha1": "5d9f1857045b5b2ac4049854f00e8e5849036873",
+      "format": "Flac",
+      "length": "102.77",
+      "height": "635",
+      "width": "640",
+      "private": "true",
+      "album": "Revisited",
+      "comment": "https:\/\/archive.org\/details\/cd_revisited_tom-lehrer",
+      "title": "The Old Dope Peddler",
+      "artist": "Tom Lehrer",
+      "track": "4",
+      "external-identifier": [
+        "urn:acoustid:b7529ae6-d7d5-4f92-9379-4c1d42b4620d",
+        "urn:mb_recording_id:73b7915c-a794-474c-9ecb-dfec8c7c5ce3",
+        "urn:spotify:track:1LGdRvSIEBmTjNvGbQnduR",
+        "urn:youtube:pIzRGHuJt_I"
+      ],
+      "external-identifier-match-date": [
+        "acoustid:2018-12-16T23:27:17Z",
+        "mb_recording_id:2018-09-13T02:17:16Z",
+        "spotify:2018-10-22T05:18:01Z",
+        "youtube:2018-07-01T06:34:49Z"
+      ],
+      "creator": "Tom Lehrer"
+    },
+    {
+      "name": "disc1\/04. Tom Lehrer - The Old Dope Peddler.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "The Old Dope Peddler",
+      "track": "4",
+      "album": "Revisited",
+      "bitrate": "144",
+      "length": "01:42",
+      "format": "VBR MP3",
+      "original": "disc1\/04. Tom Lehrer - The Old Dope Peddler.flac",
+      "mtime": "1524389020",
+      "size": "1943240",
+      "md5": "809807952d09950297059b867fd78e89",
+      "crc32": "3a7b3ba8",
+      "sha1": "7efd94fbf9894e5e3b7c57b5c9563d4a771273f8",
+      "height": "635",
+      "width": "640",
+      "private": "true"
+    },
+    {
+      "name": "disc1\/04. Tom Lehrer - The Old Dope Peddler.png",
+      "source": "derivative",
+      "format": "PNG",
+      "original": "disc1\/04. Tom Lehrer - The Old Dope Peddler.flac",
+      "mtime": "1524389111",
+      "size": "11099",
+      "md5": "66d557742f34b11c89e86226b14410b9",
+      "crc32": "ae93ac41",
+      "sha1": "b28f029ef7b5b2690d99215762dd0aec21877382"
+    },
+    {
+      "name": "disc1\/04. Tom Lehrer - The Old Dope Peddler_sample.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "The Old Dope Peddler",
+      "track": "4",
+      "album": "Revisited",
+      "bitrate": "118",
+      "length": "00:25",
+      "format": "MP3 Sample",
+      "original": "disc1\/04. Tom Lehrer - The Old Dope Peddler.flac",
+      "mtime": "1524389023",
+      "size": "464790",
+      "md5": "733e91b6bf0e208b6a6c450a068a5c03",
+      "crc32": "68432ed2",
+      "sha1": "dcfad18276dc8c95652d892f3b1b21bca21f2dc7",
+      "height": "635",
+      "width": "640"
+    },
+    {
+      "name": "disc1\/04. Tom Lehrer - The Old Dope Peddler_spectrogram.png",
+      "source": "derivative",
+      "format": "Spectrogram",
+      "original": "disc1\/04. Tom Lehrer - The Old Dope Peddler.flac",
+      "mtime": "1524389209",
+      "size": "286860",
+      "md5": "021a95f3a64b7ec79a22351d235fcd7e",
+      "crc32": "8494a07c",
+      "sha1": "7c8966ab0b5975a6e3a007cb478563849a8d1de8"
+    },
+    {
+      "name": "disc1\/05. Tom Lehrer - Fight Fiercely, Harvard.afpk",
+      "source": "derivative",
+      "format": "Columbia Peaks",
+      "original": "disc1\/05. Tom Lehrer - Fight Fiercely, Harvard.flac",
+      "mtime": "1524389272",
+      "size": "30640",
+      "md5": "199070354fb044a7829372e52db12720",
+      "crc32": "00c6e7b0",
+      "sha1": "8cc2fa1ef17ee4db6ef1e98601aad5fd24732949"
+    },
+    {
+      "name": "disc1\/05. Tom Lehrer - Fight Fiercely, Harvard.flac",
+      "source": "original",
+      "mtime": "1524388787",
+      "size": "15037856",
+      "md5": "5533bd91f30d7c40c063f47b96ebd86f",
+      "crc32": "22f27607",
+      "sha1": "7bc8b3c525d3ac834937ea248074c1e2c5bae7fe",
+      "format": "Flac",
+      "length": "171.6",
+      "height": "635",
+      "width": "640",
+      "private": "true",
+      "album": "Revisited",
+      "comment": "https:\/\/archive.org\/details\/cd_revisited_tom-lehrer",
+      "title": "Fight Fiercely, Harvard",
+      "artist": "Tom Lehrer",
+      "track": "5",
+      "external-identifier": [
+        "urn:acoustid:65852fc8-35ef-4367-a53c-67f80d6449d9",
+        "urn:mb_recording_id:fa4b85ad-5d44-4d56-b3f5-8f92d267741a",
+        "urn:spotify:track:3SYdMGy40rbOMRPwIdauBP",
+        "urn:youtube:3J04FRsesBQ"
+      ],
+      "external-identifier-match-date": [
+        "acoustid:2018-12-16T23:27:17Z",
+        "mb_recording_id:2018-09-13T02:17:16Z",
+        "spotify:2018-10-22T05:18:01Z",
+        "youtube:2018-07-01T06:34:49Z"
+      ],
+      "creator": "Tom Lehrer"
+    },
+    {
+      "name": "disc1\/05. Tom Lehrer - Fight Fiercely, Harvard.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "Fight Fiercely, Harvard",
+      "track": "5",
+      "album": "Revisited",
+      "bitrate": "146",
+      "length": "02:51",
+      "format": "VBR MP3",
+      "original": "disc1\/05. Tom Lehrer - Fight Fiercely, Harvard.flac",
+      "mtime": "1524388954",
+      "size": "3224963",
+      "md5": "4d22a225c9d72afb53f078ef0ed7862b",
+      "crc32": "db59edbe",
+      "sha1": "9369a1b8afe0eb25f83f5d693a761a46e510f303",
+      "height": "635",
+      "width": "640",
+      "private": "true"
+    },
+    {
+      "name": "disc1\/05. Tom Lehrer - Fight Fiercely, Harvard.png",
+      "source": "derivative",
+      "format": "PNG",
+      "original": "disc1\/05. Tom Lehrer - Fight Fiercely, Harvard.flac",
+      "mtime": "1524389126",
+      "size": "9078",
+      "md5": "850edd01d9612ec7e76dd89dc1d3f3e6",
+      "crc32": "97fa3ca4",
+      "sha1": "90a5f833b12b9255cd33d7231c64442b741fb779"
+    },
+    {
+      "name": "disc1\/05. Tom Lehrer - Fight Fiercely, Harvard_sample.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "Fight Fiercely, Harvard",
+      "track": "5",
+      "album": "Revisited",
+      "bitrate": "118",
+      "length": "00:30",
+      "format": "MP3 Sample",
+      "original": "disc1\/05. Tom Lehrer - Fight Fiercely, Harvard.flac",
+      "mtime": "1524389039",
+      "size": "526479",
+      "md5": "19d29b16193ea74db96130e991794e8d",
+      "crc32": "52488500",
+      "sha1": "a2d5907a2fdb5ed081902bab9b0679da09d2e9a1",
+      "height": "635",
+      "width": "640"
+    },
+    {
+      "name": "disc1\/05. Tom Lehrer - Fight Fiercely, Harvard_spectrogram.png",
+      "source": "derivative",
+      "format": "Spectrogram",
+      "original": "disc1\/05. Tom Lehrer - Fight Fiercely, Harvard.flac",
+      "mtime": "1524389201",
+      "size": "293311",
+      "md5": "726bdc85829a9e974eadea4ce72df819",
+      "crc32": "092193c8",
+      "sha1": "4a4d76eb8c83b62ff9368fa7da2cc65aecaa928b"
+    },
+    {
+      "name": "disc1\/06. Tom Lehrer - Lobachevsky.afpk",
+      "source": "derivative",
+      "format": "Columbia Peaks",
+      "original": "disc1\/06. Tom Lehrer - Lobachevsky.flac",
+      "mtime": "1524389282",
+      "size": "45976",
+      "md5": "3ad764d77afb0fa8804753f20b7e51fa",
+      "crc32": "99297111",
+      "sha1": "5c79f40912acdb1a1b210125f166b305d1d2ab8c"
+    },
+    {
+      "name": "disc1\/06. Tom Lehrer - Lobachevsky.flac",
+      "source": "original",
+      "mtime": "1524388629",
+      "size": "22448367",
+      "md5": "bca0c22a9277422b37773aff84102c8e",
+      "crc32": "6b7a17dd",
+      "sha1": "0f8a1f6c38005854a5bed8a2c9f6472b264e7de8",
+      "format": "Flac",
+      "length": "259.87",
+      "height": "635",
+      "width": "640",
+      "private": "true",
+      "album": "Revisited",
+      "comment": "https:\/\/archive.org\/details\/cd_revisited_tom-lehrer",
+      "title": "Lobachevsky",
+      "artist": "Tom Lehrer",
+      "track": "6",
+      "external-identifier": [
+        "urn:acoustid:485e9994-7f17-4bc4-baa0-1387c9fce956",
+        "urn:mb_recording_id:1cc4f911-1133-4316-bc4f-4ffa79dc7a03",
+        "urn:spotify:track:3aoVSL2pYh52IIZjj0KZsP",
+        "urn:youtube:UQHaGhC7C2E"
+      ],
+      "external-identifier-match-date": [
+        "acoustid:2018-12-16T23:27:17Z",
+        "mb_recording_id:2018-09-13T02:17:16Z",
+        "spotify:2018-08-20T16:35:07Z",
+        "youtube:2018-07-01T06:34:49Z"
+      ],
+      "creator": "Tom Lehrer"
+    },
+    {
+      "name": "disc1\/06. Tom Lehrer - Lobachevsky.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "Lobachevsky",
+      "track": "6",
+      "album": "Revisited",
+      "bitrate": "150",
+      "length": "04:19",
+      "format": "VBR MP3",
+      "original": "disc1\/06. Tom Lehrer - Lobachevsky.flac",
+      "mtime": "1524389034",
+      "size": "4972861",
+      "md5": "65dadd17dcea124f4cea8033947181c1",
+      "crc32": "145c0054",
+      "sha1": "d0ec5aab74a41720bc59a75ddfa66261ce1c634a",
+      "height": "635",
+      "width": "640",
+      "private": "true"
+    },
+    {
+      "name": "disc1\/06. Tom Lehrer - Lobachevsky.png",
+      "source": "derivative",
+      "format": "PNG",
+      "original": "disc1\/06. Tom Lehrer - Lobachevsky.flac",
+      "mtime": "1524389107",
+      "size": "9349",
+      "md5": "cc5bf337c6b4295067432765d2143f5d",
+      "crc32": "829b580e",
+      "sha1": "efbe2571611c3f892df0fe7fd4dfd339710697ca"
+    },
+    {
+      "name": "disc1\/06. Tom Lehrer - Lobachevsky_sample.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "Lobachevsky",
+      "track": "6",
+      "album": "Revisited",
+      "bitrate": "123",
+      "length": "00:30",
+      "format": "MP3 Sample",
+      "original": "disc1\/06. Tom Lehrer - Lobachevsky.flac",
+      "mtime": "1524389071",
+      "size": "544945",
+      "md5": "9e7c774954894bbb0cc11a7a9ce98cbe",
+      "crc32": "6b698940",
+      "sha1": "2dc70531e08da76cb6099af9360d0e75d84b1e8d",
+      "height": "635",
+      "width": "640"
+    },
+    {
+      "name": "disc1\/06. Tom Lehrer - Lobachevsky_spectrogram.png",
+      "source": "derivative",
+      "format": "Spectrogram",
+      "original": "disc1\/06. Tom Lehrer - Lobachevsky.flac",
+      "mtime": "1524389199",
+      "size": "291098",
+      "md5": "4710e42af5a91d6ebb98545794311dbb",
+      "crc32": "4e56729f",
+      "sha1": "89dd16959f0e60a5fb856c4721a192c0784b12be"
+    },
+    {
+      "name": "disc1\/07. Tom Lehrer - The Irish Ballad.afpk",
+      "source": "derivative",
+      "format": "Columbia Peaks",
+      "original": "disc1\/07. Tom Lehrer - The Irish Ballad.flac",
+      "mtime": "1524389240",
+      "size": "51296",
+      "md5": "ea951bc7311ddc0f82cf0b289522485c",
+      "crc32": "1874d0a9",
+      "sha1": "4a8e0d5fbaeb8b5fccba8c7e6e71ba01f666d5a4"
+    },
+    {
+      "name": "disc1\/07. Tom Lehrer - The Irish Ballad.flac",
+      "source": "original",
+      "mtime": "1524388715",
+      "size": "28282425",
+      "md5": "aa9c8f637ba0eb531b7f21b1b054991c",
+      "crc32": "d5aed2d4",
+      "sha1": "86ec042afbcdc416eaa262afc491049e974ade2b",
+      "format": "Flac",
+      "length": "313.73",
+      "height": "635",
+      "width": "640",
+      "private": "true",
+      "album": "Revisited",
+      "comment": "https:\/\/archive.org\/details\/cd_revisited_tom-lehrer",
+      "title": "The Irish Ballad",
+      "artist": "Tom Lehrer",
+      "track": "7",
+      "external-identifier": [
+        "urn:acoustid:0a121afc-3574-4493-ad1e-e19f65818fcb",
+        "urn:mb_recording_id:bad394c0-2f5f-446d-93b8-bf1150fec75c",
+        "urn:spotify:track:0XjFMvN6gETMQlTV8jZe4E",
+        "urn:youtube:sCc1gF8dNWs"
+      ],
+      "external-identifier-match-date": [
+        "acoustid:2018-12-16T23:27:17Z",
+        "mb_recording_id:2018-09-13T02:17:16Z",
+        "spotify:2018-10-22T05:18:01Z",
+        "youtube:2018-07-01T06:34:49Z"
+      ],
+      "creator": "Tom Lehrer"
+    },
+    {
+      "name": "disc1\/07. Tom Lehrer - The Irish Ballad.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "The Irish Ballad",
+      "track": "7",
+      "album": "Revisited",
+      "bitrate": "166",
+      "length": "05:13",
+      "format": "VBR MP3",
+      "original": "disc1\/07. Tom Lehrer - The Irish Ballad.flac",
+      "mtime": "1524389011",
+      "size": "6593663",
+      "md5": "8d0cbc67b7c2e84b378af84161f989a3",
+      "crc32": "1a41cc61",
+      "sha1": "a335bd573232eea08077b4dcdfc94bc45e5239e4",
+      "height": "635",
+      "width": "640",
+      "private": "true"
+    },
+    {
+      "name": "disc1\/07. Tom Lehrer - The Irish Ballad.png",
+      "source": "derivative",
+      "format": "PNG",
+      "original": "disc1\/07. Tom Lehrer - The Irish Ballad.flac",
+      "mtime": "1524389180",
+      "size": "9717",
+      "md5": "48a7dd601a2b05ee69912439d61db85d",
+      "crc32": "46032166",
+      "sha1": "870416db2112d2b4fae2a2a1502d1b0285f86465"
+    },
+    {
+      "name": "disc1\/07. Tom Lehrer - The Irish Ballad_sample.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "The Irish Ballad",
+      "track": "7",
+      "album": "Revisited",
+      "bitrate": "135",
+      "length": "00:30",
+      "format": "MP3 Sample",
+      "original": "disc1\/07. Tom Lehrer - The Irish Ballad.flac",
+      "mtime": "1524388978",
+      "size": "593405",
+      "md5": "7dd137f530b5b36dc009cf9351e3cb4f",
+      "crc32": "b3dac5be",
+      "sha1": "6d9161b9e261860a0270369d70bf1f8d4cf8c869",
+      "height": "635",
+      "width": "640"
+    },
+    {
+      "name": "disc1\/07. Tom Lehrer - The Irish Ballad_spectrogram.png",
+      "source": "derivative",
+      "format": "Spectrogram",
+      "original": "disc1\/07. Tom Lehrer - The Irish Ballad.flac",
+      "mtime": "1524389196",
+      "size": "285618",
+      "md5": "87786bb4441062c205b17f263e436eed",
+      "crc32": "d1877296",
+      "sha1": "28e518c4690f64b5e239f91fae6fae8a83301833"
+    },
+    {
+      "name": "disc1\/08. Tom Lehrer - The Hunting Song.afpk",
+      "source": "derivative",
+      "format": "Columbia Peaks",
+      "original": "disc1\/08. Tom Lehrer - The Hunting Song.flac",
+      "mtime": "1524389268",
+      "size": "23312",
+      "md5": "3fc3a59ec4be3cd97cf7ed92e938d0cd",
+      "crc32": "aee211ed",
+      "sha1": "d4c188e32c0209a55d3f56c81bb4f15e42a959ab"
+    },
+    {
+      "name": "disc1\/08. Tom Lehrer - The Hunting Song.flac",
+      "source": "original",
+      "mtime": "1524388721",
+      "size": "11568178",
+      "md5": "11e017fcff2577e43a7ce68f2054a469",
+      "crc32": "ee396281",
+      "sha1": "8e13f0b1e5926143971a14090e43c3c60fd0f072",
+      "format": "Flac",
+      "length": "119.03",
+      "height": "635",
+      "width": "640",
+      "private": "true",
+      "album": "Revisited",
+      "comment": "https:\/\/archive.org\/details\/cd_revisited_tom-lehrer",
+      "title": "The Hunting Song",
+      "artist": "Tom Lehrer",
+      "track": "8",
+      "external-identifier": [
+        "urn:acoustid:9433c182-1363-4232-aa88-9e609ad8e05f",
+        "urn:mb_recording_id:f98a2378-829c-4c81-94d4-32d9c693b6b6",
+        "urn:spotify:track:3zVoatZcTucUGWnovKtkdJ",
+        "urn:youtube:8wXCs4thXc0"
+      ],
+      "external-identifier-match-date": [
+        "acoustid:2018-12-16T23:27:17Z",
+        "mb_recording_id:2018-09-13T02:17:16Z",
+        "spotify:2018-10-22T05:18:01Z",
+        "youtube:2018-07-01T06:34:49Z"
+      ],
+      "creator": "Tom Lehrer"
+    },
+    {
+      "name": "disc1\/08. Tom Lehrer - The Hunting Song.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "The Hunting Song",
+      "track": "8",
+      "album": "Revisited",
+      "bitrate": "169",
+      "length": "01:59",
+      "format": "VBR MP3",
+      "original": "disc1\/08. Tom Lehrer - The Hunting Song.flac",
+      "mtime": "1524389085",
+      "size": "2600337",
+      "md5": "e0c5a96ab8c930a03e049ecf5d209b6f",
+      "crc32": "0cd6784f",
+      "sha1": "d00ecb20149fdd56bab5df721b19953f2a81b923",
+      "height": "635",
+      "width": "640",
+      "private": "true"
+    },
+    {
+      "name": "disc1\/08. Tom Lehrer - The Hunting Song.png",
+      "source": "derivative",
+      "format": "PNG",
+      "original": "disc1\/08. Tom Lehrer - The Hunting Song.flac",
+      "mtime": "1524389165",
+      "size": "11587",
+      "md5": "008402031e8f35e5072c7df54179c76f",
+      "crc32": "36f8eb32",
+      "sha1": "6bb5ff30acf75d7ea9572d036605e194f87e964e"
+    },
+    {
+      "name": "disc1\/08. Tom Lehrer - The Hunting Song_sample.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "The Hunting Song",
+      "track": "8",
+      "album": "Revisited",
+      "bitrate": "139",
+      "length": "00:29",
+      "format": "MP3 Sample",
+      "original": "disc1\/08. Tom Lehrer - The Hunting Song.flac",
+      "mtime": "1524389054",
+      "size": "602054",
+      "md5": "b3b401cb31ce0cd1e6a3e40d9d6c1fbf",
+      "crc32": "23028120",
+      "sha1": "2cab145dcec9ed7dcf3e39769957d170bddd2191",
+      "height": "635",
+      "width": "640"
+    },
+    {
+      "name": "disc1\/08. Tom Lehrer - The Hunting Song_spectrogram.png",
+      "source": "derivative",
+      "format": "Spectrogram",
+      "original": "disc1\/08. Tom Lehrer - The Hunting Song.flac",
+      "mtime": "1524389187",
+      "size": "297941",
+      "md5": "4a1aea2599219b24a08910b3e501f5e8",
+      "crc32": "2964573d",
+      "sha1": "65dc1382d95b8f294759f6e544f0cca649ef4bc3"
+    },
+    {
+      "name": "disc1\/09. Tom Lehrer - My Home Town.afpk",
+      "source": "derivative",
+      "format": "Columbia Peaks",
+      "original": "disc1\/09. Tom Lehrer - My Home Town.flac",
+      "mtime": "1524389230",
+      "size": "30640",
+      "md5": "82775b221cb7a2f6082b2398a2432179",
+      "crc32": "0679d6bb",
+      "sha1": "02560434b3539dc0ea55f5326661225ca0af9776"
+    },
+    {
+      "name": "disc1\/09. Tom Lehrer - My Home Town.flac",
+      "source": "original",
+      "mtime": "1524388758",
+      "size": "16189642",
+      "md5": "c3d41bbeb3f4d2397931b84ce0f2625a",
+      "crc32": "3e6330c9",
+      "sha1": "de9ada4bdc1564abb443398f5677ab00deaaf4b5",
+      "format": "Flac",
+      "length": "178.27",
+      "height": "635",
+      "width": "640",
+      "private": "true",
+      "album": "Revisited",
+      "comment": "https:\/\/archive.org\/details\/cd_revisited_tom-lehrer",
+      "title": "My Home Town",
+      "artist": "Tom Lehrer",
+      "track": "9",
+      "external-identifier": [
+        "urn:acoustid:c66bf2b5-b85f-4980-974d-ba699e215a96",
+        "urn:mb_recording_id:232265e2-7983-461a-918a-be86d0b87a9c",
+        "urn:spotify:track:26qMZeN9ezllTnUTdZn6iw",
+        "urn:youtube:NdCOZBLAcuQ"
+      ],
+      "external-identifier-match-date": [
+        "acoustid:2018-12-16T23:27:17Z",
+        "mb_recording_id:2018-09-13T02:17:16Z",
+        "spotify:2018-10-22T05:18:01Z",
+        "youtube:2018-07-01T06:34:49Z"
+      ],
+      "creator": "Tom Lehrer"
+    },
+    {
+      "name": "disc1\/09. Tom Lehrer - My Home Town.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "My Home Town",
+      "track": "9",
+      "album": "Revisited",
+      "bitrate": "166",
+      "length": "02:58",
+      "format": "VBR MP3",
+      "original": "disc1\/09. Tom Lehrer - My Home Town.flac",
+      "mtime": "1524389062",
+      "size": "3787311",
+      "md5": "a0a9e001b37bc3b280ca6acc8b15b973",
+      "crc32": "8902a5bb",
+      "sha1": "1c5bbbb776e0c60fab2dc22fc3696589ea6765ba",
+      "height": "635",
+      "width": "640",
+      "private": "true"
+    },
+    {
+      "name": "disc1\/09. Tom Lehrer - My Home Town.png",
+      "source": "derivative",
+      "format": "PNG",
+      "original": "disc1\/09. Tom Lehrer - My Home Town.flac",
+      "mtime": "1524389186",
+      "size": "10788",
+      "md5": "cd28bbd95aa385ed298049942a49744a",
+      "crc32": "b499c501",
+      "sha1": "c123c5178f6ff13353f141e0ee8c1f44f702662a"
+    },
+    {
+      "name": "disc1\/09. Tom Lehrer - My Home Town_sample.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "My Home Town",
+      "track": "9",
+      "album": "Revisited",
+      "bitrate": "135",
+      "length": "00:30",
+      "format": "MP3 Sample",
+      "original": "disc1\/09. Tom Lehrer - My Home Town.flac",
+      "mtime": "1524389064",
+      "size": "590603",
+      "md5": "690c9771bfddc2e5033670d9c8f9ac85",
+      "crc32": "0339bc2d",
+      "sha1": "4646d19c98603a42055ac4e3fb25ebf2b592cbe5",
+      "height": "635",
+      "width": "640"
+    },
+    {
+      "name": "disc1\/09. Tom Lehrer - My Home Town_spectrogram.png",
+      "source": "derivative",
+      "format": "Spectrogram",
+      "original": "disc1\/09. Tom Lehrer - My Home Town.flac",
+      "mtime": "1524389208",
+      "size": "291845",
+      "md5": "783d34a2ed1eb4ccdcd735193c98370b",
+      "crc32": "3912fd11",
+      "sha1": "66985883b8745b4099e04afda9c9c4a145218525"
+    },
+    {
+      "name": "disc1\/10. Tom Lehrer - When You Are Old and Grey.afpk",
+      "source": "derivative",
+      "format": "Columbia Peaks",
+      "original": "disc1\/10. Tom Lehrer - When You Are Old and Grey.flac",
+      "mtime": "1524389235",
+      "size": "27112",
+      "md5": "70dc131b2d360e80ac5bd51c97d7ae4c",
+      "crc32": "85acaaba",
+      "sha1": "a6a9e0d9178f58392f7697a5ec457856334f54fd"
+    },
+    {
+      "name": "disc1\/10. Tom Lehrer - When You Are Old and Grey.flac",
+      "source": "original",
+      "mtime": "1524388706",
+      "size": "13870879",
+      "md5": "d56a1663905524810a1f7a00e1f080c5",
+      "crc32": "cdcb9e01",
+      "sha1": "bf88465dfabe98b041cb56a3d4db45f881ec3120",
+      "format": "Flac",
+      "length": "147.37",
+      "height": "635",
+      "width": "640",
+      "private": "true",
+      "album": "Revisited",
+      "comment": "https:\/\/archive.org\/details\/cd_revisited_tom-lehrer",
+      "title": "When You Are Old and Grey",
+      "artist": "Tom Lehrer",
+      "track": "10",
+      "external-identifier": [
+        "urn:acoustid:2ebfc4b3-2a3e-4910-b61d-9c3f89a813ff",
+        "urn:mb_recording_id:9bd8d12b-188c-4b2a-8667-ecc035aa4302",
+        "urn:spotify:track:4sQiUypuzY0sJa30mIkANg",
+        "urn:youtube:8AiPDk6diNo"
+      ],
+      "external-identifier-match-date": [
+        "acoustid:2018-12-16T23:27:17Z",
+        "mb_recording_id:2018-09-13T02:17:16Z",
+        "spotify:2018-10-22T05:18:01Z",
+        "youtube:2018-07-01T06:34:49Z"
+      ],
+      "creator": "Tom Lehrer"
+    },
+    {
+      "name": "disc1\/10. Tom Lehrer - When You Are Old and Grey.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "When You Are Old and Grey",
+      "track": "10",
+      "album": "Revisited",
+      "bitrate": "167",
+      "length": "02:27",
+      "format": "VBR MP3",
+      "original": "disc1\/10. Tom Lehrer - When You Are Old and Grey.flac",
+      "mtime": "1524389051",
+      "size": "3169368",
+      "md5": "7df56e1031aeb67c3524f0257e9a3609",
+      "crc32": "074bcfa9",
+      "sha1": "8a6095a9abaca512c9b1db76ad3247ba796a05c5",
+      "height": "635",
+      "width": "640",
+      "private": "true"
+    },
+    {
+      "name": "disc1\/10. Tom Lehrer - When You Are Old and Grey.png",
+      "source": "derivative",
+      "format": "PNG",
+      "original": "disc1\/10. Tom Lehrer - When You Are Old and Grey.flac",
+      "mtime": "1524389131",
+      "size": "10525",
+      "md5": "a3b720e48f186aa5a57bcf95bde186fc",
+      "crc32": "00c08c1c",
+      "sha1": "964fede92ebdb1ad4ac13a87a4d855ff2c027c17"
+    },
+    {
+      "name": "disc1\/10. Tom Lehrer - When You Are Old and Grey_sample.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "When You Are Old and Grey",
+      "track": "10",
+      "album": "Revisited",
+      "bitrate": "137",
+      "length": "00:30",
+      "format": "MP3 Sample",
+      "original": "disc1\/10. Tom Lehrer - When You Are Old and Grey.flac",
+      "mtime": "1524389073",
+      "size": "599996",
+      "md5": "832b927b6c85689c916ebbd327885a2c",
+      "crc32": "ed78d714",
+      "sha1": "da5d3b6dc534125c650869a60de93e36a841b8e1",
+      "height": "635",
+      "width": "640"
+    },
+    {
+      "name": "disc1\/10. Tom Lehrer - When You Are Old and Grey_spectrogram.png",
+      "source": "derivative",
+      "format": "Spectrogram",
+      "original": "disc1\/10. Tom Lehrer - When You Are Old and Grey.flac",
+      "mtime": "1524389190",
+      "size": "292377",
+      "md5": "64d598c9b29b1007b283d968a8e54f37",
+      "crc32": "cda95cb1",
+      "sha1": "643c17e2a70bf169c19bc7480ccc13491b52df91"
+    },
+    {
+      "name": "disc1\/11. Tom Lehrer - The Wiener Schnitzel Waltz.afpk",
+      "source": "derivative",
+      "format": "Columbia Peaks",
+      "original": "disc1\/11. Tom Lehrer - The Wiener Schnitzel Waltz.flac",
+      "mtime": "1524389226",
+      "size": "24960",
+      "md5": "b22c713c41d5f138b635bbea16c29216",
+      "crc32": "6e7cf22f",
+      "sha1": "9d0ea29c41564c4f0d0c78c55eb573e0e402c1d9"
+    },
+    {
+      "name": "disc1\/11. Tom Lehrer - The Wiener Schnitzel Waltz.flac",
+      "source": "original",
+      "mtime": "1524388675",
+      "size": "13355803",
+      "md5": "93d730b63fc64315899949c9a4532c76",
+      "crc32": "6e7c9d14",
+      "sha1": "928ccd89558b03b755862bd4849764e10753a40f",
+      "format": "Flac",
+      "length": "141.47",
+      "height": "635",
+      "width": "640",
+      "private": "true",
+      "album": "Revisited",
+      "comment": "https:\/\/archive.org\/details\/cd_revisited_tom-lehrer",
+      "title": "The Wiener Schnitzel Waltz",
+      "artist": "Tom Lehrer",
+      "track": "11",
+      "external-identifier": [
+        "urn:acoustid:7e51762b-4de9-4a87-87bc-52891a687d83",
+        "urn:mb_recording_id:34956024-d0de-4ee6-94cc-2af936124ecb",
+        "urn:spotify:track:0wYDFV2doikzIgsf2rAp62",
+        "urn:youtube:0kMY61W9tfc"
+      ],
+      "external-identifier-match-date": [
+        "acoustid:2018-12-16T23:27:17Z",
+        "mb_recording_id:2018-09-13T02:17:16Z",
+        "spotify:2018-10-22T05:18:01Z",
+        "youtube:2018-07-01T06:34:49Z"
+      ],
+      "creator": "Tom Lehrer"
+    },
+    {
+      "name": "disc1\/11. Tom Lehrer - The Wiener Schnitzel Waltz.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "The Wiener Schnitzel Waltz",
+      "track": "11",
+      "album": "Revisited",
+      "bitrate": "167",
+      "length": "02:21",
+      "format": "VBR MP3",
+      "original": "disc1\/11. Tom Lehrer - The Wiener Schnitzel Waltz.flac",
+      "mtime": "1524388966",
+      "size": "3047736",
+      "md5": "218ed1f3a9b95931dbb87130fc57ce0f",
+      "crc32": "ae089576",
+      "sha1": "1fac3feba4b168df3bde6f1cd9530dda322b4750",
+      "height": "635",
+      "width": "640",
+      "private": "true"
+    },
+    {
+      "name": "disc1\/11. Tom Lehrer - The Wiener Schnitzel Waltz.png",
+      "source": "derivative",
+      "format": "PNG",
+      "original": "disc1\/11. Tom Lehrer - The Wiener Schnitzel Waltz.flac",
+      "mtime": "1524389160",
+      "size": "10223",
+      "md5": "4aefb32595e27c192bbc918811443a91",
+      "crc32": "bfebb470",
+      "sha1": "5b0a469d16ab2147f3837c31adcddfaa12a27084"
+    },
+    {
+      "name": "disc1\/11. Tom Lehrer - The Wiener Schnitzel Waltz_sample.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "The Wiener Schnitzel Waltz",
+      "track": "11",
+      "album": "Revisited",
+      "bitrate": "136",
+      "length": "00:30",
+      "format": "MP3 Sample",
+      "original": "disc1\/11. Tom Lehrer - The Wiener Schnitzel Waltz.flac",
+      "mtime": "1524389067",
+      "size": "596102",
+      "md5": "b65ceda6942cf55eeca12dfe4a1b75c9",
+      "crc32": "cfff6ffa",
+      "sha1": "f901197009203a1639aa5770faa9cd32701e5651",
+      "height": "635",
+      "width": "640"
+    },
+    {
+      "name": "disc1\/11. Tom Lehrer - The Wiener Schnitzel Waltz_spectrogram.png",
+      "source": "derivative",
+      "format": "Spectrogram",
+      "original": "disc1\/11. Tom Lehrer - The Wiener Schnitzel Waltz.flac",
+      "mtime": "1524389204",
+      "size": "292142",
+      "md5": "ffac56c020532871abe1e054b570539b",
+      "crc32": "89b59747",
+      "sha1": "856fd9125889ae620070205052d264fe46d61add"
+    },
+    {
+      "name": "disc1\/12. Tom Lehrer - I Hold Your Hand in Mine.afpk",
+      "source": "derivative",
+      "format": "Columbia Peaks",
+      "original": "disc1\/12. Tom Lehrer - I Hold Your Hand in Mine.flac",
+      "mtime": "1524389244",
+      "size": "20616",
+      "md5": "6cb7062a830e4bb6788fc11278e01c5c",
+      "crc32": "aab2a99f",
+      "sha1": "54b58824872b7009de41292cddb42561ffae90ed"
+    },
+    {
+      "name": "disc1\/12. Tom Lehrer - I Hold Your Hand in Mine.flac",
+      "source": "original",
+      "mtime": "1524388649",
+      "size": "10705284",
+      "md5": "1e9990c8c9b3252857227a801a24dec2",
+      "crc32": "45890206",
+      "sha1": "df9ee26ee4685c1277283765703e2edf5f962506",
+      "format": "Flac",
+      "length": "115.13",
+      "height": "635",
+      "width": "640",
+      "private": "true",
+      "album": "Revisited",
+      "comment": "https:\/\/archive.org\/details\/cd_revisited_tom-lehrer",
+      "title": "I Hold Your Hand in Mine",
+      "artist": "Tom Lehrer",
+      "track": "12",
+      "external-identifier": [
+        "urn:acoustid:9d431fd0-ea20-4c05-bf8c-d50573b0cb35",
+        "urn:mb_recording_id:f69fc7d4-61cb-435d-a3c4-03af5bcc77ea",
+        "urn:spotify:track:6oC3FvjrA53hWDluQewrn7",
+        "urn:youtube:It5LpEVlYho"
+      ],
+      "external-identifier-match-date": [
+        "acoustid:2018-12-16T23:27:17Z",
+        "mb_recording_id:2018-09-13T02:17:16Z",
+        "spotify:2018-10-22T05:18:01Z",
+        "youtube:2018-07-01T06:34:49Z"
+      ],
+      "creator": "Tom Lehrer"
+    },
+    {
+      "name": "disc1\/12. Tom Lehrer - I Hold Your Hand in Mine.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "I Hold Your Hand in Mine",
+      "track": "12",
+      "album": "Revisited",
+      "bitrate": "163",
+      "length": "01:55",
+      "format": "VBR MP3",
+      "original": "disc1\/12. Tom Lehrer - I Hold Your Hand in Mine.flac",
+      "mtime": "1524388972",
+      "size": "2439618",
+      "md5": "3f88e0f5f69583d17f9ad866282f72c7",
+      "crc32": "aa90787f",
+      "sha1": "4e81280ba0c0c1687fc0893b944326fd1bb4ad94",
+      "height": "635",
+      "width": "640",
+      "private": "true"
+    },
+    {
+      "name": "disc1\/12. Tom Lehrer - I Hold Your Hand in Mine.png",
+      "source": "derivative",
+      "format": "PNG",
+      "original": "disc1\/12. Tom Lehrer - I Hold Your Hand in Mine.flac",
+      "mtime": "1524389116",
+      "size": "10512",
+      "md5": "a0c3500ae3af83e2a55ee3d99dd2ef53",
+      "crc32": "3727a504",
+      "sha1": "54eca71fa7b623c12d21bf69a3d4276c6cdeb942"
+    },
+    {
+      "name": "disc1\/12. Tom Lehrer - I Hold Your Hand in Mine_sample.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "I Hold Your Hand in Mine",
+      "track": "12",
+      "album": "Revisited",
+      "bitrate": "133",
+      "length": "00:28",
+      "format": "MP3 Sample",
+      "original": "disc1\/12. Tom Lehrer - I Hold Your Hand in Mine.flac",
+      "mtime": "1524389036",
+      "size": "563694",
+      "md5": "29272b605eba3aa229a1e9f8d72e9948",
+      "crc32": "de390fbf",
+      "sha1": "9fbdb50850bdc5aac9bb623f9b5b4263468d64a0",
+      "height": "635",
+      "width": "640"
+    },
+    {
+      "name": "disc1\/12. Tom Lehrer - I Hold Your Hand in Mine_spectrogram.png",
+      "source": "derivative",
+      "format": "Spectrogram",
+      "original": "disc1\/12. Tom Lehrer - I Hold Your Hand in Mine.flac",
+      "mtime": "1524389211",
+      "size": "291273",
+      "md5": "04ece76dc39b01d7a1d5cb07209a5736",
+      "crc32": "88288f60",
+      "sha1": "69d9b69d73d87e9caee7ef1a9e18660c298319ce"
+    },
+    {
+      "name": "disc1\/13. Tom Lehrer - Be Prepared.afpk",
+      "source": "derivative",
+      "format": "Columbia Peaks",
+      "original": "disc1\/13. Tom Lehrer - Be Prepared.flac",
+      "mtime": "1524389248",
+      "size": "31640",
+      "md5": "521855f1e9f5a541c161353aa99c652b",
+      "crc32": "3d5488ed",
+      "sha1": "b0d123eb10b6c4707d1b0f131003be618e394452"
+    },
+    {
+      "name": "disc1\/13. Tom Lehrer - Be Prepared.flac",
+      "source": "original",
+      "mtime": "1524388641",
+      "size": "14776126",
+      "md5": "a52906769844bc503073e52cdf3ed10c",
+      "crc32": "341a479b",
+      "sha1": "a4a6413d4d842ee380809460c8a79572eed0015f",
+      "format": "Flac",
+      "length": "159.69",
+      "height": "635",
+      "width": "640",
+      "private": "true",
+      "album": "Revisited",
+      "comment": "https:\/\/archive.org\/details\/cd_revisited_tom-lehrer",
+      "title": "Be Prepared",
+      "artist": "Tom Lehrer",
+      "track": "13",
+      "external-identifier": [
+        "urn:acoustid:2827990d-303e-430f-a7d9-d30b789ece22",
+        "urn:mb_recording_id:46329a24-15dc-4241-b670-ef0c80101737",
+        "urn:spotify:track:1SoFjMaKsTaadLVXhCUQ72",
+        "urn:youtube:hoEVPtVk9nE"
+      ],
+      "external-identifier-match-date": [
+        "acoustid:2018-12-16T23:27:17Z",
+        "mb_recording_id:2018-09-13T02:17:16Z",
+        "spotify:2018-10-22T05:18:01Z",
+        "youtube:2018-07-01T06:34:49Z"
+      ],
+      "creator": "Tom Lehrer"
+    },
+    {
+      "name": "disc1\/13. Tom Lehrer - Be Prepared.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "Be Prepared",
+      "track": "13",
+      "album": "Revisited",
+      "bitrate": "165",
+      "length": "02:39",
+      "format": "VBR MP3",
+      "original": "disc1\/13. Tom Lehrer - Be Prepared.flac",
+      "mtime": "1524388985",
+      "size": "3380547",
+      "md5": "4292d74cbaac6d1b69ab0abafbbea942",
+      "crc32": "12b3acc8",
+      "sha1": "53b8720d7037ae70e07a381b38472658aff86938",
+      "height": "635",
+      "width": "640",
+      "private": "true"
+    },
+    {
+      "name": "disc1\/13. Tom Lehrer - Be Prepared.png",
+      "source": "derivative",
+      "format": "PNG",
+      "original": "disc1\/13. Tom Lehrer - Be Prepared.flac",
+      "mtime": "1524389149",
+      "size": "10427",
+      "md5": "702ed9c448c06c73e2f300fedc0e4bc5",
+      "crc32": "48358dbb",
+      "sha1": "92ef84a457df593ba3465e780219526938cdb8c9"
+    },
+    {
+      "name": "disc1\/13. Tom Lehrer - Be Prepared_sample.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "Be Prepared",
+      "track": "13",
+      "album": "Revisited",
+      "bitrate": "133",
+      "length": "00:30",
+      "format": "MP3 Sample",
+      "original": "disc1\/13. Tom Lehrer - Be Prepared.flac",
+      "mtime": "1524389044",
+      "size": "585086",
+      "md5": "9bf4f86ec87394e092ef64071b3ecd2b",
+      "crc32": "bf0f4934",
+      "sha1": "ebec27587362acf09529027ee12e4beffbe9932e",
+      "height": "635",
+      "width": "640"
+    },
+    {
+      "name": "disc1\/13. Tom Lehrer - Be Prepared_spectrogram.png",
+      "source": "derivative",
+      "format": "Spectrogram",
+      "original": "disc1\/13. Tom Lehrer - Be Prepared.flac",
+      "mtime": "1524389213",
+      "size": "298633",
+      "md5": "3d84120513ad1a4787606ac6f7e38a72",
+      "crc32": "7fa9dbf3",
+      "sha1": "8e6a8cf3a4fbd7996404f5ddfd815a528cd4a842"
+    },
+    {
+      "name": "disc1\/14. Tom Lehrer - L-Y.afpk",
+      "source": "derivative",
+      "format": "Columbia Peaks",
+      "original": "disc1\/14. Tom Lehrer - L-Y.flac",
+      "mtime": "1524389256",
+      "size": "25256",
+      "md5": "76e061472c389daa47a4ccbce7c0553e",
+      "crc32": "39c2f574",
+      "sha1": "f8e278c98a5849d29ebd3759bfccadddca3e7022"
+    },
+    {
+      "name": "disc1\/14. Tom Lehrer - L-Y.flac",
+      "source": "original",
+      "mtime": "1524388743",
+      "size": "15210051",
+      "md5": "22ea7e6ac3b2c7b3ded9ebf384a5c260",
+      "crc32": "5d7691ac",
+      "sha1": "05793f3d61d9b4e4160a76426b0a63cb0678c1d9",
+      "format": "Flac",
+      "length": "131.73",
+      "height": "635",
+      "width": "640",
+      "private": "true",
+      "album": "Revisited",
+      "comment": "https:\/\/archive.org\/details\/cd_revisited_tom-lehrer",
+      "title": "L-Y",
+      "artist": "Tom Lehrer",
+      "track": "14",
+      "external-identifier": [
+        "urn:acoustid:c9fb24ac-5d17-4541-a29c-0735cd389065",
+        "urn:mb_recording_id:ef9a484e-b373-4045-8cd1-bf44d34e4739",
+        "urn:spotify:track:0j3mYN2EnArNkOdir8lItw",
+        "urn:youtube:dB2Ff8H7oVo"
+      ],
+      "external-identifier-match-date": [
+        "acoustid:2018-12-16T23:27:17Z",
+        "mb_recording_id:2018-09-13T02:17:16Z",
+        "spotify:2018-10-22T05:18:01Z",
+        "youtube:2018-07-01T06:34:49Z"
+      ],
+      "creator": "Tom Lehrer"
+    },
+    {
+      "name": "disc1\/14. Tom Lehrer - L-Y.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "L-Y",
+      "track": "14",
+      "album": "Revisited",
+      "bitrate": "155",
+      "length": "02:11",
+      "format": "VBR MP3",
+      "original": "disc1\/14. Tom Lehrer - L-Y.flac",
+      "mtime": "1524388991",
+      "size": "2644430",
+      "md5": "fa25cc7b6e2dc9b20c27823896b681c9",
+      "crc32": "27aa318d",
+      "sha1": "3fad246a89c3c611b9044e68d85b9f1bf86462d3",
+      "height": "635",
+      "width": "640",
+      "private": "true"
+    },
+    {
+      "name": "disc1\/14. Tom Lehrer - L-Y.png",
+      "source": "derivative",
+      "format": "PNG",
+      "original": "disc1\/14. Tom Lehrer - L-Y.flac",
+      "mtime": "1524389155",
+      "size": "12057",
+      "md5": "384fad0e6ce594ebfb16c76a7940848d",
+      "crc32": "cff13259",
+      "sha1": "6ad508c7db8daa0d481c17aa72a507001ec5b059"
+    },
+    {
+      "name": "disc1\/14. Tom Lehrer - L-Y_sample.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "L-Y",
+      "track": "14",
+      "album": "Revisited",
+      "bitrate": "123",
+      "length": "00:30",
+      "format": "MP3 Sample",
+      "original": "disc1\/14. Tom Lehrer - L-Y.flac",
+      "mtime": "1524389042",
+      "size": "546963",
+      "md5": "658a63ee85710f9ea866cd47e9922c66",
+      "crc32": "a387e60b",
+      "sha1": "0ef24291cf064c5f60cff1bacaffd5b4dd06b072",
+      "height": "635",
+      "width": "640"
+    },
+    {
+      "name": "disc1\/14. Tom Lehrer - L-Y_spectrogram.png",
+      "source": "derivative",
+      "format": "Spectrogram",
+      "original": "disc1\/14. Tom Lehrer - L-Y.flac",
+      "mtime": "1524389206",
+      "size": "322927",
+      "md5": "961bbdc37e664bbc2bf30f2ca24557d3",
+      "crc32": "d1237a1c",
+      "sha1": "87adf0ac8c65a48144274ee74478874a4b6443fb"
+    },
+    {
+      "name": "disc1\/15. Tom Lehrer - Silent E.afpk",
+      "source": "derivative",
+      "format": "Columbia Peaks",
+      "original": "disc1\/15. Tom Lehrer - Silent E.flac",
+      "mtime": "1524389260",
+      "size": "18048",
+      "md5": "a1a6e0bc435f81eeaf2b9908c559d950",
+      "crc32": "74846cb1",
+      "sha1": "f770263b6f5fe95fc52306da51f035486fa1b9bd"
+    },
+    {
+      "name": "disc1\/15. Tom Lehrer - Silent E.flac",
+      "source": "original",
+      "mtime": "1524388779",
+      "size": "10804261",
+      "md5": "727f940e53f85bd8f24f48efe3a14efa",
+      "crc32": "803a6583",
+      "sha1": "1e31ffaeaa0490cb26e1c9c3872b96e247a21917",
+      "format": "Flac",
+      "length": "91",
+      "height": "635",
+      "width": "640",
+      "private": "true",
+      "album": "Revisited",
+      "comment": "https:\/\/archive.org\/details\/cd_revisited_tom-lehrer",
+      "title": "Silent E",
+      "artist": "Tom Lehrer",
+      "track": "15",
+      "external-identifier": [
+        "urn:acoustid:1e4a82b2-c3fc-4863-af1b-8d00352697e9",
+        "urn:mb_recording_id:3fba9dd4-2333-47cc-a135-293889a18974",
+        "urn:spotify:track:0uoqUdVEU7z23fgCfcqHWG",
+        "urn:youtube:91BQqdNOUxs"
+      ],
+      "external-identifier-match-date": [
+        "acoustid:2018-12-16T23:27:17Z",
+        "mb_recording_id:2018-09-13T02:17:16Z",
+        "spotify:2018-10-22T05:18:01Z",
+        "youtube:2018-07-01T06:34:49Z"
+      ],
+      "creator": "Tom Lehrer"
+    },
+    {
+      "name": "disc1\/15. Tom Lehrer - Silent E.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "Silent E",
+      "track": "15",
+      "album": "Revisited",
+      "bitrate": "157",
+      "length": "01:31",
+      "format": "VBR MP3",
+      "original": "disc1\/15. Tom Lehrer - Silent E.flac",
+      "mtime": "1524388959",
+      "size": "1873763",
+      "md5": "be728907ceed370385af2f38f08cac6e",
+      "crc32": "27e523d8",
+      "sha1": "cf00082c1c62c66a01e7e40a9eef27caa4c5c08d",
+      "height": "635",
+      "width": "640",
+      "private": "true"
+    },
+    {
+      "name": "disc1\/15. Tom Lehrer - Silent E.png",
+      "source": "derivative",
+      "format": "PNG",
+      "original": "disc1\/15. Tom Lehrer - Silent E.flac",
+      "mtime": "1524389121",
+      "size": "12995",
+      "md5": "b85c5aec68457c8dc205a45de0782f48",
+      "crc32": "77713980",
+      "sha1": "3d29d79a4130b3e838b2083398ec077443bec461"
+    },
+    {
+      "name": "disc1\/15. Tom Lehrer - Silent E_sample.mp3",
+      "source": "derivative",
+      "creator": "Tom Lehrer",
+      "title": "Silent E",
+      "track": "15",
+      "album": "Revisited",
+      "bitrate": "124",
+      "length": "00:22",
+      "format": "MP3 Sample",
+      "original": "disc1\/15. Tom Lehrer - Silent E.flac",
+      "mtime": "1524388974",
+      "size": "438657",
+      "md5": "c78ca6f83ece1df1c266ebe3bd518458",
+      "crc32": "fd4e24e1",
+      "sha1": "edf7ff61289a40ac3103f1bc2860c838d8c2c6d1",
+      "height": "635",
+      "width": "640"
+    },
+    {
+      "name": "disc1\/15. Tom Lehrer - Silent E_spectrogram.png",
+      "source": "derivative",
+      "format": "Spectrogram",
+      "original": "disc1\/15. Tom Lehrer - Silent E.flac",
+      "mtime": "1524389202",
+      "size": "303030",
+      "md5": "7b89c3551b3050e781e11a0ef5f27968",
+      "crc32": "8f9277d2",
+      "sha1": "aa3255688ed5cd8486ed8b096ffa3ebb6f561053"
+    },
+    {
+      "name": "disc1\/Tom Lehrer - Revisited.cue",
+      "source": "original",
+      "mtime": "1524388748",
+      "size": "1920",
+      "md5": "214975d55d8d42cf9aeb8e4ef1649977",
+      "crc32": "e2d40c32",
+      "sha1": "e58423e36ec74510c28f0626a74b94efe2c93a6b",
+      "format": "Cue Sheet",
+      "private": "true"
+    },
+    {
+      "name": "disc1\/Tom Lehrer - Revisited.log",
+      "source": "original",
+      "mtime": "1524388752",
+      "size": "6240",
+      "md5": "fc2448d76a145751a6aa6fcee5ebb0ed",
+      "crc32": "58e0ae10",
+      "sha1": "3b3d8f8eb384dabb7eceb2b299bf28f34907b1bb",
+      "format": "Log",
+      "private": "true"
+    },
+    {
+      "name": "disc1\/Tom Lehrer - Revisited.m3u",
+      "source": "original",
+      "mtime": "1524388763",
+      "size": "2267",
+      "md5": "10a1b689e3ac83717e8852515cd8255f",
+      "crc32": "53884208",
+      "sha1": "d4b7f57ca8cae1fc9b543e442322c53058b5e216",
+      "format": "M3U",
+      "private": "true"
     }
   ],
-  "files_count": 108,
-  "item_last_updated": 1701443477,
-  "item_size": 416276959,
+  "files_count": 112,
+  "item_last_updated": 1701388410,
+  "item_size": 420747366,
   "metadata": {
-    "title": "More of Tom Lehrer",
-    "creator": "Tom Lehrer",
-    "subject": "Humorous songs",
-    "description": [
-      "Humorous songs; the composer singing and accompanying himself on the piano",
-      "Descriptive notes on container",
-      "Poisoning pigeons in the park -- Bright college days -- A Christmas carol -- The elements -- Oedipus Rex -- In Old Mexico -- Clementine -- It makes a fellow proud to be a soldier -- She's my girl -- The masochism tango -- We will all go together when we go"
-    ],
-    "publisher": "Cambridge, Mass. : Lehrer",
-    "date": "1959",
-    "language": "eng",
-    "catalog-number": "TL 102",
-    "source": "Vinyl LP",
-    "lineage": "Technics SL1200MK5 Turntable + Audio-Technica AT95e cartridge > Gem Sound PlusB Phono Preamp > Audacity > Flac (> ffmpeg > mp3)",
-    "boxid": ["IA1260409", "OL100020509"],
-    "sponsor": "Internet Archive",
-    "contributor": "Internet Archive",
-    "scanningcenter": "sanfrancisco",
-    "mediatype": "audio",
-    "call_number": "14645343",
-    "external-link": "<a href=\"http://musicbrainz.org/release/dd8326ba-7445-42f8-ab9e-a055c36dde62.html\" rel=\"nofollow\">MusicBrainz metadata</a>",
-    "updatedate": "2010-02-04 21:16:48",
-    "updater": "scanner-anitra-howard@archive.org",
-    "identifier": "moreoftomlehrers00lehr",
-    "uploader": "scanner-anitra-howard@archive.org",
-    "addeddate": "2010-02-04 21:16:50",
-    "publicdate": "2010-02-04 21:16:54",
-    "scandate": "20100316184353",
-    "collection": [
-      "album_recordings",
-      "recycledrecords",
-      "samples_only",
-      "audio_music"
-    ],
-    "filesxml": "Thu Oct 25 21:55:28 UTC 2012",
-    "backup_location": "ia903604_28",
-    "identifier-access": "http://archive.org/details/moreoftomlehrers00lehr",
-    "identifier-ark": "ark:/13960/t6160xx41",
-    "imagecount": "5",
+    "identifier": "cd_revisited_tom-lehrer",
+    "adaptive_ocr": "true",
     "betterpdf": "true",
-    "external_metadata_update": "2019-03-23T08:06:07Z",
-    "external-identifier": [
-      "urn:mb_releasegroup_id:f1a7e209-8395-355d-93a0-bb1a5a105424",
-      "urn:spotify:album:2ez9hfFQ772DXjuJ94sgJi"
+    "boxid": "IA1561322",
+    "collection": [
+      "acdc",
+      "archiveofcontemporarymusic",
+      "audio_music",
+      "bostonpubliclibrary-cds",
+      "othermindsmusicreferencelibrary",
+      "dr-mark-g-markowitz-collection",
+      "samples_only"
     ],
+    "collection-catalog-number": "01-0550",
+    "contributor": "Internet Archive",
+    "country": "US",
+    "creator": "Tom Lehrer",
+    "date": "1990-05-02",
+    "description": "Tracklist:\n\n 1. Introduction\n 2. I Wanna Go Back to Dixie\n 3. The Wild West Is Where I Want to Be\n 4. The Old Dope Peddler\n 5. Fight Fiercely, Harvard\n 6. Lobachevsky\n 7. The Irish Ballad\n 8. The Hunting Song\n 9. My Home Town\n10. When You Are Old and Grey\n11. The Wiener Schnitzel Waltz\n12. I Hold Your Hand in Mine\n13. Be Prepared\n14. L-Y\n15. Silent E\n\n",
+    "external-identifier": [
+      "urn:discogs:master:219646",
+      "urn:discogs:release:1310732",
+      "urn:freedb_id:misc+bf09a30f",
+      "urn:gracenote_id:4905486-6C6F040C8619730E6B7634C6C88C5340",
+      "urn:mb_release_id:6af24efd-09a3-4721-b067-a9b84de96461",
+      "urn:mb_releasegroup_id:9aa16327-2bb5-3cac-8930-72ee50f80399",
+      "urn:spotify:album:3vAXtOsdc8wiGkonlht2my",
+      "urn:upc:075992620321"
+    ],
+    "language": "eng",
+    "mediatype": "audio",
+    "ppi": "600",
+    "publisher": "Reprise Records",
+    "publisher-catalog-number": "9 26203-2",
+    "scandate": "20180422091403",
+    "scanner": "archivecd-hk09 (ArchiveCD Version 2.1.45)",
+    "scanningcenter": "hongkong",
+    "software_version": "ArchiveCD Version 2.1.45",
+    "source": "CD",
+    "source-id": "musicbrainz.org",
+    "title": "Revisited",
+    "total-time": "442",
+    "uploader": "associate-hoiyan-lam@archive.org",
+    "addeddate": "2018-04-22 09:14:11",
+    "publicdate": "2018-04-22 09:15:03",
+    "curation": "[curator]validator@archive.org[/curator][date]20180422091546[/date][comment]checked for malware[/comment]",
+    "identifier-access": "http://archive.org/details/cd_revisited_tom-lehrer",
+    "identifier-ark": "ark:/13960/t83k0686r",
+    "imagecount": "8",
+    "external_metadata_update": "2019-04-15T14:22:37Z",
+    "backup_location": "ia906703_27",
+    "bookreader-defaults": "mode/1up",
     "access-restricted-item": "true",
     "ocr_module_version": "0.0.21",
     "ocr_converted": "abbyy-to-hocr 1.1.37",
     "page_number_confidence": "0",
     "page_number_module_version": "1.0.3"
   },
-  "server": "ia801307.us.archive.org",
-  "uniq": 712233479,
-  "workable_servers": ["ia801307.us.archive.org", "ia601307.us.archive.org"]
+  "reviews": [
+    {
+      "reviewtitle": "Truly \"Revisited\" for CD.",
+      "reviewbody": "Lehrer's second \"Live\" album \"Tom Lehrer Revisited\" was originally self-released on his Lehrer Records label (cat. # TL 101 - mono only). Side 1 was recorded in Cambridge, Mass. and side 2 was recorded in Australia.\nThe Australian recordings were not as well-recorded as the Cambridge tapes, with lesser sound quality (but equally superb performances.)  \n\nIn Australia, Decca did their own thing and issue a live LP \"Tom Lehrer Discovers Australia (and vice versa)\" pulled entirely from their recordings,\n\nDecca in the UK did their own thing by issuing the entire Cambridge performance and not including any Australian recordings, citing them inferior.\n\nThis album was not re-issued in the US as part of Lehrer's 1960's contract with Reprise.  However, it did see first reissue on the \"The Remains of Tom Lehrer\" set from Rhino/Warner Bros. Decca in the UK kept the LP in print until the early 80's.\n\nWhat Warner/Rhino did  for this reissue was euse the UK version of \"Revisited\" with the all-Cambridge recording.  As this is now considered the most \"Common\" version, the original Lehrer pressing is hard to come by. So now \"Tom Lehrer Revisited\" is truly REVISITED for the digital era.\n\n\n\n\n\n\n",
+      "stars": "5",
+      "reviewer": "Lord Keltor",
+      "reviewdate": "2021-04-26 01:23:56",
+      "createdate": "2021-04-26 01:23:56",
+      "reviewer_itemname": "@lord_keltor"
+    },
+    {
+      "reviewtitle": "ALL P. D. \u2014Please Post in FULL.",
+      "reviewbody": "Please read Dr. Lehrer's website for further information as to his unusual copyright status. \n\nhttps://tomlehrersongs.com/\n\nDr. Lehrer would like you to POST ALL OF HIE WORK IN FULL, \u2014for GRATIS - FREE!    He does not expect, desire, nor seek payment of any sort.  Dr. Lehrer is 95 and has legally converted all his compositions to the PUBLIC DOMAIN.  He needs no money and would rather see his work distributed for FREE.\nAs Dr. Lehrer says on his website,\n\n\"In short, I no longer retain any rights to any of my songs.\nSo help yourselves, and don\u2019t send me any money.\"\n\nIn the beginning, Dr. Lehrer signed NO contracts with any record labels. After seeking a record contract, he took a look at the one-sided, usury publishing contracts and wondered why he needed ANY record company to steal his money!   Dr. Lehrer  booked and paid for his own studio time.  He paid for mastering (i.e., lathing and the making of a mother and pressing stampers. ) He copyrighted his material and registered with ASCAP.  \nTom Lehrer's night club engagements quickly made him famous.  He became in such demand that he was paid more than any of his contemporary performers. He had NO management as he needed no management.  \nDr. Lehrer realised that his self-made records would sell without advertising or \"distribution\". \nTom Lehrer, as a true artist of genius, required nothing but his recordings to distribute and sell his recordings.  It was all quite simple.  Dr. Lehrer was the first artist to self produce and publish.  Much to the annoyance of the record industry, he printed his own labels and paid for \"vanity\" pressings.  \nNotice that his original maroon labels simply read, \"Tom Lehrer Records\".  This was in 1958, \u2014waay before the web! And it all worked.  They are dull looking, but his pressing runs ran into the hundreds of thousands;  \u2014probably millions.  He did this without radio play, advertising, reviews, or conventional promotion of any type.  All he did was perform a few night club engagements and he had acquired all the fame he required.  He did don't even need to show people what he looked like.  He broke every rule of commercial music sales, and it is probably a wonder that one of the major labels did not have him \"bumped off\".      \n\nALL the profit went to TOM LEHRER, and no one else.   \n\nI own them all.  I was not wealthy  (a poor college student) and Dr. Lehrer  kept his prices lower than most records.  I was lucky enough to get to know Dr. Lehrer c. 1971 and see him perform living room benefit concerts for George McGovern's campaign. (I got in free as a drinks server).  Dr. Lehrer is one of the nicest guys I have ever met. That he made a lot of money from his performing and writing is one of the best stories I know.  Many people do not know that he started writing his songs when he was still in college (Harvard) and had become famous from playing at parties.  it was a small jump to being one of the highest paid night club performers of his time!  \n\nHe had NO management, NO publishing or recording contracts, NO promotion, NO sound gear, \u2014nothing but his brain, vocal chords great piano hands and an uncanny ability to quickly write the funniest topical songs I have heard.  Oh yeah, he is one of the finest musicians I have known.\n\nI was a professional musician in a popular combo while in College and for another 10 -11 years after college.  All of the horrible problems I experienced writing songs and performing with a pop band, were thoroughly unfamiliar to Dr. Lehrer.  Tom Lehrer is the ultimate success story of the adage, \"Keep it SIMPLE\".   It was nice to know that there was absolutely NO other person or company between Tom Lehrer as a songwriter and performer, and me as audience member, record buyer and Tom Lehrer FAN.  \n\nThis may never happen again, but if other artists would follow his example, I think your music dollar would go exclusively to the artist and the leaches that comprise the \"music industry\" would become extinct.  Artists would earn more money, but music would cost YOU less money!  Only the better artists would be well known. \u2014Simple, eh? \n\nAs for selling his records, I believe that he simply worked out a straight retail 20% profit margin and shipped records to record shops.  I have heard that his records sold out 100%, and did so FAST.  \u2014I.e., Store returns were never an issue. I recall that he took a few years off from teaching to play the clubs and record albums. Lehrer needed only a piano and the simplest of professional recording gear and studio.  He was capable of starting and finishing a multi-gold selling album in an afternoon.  A second take?  I am not  sure this was ever needed...\n\nHe had NONE of the overhead that ALL other musical acts had.  He did not even need to purchase sound gear.  If a night club lacked a sound system, he simply booked himself elsewhere.  He was instantly in the top paying nightclubs from the beginning.  He became, almost instantly famous and in great demand for commercial  performances.  He avoided TV for a long time until 1965 and did a nation-wide network special.  No manager, no entourage, no security, no transportation...JUST HIM.  Why should any more be required? \n\nDuring those few years he did not teach Maths, the top night clubs fell over themselves to book Dr. Lehrer.  Tom Lehrer realised 100% of his profits. I wonder why other artists do not do this.  The web is a free advertising; \u2014assuming you have the level of talent Dr. Lehrer has.  Tom Lehrer was paid as much or more than Mort Sahl (at his prime).  This is an incredible fact.  \nIt shows that if you have an exceptionally high quality product, you need NO \"hype\".  \n\nSOO, after all these years, you can now LEGALLY POST ALL of Dr. Lehrer's catalogue without fear of having to pay a cent.  Tom Lehrer's recordings are owned by NO ONE, and you should NEVER have to purchase a Tom Lehrer recording.  People who try to sell his work are usually hustlers, and do so without any legal rights or permission from Dr. Lehrer.   A nominal charge for personal time, web servers, etc., is all that anyone should charge for his recordings.  But free sights like Archive.org, should make such a market pointless.  \n\nALL OF HIS RECORDINGS AND PUBLISHING ARE FREE.   It is ALL PUBLIC DOMAIN.  REALLY.  Dr. Lehrer has proven that ENOUGH is how much money anyone needs, and NOT a penny more.  Jesus will never need to kick over any tables as a result of Tom Lehrer's music career. \n   \nDr. Lehrer is alive, and 95 years old.  He believes that he has enough money (bless his soul).  He would rather see you post his recordings FOR FREE, and in FULL, than worry about paying him money that he does not need nor want. \n\nSanity and Good Will are rare things.  \n\nGod Bless Dr. Lehrer.  \n(My favourite Maths professor.)\n\n",
+      "stars": "0",
+      "reviewer": "BixLives",
+      "reviewdate": "2023-11-30 23:52:25",
+      "createdate": "2023-11-18 23:20:41",
+      "reviewer_itemname": "@bixlives"
+    }
+  ],
+  "scandata": {
+    "analytics": {
+      "events": [
+        [
+          "archive_matches",
+          "tab",
+          1524388006.811757,
+          {}
+        ],
+        [
+          "identify_album",
+          "tab",
+          1524388006.82495,
+          {}
+        ],
+        [
+          "rip",
+          "start",
+          1524388006.88136,
+          {
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "task_time": 193.626
+          }
+        ],
+        [
+          "item_metadata",
+          "tab",
+          1524388006.964921,
+          {}
+        ],
+        [
+          "rip",
+          "update",
+          1524388007.131591,
+          {
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "",
+            "task_description": "Reading TOC...",
+            "task_progress": 0.0,
+            "task_time": 0.0,
+            "total_progress": 0
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388007.1319,
+          {
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "",
+            "task_description": "Scanning disc... (1 of 1) ...",
+            "task_progress": 0.0,
+            "task_time": 1.112,
+            "total_progress": 0
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388008.244122,
+          {
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "",
+            "task_description": "Reading TOC of session 1... (2 of 2) ...",
+            "task_progress": 0.0,
+            "task_time": 53.499,
+            "total_progress": 0
+          }
+        ],
+        [
+          "scan_materials",
+          "tab",
+          1524388019.800872,
+          {}
+        ],
+        [
+          "scan",
+          "start",
+          1524388021.052792,
+          {
+            "template": "booklet_closed"
+          }
+        ],
+        [
+          "item_metadata",
+          "tab",
+          1524388022.030798,
+          {}
+        ],
+        [
+          "scan",
+          "complete",
+          1524388032.011477,
+          {}
+        ],
+        [
+          "disc_metadata",
+          "tab",
+          1524388032.256338,
+          {
+            "disc_number": 1
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388061.742757,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "",
+            "task_description": "Doing various tasks separately",
+            "task_progress": 0.0,
+            "task_time": 0.001,
+            "total_progress": 0
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388061.74368,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "",
+            "task_description": "Reading track 0 of 15 (1 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 6.078,
+            "total_progress": 0
+          }
+        ],
+        [
+          "scan_materials",
+          "tab",
+          1524388062.791758,
+          {}
+        ],
+        [
+          "rip",
+          "update",
+          1524388067.821531,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "",
+            "task_description": "Calculating CRC32 (2 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.001,
+            "total_progress": 0
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388067.822543,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "",
+            "task_description": "Calculating peak level (3 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.107,
+            "total_progress": 0
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388067.929073,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "",
+            "task_description": "Calculating CRC32 (4 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.109,
+            "total_progress": 0
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388068.038103,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (4 of 4) ...",
+            "task_progress": 1.0,
+            "task_time": 0.0,
+            "total_progress": 0
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388068.038416,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Doing various tasks separately",
+            "task_progress": 0.0,
+            "task_time": 0.0,
+            "total_progress": 0
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388068.038641,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Reading track 1 of 15 (1 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 12.293,
+            "total_progress": 0
+          }
+        ],
+        [
+          "scan",
+          "start",
+          1524388071.629753,
+          {
+            "template": "booklet_closed"
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388080.331151,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (2 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.155,
+            "total_progress": 0
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388080.486606,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating peak level (3 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.466,
+            "total_progress": 0
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388080.952839,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (4 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.135,
+            "total_progress": 0
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388081.087472,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating (Fast) AccurateRip checksum",
+            "task_progress": 0.0,
+            "task_time": 0.382,
+            "total_progress": 0
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388081.469716,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Doing various tasks separately",
+            "task_progress": 0.0,
+            "task_time": 0.0,
+            "total_progress": 0.06666666666666667
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388081.469973,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Reading track 2 of 15 (1 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 8.573,
+            "total_progress": 0.06666666666666667
+          }
+        ],
+        [
+          "scan",
+          "complete",
+          1524388082.561163,
+          {}
+        ],
+        [
+          "rip",
+          "update",
+          1524388090.042585,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (2 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.121,
+            "total_progress": 0.06666666666666667
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388090.164063,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating peak level (3 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.413,
+            "total_progress": 0.06666666666666667
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388090.576603,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (4 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.105,
+            "total_progress": 0.06666666666666667
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388090.68171,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating (Fast) AccurateRip checksum",
+            "task_progress": 0.0,
+            "task_time": 0.378,
+            "total_progress": 0.06666666666666667
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388091.059293,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Doing various tasks separately",
+            "task_progress": 0.0,
+            "task_time": 0.0,
+            "total_progress": 0.13333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388091.059681,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Reading track 3 of 15 (1 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 7.011,
+            "total_progress": 0.13333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388098.070417,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (2 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.114,
+            "total_progress": 0.13333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388098.184409,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating peak level (3 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.36,
+            "total_progress": 0.13333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388098.54406,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (4 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.089,
+            "total_progress": 0.13333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388098.633305,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating (Fast) AccurateRip checksum",
+            "task_progress": 0.0,
+            "task_time": 0.354,
+            "total_progress": 0.13333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388098.986963,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Doing various tasks separately",
+            "task_progress": 0.0,
+            "task_time": 0.0,
+            "total_progress": 0.2
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388098.987342,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Reading track 4 of 15 (1 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 4.861,
+            "total_progress": 0.2
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388103.847853,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (2 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.089,
+            "total_progress": 0.2
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388103.937022,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating peak level (3 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.287,
+            "total_progress": 0.2
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388104.223833,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (4 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.068,
+            "total_progress": 0.2
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388104.292307,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating (Fast) AccurateRip checksum",
+            "task_progress": 0.0,
+            "task_time": 0.359,
+            "total_progress": 0.2
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388104.651304,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Doing various tasks separately",
+            "task_progress": 0.0,
+            "task_time": 0.0,
+            "total_progress": 0.26666666666666666
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388104.651665,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Reading track 5 of 15 (1 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 11.204,
+            "total_progress": 0.26666666666666666
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388115.855205,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (2 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.1,
+            "total_progress": 0.26666666666666666
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388115.954847,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating peak level (3 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.415,
+            "total_progress": 0.26666666666666666
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388116.369776,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (4 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.105,
+            "total_progress": 0.26666666666666666
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388116.47445,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating (Fast) AccurateRip checksum",
+            "task_progress": 0.0,
+            "task_time": 0.359,
+            "total_progress": 0.26666666666666666
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388116.833177,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Doing various tasks separately",
+            "task_progress": 0.0,
+            "task_time": 0.0,
+            "total_progress": 0.3333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388116.833638,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Reading track 6 of 15 (1 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 9.972,
+            "total_progress": 0.3333333333333333
+          }
+        ],
+        [
+          "scan",
+          "start",
+          1524388125.760895,
+          {
+            "template": "cdinlay"
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388126.805657,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (2 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.179,
+            "total_progress": 0.3333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388126.984196,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating peak level (3 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.544,
+            "total_progress": 0.3333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388127.528309,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (4 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.153,
+            "total_progress": 0.3333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388127.681715,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating (Fast) AccurateRip checksum",
+            "task_progress": 0.0,
+            "task_time": 0.379,
+            "total_progress": 0.3333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388128.061141,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Doing various tasks separately",
+            "task_progress": 0.0,
+            "task_time": 0.0,
+            "total_progress": 0.4
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388128.061394,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Reading track 7 of 15 (1 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 11.089,
+            "total_progress": 0.4
+          }
+        ],
+        [
+          "scan",
+          "complete",
+          1524388136.804017,
+          {}
+        ],
+        [
+          "rip",
+          "update",
+          1524388139.150725,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (2 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.188,
+            "total_progress": 0.4
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388139.33879,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating peak level (3 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.643,
+            "total_progress": 0.4
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388139.981429,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (4 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.193,
+            "total_progress": 0.4
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388140.174627,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating (Fast) AccurateRip checksum",
+            "task_progress": 0.0,
+            "task_time": 0.392,
+            "total_progress": 0.4
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388140.566988,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Doing various tasks separately",
+            "task_progress": 0.0,
+            "task_time": 0.0,
+            "total_progress": 0.4666666666666667
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388140.567259,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Reading track 8 of 15 (1 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 4.563,
+            "total_progress": 0.4666666666666667
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388145.130273,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (2 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.095,
+            "total_progress": 0.4666666666666667
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388145.224787,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating peak level (3 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.314,
+            "total_progress": 0.4666666666666667
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388145.53834,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (4 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.07,
+            "total_progress": 0.4666666666666667
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388145.608727,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating (Fast) AccurateRip checksum",
+            "task_progress": 0.0,
+            "task_time": 0.365,
+            "total_progress": 0.4666666666666667
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388145.974143,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Doing various tasks separately",
+            "task_progress": 0.0,
+            "task_time": 0.0,
+            "total_progress": 0.5333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388145.974542,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Reading track 9 of 15 (1 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 8.051,
+            "total_progress": 0.5333333333333333
+          }
+        ],
+        [
+          "scan",
+          "start",
+          1524388147.178194,
+          {
+            "template": "booklet_open"
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388154.025882,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (2 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.102,
+            "total_progress": 0.5333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388154.12786,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating peak level (3 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.427,
+            "total_progress": 0.5333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388154.554965,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (4 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.109,
+            "total_progress": 0.5333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388154.663511,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating (Fast) AccurateRip checksum",
+            "task_progress": 0.0,
+            "task_time": 0.419,
+            "total_progress": 0.5333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388155.082354,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Doing various tasks separately",
+            "task_progress": 0.0,
+            "task_time": 0.0,
+            "total_progress": 0.6
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388155.082698,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Reading track 10 of 15 (1 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 5.199,
+            "total_progress": 0.6
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388160.281362,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (2 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.114,
+            "total_progress": 0.6
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388160.395596,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating peak level (3 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.362,
+            "total_progress": 0.6
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388160.757457,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (4 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.094,
+            "total_progress": 0.6
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388160.851719,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating (Fast) AccurateRip checksum",
+            "task_progress": 0.0,
+            "task_time": 0.371,
+            "total_progress": 0.6
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388161.222507,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Doing various tasks separately",
+            "task_progress": 0.0,
+            "task_time": 0.0,
+            "total_progress": 0.6666666666666666
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388161.222801,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Reading track 11 of 15 (1 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 5.589,
+            "total_progress": 0.6666666666666666
+          }
+        ],
+        [
+          "scan",
+          "complete",
+          1524388163.137965,
+          {}
+        ],
+        [
+          "rip",
+          "update",
+          1524388166.811885,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (2 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.082,
+            "total_progress": 0.6666666666666666
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388166.894326,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating peak level (3 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.365,
+            "total_progress": 0.6666666666666666
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388167.259113,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (4 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.086,
+            "total_progress": 0.6666666666666666
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388167.345064,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating (Fast) AccurateRip checksum",
+            "task_progress": 0.0,
+            "task_time": 0.415,
+            "total_progress": 0.6666666666666666
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388167.760347,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Doing various tasks separately",
+            "task_progress": 0.0,
+            "task_time": 0.0,
+            "total_progress": 0.7333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388167.760613,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Reading track 12 of 15 (1 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 6.229,
+            "total_progress": 0.7333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388173.989223,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (2 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.067,
+            "total_progress": 0.7333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388174.056271,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating peak level (3 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.336,
+            "total_progress": 0.7333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388174.392668,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (4 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.07,
+            "total_progress": 0.7333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388174.462243,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating (Fast) AccurateRip checksum",
+            "task_progress": 0.0,
+            "task_time": 0.375,
+            "total_progress": 0.7333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388174.837049,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Doing various tasks separately",
+            "task_progress": 0.0,
+            "task_time": 0.0,
+            "total_progress": 0.8
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388174.837482,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Reading track 13 of 15 (1 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 5.179,
+            "total_progress": 0.8
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388180.016869,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (2 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.096,
+            "total_progress": 0.8
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388180.113008,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating peak level (3 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.407,
+            "total_progress": 0.8
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388180.519926,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (4 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.099,
+            "total_progress": 0.8
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388180.618479,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating (Fast) AccurateRip checksum",
+            "task_progress": 0.0,
+            "task_time": 0.425,
+            "total_progress": 0.8
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388181.043108,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Doing various tasks separately",
+            "task_progress": 0.0,
+            "task_time": 0.0,
+            "total_progress": 0.8666666666666667
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388181.043381,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Reading track 14 of 15 (1 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 4.383,
+            "total_progress": 0.8666666666666667
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388185.426421,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (2 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.08,
+            "total_progress": 0.8666666666666667
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388185.506619,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating peak level (3 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.347,
+            "total_progress": 0.8666666666666667
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388185.853848,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating CRC32 (4 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.078,
+            "total_progress": 0.8666666666666667
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388185.931961,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fastest",
+            "task_description": "Calculating (Fast) AccurateRip checksum",
+            "task_progress": 0.0,
+            "task_time": 0.376,
+            "total_progress": 0.8666666666666667
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388186.307519,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fast",
+            "task_description": "Calculating (Fast) AccurateRip checksum",
+            "task_progress": 1.0,
+            "task_time": 0.002,
+            "total_progress": 0.9333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388186.309085,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fast",
+            "task_description": "Doing various tasks separately",
+            "task_progress": 0.0,
+            "task_time": 0.0,
+            "total_progress": 0.9333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388186.309514,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fast",
+            "task_description": "Reading track 15 of 15 (1 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 6.164,
+            "total_progress": 0.9333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388192.473938,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fast",
+            "task_description": "Calculating CRC32 (2 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.08,
+            "total_progress": 0.9333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388192.554148,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fast",
+            "task_description": "Calculating peak level (3 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.261,
+            "total_progress": 0.9333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388192.815602,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fast",
+            "task_description": "Calculating CRC32 (4 of 4) ...",
+            "task_progress": 0.0,
+            "task_time": 0.056,
+            "total_progress": 0.9333333333333333
+          }
+        ],
+        [
+          "rip",
+          "update",
+          1524388192.871366,
+          {
+            "cdinfo": {
+              "cddbid": "bf09a30f",
+              "has_ar_info": true,
+              "has_data": false,
+              "has_htoa": true,
+              "mbid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+              "track_count": 15
+            },
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+            "strategy": "Fast",
+            "task_description": "Calculating (Fast) AccurateRip checksum",
+            "task_progress": 0.0,
+            "task_time": 7.636,
+            "total_progress": 0.9333333333333333
+          }
+        ],
+        [
+          "scan",
+          "start",
+          1524388193.233322,
+          {
+            "template": "booklet_closed"
+          }
+        ],
+        [
+          "rip",
+          "complete",
+          1524388200.507819,
+          {
+            "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-"
+          }
+        ],
+        [
+          "scan",
+          "complete",
+          1524388204.202075,
+          {}
+        ],
+        [
+          "scan",
+          "start",
+          1524388220.856442,
+          {
+            "template": "booklet_closed"
+          }
+        ],
+        [
+          "scan",
+          "complete",
+          1524388231.811911,
+          {}
+        ],
+        [
+          "scan",
+          "start",
+          1524388321.037251,
+          {
+            "template": "booklet_closed"
+          }
+        ],
+        [
+          "scan",
+          "complete",
+          1524388332.050966,
+          {}
+        ],
+        [
+          "scan",
+          "start",
+          1524388375.644028,
+          {
+            "template": "booklet_closed"
+          }
+        ],
+        [
+          "scan",
+          "complete",
+          1524388386.587194,
+          {}
+        ],
+        [
+          "scan",
+          "start",
+          1524388403.866377,
+          {
+            "template": "cd_face"
+          }
+        ],
+        [
+          "scan",
+          "complete",
+          1524388414.904958,
+          {}
+        ],
+        [
+          "review_item",
+          "tab",
+          1524388424.833521,
+          {}
+        ],
+        [
+          "scan_materials",
+          "tab",
+          1524388425.931133,
+          {}
+        ],
+        [
+          "review_item",
+          "tab",
+          1524388432.840458,
+          {}
+        ],
+        [
+          "project",
+          "complete",
+          1524388501.983162,
+          {}
+        ]
+      ],
+      "tabs": {
+        "archive_matches": {
+          "focus_times": [
+            {
+              "end": 1524388006.82495,
+              "start": 1524388006.811757
+            }
+          ],
+          "total_time_focused": 0
+        },
+        "disc_metadata": {
+          "focus_times": [
+            {
+              "end": 1524388062.791758,
+              "start": 1524388032.256338
+            }
+          ],
+          "total_time_focused": 31
+        },
+        "identify_album": {
+          "focus_times": [
+            {
+              "end": 1524388006.964921,
+              "start": 1524388006.82495
+            }
+          ],
+          "total_time_focused": 0
+        },
+        "item_metadata": {
+          "focus_times": [
+            {
+              "end": 1524388019.800872,
+              "start": 1524388006.964921
+            },
+            {
+              "end": 1524388032.256338,
+              "start": 1524388022.030798
+            }
+          ],
+          "total_time_focused": 23
+        },
+        "review_item": {
+          "focus_times": [
+            {
+              "end": 1524388425.931133,
+              "start": 1524388424.833521
+            },
+            {
+              "end": 1524388501.983162,
+              "start": 1524388432.840458
+            }
+          ],
+          "total_time_focused": 70
+        },
+        "scan_materials": {
+          "focus_times": [
+            {
+              "end": 1524388022.030798,
+              "start": 1524388019.800872
+            },
+            {
+              "end": 1524388424.833521,
+              "start": 1524388062.791758
+            },
+            {
+              "end": 1524388432.840458,
+              "start": 1524388425.931133
+            }
+          ],
+          "total_time_focused": 371
+        }
+      }
+    },
+    "log_url": "https://archive.org/download/archivecd-logs-2018-04/2018-04-22T09:06:30Z_f4:4d:30:68:a9:65.log",
+    "technical_metadata": {
+      "discs": [
+        {
+          "mb_discid": "nMoO59qDq8mPKGOdaWsJ67FiD8E-",
+          "toc_string": "1 15 185197 182 15762 28972 40322 48030 60900 80390 103920 112847 126217 137270 147880 156515 168492 178372",
+          "track_sectors": [
+            15580,
+            13210,
+            11350,
+            7708,
+            12870,
+            19490,
+            23530,
+            8927,
+            13370,
+            11053,
+            10610,
+            8635,
+            11977,
+            9880,
+            6825
+          ]
+        }
+      ]
+    }
+  },
+  "server": "ia802904.us.archive.org",
+  "uniq": 1626281127,
+  "workable_servers": [
+    "ia802904.us.archive.org",
+    "ia902904.us.archive.org"
+  ]
 }

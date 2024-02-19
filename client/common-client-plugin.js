@@ -201,16 +201,61 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
     handler: async ({ type, updateForm }) => {
       let podData
       let itemTxt = document.getElementById("itemtxt");
-      console.log('🚧type and update form!', type,updateForm,itemTxt);
+      //console.log('🚧type and update form!', type,updateForm,itemTxt);
     }
   })
-    registerHook({
+  registerHook({
+    target: 'action:video-edit.form.updated',
+    handler: async ({ type, updateForm }) => {
+      let chapterUrl = document.getElementById('chapters')
+      let videoUuid = (window.location.href).split("/").pop();
+      //console.log('🚧 possible chapter file',chapterUrl.value);
+      if (chapterUrl && chapterUrl.value && chapterUrl.value !=""){
+        let chaptersData,chaptersApi,tempChapters
+        let returnChapters = [];
+        try {
+          chaptersData = await axios.get(chapterUrl.value);
+          chaptersApi = `/api/v1/videos/${videoUuid}/chapters`
+          if (chaptersData && chaptersData.data && chaptersData.data.chapters && Array.isArray(chaptersData.data.chapters) && chaptersData.data.chapters.length>1){
+            //console.log('🚧 creating temp chapters');
+            tempChapters = chaptersData.data.chapters
+            for (var chap of tempChapters){
+              let newChapter ={
+                timecode : chap.startTime,
+                title : chap.title
+              }
+              returnChapters.push(newChapter);
+            }
+            //console.log('🚧 made ',returnChapters);
+            let bearer = await peertubeHelpers.getAuthHeader();
+            let result = await axios.put(chaptersApi, {chapters: returnChapters},{ headers: bearer });           
+            /*const requestOptions = {
+              method: 'PUT',
+              headers: bearer,
+              body: JSON.stringify({chapters: returnChapters})
+            }
+            const result = await fetch(chapterApi, requestOptions);
+            const data = await response.json();
+            */
+            
+            //console.log('🚧 returned ',result);
+          } else {
+            console.log('🚧 bad chapter data',chaptersData);
+          }
+        } catch (err){
+          console.log("🚧🚧🚧🚧🚧🚧 update chapters failure", chaptersApi,tempChapters,err);
+        }
+        
+      }
+    }
+  })
+  registerHook({
     target: 'action:router.navigation-end',
     handler: async ({ params, user }) => {
       let podcastButtonInsertPoint = document.getElementsByClassName("video-channels-header");
       console.log('🚧navigation end', podcastButtonInsertPoint);
       if (podcastButtonInsertPoint.length>0){
-        console.log('🚧 found it!', podcastButtonInsertPoint.length);
+        //console.log('🚧 found it!', podcastButtonInsertPoint.length);
         var newStuff = document.createElement("a");
         newStuff.innerHTML=`<a  class="peertube-create-button" href="/p/podcast2/import"><my-global-icon _ngcontent-ng-c287775211="" iconname="add" aria-hidden="true" _nghost-ng-c1540792725=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></my-global-icon>Import Podcast<!----></a>`+
         `<a  class="peertube-create-button" href="/p/podcast2/importarc"><my-global-icon _ngcontent-ng-c287775211="" iconname="add" aria-hidden="true" _nghost-ng-c1540792725=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></my-global-icon>Import internet archive collection<!----></a>`+
@@ -287,8 +332,10 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
         let updateButton = document.getElementById("update-feed");
         if (updateButton) {
           updateButton.onclick = async function () {
-            setFeedID(channel, id.value);
-            updateButton.innerText = "Saved!";
+            if (id.value){
+              setFeedID(channel, id.value);
+              updateButton.innerText = "Saved!";
+            }
           }
         }
       }
@@ -307,9 +354,9 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
           //let url = "https://" + window.location.hostname + "/plugins/podcast2/router/dirtyhack?clone=" + cloneChannel;
           let url = "https://" + window.location.hostname + "/plugins/podcast2/router/dirtyhack?avater=" + cloneChannel;
           let bearer = await peertubeHelpers.getAuthHeader() 
-          console.log("trying to hack", bearer, url,cloneChannel);
+          //console.log("trying to hack", bearer, url,cloneChannel);
           try {
-            console.log(await axios.put(url,{ bear: bearer},{ headers: bearer }));
+            await axios.put(url,{ bear: bearer},{ headers: bearer });
           } catch (err){
             console.log("error sending request",err,url,cloneChannel);
           }
@@ -577,6 +624,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
     registerVideoField(commonOptions, { type, ...videoFormOptions })
   }
   commonOptions = {
+    id: 'chapters-id',
     name: 'chapters',
     label: 'Chapter file',
     descriptionHTML: 'URL for chapter file',

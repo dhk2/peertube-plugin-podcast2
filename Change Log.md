@@ -1,6 +1,8 @@
 v 0.2.3
 - bug fixes in import logic
 - bug fix for descriptions in array instead of string
+- fixed empty chapters in rss if none configured
+- fixed itunes episode to be string instead of int
 
 v 0.2.2
 - added ability to import audiobooks from internet archive
