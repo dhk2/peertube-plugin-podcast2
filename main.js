@@ -370,7 +370,7 @@ async function register ({
           customObjects.push(seasonItem);
           let itunesSeason = {
             name: "itunes:season",
-            value: customData.seasonnode
+            value: await customData.seasonnode.toString()
           }
           customObjects.push(itunesSeason);
         }
