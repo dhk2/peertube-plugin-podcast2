@@ -725,6 +725,10 @@ async function register ({
       console.log("🚧🚧no channel requested", req.query);
       return res.status(404).send();
     }
+    //console.log("🚧🚧 response",res);
+    //application/rss+xml
+    //return;
+    res.setHeader('content-type', 'application/rss+xml');
     let extendedRssData;
     let forceVideo,forceAudio;
     if (req.query.video){

@@ -1,3 +1,6 @@
+v 0.2.4
+- fixed mime type for returned RSS feed
+
 v 0.2.3
 - bug fixes in import logic
 - bug fix for descriptions in array instead of string
