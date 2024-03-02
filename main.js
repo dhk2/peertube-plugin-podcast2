@@ -303,6 +303,13 @@ async function register ({
           }
           rssData.push(embedEnclosure)
         }
+        if (duration){
+          let itemDuration = {
+            name: "itunes:duration",
+            value: await duration.toString()
+          }
+          customObjects.push(itemDuration);
+        }
         if (videoData.data.streamingPlaylists[0]){
           let videoFiles = videoData.data.streamingPlaylists[0].files;
           if (videoFiles) {
@@ -387,7 +394,7 @@ async function register ({
           customObjects.push(episodeItem);
           let itunesEpisode = {
             name: "itunes:episode",
-            value: customData.episodenode.toString()
+            value: await customData.episodenode.toString()
           }
           customObjects.push(itunesEpisode)
         }
@@ -822,7 +829,7 @@ async function register ({
       }
     }
     //TODO figure out how to get info for livechat plugin as well
-
+    let duration = 69;
     let counter = 0;
     let fixed = "";
     let spacer = "";
@@ -892,6 +899,9 @@ async function register ({
             var extended = await storageManager.getData('rssvideodata-'+uuid);
             console.log("Extended",extended);
             for (file of extended){
+              if (file && file.length){
+                duration = file.length;
+              }
               console.log("🚧🚧🚧🚧first pass",file);
               if (file.name == 'audio' && forceAudio){
                 line = `\n${spacer}<enclosure url="${file.url}" type="${file.type}" length="${file.length}"/>`
@@ -916,7 +926,7 @@ async function register ({
       }
       if (line.includes(`title="HLS"`) && !line.includes(`length="`)) {
         console.log("fixing length");
-        line = line.replace(`title="HLS"`, `title="HLS" length ="69"`);
+        line = line.replace(`title="HLS"`, `title="HLS" length ="${duration}"`);
       }
       /* fixed with storage manager fix
       if (line.includes("embedEnclosure") > 0) {

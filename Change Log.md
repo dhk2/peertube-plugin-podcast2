@@ -1,3 +1,6 @@
+v 0.2.5
+- added itunes:duration to items in all feeds
+
 v 0.2.4
 - fixed mime type for returned RSS feed
 
