@@ -25,6 +25,22 @@ async function register ({
   videoLicenceManager,
   videoLanguageManager
 }) {
+  registerSetting({
+    name: 'pi-key',
+    label: 'Podcast Index provided API key for podping',
+    type: 'input',
+    descriptionHTML: 'Setting this value enables podping for the configurable legacy RSS feed',
+    private: false
+  })
+  registerSetting({
+    name: 'pi-proxy',
+    label: 'PeerTube proxy instance for podpinging',
+    type: 'input',
+    descriptionHTML: 'Setting this value enables podping proxy for the configurable legacy RSS feed, ignored if API Key set',
+    default: 'https://freediverse.com',
+    private: false
+  })
+
     registerSetting({
     name: 'rss-enable',
     default: true,
@@ -52,6 +68,8 @@ async function register ({
   let enableRss = await settingsManager.getSetting("rss-enable");
   let enableChat = await settingsManager.getSettings("irc-enable");
   let enableDebug = await settingsManager.getSetting("debug-enable");
+  let piKey = await settingsManager.getSetting("pi-key");
+  let piProxy = await settingsManager.getSetting("pi-proxy");
   var base = await peertubeHelpers.config.getWebserverUrl();
   var basePath = peertubeHelpers.plugin.getDataDirectoryPath();
   var serverConfig = await peertubeHelpers.config.getServerConfig();
@@ -64,7 +82,7 @@ async function register ({
   console.log("🚧🚧🚧🚧 Podcast2 plugin started");
   if (enableDebug) {
     console.log("🚧🚧 server settings loaded", hostName, base, serverConfig, enableRss,enableChat);
-    console.log("🚧🚧 continued", serverConfig.plugin.registered);
+    console.log("🚧🚧 continued", piKey,serverConfig.plugin.registered);
   }
   //let Parser = require('rss-parser');
   let dirtyHack;
@@ -83,10 +101,13 @@ async function register ({
     target: 'action:api.video.updated',
     handler: async ({ video, body }) => {
       if (enableDebug) {
-        console.log("🚧🚧🚧🚧🚧🚧 updating video\n",body);
+        console.log("🚧🚧🚧🚧🚧🚧 updating video!!!!\n",video);
       }
       //if (!body.pluginData) return
-
+      let channel = video.VideoChannel.Actor.preferredUsername;
+      let state = video.state;
+      let uuid = video.uuid;
+      console.log("🚧🚧🚧🚧🚧🚧 updating video data \n",channel,state,uuid);
       const seasonNode = body.pluginData['seasonnode'];
       const seasonName = body.pluginData['seasonname'];
       const episodeNode = body.pluginData['episodenode'];
@@ -113,7 +134,7 @@ async function register ({
         }
         
       }
-
+      pingPI(channel)
       return;
     }
   })
@@ -234,7 +255,7 @@ async function register ({
   registerHook({
     target: 'filter:feed.podcast.video.create-custom-tags.result',
     handler: async (result, params) => {      const { video, liveItem } = params
-      console.log("🚧🚧🚧🚧 initial video values 🚧🚧🚧🚧",result,params);
+      //console.log("🚧🚧🚧🚧 initial video values 🚧🚧🚧🚧",result,params);
       if (liveItem) {
       }
       var videoUuid = params.video.dataValues.uuid;
@@ -412,7 +433,7 @@ async function register ({
           chaptersApi = `${base}/plugins/podcast2/router/chapters?video=${videoUuid}`
           try {
             let chaptersData = await axios.get(chaptersApi);
-            console.log("🚧🚧 chapters ", chaptersData.data, Array.isArray(chaptersData.data.chapters),chaptersData.data.chapters.length);
+            //console.log("🚧🚧 chapters ", chaptersData.data, Array.isArray(chaptersData.data.chapters),chaptersData.data.chapters.length);
             if (chaptersData && chaptersData.data && chaptersData.data.chapters && Array.isArray(chaptersData.data.chapters) && chaptersData.data.chapters.length>1){
               chaptersItem = {
                 name: "podcast:chapters",
@@ -427,7 +448,7 @@ async function register ({
             console.log("🚧🚧 hard error getting chapters ", chaptersApi,err);
           }
         }
-        console.log("🚧🚧 chaptersitem ", chaptersItem);
+        //console.log("🚧🚧 chaptersitem ", chaptersItem);
 
         if (customData && customData.itemtxt){
          // let txtValue=[].push(customData.itemtxt);
@@ -455,6 +476,60 @@ async function register ({
       
     }
   })
+
+  registerHook({
+    target: 'action:live.video.state.updated',
+    handler: async (video) => {
+      //if (video.privacy !== VideoPrivacy.PUBLIC) {
+      //  return
+      //}
+      console.log ("🚧🚧🚧🚧 video state",video.video.VideoChannel.Actor.preferredUsername, video.video.state )
+      let channel = video.video.VideoChannel.Actor.preferredUsername;
+      let state = video.video.state;
+      let uuid = video.video.uuid;
+      //await pingPI(video.chann)
+        if (video && video.video){
+          console.log("⚡️⚡️ live video updated",video.video.uuid,video.video.state);
+        } else {
+          console.log("⚡️⚡️ video.video missing from action",video.dataValues,video.DataModel,video.video);
+          return;
+        }
+      if (video.video.state !=1){
+         console.log("⚡️⚡️ live stream ended",channel,state,uuid);
+         await pingPI(channel,null,"liveEnd");
+        return;
+      } else {
+        console.log("⚡️⚡️ live stream started?",channel,state,uuid);
+        await pingPI(channel,null,"live");
+      }
+    }
+  })
+  
+  registerHook({
+    target: 'action:api.video.uploaded',
+    handler: async (video) => {
+      console.log ("🚧🚧🚧🚧 video uploaded",video.video.VideoChannel.Actor.preferredUsername, video.video.state )
+      let channel = video.video.VideoChannel.Actor.preferredUsername;
+      let state = video.video.state;
+      let uuid = video.video.uuid;
+
+      await pingPI(channel);
+    }
+  })
+
+  registerHook({
+    target: 'action:api.video.deleted',
+    handler: async (video) => {
+
+      console.log ("🚧🚧🚧🚧 video deleted");
+      let channel = video.video.VideoChannel.Actor.preferredUsername;
+      let state = video.video.state;
+      let uuid = video.video.uuid;
+
+      pingPI(channel);
+    }
+  })
+
   
   const router = getRouter();
   router.use('/rss', async (req, res) => {
@@ -555,7 +630,7 @@ async function register ({
           delete chapter.timecode;
         }
       }
-      console.log("🚧🚧 chapters ", chapters,chapterData);
+      //console.log("🚧🚧 chapters ", chapters,chapterData);
 
     } 
     return res.status(200).send(chapters);
@@ -871,7 +946,13 @@ async function register ({
       }
       var customData = {};
       if (line.includes('<guid')) {
+        let temp1 = line.split(">")
+
         let shortUuid = line.split(">")[1].split("<")[0].split("/")[4]
+        if (!shortUuid){
+          shortUuid = temp1[1].split("_")[0];
+        }
+        console.log("🚧🚧🚧🚧 trying to get guid from line for item", temp1, shortUuid,line);
         try {
           var videoData = await axios.get(base + "/api/v1/videos/" + shortUuid);
           if (videoData && videoData.data) {
@@ -928,23 +1009,6 @@ async function register ({
         console.log("fixing length");
         line = line.replace(`title="HLS"`, `title="HLS" length ="${duration}"`);
       }
-      /* fixed with storage manager fix
-      if (line.includes("embedEnclosure") > 0) {
-        line = line.replace("embedEnclosure", "alternateEnclosure");
-      }
-      if (line.includes("ytEnclosure") > 0) {
-        line = line.replace("ytEnclosure", "alternateEnclosure");
-      }
-
-      if (line.includes(`title="HLS"`) && !line.includes(`type="`)) {
-        console.log("fixing type");
-        line = line.replace(`title="HLS"`, `title="HLS" type="application/x-mpegURL"`);
-      }
-      if (line.includes(`title="Audio"`) && !line.includes(`type="`)) {
-        console.log("fixing type");
-        line = line.replace(`title="Audio"`, `title="Audio" type="audio/mp4"`);
-      }
-      */
       if (largeChannelAvatar) {
         line = line.replace(smallChannelAvatar, largeChannelAvatar);
       }
@@ -998,7 +1062,7 @@ async function register ({
     //doSubscriptions();
     return res.status(200).send(dirtyHack);
   });
-  /*
+ /*
   router.use('/getfeedid', async (req, res) => {
     if (enableDebug) {
       console.log("🚧🚧getting feed id", req.query);
@@ -1262,6 +1326,21 @@ async function register ({
       console.log("🚧🚧 no channel in query", channel, req.query);
       return res.status(400).send("🚧🚧 no channel value in request " + req.query);
     }
+    let podData;
+    try {
+      podData = await storageManager.getData("pod-" + channel.replace(/\./g, "-"));
+    } catch (err) {
+      console.log("🚧🚧hard error getting pod data for ", channel);
+      //return res.status(404).send("🚧🚧 no podcast data for " + req.query.channel + err);
+    }
+    if (podData) {
+      return res.status(200).send(podData);
+    } else {
+      if (enableDebug) {
+        console.log("🚧🚧 no pod data in database", req.query);
+      }
+      //return res.status(404).send("🚧🚧 no pod data found for " + channel);
+    }
     let parts = channel.split('@');
     let remotePodData;
     if (parts.length > 1) {
@@ -1273,13 +1352,15 @@ async function register ({
         return res.status(400).send("🚧🚧hard error getting custom remote pod data for " + channel + " from " + parts[1] + " using " + remotePodApi + " error " + err);
       }
       if (remotePodData) {
-        //console.log("🚧🚧 returning", customChat.toString(), "for", channel);
+        if (enableDebug){
+          console.log("🚧🚧 found remote pod data", customChat.toString(), "for", channel);
+        }
+        storageManager.storeData("pod-" + channel.replace(/\./g, "-"), req.body);
         return res.status(200).send(remotePodData.data);
       }
       console.log("🚧🚧 no remote pod data found for", channel);
       return res.status(404).send("🚧🚧 no podcast data for " + channel + " on remote system");
     }
-    let podData;
     try {
       podData = await storageManager.getData("pod-" + channel.replace(/\./g, "-"));
     } catch (err) {
@@ -1316,7 +1397,7 @@ async function register ({
           console.log("🚧🚧 error setting channel guid", channel,req.body.feedguid,err);
         }
       }
-      pingPI(channel);
+      pingPI(channel,req.body.medium);
       return res.status(200).send();
     }
     return res.status(420).send();
@@ -1653,33 +1734,104 @@ async function register ({
       return res.status(420).send("failed to get data or metadata");;
     }
   })
-  async function pingPI(pingChannel) {
-    let feedApi = base + "/plugins/podcast2/router/getfeedid?channel=" + pingChannel;
-    let feedId,pingResult;
-    try {
-      feedId = await axios.get(feedApi);
-    } catch (err){
-      console.log("🚧🚧hard error getting feedid from podcast2 to ping podcast index ", feedId, feedApi,err);
+  router.use(`/piproxy`,async (req, res) => {
+    let url = req.query.url;
+    let reason = req.query.reason;
+    let medium = req.query.medium;
+    if (!url || !piKey){
+      return res.status(420).send("🚧🚧 Missing URL or api key to ping ");
     }
-    if (!feedId){
-      feedApi = base + "/plugins/lightning/router/getfeedid?channel=" + pingChannel;
+    let podpingUrl = `https://podping.cloud?url=${encodeURIComponent(url)}`;
+    /*
+    if (medium){
+      podpingUrl = podpingUrl + encodeURIComponent("&medium="+medium);
+    }
+    if (reason){
+      podpingUrl = podpingUrl + encodeURIComponent("&reason="+reason);
+    }
+    */
+    let head = { headers: { Authorization: piKey } }
+    let pingResult;
+    try {
+      pingResult = await axios.get(podpingUrl,head);
+    } catch (err) {
+      console.log("🚧🚧hard error when pod pinging ", podpingUrl, head ,err);
+    }
+    if (pingResult && pingResult.data) {
+        console.log("🚧 pod Pinged", url, pingResult.data);
+        return res.status(200).send(pingResult.data);
+    } else {
+      console.log("🚧 i am disappoint", pingResult, podpingUrl);
+      return res.status(420).send(pingResult.data);
+    }
+  })
+  async function pingPI(channel,medium,reason) {
+      console.log("🚧attempting to pod ping", channel);
+    if (!channel){
+      console.log("🚧no channel to podping", channel);
+      return;
+    }
+    let feedUrl = `${base}/plugins/podcast2/router/podcast2?channel=${channel}`;
+    let podpingUrl = `https://podping.cloud?url=${encodeURIComponent(feedUrl)}`;
+    if (medium){
+      podpingUrl = podpingUrl + encodeURIComponent("&medium="+medium);
+    }
+    if (reason){
+      podpingUrl = podpingUrl + encodeURIComponent("&reason="+reason);
+    }
+    let feedApi = base + "/plugins/podcast2/router/getfeedid?channel=" + channel;
+    let feedId,pingResult;
+    
+    /*if (!piKey){
       try {
         feedId = await axios.get(feedApi);
       } catch (err){
-        console.log("🚧🚧hard error when getting feedid from lightning to ping podcast index ", feedId, feedApi,err);
+        console.log("🚧🚧hard error getting feedid from podcast2 to ping podcast index ", feedId, feedApi,err);
+      }
+      if (!feedId){
+        feedApi = base + "/plugins/lightning/router/getfeedid?channel=" + channel;
+        try {
+          feedId = await axios.get(feedApi);
+        } catch (err){
+          console.log("🚧🚧hard error when getting feedid from lightning to ping podcast index ", feedId, feedApi,err);
+        }
+      }
+      if (feedId && feedId.data) {
+        console.log("🚧🚧feed ID for podping ", feedId, );
+        indexTickle=`https://api.podcastindex.org/api/1.0/hub/pubnotify?id=${feedId.data}`
+        try {
+          pingResult = await axios.get(indexTickle);
+        } catch (err) {
+          console.log("🚧🚧hard error updating podcast index ", feedId, feedApi,err);
+        }
+      } else {
+        console.log("🚧 podcast update badness", feedId);
+      }
+    } 
+    */
+    if (piKey) {
+      let head = { headers: { Authorization: piKey } }
+      try {
+        
+        pingResult = await axios.get(podpingUrl,head);
+      } catch (err) {
+        console.log("🚧🚧hard error when pod pinging ", podpingUrl, head ,err);
+      }
+    } else if (piProxy){
+      try{
+        pingResult = await axios.get(podpingUrl);
+      } catch {
+        console.log("🚧🚧hard error when proxy pod pinging ", podpingUrl,err);
       }
     }
-    if (feedId && feedId.data) {
-      indexTickle=`https://api.podcastindex.org/api/1.0/hub/pubnotify?id=${feedId.data}`
-      pingResult = await axios.get(indexTickle);
-    } else {
-      console.log("🚧 badness", feedId);
-    }
     if (pingResult && pingResult.data) {
+        console.log("🚧 pod Pinged", channel, pingResult.data);
       return (pingResult.data);
     } else {
       console.log("🚧 i am disappoint", feedId, pingResult, feedApi);
     }
+    //TODO add some kind of feed id reed to use pubnotify
+    return;
   }
   async function getRss(channel){
     let apiUrl = base + "/api/v1/video-channels/" + channel;
@@ -1697,9 +1849,7 @@ async function register ({
   }
   async function getConfigPanel(splitInfo, channel) {
     let feedID = await getFeedID(channel);
-    if (debugEnabled) {
       console.log("🚧getting config panel", splitInfo, feedID, channel);
-    }
     let html = `<br><label _ngcontent-msy-c247="" for="Wallet">Lightning Splits</label><br>`
     if (splitInfo && (keysendEnabled || lnurlEnabled)) {
       if (splitInfo.length > 0) {

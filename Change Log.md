@@ -1,3 +1,12 @@
+v 0.2.8
+- added podping proxy support
+
+v 0.2.7
+- fixed node crashing bug in feedid error checkcing
+
+v 0.2.6
+- added podping support for legacy feed
+
 v 0.2.5
 - added itunes:duration to items in all feeds
 
