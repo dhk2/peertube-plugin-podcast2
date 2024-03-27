@@ -1,3 +1,9 @@
+v 0.3.0
+- fixed some key bugs with licencing in RSS feed
+
+v 0.2.9
+- added podcast:licence and copyright to RSS
+
 v 0.2.8
 - added podping proxy support
 

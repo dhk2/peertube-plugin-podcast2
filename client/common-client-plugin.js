@@ -12,6 +12,23 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
   let panelHack;
   let podData;
   let hostPath;
+  let licenceApi=`/api/v1/videos/licences`
+  let licences = [];
+  // PeerTube returns the licences as one object. Convert to array of objects.
+  try {
+    let licenceReply = await axios.get(licenceApi);
+    if (licenceReply && licenceReply.data){
+      let licencesBlock=licenceReply.data
+      for (var [key,value]  of Object.entries(licencesBlock)){
+        let licence ={}
+        licence.name = value;
+        licence.key = key;
+        licences.push(licence);
+      }
+    }
+  } catch (err){
+    console.log("🚧 hard error getting available licences", licenceApi,err)
+  }
 
   registerHook({
     target: 'action:video-watch.player.loaded',
@@ -292,6 +309,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
       }
       if (!podData) {
         podData = {
+          "licence": { key: 2, name: "attribution - shared"},
           "feedid": feedID,
           "feedguid": feedGuid,
           "medium": "podcast",
@@ -396,7 +414,17 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
           html = html + `<input STYLE="color: #000000; background-color: #ffffff;"type="text" id="channel-guid" width="40" value="` + feedGuid + `">`
           // html = html + `<button id="update-guid" class="peertube-button orange-button ng-star-inserted">Save</button>`
           html = html + `<br>Podcast Medium <select id="feed-medium"><option value="podcast">podcast </option><option value="music">music </option><option value="film">film </option><option value="video">video </option><option value="audiobook">audiobook </option></select>`
-
+          if (licences){
+              html = html + `<br>Podcast licence <select id="feed-licence">`
+              for (var licence of licences){
+                let line = `<option value="${licence.key}">${licence.name}</option>`
+                //console.log("🚧 lines:", line)
+                html=html+line;
+              }
+          }
+            //console.log("🚧 hard error getting licences", licenceApi,err)
+          console.log("🚧 licences", licences,licenceApi)
+          html = html + `</select>`
           for (var i = 0; i < podData.text.length; i++) {
             html = html + `<br>Podcast txt value ` + i + `: `;
             html = html + `<input STYLE="color: #000000; background-color: #ffffff;"type="text" id="feed-txt-` + i + `" width="40" value="` + podData.text[i] + `">`
@@ -438,6 +466,12 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
               default: console.log("🚧unable to find a match for podData.medium");
             }
             document.getElementById("redirect-enabled").checked = podData.redirectEnabled;
+            let licence = document.getElementById("feed-licence");
+            licence.selectedIndex=podData.licence.key-1
+            if (debugEnabled){
+               console.log("🚧 licence option",podData.licence,licence);
+            }
+
           }
 
           let rssLinkButton = document.getElementById('rss-link');
@@ -448,13 +482,17 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
                 console.log("🚧rss link", rssFeedUrl);
               }
               window.open(rssFeedUrl);
-            }
           }
 
           changeMonitor = setInterval(async function () {
             try {
               newPodData.feedguid = document.getElementById("channel-guid").value;
               newPodData.medium = document.getElementById("feed-medium").value;
+              let licence = {};
+              licence.key = document.getElementById("feed-licence").value;
+              licence.name = licences[licence.key-1].name;
+              //console.log("🚧 license setting",licence);
+              newPodData.licence = licence;
               newPodData.image = document.getElementById("image").value;
               image = newPodData.image;
               newPodData.category = document.getElementById("category").value;
@@ -476,7 +514,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
                 podData.text[i] = document.getElementById("feed-txt-" + i).value;
               }
             } catch {
-              clearInterval(changeMonitor);
+              //clearInterval(changeMonitor);
             }
           }, 500);
           let registerFeedButton = document.getElementById('register-feed');
@@ -485,6 +523,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
               let registerFeedUrl = "https://podcastindex.org/add?feed=" + feedID;
               window.open(registerFeedUrl);
             }
+          }
           }
         }
       }

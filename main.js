@@ -239,6 +239,18 @@ async function register ({
         }
         podreturn.push(image);
       }
+      if (podData && podData.licence && podData.licence.name){
+        let licence = {
+          name: "podcast:licence",
+          value: podData.licence.name
+        }
+        podreturn.push(licence);
+        let copyright = {
+          name: "copyright",
+          value: podData.licence
+        }
+        //podreturn.push(copyright); 
+      }
       let author = {
         name: "itunes:author",
         value: name
