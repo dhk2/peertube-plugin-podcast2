@@ -1,5 +1,6 @@
 v 0.3.0
 - fixed some key bugs with licencing in RSS feed
+- fixed err error causing node crash
 
 v 0.2.9
 - added podcast:licence and copyright to RSS

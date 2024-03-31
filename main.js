@@ -1832,7 +1832,7 @@ async function register ({
     } else if (piProxy){
       try{
         pingResult = await axios.get(podpingUrl);
-      } catch {
+      } catch (err){
         console.log("🚧🚧hard error when proxy pod pinging ", podpingUrl,err);
       }
     }
