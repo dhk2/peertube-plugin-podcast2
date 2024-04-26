@@ -107,7 +107,7 @@ async function register ({
       let channel = video.VideoChannel.Actor.preferredUsername;
       let state = video.state;
       let uuid = video.uuid;
-      console.log("🚧🚧🚧🚧🚧🚧 updating video data \n",channel,state,uuid);
+      console.log("🚧🚧🚧🚧🚧🚧 updating video data \n",channel,state,uuid,video.id);
       const seasonNode = body.pluginData['seasonnode'];
       const seasonName = body.pluginData['seasonname'];
       const episodeNode = body.pluginData['episodenode'];
@@ -122,7 +122,12 @@ async function register ({
       storageManager.storeData('episodename-' + video.id, episodeName);
       storageManager.storeData('chapters-' + video.id, chapters);
       storageManager.storeData('itemtxt-' + video.id, itemTxt);
-      storageManager.storeData('sourceid-' + video.id, sourceId);
+      if (sourceId){
+        console.log("🚧🚧 source id for video",sourceId);
+        storageManager.storeData('sourceid-' + video.id, sourceId);
+      } else {
+        console.log("🚧🚧 source id for video not updating",sourceId, video.id);
+      }
       if (chapters && chapters !=""){
         let chaptersData,chaptersApi
         try {
@@ -241,7 +246,7 @@ async function register ({
       }
       if (podData && podData.licence && podData.licence.name){
         let licence = {
-          name: "podcast:licence",
+          name: "podcast:license",
           value: podData.licence.name
         }
         podreturn.push(licence);
@@ -542,8 +547,246 @@ async function register ({
     }
   })
 
-  
+  registerHook({
+    target: 'action:notifier.notification.created',
+    handler: async (notification) => {
+      try {
+        let youtubeUrl = notification.notification.VideoImport.targetUrl;
+        let peertubeUuid = notification.notification.VideoImport.Video.id;
+        let youtubeUuid = youtubeUrl.split("/").pop();
+        //synched url is different from manual import, fix added
+        youtubeUuid = youtubeUrl.split("=").pop();
+        console.log("🚧🚧🚧🚧  doing notification values",youtubeUrl,youtubeUuid,peertubeUuid);
+        storageManager.storeData('sourceid-' + peertubeUuid, youtubeUuid);
+        let metadata = await ytDlpWrap.getVideoInfo(youtubeUrl);
+        console.log("🚧🚧🚧🚧 yt dlp data ",metadata.automatic_captions.en );
+        for (var extension of metadata.automatic_captions.en){
+          if (extension.ext == 'vtt'){
+            console.log("🚧🚧🚧🚧 hot hit",extension );
+          }
+        }
+      } catch (err) {
+        console.log("🚧🚧🚧🚧 error doing notification import update",err,notification);
+      }
+    }
+  })
+
   const router = getRouter();
+
+  router.use('/publisher', async (req,res) =>{
+    res.setHeader('content-type', 'application/rss+xml');
+    if (enableDebug) {
+      console.log("⚓⚓⚓⚓ publisher feed request",req.query);
+    }
+    let channel
+    let account;
+    let playlist;
+    let channelData;
+    let accountData;
+    let playlistData;
+    let videoList;
+    let displayName;
+    let description;
+    let url;
+    let atomLink;
+    let rssCache;
+    let rssFile;
+    let timeDiff;
+    //check for cached account rss
+    if (req.query.account == undefined) {
+      if (enableDebug) {
+        console.log("⚓⚓ no account requested", req.query);
+      }
+    } else {
+      account = req.query.account;
+      const cache = await storageManager.getData(`btrss-${account}`)
+      if (cache){
+        timeDiff=Date.now()-cache;
+        console.log ("⚓⚓ cache timediffs", timeDiff,timeDiff/1000,timeDiff/60000,timeDiff/3600000);
+      }
+      rssFile = basePath+"/"+account+".rss";
+      rssData = await fs.readFile(rssFile, 'utf8')
+      if (rssData){
+        rssCache = rssData;
+      }
+    }
+    if (timeDiff && timeDiff<(cacheTime*60000) && rssCache){    
+      console.log("⚓⚓ cache timediff under limit, returning rsscache");      
+      return res.status(200).send(rssCache);
+    } else {
+      console.log("⚓⚓ cache timediff overlimit,generating new rsscache",timeDiff,cacheTime); 
+    }
+    //get account data
+    if (account){
+      accountData = await getAccount(account);
+    }
+    if (accountData){
+      description = accountData.description;
+      url = accountData.url;
+      displayName = accountData.displayName;
+      atomLink = `${base}/plugins/btrss/router/rss?account="${account}"`;
+      if (enableDebug) {
+        console.log("⚓⚓⚓⚓ account data",accountData,displayName,url,description,atomLink);
+      }
+      videoList = await getAccountVideos(account);
+    }
+    if (enableDebug) {
+      //console.log("⚓⚓⚓⚓ video list", videoList);
+    }
+    //check for cached channel rss
+    if (req.query.channel == undefined) {
+      if (enableDebug) {
+        console.log("⚓⚓ no channel requested", req.query);
+      }
+    } else {
+      channel = req.query.channel;
+      const cache = await storageManager.getData(`btrss-${channel}`)
+      if (cache){
+        timeDiff=Date.now()-cache;
+        console.log ("⚓⚓ cache timediffs", timeDiff,timeDiff/1000,timeDiff/60000,timeDiff/3600000);
+      }
+      rssFile = basePath+"/"+channel+".rss";
+      rssData = await fs.readFile(rssFile, 'utf8')
+      if (rssData){
+        rssCache = rssData;
+      }
+      console.log("⚓⚓ end of else block ",channel,timeDiff); 
+    }
+    console.log("⚓⚓ state before if ",channel,timeDiff); 
+    if (channel && timeDiff && timeDiff<(cacheTime*60000) && rssCache){    
+      console.log("⚓⚓ cache timediff under limit, returning rsscache");      
+      return res.status(200).send(rssCache);
+    } else {
+      console.log("⚓⚓ cache missed, creating rss",channel,timeDiff); 
+    }
+    //get channel data
+    if (channel){
+      channelData = await getChannel(channel);
+    }
+    if (channelData){
+      description = channelData.description;
+      url = channelData.url;
+      displayName = channelData.displayName;
+      atomLink = `${base}/plugins/btrss/router/rss?channel="${channel}"`;
+      if (enableDebug) {
+        console.log("⚓⚓⚓⚓ channel data",channelData,displayName,url,description,atomLink);
+      }
+      videoList = await getChannelVideos(channel);
+    }
+    if (enableDebug && videoList) {
+      console.log("⚓⚓⚓⚓ video list", videoList.length);
+    }
+    // Start RSS generation
+    if (!url || !displayName || (!account && !channel)){
+      console.log("⚓⚓⚓⚓ data issue, unable to generate RSS feed", videoList.length,url,displayName,account,channel);
+      return res.status(400).send();
+    }
+    let rss = `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">`;
+    let indent =4;
+    rss = rss +"\n"+' '.repeat(indent)+`<channel>`;
+    indent = indent+4;
+    rss = rss + `\n`+' '.repeat(indent)+`<title>${displayName.replace(/\W+/g, " ")}</title>`;
+    rss = rss + `\n`+' '.repeat(indent)+`<link>${url}</link>`;
+    if (description){
+      rss = rss + `\n`+' '.repeat(indent)+`<description> ${description.replace(/\W+/g, " ")} </description>`;
+    } else {
+      rss = rss + `\n`+' '.repeat(indent)+`<description> indescribable </description>`;
+    }
+    //let atomLink = base + "/plugins/podcast2/router/torrent?channel=" + channel;
+    rss = rss + `\n`+' '.repeat(indent)+`<atom:link href="${atomLink}" rel="self" type="application/rss+xml" />`;
+    for (var video of videoList){
+      rss = rss + `\n`+' '.repeat(indent)+`<item>`;
+      indent = indent + 4;
+      rss = rss + `\n`+' '.repeat(indent)+`<title>${video.name.replace(/\W+/g, " ")}</title>`;
+      
+      if (video.description){
+        rss = rss + `\n`+' '.repeat(indent)+`<description>`;
+        indent=indent+4;
+        rss = rss + `\n`+' '.repeat(indent)+`${video.description.replace(/\W+/g, " ")}`;
+        indent=indent-4;
+        rss = rss + `\n`+' '.repeat(indent)+`</description>`;
+      } else {
+        rss = rss + `\n`+' '.repeat(indent)+`<description/>`;
+      }
+      
+      let apiUrl = `${base}/api/v1/videos/${video.uuid}`;
+      let videoSpecificData;
+      let torrentUrl, fileSize, magnet, tracker, pubDate,rawDate;
+      try {
+        videoSpecificData = await axios.get(apiUrl);
+      } catch (err) {
+        console.log("⚓⚓⚓⚓unable to load video specific info", apiUrl,err);
+        return res.status(400).send();
+      }
+     
+      torrentUrl = videoSpecificData.data.streamingPlaylists[0].files[0].torrentUrl;
+      fileSize =   videoSpecificData.data.streamingPlaylists[0].files[0].size;
+      magnet = videoSpecificData.data.streamingPlaylists[0].files[0].magnetUri;
+      tracker = videoSpecificData.data.trackerUrls[0];
+      //console.log("⚓⚓⚓⚓ published", pubDate);
+      let fileName = video.name;
+      //console.log("⚓⚓⚓⚓ found file name", fileName);
+      rss = rss + `\n`+' '.repeat(indent)+`<enclosure type="application/x-bittorrent" url="${torrentUrl}" length="${fileSize}" />`;
+      rss = rss + `\n`+' '.repeat(indent)+`<link>${torrentUrl}</link>`;
+      rss = rss + `\n`+' '.repeat(indent)+`<guid>${torrentUrl}</guid>`;
+      //rss = rss + `\n`+' '.repeat(indent)+`<media:content url="${torrentUrl}" fileSize="${fileSize}" />`;
+      if (videoSpecificData.data.originallyPublishedAt){
+        rawDate = videoSpecificData.data.originallyPublishedAt;
+      } else {
+        rawDate = videoSpecificData.data.publishedAt;
+      }
+        let newDate = new Date(rawDate);
+      pubDate = newDate.toUTCString();
+
+      console.log("⚓⚓⚓⚓ published", rawDate, "new format",newDate, "final format",pubDate);
+      rss = rss + `\n`+' '.repeat(indent)+`<pubDate> ${pubDate} </pubDate>`;
+      
+      /*
+      rss = rss + `\n`+' '.repeat(indent)+`<torrent>`;
+      indent=indent +4;
+      rss = rss + `\n`+' '.repeat(indent)+`<filename> ${fileName} </filename>`;
+      rss = rss + `\n`+' '.repeat(indent)+`<contentlength> ${fileSize} </contentlength>`;
+      rss = rss + `\n`+' '.repeat(indent)+`<magneturi> ${magnet} <magneturi>`;
+      rss = rss + `\n`+' '.repeat(indent)+`<trackers>`;
+      indent = indent +4;
+      rss = rss + `\n`+' '.repeat(indent)+`<group order="ordered">`;
+      indent = indent+4;
+      rss = rss + `\n`+' '.repeat(indent)+`<tracker seeds="1" peers="1">`;
+      indent = indent + 4;
+      rss = rss + `\n`+' '.repeat(indent)+tracker;
+      indent = indent - 4
+      rss = rss + `\n`+' '.repeat(indent)+`</tracker>`;
+      indent = indent -4;
+      rss = rss + `\n`+' '.repeat(indent)+`</group>`;
+      indent = indent - 4
+      rss = rss + `\n`+' '.repeat(indent)+`</trackers>`;
+      indent = indent -4;
+      rss = rss + `\n`+' '.repeat(indent)+`</torrent>`;
+      */
+      indent = indent -4;
+      
+      rss = rss + `\n`+' '.repeat(indent)+`</item>`;
+    }
+    indent = indent-4;
+    rss = rss + `\n`+' '.repeat(indent)+`</channel>`;
+    rss = rss + `\n</rss>\n`;
+    // determine if new file is different from cached
+    if (rss == rssCache){
+      console.log("⚓⚓ cached data matches fresh data", rssFile);
+    } else if (rssFile){
+      fs.writeFile(rssFile, rss, (err) => {
+        console.log("⚓⚓⚓⚓ unable to write rss file", rss, rssCache, rssFile,err);
+      });
+    }
+    if (account) {
+      storageManager.storeData(`btrss-${account}`,Date.now());
+    }
+    if (channel) {
+      storageManager.storeData(`btrss-${channel}`,Date.now());
+    }
+    return  res.status(200).send(rss);
+  })
+
   router.use('/rss', async (req, res) => {
     if (enableDebug) {
       console.log("🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧 podcast2 rss request 🚧🚧🚧🚧🚧🚧🚧🚧", req.query);
@@ -1541,6 +1784,7 @@ async function register ({
     //let ID ="little_fuzzy_0911_librivox";
     let metadataApi = "https://archive.org/metadata/"+ID;
     let data,baseUrl,title,author,description,thumbnail;
+    let season = 1;
     console.log(`🚧🚧 trying`,ID,metadataApi);
     try {
       data = await axios.get(metadataApi);
@@ -1733,11 +1977,13 @@ async function register ({
           let videoPreview = result.data.video.previewPath
           if (show.track){
             storageManager.storeData('episodenode-' + videoId, show.track);
+            storageManager.storeData('seasonnode-' + videoId, 1);
           }
           if (show.title){
             storageManager.storeData('episodename-' + videoId, show.title);
           }
-          storageManager.storeData('sourceid-' + videoId, ID);
+          //conflicts with youtube data streamings.
+          //storageManager.storeData('sourceid-' + videoId, ID);
         }
       }
       //return res.status(200).send(line);
@@ -1830,8 +2076,9 @@ async function register ({
         console.log("🚧🚧hard error when pod pinging ", podpingUrl, head ,err);
       }
     } else if (piProxy){
+      proxyUrl=piProxy+`/plugins/podcast2/router/piproxy?url=${podpingUrl}`
       try{
-        pingResult = await axios.get(podpingUrl);
+        pingResult = await axios.get(proxyUrl,head);
       } catch (err){
         console.log("🚧🚧hard error when proxy pod pinging ", podpingUrl,err);
       }
@@ -1983,6 +2230,55 @@ async function register ({
     geek.append('avatarfile', returnedB64);
     console.log("🚧🚧 axios get version ", geek,);
   */
+  var form = new FormData();
+
+//form.append('my_field', 'my value');
+//form.append('my_buffer', new Buffer(10));
+form.append('avatarfile', request(imageUrl));
+form.submit('http://example.org/', function(err, res) {
+  // res – response object (http.IncomingMessage)  //
+  res.resume();
+  console.log("res");
+});
+  }
+  async function setTranscript(transcriptUrl,channel,language, header,){
+    console.log("🚧oh boy, this again",transcriptUrl,channel,language, header);
+    if (!transcriptUrl){
+      return undefined;
+    }
+    var fileName = channel + "-transcript.txt";
+    var downloader = new Downloader({
+      url: transcriptUrl,
+      directory: basePath + "/transcript",
+      fileName: fileName,
+      cloneFiles: false
+    })
+    try {
+      var transcriptDownloadResult = await downloader.download();
+      console.log('🚧downloaded', transcriptDownloadResult);
+    } catch (error) {
+      console.log('🚧Download failed', fileName, error)
+    }
+    console.log("🚧avatar  downloaded", transcriptDownloadResult);
+    form = new FormData;
+    form.append( 'transcriptfile', fs.createReadStream(basePath + '/transcripts/'+fileName, {filename: fileName, contentType: 'text/txt'} ));
+    const formHeaders = form.getHeaders();
+    console.log("🚧 form headers",formHeaders);
+    let mergeheaders = {
+      ...header,
+      ...formHeaders,
+    }
+    console.log("🚧 form headers2",formHeaders);
+    let avatarUrl = base+`/api/v1/video-channels/${channel}/avatar/pick`;
+    await axios.post(avatarUrl, form, {
+      headers: {
+        ...mergeheaders,
+      },
+    })
+      .then(response => response)
+      .catch(error => error)
+      return ;
+
   var form = new FormData();
 
 //form.append('my_field', 'my value');

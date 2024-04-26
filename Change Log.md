@@ -1,3 +1,16 @@
+v 0.3.4
+- added fix for synched import url difference from manually imported videos
+
+v 0.3.3
+- added autosaving of youtube uuid for imported videos
+
+v 0.3.2
+- fixed issue with rss feed button
+- attempted to fix issue with podping proxying
+
+v 0.3.1
+- fixed podcast:license
+
 v 0.3.0
 - fixed some key bugs with licencing in RSS feed
 - fixed err error causing node crash

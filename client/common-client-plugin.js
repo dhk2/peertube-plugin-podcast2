@@ -453,10 +453,12 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
             },
 
           });
+          let rssLinkButton;
           let modal = (document.getElementsByClassName('modal-body'))
           if (modal) {
             modal[0].setAttribute('sandbox', 'allow-same-origin allow-scripts allow-popups allow-forms')
             modal[0].innerHTML = html;
+            rssLinkButton = await document.getElementById('rss-link');
             switch (podData.medium) {
               case "podcast":   document.getElementById("feed-medium").selectedIndex = 0; break;
               case "music":     document.getElementById("feed-medium").selectedIndex = 1; break;
@@ -467,22 +469,16 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
             }
             document.getElementById("redirect-enabled").checked = podData.redirectEnabled;
             let licence = document.getElementById("feed-licence");
-            licence.selectedIndex=podData.licence.key-1
-            if (debugEnabled){
+            if (podData && podData.licence){
+              licence.selectedIndex=podData.licence.key-1
+            }if (debugEnabled){
                console.log("🚧 licence option",podData.licence,licence);
             }
 
           }
 
-          let rssLinkButton = document.getElementById('rss-link');
-          if (rssLinkButton) {
-            rssLinkButton.onclick = async function () {
-              let rssFeedUrl = window.location.protocol + "//" + window.location.hostname + "/plugins/podcast2/router/podcast2?channel=" + channel
-              if (debugEnabled) {
-                console.log("🚧rss link", rssFeedUrl);
-              }
-              window.open(rssFeedUrl);
-          }
+          
+
 
           changeMonitor = setInterval(async function () {
             try {
@@ -517,6 +513,14 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
               //clearInterval(changeMonitor);
             }
           }, 500);
+          if (rssLinkButton) {
+            rssLinkButton.onclick = async function () {
+              let rssFeedUrl = window.location.protocol + "//" + window.location.hostname + "/plugins/podcast2/router/podcast2?channel=" + channel
+              if (debugEnabled) {
+                console.log("🚧rss link", rssFeedUrl);
+              }
+              window.open(rssFeedUrl);
+          }
           let registerFeedButton = document.getElementById('register-feed');
           if (registerFeedButton) {
             registerFeedButton.onclick = async function () {
@@ -711,6 +715,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
       instanceName = config.instance.name;
 
     })
+    /*
   try {
     let versionResult = await axios.get(basePath + "/getversion");
     if (versionResult && versionResult.data) {
@@ -719,6 +724,8 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
   } catch (err) {
     console.log("🚧error getting software version", basePath, err);
   }
+  */
+ softwareVersion="6.9";
 
   async function getChatRoom(channel) {
     if (debugEnabled) {
