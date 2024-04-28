@@ -550,6 +550,10 @@ async function register ({
   registerHook({
     target: 'action:notifier.notification.created',
     handler: async (notification) => {
+      if (!notification.notification.VideoImport){
+        console.log("🚧🚧🚧🚧 not a video import");
+        return;
+      }
       try {
         let youtubeUrl = notification.notification.VideoImport.targetUrl;
         let peertubeUuid = notification.notification.VideoImport.Video.id;
