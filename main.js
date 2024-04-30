@@ -289,27 +289,29 @@ async function register ({
       let captionPath, captionLanguage, captionItem;
       //if (captionResult && captionResult.data && captionResult.data.total > 0) {
       //console.log("🚧🚧\ncaption result", captionResult.data);
-      for (var captionEntry in captionResult.data.data) {
-        captionPath = base + captionEntry.captionPath
-        if (captionEntry.language) {
-          captionLanguage = captionEntry.language.id;
-        }
-        if (captionPath.indexOf("vtt") > 1) {
-          type = "text/vtt"
-        } else {
-          type = "text/plain"
-          //fixed = fixed + "\n" + spacer + `<podcast:transcript url="` + captionPath + `" language="` + captionLanguage + `" type="text/plain" rel="captions"/>`;
-        }
-        captionItem = {
-          name: "podcast:transcript",
-          attributes: {
-            "uri": captionPath,
-            "language": captionLanguage,
-            "type": type,
-            "rel": "captions"
+      if (captionResult && captionResult.data) {
+        for (var captionEntry in captionResult.data.data) {
+          captionPath = base + captionEntry.captionPath
+          if (captionEntry.language) {
+            captionLanguage = captionEntry.language.id;
           }
-        };
-        customObjects.push(captionItem);
+          if (captionPath.indexOf("vtt") > 1) {
+            type = "text/vtt"
+          } else {
+            type = "text/plain"
+            //fixed = fixed + "\n" + spacer + `<podcast:transcript url="` + captionPath + `" language="` + captionLanguage + `" type="text/plain" rel="captions"/>`;
+          }
+          captionItem = {
+            name: "podcast:transcript",
+            attributes: {
+              "uri": captionPath,
+              "language": captionLanguage,
+              "type": type,
+              "rel": "captions"
+            }
+          };
+          customObjects.push(captionItem);
+        }
       }
       var apiCall = base + "/api/v1/videos/" + videoUuid;
       let videoData;

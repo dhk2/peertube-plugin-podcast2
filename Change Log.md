@@ -1,3 +1,6 @@
+v 0.3.5
+- fixed caption null error
+
 v 0.3.4
 - added fix for synched import url difference from manually imported videos
 
