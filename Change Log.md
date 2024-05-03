@@ -1,3 +1,7 @@
+v 0.3.5 
+- floating point bitrate workaround kludge
+- changed type for yt embed to "video/youtube"
+
 v 0.3.5
 - fixed caption null error
 

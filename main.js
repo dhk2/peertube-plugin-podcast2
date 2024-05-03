@@ -480,7 +480,7 @@ async function register ({
         if (customData && customData.sourceid){
           let sourceEnclosure = {
             name: "podcast:ytEnclosure",
-            type: "application/x-mpegURL",
+            type: "video/youtube",
             length: duration,
             title: "YouTube",
             url: `https://www.youtube.com/embed/${customData.sourceid}`
@@ -1281,6 +1281,18 @@ async function register ({
         if (podData.data.medium == 'audiobook' && line.indexOf("podcast:medium>audiobook")>0){
           line = line + `\n${spacer}<itunes:type>serial</itunes:type>`;
         }
+      }
+      if (line.indexOf("bitrate")>1){
+        let parts = line.split('"');
+        let intfix,intFixLine;
+        for (var part of parts){
+          if (part.indexOf(".")>1){
+            intfix=part.split(".")[0];
+            part=intfix;
+          }
+          intFixLine=intFixLine+part
+        }
+        line=intFixLine
       }
       if (counter > 1) {
         fixed = fixed + '\n' + line;
