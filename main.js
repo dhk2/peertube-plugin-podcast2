@@ -336,7 +336,7 @@ async function register ({
         if (embedPath){
           let embedEnclosure = {
             name: "podcast:embedEnclosure",
-            type: "application/x-mpegURL",
+            type: "video/peertube",
             length: duration,
             title: "PeerTube",
             url: embedPath,
@@ -1547,6 +1547,7 @@ async function register ({
         }
       }
     }
+    let rssUrl;
     if (channelGuid) {
       console.log("🚧🚧 returning channel guid",channelGuid);
       return res.status(200).send(channelGuid);
@@ -1563,11 +1564,17 @@ async function register ({
         rssUrl = await getRss(channel);
       }
       if (enableDebug) {
-        console.log("🚧🚧creating podcast index from", rssUrl);
+        console.log("🚧🚧creating podcast index from", rssUrl,channel,channelOnly);
       }
-      channelGuid = await v5('url',rssUrl);
+      if (rssUrl){
+        try {
+          channelGuid = await v5('url',rssUrl);
+        } catch {
+          console.log("🚧🚧HARD FAIL getting new guid for channel", rssUrl,channel,channelOnly,channelGuid);
+        }
+      }
       if (enableDebug) {
-        console.log("🚧🚧channel guid generated", channelGuid,rssUrl);
+         console.log("🚧🚧channel guid generated", channelGuid,rssUrl);
       }
       if (channelGuid) {
         try {

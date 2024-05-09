@@ -1,4 +1,10 @@
-v 0.3.5 
+v 0.3.8
+- fixed node crash bug creating podcast guid
+
+v 0.3.7
+- fixed bug with uuid generation for new channels
+
+v 0.3.6
 - floating point bitrate workaround kludge
 - changed type for yt embed to "video/youtube"
 
