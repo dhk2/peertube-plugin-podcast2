@@ -2038,6 +2038,7 @@ async function register ({
           //storageManager.storeData('sourceid-' + videoId, ID);
         }
       }
+      pingPI(fixedName);
       //return res.status(200).send(line);
     } else {
       console.log(`🚧🚧 missing metadata or meta meta`);
