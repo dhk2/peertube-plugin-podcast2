@@ -13,7 +13,7 @@ const YTDlpWrap = require('yt-dlp-wrap').default;
 const { parse } = require('rss-to-json');
 const { constants } = require('crypto');
 const { extract } = require('@extractus/feed-extractor');
-
+const milliday = 24*60*60*1000;
 async function register ({
   registerHook,
   registerSetting,
@@ -563,7 +563,9 @@ async function register ({
         //synched url is different from manual import, fix added
         youtubeUuid = youtubeUrl.split("=").pop();
         console.log("🚧🚧🚧🚧  doing notification values",youtubeUrl,youtubeUuid,peertubeUuid);
-        storageManager.storeData('sourceid-' + peertubeUuid, youtubeUuid);
+        await storageManager.storeData('sourceid-' + peertubeUuid, youtubeUuid);
+        
+        /*
         let metadata = await ytDlpWrap.getVideoInfo(youtubeUrl);
         console.log("🚧🚧🚧🚧 yt dlp data ",metadata.automatic_captions.en );
         for (var extension of metadata.automatic_captions.en){
@@ -571,6 +573,7 @@ async function register ({
             console.log("🚧🚧🚧🚧 hot hit",extension );
           }
         }
+        */
       } catch (err) {
         console.log("🚧🚧🚧🚧 error doing notification import update",err,notification);
       }
@@ -646,7 +649,7 @@ async function register ({
       }
     } else {
       channel = req.query.channel;
-      const cache = await storageManager.getData(`btrss-${channel}`)
+      const cache = await storageManager.getData(`btrss-${channel.replace(/\./g, "-")}`)
       if (cache){
         timeDiff=Date.now()-cache;
         console.log ("⚓⚓ cache timediffs", timeDiff,timeDiff/1000,timeDiff/60000,timeDiff/3600000);
@@ -785,10 +788,10 @@ async function register ({
       });
     }
     if (account) {
-      storageManager.storeData(`btrss-${account}`,Date.now());
+      await storageManager.storeData(`btrss-${account}`,Date.now());
     }
     if (channel) {
-      storageManager.storeData(`btrss-${channel}`,Date.now());
+      await storageManager.storeData(`btrss-${channel.replace(/\./g, "-")}`,Date.now());
     }
     return  res.status(200).send(rss);
   })
@@ -1068,10 +1071,19 @@ async function register ({
       console.log("🚧🚧no channel requested", req.query);
       return res.status(404).send();
     }
+    let channel = req.query.channel
     //console.log("🚧🚧 response",res);
     //application/rss+xml
     //return;
     res.setHeader('content-type', 'application/rss+xml');
+    let lastCached = await storageManager.getData("rsscached-" + channel.replace(/\./g, "-"));
+    let refreshTime = Date.now()-lastCached
+    console.log("🚧🚧 chached rss feed", lastCached,refreshTime,milliday,req.query.force);
+    if ((refreshTime < milliday)  && !req.query.force){
+      let cache = await storageManager.getData("rsscache-" + channel.replace(/\./g, "-"));
+        console.log("🚧🚧 returning chached rss feed", lastCached,refreshTime,milliday);
+      return res.status(200).send(cache);
+    }
     let extendedRssData;
     let forceVideo,forceAudio;
     if (req.query.video){
@@ -1112,7 +1124,7 @@ async function register ({
         forceVideo = true;
       }
     }
-    let channel = req.query.channel
+   
     let apiUrl = base + "/api/v1/video-channels/" + channel;
     let channelData;
     try {
@@ -1130,7 +1142,7 @@ async function register ({
       smallPersonAvatar = channelData.data.ownerAccount.avatars[0].path;
       largePersonAvatar = channelData.data.ownerAccount.avatars[1].path;
     }
-    //console.log("🚧🚧🚧🚧channel info", channelData.data);
+    console.log("🚧🚧🚧🚧channel avatar info", channelData.data.ownerAccount.avatars);
     
     let rssUrl = base + "/feeds/podcast/videos.xml?videoChannelId=" + channelData.data.id;
     let rssData;
@@ -1142,22 +1154,27 @@ async function register ({
     }
     //console.log("🚧🚧loaded rss feed from", rssUrl);
     let channelGuid;
-    apiUrl = base + "/plugins/podcast2/router/getchannelguid?channel=" + channel;
-    try {
-      let guidData = await axios.get(apiUrl);
-      if (guidData && guidData.data) {
-        console.log("🚧🚧channel guid", guidData.data);
-        channelGuid = guidData.data;
+    if (podData && podData.feedGuid && podData.feedGuid !=""){
+      channelGuid = podData.feedGuid
+      console.log("🚧🚧channel guid from podData", guidData.data);
+    } else {
+      apiUrl = base + "/plugins/podcast2/router/getchannelguid?channel=" + channel;
+      try {
+        let guidData = await axios.get(apiUrl);
+        if (guidData && guidData.data) {
+          console.log("🚧🚧channel guid from podcast2", guidData.data);
+          channelGuid = guidData.data;
+        }
+      } catch {
+        console.log("🚧🚧unable to load channel guid from podcast2", apiUrl);
       }
-    } catch {
-      console.log("🚧🚧unable to load channel guid from podcast2", apiUrl);
     }
     if (!channelGuid){
       apiUrl = base + "/plugins/lighting/router/getchannelguid?channel=" + channel;
       try {
         let guidData = await axios.get(apiUrl);
         if (guidData && guidData.data) {
-          console.log("🚧🚧channel guid", guidData.data);
+          console.log("🚧🚧channel guid from lightning", guidData.data);
           channelGuid = guidData.data;
         }
       } catch {
@@ -1171,7 +1188,7 @@ async function register ({
     let spacer = "";
     let rss = rssData.data;
     let lines = rss.split('\n');
-      console.log("🚧🚧\n\n\n\n starting linbe loop \n", lines.length,lines[33]);
+      //console.log("🚧🚧\n\n\n\n starting linbe loop \n", lines.length,lines[33]);
     //for (const line of lines) {
     let totalSize = lines.length;
     while (counter<totalSize){
@@ -1213,7 +1230,7 @@ async function register ({
         if (!shortUuid){
           shortUuid = temp1[1].split("_")[0];
         }
-        console.log("🚧🚧🚧🚧 trying to get guid from line for item", temp1, shortUuid,line);
+        //console.log("🚧🚧🚧🚧 trying to get guid from line for item", temp1, shortUuid,line);
         try {
           var videoData = await axios.get(base + "/api/v1/videos/" + shortUuid);
           if (videoData && videoData.data) {
@@ -1232,11 +1249,11 @@ async function register ({
       if (line.includes("<enclosure") > 0) {
         var spot = line.indexOf("hls/");
         //var uuid = line.substring(spot+4,  spot+40);
-        console.log("🚧🚧🚧🚧 enclosure",line,uuid);
+        //console.log("🚧🚧🚧🚧 enclosure",line,uuid);
         //let test = await getUUID(line);
         //uuid = test;
         if (await isUUID(uuid)) {
-          console.log("🚧🚧🚧🚧enclosure",spot, "cut",">"+uuid+"<");
+          //console.log("🚧🚧🚧🚧enclosure",spot, "cut",">"+uuid+"<");
           try {
             var extended = await storageManager.getData('rssvideodata-'+uuid);
             console.log("Extended",extended);
@@ -1244,7 +1261,7 @@ async function register ({
               if (file && file.length){
                 duration = file.length;
               }
-              console.log("🚧🚧🚧🚧first pass",file);
+              //console.log("🚧🚧🚧🚧first pass",file);
               if (file.name == 'audio' && forceAudio){
                 line = `\n${spacer}<enclosure url="${file.url}" type="${file.type}" length="${file.length}"/>`
               } else if (file.name == 'video' && forceVideo) {
@@ -1252,7 +1269,7 @@ async function register ({
               } 
             }  
             for (file of extended){
-              console.log("🚧🚧🚧🚧second pass",file);
+              //console.log("🚧🚧🚧🚧second pass",file);
               if (file.name != 'audio' && file.name !='video'){
                 line = line + `\n${spacer}<podcast:alternateEnclosure type="${file.type}" length="${file.length}" title="${file.title}">`
                 line = line + `\n${spacer}  <podcast:source uri="${file.url}"/>`
@@ -1267,7 +1284,7 @@ async function register ({
         }
       }
       if (line.includes(`title="HLS"`) && !line.includes(`length="`)) {
-        console.log("fixing length");
+        //console.log("fixing length");
         line = line.replace(`title="HLS"`, `title="HLS" length ="${duration}"`);
       }
       if (largeChannelAvatar) {
@@ -1301,7 +1318,11 @@ async function register ({
       }
     }
     res.setHeader('content-type', 'application/rss+xml');
-    console.log("🚧🚧\n\n\n\n ending line loop \n",fixed.length);
+    //console.log("🚧🚧\n\n\n\n ending line loop \n",fixed.length);
+    let lastCache=Date.now();
+    await storageManager.storeData("rsscached-" + channel.replace(/\./g, "-"), lastCache);
+    await storageManager.storeData("rsscache-" + channel.replace(/\./g, "-"), fixed);
+    console.log("🚧🚧\n\n\n\n updating cached rss feed \n",fixed.length,channel);
     return  res.status(200).send(fixed);
     
   })
@@ -1494,7 +1515,7 @@ async function register ({
     }    
     if (channel) {
       try {
-        channelGuid = await storageManager.getData("channelguid" + "-" + channel)
+        channelGuid = await storageManager.getData("channelguid" + "-" + channel.replace(/\./g, "-"))
           if (enableDebug) {
             console.log("🚧🚧channel guid from storage", channelGuid);
           }
@@ -1578,7 +1599,7 @@ async function register ({
       }
       if (channelGuid) {
         try {
-          await storageManager.storeData("channelguid" + "-" + channel, channelGuid);
+          await storageManager.storeData("channelguid" + "-" + channel.replace(/\./g, "-"), channelGuid);
         } catch {
           console.log("🚧🚧failed to store channel guid", channel, channelGuid);
         }
@@ -1608,7 +1629,7 @@ async function register ({
     }
     let podData;
     try {
-      podData = await storageManager.getData("pod-" + channel.replace(/\./g, "-"));
+      podData = await storageManager.getData("pod-" + channel.replace(/\./g, "-").replace(/\./g, "-"));
     } catch (err) {
       console.log("🚧🚧hard error getting pod data for ", channel);
       //return res.status(404).send("🚧🚧 no podcast data for " + req.query.channel + err);
@@ -1635,7 +1656,7 @@ async function register ({
         if (enableDebug){
           console.log("🚧🚧 found remote pod data", customChat.toString(), "for", channel);
         }
-        storageManager.storeData("pod-" + channel.replace(/\./g, "-"), req.body);
+        await storageManager.storeData("pod-" + channel.replace(/\./g, "-"), req.body);
         return res.status(200).send(remotePodData.data);
       }
       console.log("🚧🚧 no remote pod data found for", channel);
@@ -1669,14 +1690,20 @@ async function register ({
         console.log("🚧🚧🚧🚧 user", userName);
       }
       let channel = req.body.channel;
-      storageManager.storeData("pod-" + channel.replace(/\./g, "-"), req.body);
-      if (req.body && req.body.feedguid && req.body.feedguid !=``) {
+      if (channel && req.body && (!req.body.feedGuid || req.body.feedGuid =='')) {
         try {
-          channelGuid = await storageManager.getData("channelguid" + "-" + req.body.feedguid)
+          channelGuid = await storageManager.getData("channelguid" + "-" + channel.replace(/\./g, "-"))
+          if (channelGuid) {
+            req.body.feedGuid = channelGuid
+          }
         } catch (err) {
-          console.log("🚧🚧 error setting channel guid", channel,req.body.feedguid,err);
+          console.log("🚧🚧 error setting channel guid", channel,req.body.feedGuid,err);
         }
       }
+      if (enableDebug) {
+        console.log("🚧🚧🚧🚧 poddata to save", req.body);
+      }
+      await storageManager.storeData("pod-" + channel.replace(/\./g, "-"), req.body);
       pingPI(channel,req.body.medium);
       return res.status(200).send();
     }
@@ -1776,7 +1803,7 @@ async function register ({
     console.log("🚧🚧final image url",imageUrl);
     let avatarResult = await updateChannelAvatar(imageUrl,fixedName,header);
     console.log("🚧🚧 avatar upload result",avatarResult)
-    storageManager.storeData("pod-" + fixedName.replace(/\./g, "-"), {"medium": "podcast", "channel": fixedName});
+    await storageManager.storeData("pod-" + fixedName.replace(/\./g, "-"), {"medium": "podcast", "channel": fixedName});
     console.log("🚧🚧 Starting to process rss stream items",channelId,fixedName,feed.title);     
     for (var item of feed.items){
       item.channelId = channelId;
@@ -1971,7 +1998,7 @@ async function register ({
       console.log("🚧🚧final image url",imageUrl);
       let avatarResult = await updateChannelAvatar(imageUrl,fixedName,header);
       console.log("🚧🚧 avatar upload result",avatarResult)
-      storageManager.storeData("pod-" + fixedName.replace(/\./g, "-"), {"medium": "audiobook", "channel": fixedName});
+      await storageManager.storeData("pod-" + fixedName.replace(/\./g, "-"), {"medium": "audiobook", "channel": fixedName});
       console.log("🚧🚧 Starting to process internet archive items",channelId,fixedName,title,shows.length);     
       for (var show  of shows){
         show.channelId = channelId;
@@ -2001,11 +2028,11 @@ async function register ({
           let videoThumbnail = result.data.video.thumbnailPath;
           let videoPreview = result.data.video.previewPath
           if (show.track){
-            storageManager.storeData('episodenode-' + videoId, show.track);
-            storageManager.storeData('seasonnode-' + videoId, 1);
+            await storageManager.storeData('episodenode-' + videoId, show.track);
+            await storageManager.storeData('seasonnode-' + videoId, 1);
           }
           if (show.title){
-            storageManager.storeData('episodename-' + videoId, show.title);
+            await storageManager.storeData('episodename-' + videoId, show.title);
           }
           //conflicts with youtube data streamings.
           //storageManager.storeData('sourceid-' + videoId, ID);
@@ -2092,10 +2119,11 @@ async function register ({
       }
     } 
     */
+    let head;
+    console.log("🚧 podping troubleshooting", feedId, piKey,piProxy);
     if (piKey) {
-      let head = { headers: { Authorization: piKey } }
+      head = { headers: { Authorization: piKey } }
       try {
-        
         pingResult = await axios.get(podpingUrl,head);
       } catch (err) {
         console.log("🚧🚧hard error when pod pinging ", podpingUrl, head ,err);
@@ -2103,7 +2131,7 @@ async function register ({
     } else if (piProxy){
       proxyUrl=piProxy+`/plugins/podcast2/router/piproxy?url=${podpingUrl}`
       try{
-        pingResult = await axios.get(proxyUrl,head);
+        pingResult = await axios.get(proxyUrl);
       } catch (err){
         console.log("🚧🚧hard error when proxy pod pinging ", podpingUrl,err);
       }
@@ -2582,7 +2610,7 @@ form.submit('http://example.org/', function(err, res) {
   */
     let parts = enclosureUrl.split("/");
     let foundUUID = parts[5].substring(0,36);
-    console.log("🚧 parts",parts,foundUUID);
+    //console.log("🚧 parts",parts,foundUUID);
 
     return foundUUID;
   }

@@ -1,3 +1,7 @@
+v 0.3.9
+- fixed intermittant pod ping failure
+- added custom rss feed caching
+
 v 0.3.8
 - fixed node crash bug creating podcast guid
 
