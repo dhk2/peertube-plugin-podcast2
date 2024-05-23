@@ -275,8 +275,9 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
         //console.log('🚧 found it!', podcastButtonInsertPoint.length);
         var newStuff = document.createElement("a");
         newStuff.innerHTML=`<a  class="peertube-create-button" href="/p/podcast2/import"><my-global-icon _ngcontent-ng-c287775211="" iconname="add" aria-hidden="true" _nghost-ng-c1540792725=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></my-global-icon>Import Podcast<!----></a>`+
-        `<a  class="peertube-create-button" href="/p/podcast2/importarc"><my-global-icon _ngcontent-ng-c287775211="" iconname="add" aria-hidden="true" _nghost-ng-c1540792725=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></my-global-icon>Import internet archive collection<!----></a>`+
-        
+        `<br><a  class="peertube-create-button" href="/p/podcast2/importarc"><my-global-icon _ngcontent-ng-c287775211="" iconname="add" aria-hidden="true" _nghost-ng-c1540792725=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></my-global-icon>Import internet archive collection<!----></a>`+
+        `<br><a  class="peertube-create-button" href="/p/podcast2/transcriptsync"><my-global-icon _ngcontent-ng-c287775211="" iconname="add" aria-hidden="true" _nghost-ng-c1540792725=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></my-global-icon>get youtube tanscripts<!----></a>`+
+       
         podcastButtonInsertPoint[0].appendChild(newStuff);
       }
     }
@@ -625,6 +626,71 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
       }
     }
   })
+  registerClientRoute({
+    route: 'podcast2/transcriptsync',
+    onMount: async ({ rootEl }) => {
+      rootEl.innerHTML = `<div id="podcast2-transcript-sync"><center><h1>get transcripts for imported videos</h1></center>
+      <button id = "podcast2-transcript-sync-button" class="peertube-button orange-button ng-star-inserted">Import</button>
+      `
+      let importTranscriptButton = document.getElementById("podcast2-transcript-sync-button");
+      if (importTranscriptButton){
+        importTranscriptButton.onclick  = async function () {
+          let videoSkip = 0;
+          let videoblock = 20;
+          let synched =0;
+          let synchlimit = 10;
+          let returnedVideos;
+          let getVideosApi = `${basePath}/api/v1/videos` 
+          
+          while (synched<synchlimit){
+            try {
+              returnedVideos = axios.get(getVideosApi);
+            } catch (err){
+              console.log("🚧 hard error getting video list for transcripts",getVideosApi, synched);
+            }
+            for (var video of returnedVideos.data){
+              synched++
+              console.log("🚧 found video",video,synched);
+            }
+          }
+
+          /*
+          let cloneChannel,cloneChannelParts;
+          if (importarcUrl){
+            console.log("importing channel",importarcUrl.value);
+            cloneChannel = importarcUrl.value;
+            if (cloneChannel && cloneChannel.length>1){
+              cloneChannelParts = cloneChannel.split("/");
+              if (cloneChannelParts.length > 1){
+                cloneChannel = cloneChannelParts[cloneChannelParts.length-1];
+              }
+              let url = "https://" + window.location.hostname + "/plugins/podcast2/router/importarc?id=" + cloneChannel;
+              let bearer = await peertubeHelpers.getAuthHeader() 
+              console.log("trying to import", bearer, url,cloneChannel);
+              let returnMessage;
+              try {
+                returnMessage = await axios.put(url,{ bear: bearer},{ headers: bearer });
+              } catch (err){
+                console.log("error sending request",err,url,cloneChannel,err.message,err.data.message);
+                notifier.error("failed trying to import ");
+              }
+              console.log("importing returned message",returnMessage);
+              if (returnMessage){
+                window.location.replace(returnMessage.data);
+              }
+              // notifier.success(returnMessage)
+            }
+          } else {
+            console.log("no import url");
+          }
+          */
+        }
+      } else {
+        console.log("no import button");
+      }
+    }
+  })
+
   const videoFormOptions = { tab: 'plugin-settings' };
   let commonOptions = {
     name: 'seasonnode',

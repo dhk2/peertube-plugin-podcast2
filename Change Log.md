@@ -1,3 +1,16 @@
+v 0.4.3
+- another podping proxy fix
+
+v 0.4.2
+- added publisher feed for instance
+- added publisher to channel rss feeds
+
+v 0.4.1
+- Fixed uri encode issue with podping proxy
+
+V 0.4.0
+- Fixed bug in chapters error message
+
 v 0.3.9
 - fixed intermittant pod ping failure
 - added custom rss feed caching
