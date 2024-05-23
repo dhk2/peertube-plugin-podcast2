@@ -1949,7 +1949,7 @@ async function register ({
     if (!url || !piKey){
       return res.status(420).send("🚧🚧 Missing URL or api key to ping ");
     }
-   let podpingUrl = `https://podping.cloud?url=${encodeURIComponent(url)}`;
+   let podpingUrl = `https://podping.cloud/?url=${encodeURIComponent(url)}`;
    //let podpingUrl = `https://podping.cloud?url=${url}`;
     if (medium){
       podpingUrl = podpingUrl + "&medium="+medium;
@@ -1966,11 +1966,11 @@ async function register ({
       console.log("🚧🚧hard error when pod pinging ", podpingUrl, head ,err);
     }
     if (pingResult && pingResult.data) {
-        console.log("🚧 pod Pinged", url, pingResult.data);
+        console.log("🚧 pod Pinged", podpingUrl,pingResult.data);
         return res.status(200).send(pingResult.data);
     } else {
       console.log("🚧 i am disappoint", pingResult, podpingUrl);
-      return res.status(420).send(pingResult.data);
+      return res.status(420).send(pingResult);
     }
   })
   async function pingPI(channel,medium,reason) {
@@ -1985,8 +1985,9 @@ async function register ({
     if (!medium){
       medium="video"
     }
-    let feedUrl = `${base}/plugins/podcast2/router/podcast2?channel=${channel}`;
-    let podpingUrl = `https://podping.cloud/?url=${encodeURIComponent(feedUrl)}`;
+    let feedUrl = encodeURIComponent(`${base}/plugins/podcast2/router/podcast2?channel=${channel}`);
+    let podpingUrl = `https://podping.cloud/?url=${feedUrl}`;
+    
     if (medium){
       podpingUrl = podpingUrl + "&medium="+medium;
       feedUrl = feedUrl + "&medium="+medium;
@@ -2026,12 +2027,12 @@ async function register ({
     } 
     */
     let head;
-    console.log("🚧 podping troubleshooting", piKey, piProxy, );
+    console.log("🚧 podping troubleshooting", piKey, piProxy, feedUrl,podpingUrl);
     if (piKey) {
       head = { headers: { Authorization: piKey } }
       try {
         pingResult = await axios.get(podpingUrl,head);
-        console.log("🚧 pod pinged, result", podpingUrl,pingResult);
+        console.log("🚧 pod pinged, result", podpingUrl);
       } catch (err) {
         console.log("🚧🚧hard error when pod pinging ", podpingUrl, head ,err);
       }
