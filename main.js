@@ -90,11 +90,14 @@ async function register ({
   let parser = new Parser();
   let podcast2;
   let hiveTube;
+  let lightning
   for (var plugin of plugins){
     switch (plugin.npmName){
       case 'peertube-plugin-podcast2' : podcast2=true;
       break;
       case 'peertube-plugin-hive-tube' : hiveTube=true;
+      break;
+      case 'peertube-plugin-lightning' : lightning=true;
       break;
     } 
   }
@@ -173,6 +176,7 @@ async function register ({
 
       let podreturn = [];
       let channelGuid;
+      /*
       apiUrl = base + "/plugins/podcast2/router/getchannelguid?channel=" + channel;
       try {
         let guidData = await axios.get(apiUrl);
@@ -255,6 +259,13 @@ async function register ({
           value: channelGuid
         }
         podreturn.push(fguid);  
+      }
+      if (podData && podData.feedguid && podData.feedguid != "") {
+        let feedguid={
+          name: "podcast:feedGuid",
+          attributes: {text: podData.feedguid}
+        }
+        podreturn.push(feedguid);
       }
       if (podData && podData.category && podData.category != "") {
         let category={
@@ -517,8 +528,11 @@ async function register ({
       console.log("🚧🚧 custom objects to add to video",customObjects);
       console.log("🚧🚧 custom objects to store for rss",rssData);
       await storageManager.storeData('rssvideodata-'+videoUuid,rssData);
-      return result.concat(customObjects);
-      
+      if (result){
+        return result.concat(customObjects);
+      } else {
+        console.log("🚧🚧 weird error where result is undefined or false",customObjects,result);
+      }
     }
   })
 
@@ -664,10 +678,11 @@ async function register ({
     if (channelData){
       for (var channel of channelData){
         try {
-          podData = await storageManager.getData("pod-" + channel.name.replace(/\./g, "-").replace(/\./g, "-"));
+          podData = await storageManager.getData("pod-" + channel.name.replace(/\./g, "-"));
         } catch (err) {
           console.log("🚧🚧hard error getting pod data for ", channel);
         }
+        console.log("🚧🚧 pod data returned",podData);
         if (podData && podData.feedguid) {
           var podMedium = podData.medium;
           if (!podMedium){
@@ -1046,10 +1061,11 @@ async function register ({
     }
     //console.log("🚧🚧loaded rss feed from", rssUrl);
     let channelGuid;
-    if (podData && podData.feedGuid && podData.feedGuid !=""){
-      channelGuid = podData.feedGuid
-      console.log("🚧🚧channel guid from podData", guidData.data);
-    } else {
+    if (podData && podData.feedguid && podData.feedguid !=""){
+      channelGuid = podData.feedguid
+      console.log("🚧🚧channel guid from podData", channelGuid);
+    /*} else {
+      
       apiUrl = base + "/plugins/podcast2/router/getchannelguid?channel=" + channel;
       try {
         let guidData = await axios.get(apiUrl);
@@ -1060,8 +1076,10 @@ async function register ({
       } catch {
         console.log("🚧🚧unable to load channel guid from podcast2", apiUrl);
       }
+      */
     }
-    if (!channelGuid){
+    // 
+    if (!channelGuid && lightning){
       apiUrl = base + "/plugins/lighting/router/getchannelguid?channel=" + channel;
       try {
         let guidData = await axios.get(apiUrl);
@@ -1389,7 +1407,7 @@ async function register ({
       }
     }
   })
-  */
+  
   router.use('/getchannelguid', async (req, res) => {
     if (enableDebug) {
       console.log("🚧🚧getting channel guid", req.query);
@@ -1426,7 +1444,7 @@ async function register ({
           console.log("🚧⚡️🚧⚡️🚧 error getting lighting feedid", channel);
         }
       }
-      */
+      
     }
     if (!channelGuid &&  host && host !=hostDomain){
       apiUrl = `https://${host}/plugins/podcast2/router/getchannelguid?channel=${channel}`;
@@ -1509,6 +1527,7 @@ async function register ({
       }
     }
   })
+  */
   router.use('/getpoddata', async (req, res) => {
     
     if (enableDebug) {
@@ -1521,12 +1540,26 @@ async function register ({
     }
     let podData;
     try {
-      podData = await storageManager.getData("pod-" + channel.replace(/\./g, "-").replace(/\./g, "-"));
+      podData = await storageManager.getData("pod-" + channel.replace(/\./g, "-"));
     } catch (err) {
       console.log("🚧🚧hard error getting pod data for ", channel);
       //return res.status(404).send("🚧🚧 no podcast data for " + req.query.channel + err);
     }
+    if (!podData){
+      podData={"channel": channel};
+    }
     if (podData) {
+      if (!podData.feedguid){
+        console.log("🚧🚧 no pod data found, generating guid",channel,podData);
+        let rssUrl = `${base}/plugins/podcast2/router/podcast2?channel=${channel}`
+        try {
+          podData.feedguid = v5('url',rssUrl);
+        } catch {
+          console.log("🚧🚧HARD FAIL getting new guid for channel", rssUrl,channel);
+        }
+      }
+      console.log("🚧🚧 storing new guid",channel,podData.feedguid);
+      await storageManager.storeData("pod-" + channel.replace(/\./g, "-"), podData);
       return res.status(200).send(podData);
     } else {
       if (enableDebug) {
@@ -1581,17 +1614,19 @@ async function register ({
       if (enableDebug) {
         console.log("🚧🚧🚧🚧 user", userName);
       }
+      /*
       let channel = req.body.channel;
-      if (channel && req.body && (!req.body.feedGuid || req.body.feedGuid =='')) {
+      if (channel && req.body && (!req.body.feedguid || req.body.feedguid =='')) {
         try {
           channelGuid = await storageManager.getData("channelguid" + "-" + channel.replace(/\./g, "-"))
           if (channelGuid) {
-            req.body.feedGuid = channelGuid
+            req.body.feedguid = channelGuid
           }
         } catch (err) {
-          console.log("🚧🚧 error setting channel guid", channel,req.body.feedGuid,err);
+          console.log("🚧🚧 error setting channel guid", channel,req.body.feedguid,err);
         }
       }
+      */
       if (enableDebug) {
         console.log("🚧🚧🚧🚧 poddata to save", req.body);
       }

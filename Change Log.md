@@ -1,3 +1,12 @@
+v 0.4.5
+- fixed bug with undefined result value setting custom channel data
+- deprecated channelguid storage method inherited from lightning to use poddata instead
+- fixed initial channel guid creation in poddata
+
+v 0.4.4
+- troubleshooting failure to create podcastindex entries via podping
+- fixed several podcast2 rss elements
+
 v 0.4.3
 - another podping proxy fix
 

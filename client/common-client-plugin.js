@@ -846,14 +846,14 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
   }
   async function getChannelGuid(channel) {
     let guid;
-    let guidApi = basePath + "/getchannelguid?channel=" + channel;
+    let guidApi = basePath + "/getpoddata?channel=" + channel;
     try {
       guid = await axios.get(guidApi);
       if (guid) {
         if (debugEnabled) {
           console.log("🚧guid from guid api", guid)
         }
-        return guid.data;
+        return guid.data.feedguid;
       }
     } catch (err) {
       console.log("🚧error getting channel guid", guidApi, err)
