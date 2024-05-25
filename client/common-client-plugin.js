@@ -316,7 +316,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
           "medium": "podcast",
           "channel": channel,
           "category": "news",
-          "image": "https://www.peppercarrot.com/0_sources/0ther/framasoft/hi-res/2020-05-21_Peertube-Research_by-David-Revoy.jpg"
+          "image": "https://freediverse.com/lazy-static/avatars/a9e4fd2c-1895-49fb-9824-3886e89dc948.jpg"
         } 
         podData.text = feedTxt;
       }
@@ -335,7 +335,7 @@ async function register({ registerHook, peertubeHelpers, registerVideoField, reg
         category=podData.category;
       }
       if (!podData.image) {
-        image = "https://www.peppercarrot.com/0_sources/0ther/framasoft/hi-res/2020-05-21_Peertube-Research_by-David-Revoy.jpg";
+        image = "https://freediverse.com/lazy-static/avatars/a9e4fd2c-1895-49fb-9824-3886e89dc948.jpg";
         podData.image = image; 
       } else {
         image = podData.image

@@ -1,3 +1,7 @@
+v 0.4.6
+- added automatic podroll 
+- cleaned up some debugging info
+
 v 0.4.5
 - fixed bug with undefined result value setting custom channel data
 - deprecated channelguid storage method inherited from lightning to use poddata instead

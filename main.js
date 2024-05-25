@@ -79,9 +79,10 @@ async function register ({
   let hostParts= base.split('//');
   let hostDomain = hostParts.pop();
   const ytDlpWrap = new YTDlpWrap('/var/www/peertube/storage/bin/yt-dlp');
-  console.log("🚧🚧 home url",base,hostName);
+  
   console.log("🚧🚧🚧🚧 Podcast2 plugin started");
   if (enableDebug) {
+    console.log("🚧🚧 home url",base,hostName);
     console.log("🚧🚧 server settings loaded", hostName, base, serverConfig, enableRss,enableChat);
     console.log("🚧🚧 continued", piKey,serverConfig.plugin.registered);
   }
@@ -111,8 +112,9 @@ async function register ({
       let channel = video.VideoChannel.Actor.preferredUsername;
       let state = video.state;
       let uuid = video.uuid;
-      console.log("🚧🚧🚧🚧🚧🚧 updating video data \n",channel,state,uuid,video.id);
-      const seasonNode = body.pluginData['seasonnode'];
+      if (enableDebug){
+        console.log("🚧🚧🚧🚧🚧🚧 updating video data \n",channel,state,uuid,video.id);
+      }const seasonNode = body.pluginData['seasonnode'];
       const seasonName = body.pluginData['seasonname'];
       const episodeNode = body.pluginData['episodenode'];
       const episodeName = body.pluginData['episodename'];
@@ -144,7 +146,9 @@ async function register ({
         }
       }
       */
-      console.log("🚧🚧🚧🚧🚧🚧 clearing cache data for channel", channel);
+      if (enableDebug){
+        console.log("🚧🚧🚧🚧🚧🚧 clearing cache data for channel", channel);
+      }
       await storageManager.storeData("rsscached-" + channel.replace(/\./g, "-"), 0);
       pingPI(channel)
       return;
@@ -170,10 +174,13 @@ async function register ({
     target: 'filter:feed.podcast.channel.create-custom-tags.result',
     handler: async (result, params) => {
       const { videoChannel } = params
-      //console.log("🚧🚧🚧🚧 initial channel values 🚧🚧🚧🚧",params,params.videoChannel.dataValues.Actor,params.videoChannel.dataValues.ownerAccount);
+     // console.log("🚧🚧🚧🚧 initial channel values 🚧🚧🚧🚧",params,params.videoChannel.dataValues.Account,params.videoChannel.Account);
       var channel = params.videoChannel.dataValues.Actor.dataValues.preferredUsername;
       var name =    params.videoChannel.dataValues.name;
-
+      var accountName = params.videoChannel.dataValues.Account.dataValues.name;
+      if (enableDebug){
+         console.log("🚧🚧🚧🚧 initial channel values 🚧🚧🚧🚧",channel,"🚧",name,"🚧",accountName);
+      }
       let podreturn = [];
       let channelGuid;
       /*
@@ -226,6 +233,26 @@ async function register ({
           "usesPodping": "true"
         }
       })
+      let podroll = await getChannelPodroll(accountName);
+      if (enableDebug){
+        console.log("🚧🚧podroll", podroll);
+      }
+      let roll = [];
+
+      if (podroll.length>0){
+        for (var podrollGuid of podroll){
+          if (podData && podData.feedguid != podrollGuid){
+            roll.push({
+              "name": "podcast:remoteItem",
+              attributes: {"feedGuid": podrollGuid}
+            })
+          }
+        }
+        podreturn.push({
+          name: "podcast:podroll",
+          value: roll,
+        });
+      } 
       if (podData && podData.email && podData.email.indexOf("@")>0){
         let blocks =[];
         let newBlock = {};
@@ -303,7 +330,11 @@ async function register ({
         value: "en"
       }
       podreturn.push(language);
-      return result.concat(podreturn)
+      if (result){
+        return result.concat(podreturn);
+      } else {
+        console.log("🚧🚧 weird error where result is undefined or false",podreturn,result);
+      }
     }
   })
   registerHook({
@@ -355,11 +386,11 @@ async function register ({
       try {
         videoData = await axios.get(apiCall);
       } catch (err){
-        console.log("🚧🚧\n\n\n\n\n\nfailed to pull information for provided video id", apiCall,err);
+        console.log("🚧🚧failed to pull information for provided video id", apiCall,err);
       }
       if (videoData && videoData.data) {
         if (enableDebug){
-          console.log("[pod] video data found");
+          console.log("🚧🚧  video data found");
         }
         let embedPath = base+videoData.data.embedPath;
         let duration = videoData.data.duration;
@@ -368,7 +399,7 @@ async function register ({
         let smallest = 999999999;
         let largest = 1;
         if (enableDebug){
-          console.log("[pod] streaming playlists",videoData.data.streamingPlaylists);
+          //console.log("🚧🚧  streaming playlists",videoData.data.streamingPlaylists);
         }
         if (embedPath){
           let embedEnclosure = {
@@ -391,7 +422,7 @@ async function register ({
           let videoFiles = videoData.data.streamingPlaylists[0].files;
           if (videoFiles) {
             for (var fileOption of videoFiles) {
-              console.log("[pod] file options",fileOption);
+              //console.log("[pod] file options",fileOption);
               if (fileOption.size < smallest) {
                 smallest = fileOption.size;
                 filename = fileOption.fileUrl
@@ -409,7 +440,9 @@ async function register ({
         }
         var enclosure,videoEnclosure;
         var enclosureType;
-        console.log("\n🚧🚧\n\n\nsmallest??",filename,smallest,videoFilename,largest);
+        if (enableDebug){
+          console.log("\n🚧🚧\n\n\nsmallest file",filename,smallest,videoFilename,largest);
+        }
         if (filename) {
           enclosureType = "video/mp4";
           if (filename.includes("-0-")){
@@ -439,8 +472,9 @@ async function register ({
           //customObjects.push(videoEnclosure);
           rssData.push(videoEnclosure)
         }
-        console.log("🚧🚧\nplugin data", customData);
-        
+        if (enableDebug){
+          console.log("🚧🚧\nplugin data", customData);
+        }
         if (customData && customData.seasonnode){
           let seasonItem = {
             name: "podcast:season",
@@ -525,8 +559,10 @@ async function register ({
           rssData.push(sourceEnclosure)
         }
       }
-      console.log("🚧🚧 custom objects to add to video",customObjects);
-      console.log("🚧🚧 custom objects to store for rss",rssData);
+      if (enableDebug){
+        console.log("🚧🚧 custom objects to add to video",customObjects);
+        console.log("🚧🚧 custom objects to store for rss",rssData);
+      }
       await storageManager.storeData('rssvideodata-'+videoUuid,rssData);
       if (result){
         return result.concat(customObjects);
@@ -542,26 +578,32 @@ async function register ({
       //if (video.privacy !== VideoPrivacy.PUBLIC) {
       //  return
       //}
-      console.log ("🚧🚧🚧🚧 video state",video.video.VideoChannel.Actor.preferredUsername, video.video.state )
+      if (enableDebug){
+        console.log ("🚧🚧🚧🚧 video state updated",video.video.VideoChannel.Actor.preferredUsername, video.video.state )
+      }
       let channel = video.video.VideoChannel.Actor.preferredUsername;
       let state = video.video.state;
       let uuid = video.video.uuid;
       //await pingPI(video.chann)
+      if (enableDebug){
         if (video && video.video){
           console.log("⚡️⚡️ live video updated",video.video.uuid,video.video.state);
         } else {
           console.log("⚡️⚡️ video.video missing from action",video.dataValues,video.DataModel,video.video);
           return;
         }
+      }
       if (video.video.state !=1){
-         console.log("⚡️⚡️ live stream ended",channel,state,uuid);
-         console.log("🚧🚧🚧🚧🚧🚧 clearing cache data for channel of live stream end", channel);
-         await storageManager.storeData("rsscached-" + channel.replace(/\./g, "-"), 0);
-         await pingPI(channel,null,"liveEnd");
+        if (enableDebug){
+          console.log("⚡️⚡️ live stream ended",channel,state,uuid);
+        }
+        await storageManager.storeData("rsscached-" + channel.replace(/\./g, "-"), 0);
+        await pingPI(channel,null,"liveEnd");
         return;
       } else {
-        console.log("⚡️⚡️ live stream started?",channel,state,uuid);
-        console.log("🚧🚧🚧🚧🚧🚧 clearing cache data for channel of livestream starting", channel);
+        if (enableDebug){
+          console.log("⚡️⚡️ live stream started?",channel,state,uuid);
+        }
         await storageManager.storeData("rsscached-" + channel.replace(/\./g, "-"), 0);
         await pingPI(channel,null,"live");
       }
@@ -571,11 +613,12 @@ async function register ({
   registerHook({
     target: 'action:api.video.uploaded',
     handler: async (video) => {
-      console.log ("🚧🚧🚧🚧 video uploaded",video.video.VideoChannel.Actor.preferredUsername, video.video.state )
+      if (enableDebug){
+        console.log ("🚧🚧🚧🚧 video uploaded",video.video.VideoChannel.Actor.preferredUsername, video.video.state )
+      }
       let channel = video.video.VideoChannel.Actor.preferredUsername;
       let state = video.video.state;
       let uuid = video.video.uuid;
-      console.log("🚧🚧🚧🚧🚧🚧 clearing cache data for channel of livestream starting", channel,state,uuid);
       await storageManager.storeData("rsscached-" + channel.replace(/\./g, "-"), 0);
       await pingPI(channel);
     }
@@ -635,10 +678,14 @@ async function register ({
     }
     let lastCached = await storageManager.getData("publisher-rss-cached");
     let refreshTime = Date.now()-lastCached
-    console.log("🚧🚧 chached rss feed", lastCached,refreshTime,milliday,req.query.force);
+    if (enableDebug){
+      console.log("🚧🚧 chached rss feed", lastCached,refreshTime,milliday,req.query.force);
+    }
     if ((refreshTime < milliday)  && !req.query.force){
       let cache = await storageManager.getData("publisher-rss-cache");
+      if (enableDebug){
         console.log("🚧🚧 returning chached publisher rss feed", lastCached,refreshTime,milliday);
+      }
       return res.status(200).send(cache);
     }
 
@@ -646,7 +693,7 @@ async function register ({
     let videoList;
     let displayName = hostName;
     let description = hostDescription;
-    let url = `{${base}/plugins/podcast2/router/publisher`;
+    let url = `${base}/plugins/podcast2/router/publisher`;
     let atomLink = url;
     let rssCache;
     let rssFile;
@@ -659,6 +706,7 @@ async function register ({
     //check for cached channel rss
     //get channel data
     channelData = await getInstanceChannels();
+
     let publisherGuid = v5('url',url);
     // Start RSS generation
     let rss = `<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md" version="2.0">`
@@ -694,6 +742,7 @@ async function register ({
         } 
       }
     }
+
     indent=indent-4
     rss = rss + `\n`+' '.repeat(indent)+`</channel>`;
     rss = rss + `\n</rss>\n`;
@@ -801,8 +850,9 @@ async function register ({
           delete chapter.timecode;
         }
       }
-      console.log("🚧🚧 chapters ", chapters);
-
+      if (enableDebug){
+        console.log("🚧🚧 chapters ", chapters);
+      }
     } 
     return res.status(200).send(chapters);
   })
@@ -1007,7 +1057,9 @@ async function register ({
       console.log("unable to load PODCAST data",req.query.channel,podApi);
     }
     if (podData) {
-      console.log("🚧🚧\n\n\n\n pod data \n", podData.data);
+      if (enableDebug){
+        console.log("🚧🚧\n\n\n\n pod data \n", podData.data);
+      }
       if (podData.data && podData.data.redirectEnabled){
         //return res.redirect(301, podData.data.redirectUrl);
         res.set('location', podData.data.redirectUrl);
@@ -1049,8 +1101,9 @@ async function register ({
       smallPersonAvatar = channelData.data.ownerAccount.avatars[0].path;
       largePersonAvatar = channelData.data.ownerAccount.avatars[1].path;
     }
-    console.log("🚧🚧🚧🚧channel avatar info", channelData.data.ownerAccount.avatars);
-    
+    if (enableDebug){
+      console.log("🚧🚧🚧🚧channel avatar info", channelData.data.ownerAccount.avatars);
+    }
     let rssUrl = base + "/feeds/podcast/videos.xml?videoChannelId=" + channelData.data.id;
     let rssData;
     try {
@@ -1063,8 +1116,10 @@ async function register ({
     let channelGuid;
     if (podData && podData.feedguid && podData.feedguid !=""){
       channelGuid = podData.feedguid
-      console.log("🚧🚧channel guid from podData", channelGuid);
-    /*} else {
+      if (enableDebug){
+        console.log("🚧🚧channel guid from podData", channelGuid);
+      } 
+        /*} else {
       
       apiUrl = base + "/plugins/podcast2/router/getchannelguid?channel=" + channel;
       try {
@@ -1084,7 +1139,6 @@ async function register ({
       try {
         let guidData = await axios.get(apiUrl);
         if (guidData && guidData.data) {
-          console.log("🚧🚧channel guid from lightning", guidData.data);
           channelGuid = guidData.data;
         }
       } catch {
@@ -1166,7 +1220,9 @@ async function register ({
           //console.log("🚧🚧🚧🚧enclosure",spot, "cut",">"+uuid+"<");
           try {
             var extended = await storageManager.getData('rssvideodata-'+uuid);
-            console.log("Extended",extended);
+            if (enableDebug){
+              console.log("Extended",extended);
+            }
             for (file of extended){
               if (file && file.length){
                 duration = file.length;
@@ -1232,7 +1288,9 @@ async function register ({
     let lastCache=Date.now();
     await storageManager.storeData("rsscached-" + channel.replace(/\./g, "-"), lastCache);
     await storageManager.storeData("rsscache-" + channel.replace(/\./g, "-"), fixed);
-    console.log("🚧🚧\n\n\n\n updating cached rss feed \n",fixed.length,channel);
+    if (enableDebug){
+      console.log("🚧🚧\n\n\n\n updating cached rss feed \n",fixed.length,channel);
+    }
     return  res.status(200).send(fixed);
     
   })
@@ -2462,8 +2520,9 @@ form.submit('http://example.org/', function(err, res) {
      // console.log("⚓⚓⚓⚓ instance channel Data",channelData.data.total,channelData.data.data);
     }
     let totalChannels = channelData.data.total;
-    while (channelSpot+99 <totalChannels){
+    while (channelSpot <totalChannels){
       for (var channel of channelData.data.data){
+
         if (channel.isLocal){
           localChannels.push(channel);
           console.log(channel.url);
@@ -2479,6 +2538,48 @@ form.submit('http://example.org/', function(err, res) {
       }
     }
     return localChannels;
+  }
+  async function getChannelPodroll(accountName){
+    //let apiUrl = `${base}/api/v1/accounts/video-channels?count=100`;
+    let channelSpot=0
+    let podroll=[];
+    let apiUrl = `${base}/api/v1/accounts/${accountName}/video-channels?count=100&start=${channelSpot}`;
+    let channelData;
+    try {
+      channelData = await axios.get(apiUrl);
+    } catch (err) {
+      console.log("🚧🚧 unable to load channel video info", apiUrl,err);
+      return;
+    }
+    if (enableDebug) {
+      console.log("🚧🚧  channels ",channelData.data.total);
+    }
+    let totalChannels = channelData.data.total;
+    while (channelSpot <totalChannels){
+      for (var channel of channelData.data.data){
+        let podData;
+        try {
+          podData = await storageManager.getData("pod-" + channel.name.replace(/\./g, "-"));
+          //console.log("⚓⚓⚓⚓ pod data", podData);
+        } catch (err) {
+          console.log("🚧🚧hard error getting pod data for ", channel);
+          //return res.status(404).send("🚧🚧 no podcast data for " + req.query.channel + err);
+        }
+          if (podData && podData.feedguid){
+          podroll.push(podData.feedguid);
+          //console.log("🚧🚧 pushed guid ",podData);
+        }
+      }
+      channelSpot=channelSpot+100
+      apiUrl = `${base}/api/v1/accounts/${accountName}/video-channels?count=100&start=${channelSpot}`;
+      try {
+        channelData = await axios.get(apiUrl);
+      } catch (err) {
+        console.log("🚧🚧 unable to load channel video info", apiUrl,err);
+        return;
+      }
+    }
+    return podroll;
   }
   async function getThumbnail(imageUrl){
     console.log(`🚧 getting thumbnail from ${imageUrl}`);
