@@ -1,3 +1,18 @@
+v 0.5.1
+- more hivetube plugin interoperability with RSS feeds
+
+v 0.5.0
+- fixed hivetube plugin interoperability with RSS feeds
+
+v 0.4.9
+- fixed node crashing podroll bug
+
+v 0.4.8
+- changed licenses to correspond with the rss defined values instead of peertubes.
+
+v 0.4.7
+- fixes and enhancements to publisher feed
+
 v 0.4.6
 - added automatic podroll 
 - cleaned up some debugging info

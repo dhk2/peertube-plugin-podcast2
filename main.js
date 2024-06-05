@@ -14,6 +14,7 @@ const { parse } = require('rss-to-json');
 const { constants } = require('crypto');
 const { extract } = require('@extractus/feed-extractor');
 const milliday = 24*60*60*1000;
+const rssLicences = ["","CC-BY-4.0", "CC-BY-SA-4.0", "CC-BY-ND-4.0", "CC-BY-NC-4.0", "CC-BY-NC-SA-4.0", "CC-BY-NC-ND-4.0", "CC-PDDC"];
 async function register ({
   registerHook,
   registerSetting,
@@ -227,19 +228,21 @@ async function register ({
         name: "podcast:publisher",
         value: remoteItemBlock
       })
-      podreturn.push({
-        name: "podcast:podping",
-        attributes: {
-          "usesPodping": "true"
-        }
-      })
+      if (!hiveTube && (piKey || piProxy)){
+        podreturn.push({
+          name: "podcast:podping",
+          attributes: {
+            "usesPodping": "true"
+          }
+        })
+      }
       let podroll = await getChannelPodroll(accountName);
       if (enableDebug){
         console.log("🚧🚧podroll", podroll);
       }
       let roll = [];
 
-      if (podroll.length>0){
+      if (podroll && podroll.length>0){
         for (var podrollGuid of podroll){
           if (podData && podData.feedguid != podrollGuid){
             roll.push({
@@ -287,6 +290,7 @@ async function register ({
         }
         podreturn.push(fguid);  
       }
+      /*
       if (podData && podData.feedguid && podData.feedguid != "") {
         let feedguid={
           name: "podcast:feedGuid",
@@ -294,46 +298,55 @@ async function register ({
         }
         podreturn.push(feedguid);
       }
-      if (podData && podData.category && podData.category != "") {
+      */
+      if (!hiveTube && (podData && podData.category && podData.category != "")) {
         let category={
           name: "itunes:category",
           attributes: {text: podData.category}
         }
         podreturn.push(category);
       }
-      if (podData && podData.image && podData.image !="") {
+      if (!hiveTube && podData && podData.image && podData.image !="") {
         let image={
           name: "itunes:image",
           attributes: {href: podData.image},
         }
         podreturn.push(image);
       }
-      if (podData && podData.licence && podData.licence.name){
+      if (podData && podData.licence && podData.licence.key){
+        
         let licence = {
           name: "podcast:license",
-          value: podData.licence.name
+          value: rssLicences[podData.licence.key]
         }
         podreturn.push(licence);
         let copyright = {
           name: "copyright",
-          value: podData.licence
+          value: rssLicences[podData.licence.key]
         }
         //podreturn.push(copyright); 
       }
-      let author = {
-        name: "itunes:author",
-        value: name
+      if (!hiveTube && name){
+        let author = {
+          name: "itunes:author",
+          value: name
+        }
+        podreturn.push(author);
       }
-      podreturn.push(author);
-      let language = {
-        name:"language",
-        value: "en"
+      if (!hiveTube){
+        let language = {
+          name:"language",
+          value: "en"
+        }
+        podreturn.push(language);
       }
-      podreturn.push(language);
       if (result){
         return result.concat(podreturn);
       } else {
         console.log("🚧🚧 weird error where result is undefined or false",podreturn,result);
+      }
+      if (enableDebug){
+        console.log("🚧🚧 custom values for channel",podreturn);
       }
     }
   })
@@ -411,7 +424,7 @@ async function register ({
           }
           rssData.push(embedEnclosure)
         }
-        if (duration){
+        if (!hiveTube && duration){
           let itemDuration = {
             name: "itunes:duration",
             value: await duration.toString()
@@ -510,7 +523,7 @@ async function register ({
           customObjects.push(itunesEpisode)
         }
         let chaptersItem,chaptersApi,chaptersData;
-        if (customData && customData.chapters){
+        if (!hiveTube && customData && customData.chapters){
           chaptersItem = {
             name: "podcast:chapters",
             attributes: {
@@ -694,7 +707,9 @@ async function register ({
     let displayName = hostName;
     let description = hostDescription;
     let url = `${base}/plugins/podcast2/router/publisher`;
+    let linkUrl = base;
     let atomLink = url;
+    let imageUrl = "https://freediverse.com/lazy-static/avatars/a9e4fd2c-1895-49fb-9824-3886e89dc948.jpg"
     let rssCache;
     let rssFile;
     let timeDiff;
@@ -723,6 +738,15 @@ async function register ({
     }
     rss = rss + `\n`+' '.repeat(indent)+`<podcast:medium>publisher</podcast:medium>`;
     rss = rss + `\n`+' '.repeat(indent)+`<generator>peertube-plugin-podcast2</generator>`;
+    rss = rss + `\n`+' '.repeat(indent)+`<image>`;
+    indent=indent+4
+    rss = rss + `\n`+' '.repeat(indent)+`<url>${imageUrl}</url>`;
+    rss = rss + `\n`+' '.repeat(indent)+`<title>${hostName}</title>`;
+    rss = rss + `\n`+' '.repeat(indent)+`<link>${base}</link>`;
+    rss = rss + `\n`+' '.repeat(indent)+`<width>1500</width>`;
+    rss = rss + `\n`+' '.repeat(indent)+`<height>1500</height>`;
+    indent=indent-3
+    rss = rss + `\n`+' '.repeat(indent)+`</image>`;
     if (channelData){
       for (var channel of channelData){
         try {
@@ -736,7 +760,7 @@ async function register ({
           if (!podMedium){
             podMedium = `video`
           }
-          var podUrl = `${base}/plugins/router/podcast2?channel=${channel.name}`
+          var podUrl = `${base}/plugins/podcast2/router/podcast2?channel=${channel.name}`
           var podName = channel.displayName;
           rss = rss + `\n`+' '.repeat(indent)+`<podcast:remoteItem feedGuid="${podData.feedguid}" feedUrl="${podUrl}" medium="${podMedium}" title="${podName}" />`;
         } 
@@ -1673,7 +1697,7 @@ async function register ({
         console.log("🚧🚧🚧🚧 user", userName);
       }
       /*
-      let channel = req.body.channel;
+      
       if (channel && req.body && (!req.body.feedguid || req.body.feedguid =='')) {
         try {
           channelGuid = await storageManager.getData("channelguid" + "-" + channel.replace(/\./g, "-"))
@@ -1685,14 +1709,17 @@ async function register ({
         }
       }
       */
+      let channel = req.body.channel;
       if (enableDebug) {
-        console.log("🚧🚧🚧🚧 poddata to save", req.body);
+        console.log("🚧🚧🚧🚧 poddata to save", channel, req.body);
       }
-      await storageManager.storeData("pod-" + channel.replace(/\./g, "-"), req.body);
-      console.log("🚧🚧🚧🚧🚧🚧 clearing cache data for channel of livestream starting", channel,req.body.medium);
-      await storageManager.storeData("rsscached-" + channel.replace(/\./g, "-"), 0);
-      pingPI(channel,req.body.medium);
-      return res.status(200).send();
+      if (channel){
+        await storageManager.storeData("pod-" + channel.replace(/\./g, "-"), req.body);
+        console.log("🚧🚧🚧🚧🚧🚧 clearing cache data for channel of livestream starting", channel,req.body.medium);
+        await storageManager.storeData("rsscached-" + channel.replace(/\./g, "-"), 0);
+        pingPI(channel,req.body.medium);
+        return res.status(200).send();
+      }
     }
     return res.status(420).send();
   })
