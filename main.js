@@ -236,9 +236,11 @@ async function register ({
           }
         })
       }
-      let podroll = await getChannelPodroll(accountName);
-      if (enableDebug){
-        console.log("🚧🚧podroll", podroll);
+      if (!hiveTube){
+        let podroll = await getChannelPodroll(accountName);
+        if (enableDebug){
+          console.log("🚧🚧podroll", podroll);
+        }
       }
       let roll = [];
 
@@ -532,7 +534,7 @@ async function register ({
             }
           };
           customObjects.push(chaptersItem);
-        } else {
+        } else if (!hiveTube) {
           chaptersApi = `${base}/plugins/podcast2/router/chapters?video=${videoUuid}`
           try {
             let chaptersData = await axios.get(chaptersApi);
