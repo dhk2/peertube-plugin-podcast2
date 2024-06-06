@@ -1,3 +1,9 @@
+v 0.5.3
+- fixed channel length issues with importing from podcasts and internet archive
+
+v 0.5.2
+- moved podroll support to hivetube in shared environment
+
 v 0.5.1
 - more hivetube plugin interoperability with RSS feeds
 

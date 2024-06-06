@@ -1745,8 +1745,8 @@ async function register ({
     let fixedName;
     if (feed.title){
       fixedName = feed.title.replace(/\W/g, '').toLowerCase();
-      if (fixedName.length>25){
-        fixedName =fixedName.slice(0,25);
+      if (fixedName.length>40){
+        fixedName =fixedName.slice(-38);
       }
     } else {
       console.log("🚧🚧🚧🚧 Unable to find channel name in provided feed", req.query.clone);
@@ -1953,8 +1953,8 @@ async function register ({
       }
       if (channelName){
         fixedName = channelName.replace(/\W/g, '').toLowerCase();
-        if (fixedName.length>25){
-          fixedName =fixedName.slice(0,25);
+        if (fixedName.length>40){
+          fixedName =fixedName.slice(-38);
         }
       } else {
         console.log("🚧🚧🚧🚧 Unable to find channel name in archive metadata", req.query.id);
