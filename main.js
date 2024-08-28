@@ -99,6 +99,8 @@ async function register ({
       break;
       case 'peertube-plugin-hive-tube' : hiveTube=true;
       break;
+      case 'peertube-plugin-peerhub' : hiveTube=true;
+      break;
       case 'peertube-plugin-lightning' : lightning=true;
       break;
     } 

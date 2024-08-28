@@ -1,5 +1,6 @@
 v 0.5.3
 - fixed channel length issues with importing from podcasts and internet archive
+- fixed compatibility wiht Peerhub
 
 v 0.5.2
 - moved podroll support to hivetube in shared environment
